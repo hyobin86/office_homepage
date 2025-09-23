@@ -61,13 +61,9 @@ export default defineNuxtConfig({
         // 추가 메타 태그
         { name: 'theme-color', content: '#2563eb' },
         { name: 'msapplication-TileColor', content: '#2563eb' },
-        { name: 'apple-mobile-web-app-capable', content: 'yes' },
-        { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
-        { name: 'apple-mobile-web-app-title', content: 'FinGate' }
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'manifest', href: '/site.webmanifest' }
       ]
     }
   },

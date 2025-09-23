@@ -22,12 +22,12 @@
 
 <script setup>
 // 컴포넌트 import
-import HeroSection from '~/components/home/HeroSection.vue'
-import FeaturesSection from '~/components/home/FeaturesSection.vue'
-import StatsSection from '~/components/home/StatsSection.vue'
-import TechnologySection from '~/components/home/TechnologySection.vue'
-import TestimonialsSection from '~/components/home/TestimonialsSection.vue'
-import CtaSection from '~/components/home/CtaSection.vue'
+import HeroSection from '~/components/pages/home/HeroSection.vue'
+import FeaturesSection from '~/components/pages/home/FeaturesSection.vue'
+import StatsSection from '~/components/pages/home/StatsSection.vue'
+import TechnologySection from '~/components/pages/home/TechnologySection.vue'
+import TestimonialsSection from '~/components/pages/home/TestimonialsSection.vue'
+import CtaSection from '~/components/pages/home/CtaSection.vue'
 
 // SEO 메타데이터
 useHead({

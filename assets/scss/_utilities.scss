@@ -2,7 +2,7 @@
    FinGate Utility Classes
    ======================================== */
 
-@import 'variables';
+@use 'variables' as *;
 
 // 애니메이션 초기 상태 (클라이언트에서만 적용)
 @media (prefers-reduced-motion: no-preference) {

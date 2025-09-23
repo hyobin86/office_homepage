@@ -2,8 +2,8 @@
    FinGate Homepage Sections
    ======================================== */
 
-@import 'variables';
-@import 'mixins';
+@use 'variables' as *;
+@use 'mixins' as *;
 
 // 히어로 섹션
 .home-hero {

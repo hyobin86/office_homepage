@@ -2,8 +2,8 @@
    FinGate Layout Components (Header & Footer)
    ======================================== */
 
-@import 'variables';
-@import 'mixins';
+@use 'variables' as *;
+@use 'mixins' as *;
 
 // 헤더
 .header {
@@ -15,11 +15,23 @@
   box-shadow: $shadow-sm;
   
   &-container {
-    @extend .container;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: $spacing-md $container-padding;
+    
+    @include responsive(md) {
+      max-width: 1400px;
+      padding: 0 1.5rem;
+    }
+    
+    @include responsive(sm) {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
   }
   
   &-logo {
@@ -166,7 +178,19 @@
   padding: $spacing-4xl 0 $spacing-xl;
   
   &-container {
-    @extend .container;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    
+    @include responsive(md) {
+      max-width: 1400px;
+      padding: 0 1.5rem;
+    }
+    
+    @include responsive(sm) {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
   }
   
   &-content {

@@ -11,7 +11,8 @@
 
 <script setup>
 // 기본 레이아웃 컴포넌트
-import AppHeader from '~/components/AppHeader.vue'
-import AppFooter from '~/components/AppFooter.vue'
+import AppHeader from '~/components/layout/AppHeader.vue'
+import AppFooter from '~/components/layout/AppFooter.vue'
+import StructuredData from '~/components/StructuredData.vue'
 </script>
 

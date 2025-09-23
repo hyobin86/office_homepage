@@ -2,8 +2,8 @@
    FinGate Common Components
    ======================================== */
 
-@import 'variables';
-@import 'mixins';
+@use 'variables' as *;
+@use 'mixins' as *;
 
 // 기능 카드
 .feature-card {

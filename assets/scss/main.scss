@@ -3,22 +3,22 @@
    ======================================== */
 
 // 1. 변수 (다른 모든 파일에서 사용)
-@import 'variables';
+@use 'variables' as *;
 
 // 2. 믹스인 (변수에 의존)
-@import 'mixins';
+@use 'mixins' as *;
 
 // 3. 기본 스타일 (변수와 믹스인에 의존)
-@import 'base';
+@use 'base';
 
 // 4. 공통 컴포넌트
-@import 'components';
+@use 'components';
 
 // 5. 레이아웃 컴포넌트 (헤더, 푸터)
-@import 'layouts';
+@use 'layouts';
 
 // 6. 페이지별 스타일
-@import 'pages';
+@use 'pages';
 
 // 7. 유틸리티 클래스
-@import 'utilities';
+@use 'utilities';

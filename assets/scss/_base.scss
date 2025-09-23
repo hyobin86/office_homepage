@@ -2,7 +2,8 @@
    FinGate Base Styles
    ======================================== */
 
-@import 'variables';
+@use 'variables' as *;
+@use 'mixins' as *;
 
 // 기본 리셋 및 기본 스타일
 * {
@@ -25,7 +26,7 @@ body {
   padding: 0 $container-padding;
   
   @include responsive(xl) {
-    max-width: 1024px;
+    max-width: 1400px;
     padding: 0 1.5rem;
   }
   

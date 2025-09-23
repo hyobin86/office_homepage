@@ -6,9 +6,12 @@ Vue3 + Nuxt + Sass 기반의 기업용 홈페이지입니다.
 
 - **프레임워크**: Nuxt 3
 - **언어**: Vue 3, TypeScript
-- **스타일링**: Sass
+- **스타일링**: Sass (Dart Sass 3.0 호환)
 - **상태관리**: Pinia
 - **유틸리티**: VueUse
+- **애니메이션**: GSAP + Lenis
+- **SEO**: @nuxtjs/seo
+- **폰트**: Google Fonts (Noto Sans KR, Roboto)
 
 ## 프로젝트 구조
 
@@ -16,18 +19,42 @@ Vue3 + Nuxt + Sass 기반의 기업용 홈페이지입니다.
 fingate_homepage/
 ├── assets/
 │   └── scss/
-│       ├── main.scss          # 메인 Sass 파일
+│       ├── main.scss          # 메인 Sass 파일 (@use 문법)
 │       ├── _variables.scss    # 변수 정의
 │       ├── _mixins.scss       # 믹스인 정의
 │       ├── _base.scss         # 기본 스타일
 │       ├── _components.scss   # 컴포넌트 스타일
-│       ├── _layouts.scss      # 레이아웃 스타일 (플렉스 기반)
+│       ├── _layouts.scss      # 레이아웃 스타일
 │       ├── _pages.scss        # 페이지별 스타일
 │       └── _utilities.scss    # 유틸리티 클래스
 ├── components/
-│   ├── AppHeader.vue          # 헤더 컴포넌트
-│   ├── AppFooter.vue          # 푸터 컴포넌트
-│   └── Icon.vue               # 아이콘 컴포넌트
+│   ├── layout/
+│   │   ├── AppHeader.vue      # 헤더 컴포넌트
+│   │   └── AppFooter.vue      # 푸터 컴포넌트
+│   ├── pages/
+│   │   ├── home/              # 홈페이지 섹션들
+│   │   │   ├── HeroSection.vue
+│   │   │   ├── FeaturesSection.vue
+│   │   │   ├── StatsSection.vue
+│   │   │   ├── TechnologySection.vue
+│   │   │   ├── TestimonialsSection.vue
+│   │   │   └── CtaSection.vue
+│   │   ├── about/             # 회사소개 섹션들
+│   │   │   ├── AboutHero.vue
+│   │   │   ├── AboutValues.vue
+│   │   │   └── AboutTeam.vue
+│   │   ├── services/          # 서비스 섹션들
+│   │   │   ├── ServicesHero.vue
+│   │   │   ├── ServicesList.vue
+│   │   │   └── ServicesCta.vue
+│   │   └── contact/           # 연락처 섹션들
+│   │       ├── ContactHero.vue
+│   │       ├── ContactInfo.vue
+│   │       └── ContactForm.vue
+│   ├── shared/
+│   │   └── PageHeader.vue     # 공통 페이지 헤더
+│   ├── Icon.vue               # 아이콘 컴포넌트
+│   └── StructuredData.vue     # 구조화된 데이터
 ├── layouts/
 │   └── default.vue            # 기본 레이아웃
 ├── pages/
@@ -35,7 +62,17 @@ fingate_homepage/
 │   ├── about.vue              # 회사소개
 │   ├── services.vue           # 서비스
 │   ├── contact.vue            # 연락처
-│   └── blog.vue               # 블로그
+│   ├── blog.vue               # 블로그
+│   ├── privacy.vue            # 개인정보처리방침
+│   ├── terms.vue              # 이용약관
+│   └── cookies.vue            # 쿠키정책
+├── plugins/
+│   ├── gsap.client.js         # GSAP 애니메이션
+│   └── lenis.client.js        # 스무스 스크롤
+├── public/
+│   ├── images/                # 이미지 파일들
+│   ├── favicon.svg            # 파비콘
+│   └── robots.txt             # 검색엔진 설정
 ├── nuxt.config.ts             # Nuxt 설정
 ├── package.json               # 의존성 관리
 └── README.md                  # 프로젝트 설명
@@ -71,12 +108,14 @@ npm run generate
 
 ## 주요 기능
 
-- **반응형 디자인**: 모바일(1023px 이하)과 웹(1024px 이상) 지원
-- **플렉스 기반 레이아웃**: CSS Grid 대신 Flexbox를 활용한 유연한 레이아웃
-- **SEO 최적화**: 메타 태그 및 구조화된 데이터
-- **접근성**: 웹 접근성 가이드라인 준수
-- **성능 최적화**: 이미지 최적화 및 코드 스플리팅
-- **다국어 지원**: 한국어 기본 지원
+- **반응형 디자인**: 모바일(768px 이하), 데스크톱(1400px) 지원
+- **모듈화된 컴포넌트**: 페이지별 섹션을 독립적인 컴포넌트로 분리
+- **GSAP 애니메이션**: 스크롤 기반 인터랙티브 애니메이션
+- **스무스 스크롤**: Lenis를 활용한 부드러운 스크롤 경험
+- **SEO 최적화**: @nuxtjs/seo 모듈을 활용한 완전한 SEO 설정
+- **구조화된 데이터**: Schema.org JSON-LD 형식
+- **성능 최적화**: 이미지 최적화, 코드 스플리팅, 압축
+- **최신 Sass**: Dart Sass 3.0 호환 @use 문법 사용
 
 ## 스타일 가이드
 
@@ -95,12 +134,15 @@ npm run generate
 
 ### 브레이크포인트
 
-- **Mobile**: 1023px 이하
-- **Web**: 1024px 이상 (태블릿 제외)
+- **Mobile**: 768px 이하
+- **Desktop**: 1400px 이하
+- **Large Desktop**: 1400px 초과
 
 ## 개발 가이드
 
 ### 컴포넌트 작성
+
+모든 스타일은 `assets/scss/main.scss`에서 중앙 관리됩니다:
 
 ```vue
 <template>
@@ -113,11 +155,7 @@ npm run generate
 // 컴포넌트 로직
 </script>
 
-<style scoped>
-.component-name {
-  /* 컴포넌트 스타일 */
-}
-</style>
+<!-- 스타일은 assets/scss/main.scss에서 관리 -->
 ```
 
 ### 플렉스 시스템 사용법
@@ -149,18 +187,58 @@ npm run generate
 
 ### 스타일 작성
 
-Sass 변수와 믹스인을 활용하여 일관된 스타일을 작성하세요:
+최신 Sass @use 문법을 사용하여 일관된 스타일을 작성하세요:
 
 ```scss
+// _components.scss
+@use 'variables' as *;
+@use 'mixins' as *;
+
 .my-component {
-  color: $primary-color;
+  color: $color-primary;
   padding: $spacing-md;
   
-  @include mobile {
+  @include responsive(md) {
     padding: $spacing-sm;
   }
 }
 ```
+
+### 애니메이션 사용법
+
+GSAP와 Lenis를 활용한 애니메이션:
+
+```vue
+<script setup>
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  if (typeof window !== 'undefined' && window.gsap) {
+    gsap.from('.animate-element', {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: '.animate-element',
+        start: 'top 80%'
+      }
+    })
+  }
+})
+</script>
+```
+
+## 최근 업데이트
+
+### v2.0.0 (2024-12-19)
+- ✅ **SCSS 모던화**: `@import` → `@use` 문법으로 전환
+- ✅ **Dart Sass 3.0 호환성**: 모든 경고 메시지 해결
+- ✅ **컴포넌트 모듈화**: 페이지별 섹션을 독립 컴포넌트로 분리
+- ✅ **중앙화된 스타일 관리**: 모든 CSS를 `main.scss`에서 관리
+- ✅ **GSAP + Lenis 통합**: 스크롤 애니메이션 및 스무스 스크롤
+- ✅ **완전한 SEO 설정**: @nuxtjs/seo 모듈 적용
+- ✅ **구조화된 데이터**: Schema.org JSON-LD 형식
+- ✅ **성능 최적화**: 이미지 최적화, 압축, 코드 스플리팅
 
 ## 배포
 
