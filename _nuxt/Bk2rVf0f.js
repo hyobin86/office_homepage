@@ -1,0 +1,1 @@
+import{c as t,o as a,a as s,t as r}from"./DYCBp_uH.js";const o={class:"page-header"},c={class:"page-title"},p={__name:"PageHeader",props:{title:{type:String,required:!0}},setup(e){return(i,n)=>(a(),t("div",o,[s("h1",c,r(e.title),1)]))}};export{p as _};
