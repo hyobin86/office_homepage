@@ -4,6 +4,7 @@ declare const defineNuxtConfig: (config: any) => any
 export default defineNuxtConfig({
   devtools: { enabled: true },
   compatibilityDate: '2025-09-23',
+  ssr: false,
   
   // CSS 프레임워크 설정
   css: [
@@ -48,7 +49,7 @@ export default defineNuxtConfig({
         { property: 'og:title', content: 'FinGate - 혁신적인 금융 솔루션' },
         { property: 'og:description', content: 'FinGate는 최첨단 기술과 전문성을 바탕으로 고객의 성공을 지원하는 금융 솔루션 기업입니다.' },
         { property: 'og:image', content: '/images/blog-1.jpg' },
-        { property: 'og:url', content: 'https://fingate.co.kr' },
+        { property: 'og:url', content: 'https://leenstar.dothome.co.kr' },
         { property: 'og:locale', content: 'ko_KR' },
         
         // Twitter Card 태그
@@ -75,14 +76,31 @@ export default defineNuxtConfig({
     }
   },
   
-  // 빌드 설정
-  nitro: {
-    compressPublicAssets: true
-  },
-  
   // 성능 최적화
   experimental: {
     payloadExtraction: false
+  },
+  
+  // 빌드 설정
+  nitro: {
+    compressPublicAssets: true,
+    prerender: {
+      routes: []
+    },
+    output: {
+      dir: 'dist'
+    }
+  },
+  
+  // 번들 통합 설정 (관리 편의성 우선)
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: () => 'app'
+        }
+      }
+    }
   },
   
   // 이미지 최적화
@@ -101,7 +119,7 @@ export default defineNuxtConfig({
   
   // 사이트맵 설정
   sitemap: {
-    hostname: 'https://fingate.co.kr',
+    hostname: 'https://leenstar.dothome.co.kr',
     gzip: true,
     routes: [
       '/',
@@ -120,8 +138,8 @@ export default defineNuxtConfig({
     identity: {
       type: 'Organization',
       name: 'FinGate',
-      url: 'https://fingate.co.kr',
-      logo: 'https://fingate.co.kr/favicon.svg',
+      url: 'https://leenstar.dothome.co.kr',
+      logo: 'https://leenstar.dothome.co.kr/favicon.svg',
       description: 'FinGate는 최첨단 기술과 전문성을 바탕으로 고객의 성공을 지원하는 금융 솔루션 기업입니다.'
     }
   }
