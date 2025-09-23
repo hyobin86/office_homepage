@@ -1,0 +1,76 @@
+<template>
+  <section class="home-hero">
+    <div class="container">
+      <h1>FinGate</h1>
+      <p>혁신적인 금융 솔루션으로 미래를 만들어갑니다</p>
+      <div class="home-hero-actions">
+        <NuxtLink to="/about" class="btn btn--primary btn--large">회사소개</NuxtLink>
+        <NuxtLink to="/services" class="btn btn--secondary btn--large">서비스</NuxtLink>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script setup>
+// GSAP과 ScrollTrigger 접근
+const { $gsap, $ScrollTrigger } = useNuxtApp()
+
+// 컴포넌트 마운트 후 애니메이션 설정
+onMounted(() => {
+  // 클라이언트에서만 실행되도록 추가 체크
+  if (typeof window !== 'undefined' && $gsap && $ScrollTrigger) {
+    // 히어로 섹션 애니메이션
+    $gsap.fromTo('.home-hero h1', 
+      { y: 50, opacity: 0 },
+      { 
+        y: 0, 
+        opacity: 1, 
+        duration: 1, 
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.home-hero',
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    )
+
+    $gsap.fromTo('.home-hero p', 
+      { y: 30, opacity: 0 },
+      { 
+        y: 0, 
+        opacity: 1, 
+        duration: 0.8, 
+        delay: 0.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.home-hero',
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    )
+
+    $gsap.fromTo('.home-hero-actions', 
+      { y: 30, opacity: 0 },
+      { 
+        y: 0, 
+        opacity: 1, 
+        duration: 0.8, 
+        delay: 0.4,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.home-hero',
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse'
+        }
+      }
+    )
+  }
+})
+</script>
+
+<!-- 스타일은 assets/css/main.css에서 관리 -->
