@@ -4,7 +4,6 @@ declare const defineNuxtConfig: (config: any) => any
 export default defineNuxtConfig({
   devtools: { enabled: true },
   compatibilityDate: '2025-09-23',
-  ssr: false,
   
   // CSS 프레임워크 설정
   css: [
@@ -31,6 +30,8 @@ export default defineNuxtConfig({
   
   // 앱 설정
   app: {
+    baseURL: '/',
+    buildAssetsDir: '_nuxt',
     head: {
       title: 'FinGate - 혁신적인 금융 솔루션',
       titleTemplate: '%s | FinGate',
@@ -76,11 +77,6 @@ export default defineNuxtConfig({
     }
   },
   
-  // 성능 최적화
-  experimental: {
-    payloadExtraction: false
-  },
-  
   // 빌드 설정
   nitro: {
     compressPublicAssets: true,
@@ -90,6 +86,11 @@ export default defineNuxtConfig({
     output: {
       dir: 'dist'
     }
+  },
+  
+  // 성능 최적화
+  experimental: {
+    payloadExtraction: false
   },
   
   // 번들 통합 설정 (관리 편의성 우선)

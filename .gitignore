@@ -14,7 +14,7 @@ yarn-error.log*
 # Environment variables
 .env
 .env.local
-.env.production
+.env.*.local
 
 # IDE
 .vscode
@@ -39,9 +39,6 @@ pids
 # Coverage directory used by tools like istanbul
 coverage
 
-# nyc test coverage
-.nyc_output
-
 # Dependency directories
 jspm_packages/
 
@@ -56,27 +53,3 @@ jspm_packages/
 
 # Yarn Integrity file
 .yarn-integrity
-
-# parcel-bundler cache (https://parceljs.org/)
-.parcel-cache
-
-# next.js build output
-.next
-
-# nuxt.js build output
-.nuxt
-
-# vuepress build output
-.vuepress/dist
-
-# Serverless directories
-.serverless
-
-# FuseBox cache
-.fusebox/
-
-# DynamoDB Local files
-.dynamodb/
-
-# TernJS port file
-.tern-port

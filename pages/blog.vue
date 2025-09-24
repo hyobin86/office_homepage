@@ -29,14 +29,14 @@
             <span>핀테크</span>
           </div>
           <h3 class="blog-item-title">
-            <NuxtLink to="/blog/fintech-future">핀테크의 미래: AI와 블록체인의 융합</NuxtLink>
+            핀테크의 미래: AI와 블록체인의 융합
           </h3>
           <p class="blog-item-excerpt">
             인공지능과 블록체인 기술이 결합하여 만들어낼 금융 서비스의 새로운 패러다임에 대해 알아봅니다.
           </p>
-          <NuxtLink to="/blog/fintech-future" class="blog-item-read-more">
-            자세히 보기 →
-          </NuxtLink>
+          <span class="blog-item-read-more">
+            준비 중 →
+          </span>
         </div>
 
         <div class="blog-item">
@@ -50,14 +50,14 @@
             <span>디지털 금융</span>
           </div>
           <h3 class="blog-item-title">
-            <NuxtLink to="/blog/digital-banking">디지털 뱅킹의 진화와 고객 경험</NuxtLink>
+            디지털 뱅킹의 진화와 고객 경험
           </h3>
           <p class="blog-item-excerpt">
             디지털 뱅킹이 어떻게 발전해왔는지, 그리고 향후 어떤 방향으로 나아갈지 살펴봅니다.
           </p>
-          <NuxtLink to="/blog/digital-banking" class="blog-item-read-more">
-            자세히 보기 →
-          </NuxtLink>
+          <span class="blog-item-read-more">
+            준비 중 →
+          </span>
         </div>
 
         <div class="blog-item">
@@ -71,14 +71,14 @@
             <span>투자 전략</span>
           </div>
           <h3 class="blog-item-title">
-            <NuxtLink to="/blog/investment-strategy">2024년 글로벌 투자 전략</NuxtLink>
+            2024년 글로벌 투자 전략
           </h3>
           <p class="blog-item-excerpt">
             새로운 해를 맞아 글로벌 시장의 변화와 함께 고려해야 할 투자 전략을 제안합니다.
           </p>
-          <NuxtLink to="/blog/investment-strategy" class="blog-item-read-more">
-            자세히 보기 →
-          </NuxtLink>
+          <span class="blog-item-read-more">
+            준비 중 →
+          </span>
         </div>
 
         <div class="blog-item">
@@ -92,14 +92,14 @@
             <span>금융 규제</span>
           </div>
           <h3 class="blog-item-title">
-            <NuxtLink to="/blog/financial-regulation">금융 규제의 변화와 대응 방안</NuxtLink>
+            금융 규제의 변화와 대응 방안
           </h3>
           <p class="blog-item-excerpt">
             최근 금융 규제 환경의 변화와 기업들이 어떻게 대응해야 하는지에 대해 설명합니다.
           </p>
-          <NuxtLink to="/blog/financial-regulation" class="blog-item-read-more">
-            자세히 보기 →
-          </NuxtLink>
+          <span class="blog-item-read-more">
+            준비 중 →
+          </span>
         </div>
       </div>
     </section>
