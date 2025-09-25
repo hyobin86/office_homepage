@@ -61,5 +61,3 @@ onMounted(() => {
   }
 })
 </script>
-
-<!-- 스타일은 assets/css/main.css에서 관리 -->

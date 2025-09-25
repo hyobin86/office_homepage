@@ -107,11 +107,7 @@
 </template>
 
 <script setup>
-// SEO 메타데이터
-useHead({
-  title: '블로그 - FinGate',
-  meta: [
-    { name: 'description', content: 'FinGate의 전문가들이 전하는 최신 금융 기술 트렌드와 인사이트를 확인하세요.' }
-  ]
-})
+// SEO 메타데이터 (중앙화된 관리)
+const seoData = useSEO('blog')
+useHead(seoData)
 </script>

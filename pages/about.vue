@@ -1,7 +1,9 @@
 <template>
   <div class="about">
     <!-- 페이지 헤더 -->
-    <PageHeader title="회사소개" />
+    <div class="page-header">
+      <h1 class="page-title">회사소개</h1>
+    </div>
 
     <!-- 히어로 섹션 -->
     <AboutHero />
@@ -16,16 +18,11 @@
 
 <script setup>
 // 컴포넌트 import
-import PageHeader from '~/components/shared/PageHeader.vue'
 import AboutHero from '~/components/pages/about/AboutHero.vue'
 import AboutValues from '~/components/pages/about/AboutValues.vue'
 import AboutTeam from '~/components/pages/about/AboutTeam.vue'
 
-// SEO 메타데이터
-useHead({
-  title: '회사소개 - FinGate',
-  meta: [
-    { name: 'description', content: 'FinGate는 혁신적인 금융 기술 기업으로, 고객의 성공을 지원하는 다양한 솔루션을 제공합니다.' }
-  ]
-})
+// SEO 메타데이터 (중앙화된 관리)
+const seoData = useSEO('about')
+useHead(seoData)
 </script>

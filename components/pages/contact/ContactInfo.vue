@@ -28,7 +28,7 @@
       </div>
       <div class="info-item-content">
         <h4>이메일</h4>
-        <p>contact@fingate.co.kr</p>
+        <p>info@fingate.co.kr</p>
       </div>
     </div>
     

@@ -58,57 +58,8 @@
 </template>
 
 <script setup>
-// SEO 메타데이터
-useHead({
-  title: '개인정보처리방침 - FinGate',
-  meta: [
-    { name: 'description', content: 'FinGate의 개인정보처리방침입니다. 고객의 개인정보 보호를 위해 최선을 다하고 있습니다.' }
-  ]
-})
+// SEO 메타데이터 (중앙화된 관리)
+const seoData = useSEO('privacy')
+useHead(seoData)
 </script>
 
-<style scoped>
-.privacy-content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.privacy-content h2 {
-  color: #2563eb;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.privacy-content h2:first-child {
-  margin-top: 0;
-}
-
-.privacy-content p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-  color: #374151;
-}
-
-.privacy-content ul {
-  margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
-}
-
-.privacy-content li {
-  margin-bottom: 0.5rem;
-  color: #374151;
-}
-
-.privacy-footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e5e7eb;
-}
-
-.privacy-footer p {
-  margin-bottom: 0.5rem;
-  color: #6b7280;
-}
-</style>

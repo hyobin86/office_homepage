@@ -89,57 +89,8 @@
 </template>
 
 <script setup>
-// SEO 메타데이터
-useHead({
-  title: '이용약관 - FinGate',
-  meta: [
-    { name: 'description', content: 'FinGate 서비스 이용약관입니다. 서비스 이용 시 준수해야 할 사항들을 확인하세요.' }
-  ]
-})
+// SEO 메타데이터 (중앙화된 관리)
+const seoData = useSEO('terms')
+useHead(seoData)
 </script>
 
-<style scoped>
-.terms-content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.terms-content h2 {
-  color: #2563eb;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.terms-content h2:first-child {
-  margin-top: 0;
-}
-
-.terms-content p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-  color: #374151;
-}
-
-.terms-content ul {
-  margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
-}
-
-.terms-content li {
-  margin-bottom: 0.5rem;
-  color: #374151;
-}
-
-.terms-footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e5e7eb;
-}
-
-.terms-footer p {
-  margin-bottom: 0.5rem;
-  color: #6b7280;
-}
-</style>

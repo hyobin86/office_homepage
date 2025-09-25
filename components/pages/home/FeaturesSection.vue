@@ -10,7 +10,7 @@
       
       <div class="flex-grid flex-grid--3">
         <div class="feature-card">
-          <div class="feature-card-icon">💳</div>
+          <div class="feature-card-icon" aria-label="디지털 뱅킹 아이콘">💳</div>
           <h3 class="feature-card-title">디지털 뱅킹</h3>
           <p class="feature-card-description">
             최신 기술을 활용한 안전하고 편리한 디지털 뱅킹 서비스를 제공합니다.
@@ -18,7 +18,7 @@
         </div>
         
         <div class="feature-card">
-          <div class="feature-card-icon">📊</div>
+          <div class="feature-card-icon" aria-label="투자 관리 아이콘">📊</div>
           <h3 class="feature-card-title">투자 관리</h3>
           <p class="feature-card-description">
             전문적인 투자 분석과 포트폴리오 관리로 최적의 투자 전략을 제안합니다.
@@ -26,7 +26,7 @@
         </div>
         
         <div class="feature-card">
-          <div class="feature-card-icon">🔒</div>
+          <div class="feature-card-icon" aria-label="보안 솔루션 아이콘">🔒</div>
           <h3 class="feature-card-title">보안 솔루션</h3>
           <p class="feature-card-description">
             최고 수준의 보안 기술로 고객의 자산과 정보를 안전하게 보호합니다.
@@ -82,5 +82,3 @@ onMounted(() => {
   }
 })
 </script>
-
-<!-- 스타일은 assets/css/main.css에서 관리 -->

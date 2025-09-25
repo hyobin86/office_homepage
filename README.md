@@ -11,7 +11,7 @@ Vue3 + Nuxt + Sass 기반의 현대적인 기업용 홈페이지입니다.
 - **상태관리**: Pinia
 - **유틸리티**: VueUse
 - **애니메이션**: GSAP + Lenis
-- **SEO**: @nuxtjs/seo
+- **SEO**: 커스텀 useSEO composable
 - **폰트**: Google Fonts (Noto Sans KR, Roboto)
 
 ## 프로젝트 구조
@@ -52,12 +52,13 @@ fingate_homepage/
 │   │       ├── ContactHero.vue
 │   │       ├── ContactInfo.vue
 │   │       └── ContactForm.vue
-│   ├── shared/
-│   │   └── PageHeader.vue     # 공통 페이지 헤더
 │   ├── Icon.vue               # 아이콘 컴포넌트
-│   └── StructuredData.vue     # 구조화된 데이터
 ├── layouts/
 │   └── default.vue            # 기본 레이아웃
+├── composables/
+│   └── useSEO.ts              # SEO 관리 컴포저블
+├── config/
+│   └── seo.ts                 # SEO 설정 중앙 관리
 ├── pages/
 │   ├── index.vue              # 홈페이지
 │   ├── about.vue              # 회사소개
@@ -72,8 +73,7 @@ fingate_homepage/
 │   └── lenis.client.js        # 스무스 스크롤
 ├── public/
 │   ├── images/                # 이미지 파일들
-│   ├── favicon.svg            # 파비콘
-│   └── robots.txt             # 검색엔진 설정
+│   └── favicon.svg            # 파비콘
 ├── nuxt.config.ts             # Nuxt 설정
 ├── package.json               # 의존성 관리
 └── README.md                  # 프로젝트 설명
@@ -115,7 +115,7 @@ npm run generate
 - **🧩 모듈화된 컴포넌트**: 페이지별 섹션을 독립적인 컴포넌트로 분리
 - **✨ GSAP 애니메이션**: 스크롤 기반 인터랙티브 애니메이션
 - **🌊 스무스 스크롤**: Lenis를 활용한 부드러운 스크롤 경험
-- **🔍 SEO 최적화**: @nuxtjs/seo 모듈을 활용한 완전한 SEO 설정
+- **🔍 SEO 최적화**: 커스텀 useSEO composable을 활용한 완전한 SEO 설정
 - **📊 구조화된 데이터**: Schema.org JSON-LD 형식
 - **⚡ 성능 최적화**: 이미지 최적화, 코드 스플리팅, 압축
 - **🎨 최신 Sass**: Dart Sass 3.0 호환 @use 문법 사용
@@ -249,7 +249,7 @@ onMounted(() => {
 - ✅ **컴포넌트 모듈화**: 페이지별 섹션을 독립 컴포넌트로 분리
 - ✅ **중앙화된 스타일 관리**: 모든 CSS를 `main.scss`에서 관리
 - ✅ **GSAP + Lenis 통합**: 스크롤 애니메이션 및 스무스 스크롤
-- ✅ **완전한 SEO 설정**: @nuxtjs/seo 모듈 적용
+- ✅ **완전한 SEO 설정**: 커스텀 useSEO composable 적용
 - ✅ **구조화된 데이터**: Schema.org JSON-LD 형식
 - ✅ **성능 최적화**: 이미지 최적화, 압축, 코드 스플리팅
 
@@ -267,6 +267,22 @@ onMounted(() => {
 2. Netlify에서 프로젝트 연결
 3. 빌드 명령어: `npm run generate`
 4. 배포 디렉토리: `dist`
+
+### 📁 서버 설정 파일
+
+- **Nginx 서버**: `nginx.conf` 파일을 서버 설정에 적용
+
+### ⚡ 캐싱 설정
+
+프로젝트에는 다음과 같은 캐싱 전략이 적용되어 있습니다:
+
+- **CSS/JS 파일**: 1년 캐싱 (자주 변경되지 않음)
+- **이미지 파일**: 1년 캐싱 (거의 변경되지 않음)
+- **비디오 파일**: 1년 캐싱 (용량이 크므로)
+- **HTML 파일**: 1시간 캐싱 (자주 변경될 수 있음)
+- **폰트 파일**: 1년 캐싱 (immutable)
+
+
 
 ## 라이선스
 

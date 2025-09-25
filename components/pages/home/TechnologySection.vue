@@ -10,7 +10,7 @@
           
           <div class="tech-features">
             <div class="tech-feature">
-              <div class="tech-icon">🤖</div>
+              <div class="tech-icon" aria-label="AI 기반 분석 아이콘">🤖</div>
               <div class="tech-text">
                 <h3>AI 기반 분석</h3>
                 <p>머신러닝을 통한 실시간 리스크 분석과 투자 추천</p>
@@ -18,7 +18,7 @@
             </div>
             
             <div class="tech-feature">
-              <div class="tech-icon">🔗</div>
+              <div class="tech-icon" aria-label="블록체인 보안 아이콘">🔗</div>
               <div class="tech-text">
                 <h3>블록체인 보안</h3>
                 <p>분산원장 기술로 최고 수준의 보안과 투명성 보장</p>
@@ -26,7 +26,7 @@
             </div>
             
             <div class="tech-feature">
-              <div class="tech-icon">☁️</div>
+              <div class="tech-icon" aria-label="클라우드 인프라 아이콘">☁️</div>
               <div class="tech-text">
                 <h3>클라우드 인프라</h3>
                 <p>확장 가능하고 안정적인 클라우드 기반 시스템</p>
@@ -105,5 +105,3 @@ onMounted(() => {
   }
 })
 </script>
-
-<!-- 스타일은 assets/scss/main.scss에서 관리 -->

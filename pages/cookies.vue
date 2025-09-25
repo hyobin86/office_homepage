@@ -95,64 +95,8 @@
 </template>
 
 <script setup>
-// SEO 메타데이터
-useHead({
-  title: '쿠키정책 - FinGate',
-  meta: [
-    { name: 'description', content: 'FinGate의 쿠키정책입니다. 웹사이트에서 사용하는 쿠키에 대해 자세히 알아보세요.' }
-  ]
-})
+// SEO 메타데이터 (중앙화된 관리)
+const seoData = useSEO('cookies')
+useHead(seoData)
 </script>
 
-<style scoped>
-.cookies-content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.cookies-content h2 {
-  color: #2563eb;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.cookies-content h2:first-child {
-  margin-top: 0;
-}
-
-.cookies-content h3 {
-  color: #374151;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-}
-
-.cookies-content p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-  color: #374151;
-}
-
-.cookies-content ul {
-  margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
-}
-
-.cookies-content li {
-  margin-bottom: 0.5rem;
-  color: #374151;
-}
-
-.cookies-footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e5e7eb;
-}
-
-.cookies-footer p {
-  margin-bottom: 0.5rem;
-  color: #6b7280;
-}
-</style>

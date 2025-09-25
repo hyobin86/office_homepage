@@ -29,20 +29,10 @@ import TechnologySection from '~/components/pages/home/TechnologySection.vue'
 import TestimonialsSection from '~/components/pages/home/TestimonialsSection.vue'
 import CtaSection from '~/components/pages/home/CtaSection.vue'
 
-// SEO 메타데이터
-useHead({
-  title: 'FinGate - 혁신적인 금융 솔루션',
-  meta: [
-    { name: 'description', content: 'FinGate는 최첨단 기술과 전문성을 바탕으로 고객의 성공을 지원하는 금융 솔루션 기업입니다.' }
-  ]
-})
+// SEO 메타데이터 (중앙화된 관리)
+const seoData = useSEO('index')
+useHead(seoData)
 </script>
 
-<style scoped>
-/* 홈페이지 전체 레이아웃 */
-.home {
-  min-height: 100vh;
-}
-</style>
 
 

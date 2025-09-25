@@ -9,6 +9,7 @@
         loop 
         playsinline
         preload="metadata"
+        aria-label="FinGate 금융 솔루션 소개 영상"
       >
         <source src="/videos/test.mp4" type="video/mp4">
         <!-- Video가 지원되지 않는 경우 대체 텍스트 -->
@@ -21,8 +22,8 @@
     <!-- 콘텐츠 -->
     <div class="hero-content">
       <div class="container">
-        <h1>FinGate</h1>
-        <p>혁신적인 금융 솔루션으로 미래를 만들어갑니다</p>
+        <h1>FinGate - 혁신적인 금융 솔루션</h1>
+        <p class="hero-subtitle">최첨단 기술과 전문성을 바탕으로 고객의 성공을 지원하는 금융 솔루션 기업입니다</p>
         <div class="home-hero-actions">
           <NuxtLink to="/about" class="btn btn--primary btn--large">회사소개</NuxtLink>
           <NuxtLink to="/services" class="btn btn--secondary btn--large">서비스</NuxtLink>
@@ -94,5 +95,3 @@ onMounted(() => {
   }
 })
 </script>
-
-<!-- 스타일은 assets/css/main.css에서 관리 -->
