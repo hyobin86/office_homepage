@@ -16,8 +16,6 @@
           <p>Video를 지원하지 않는 브라우저입니다.</p>
         </div>
       </video>
-      <!-- Video 오버레이 (어둡게 처리) -->
-      <div class="hero-video-overlay"></div>
     </div>
     
     <!-- 콘텐츠 -->
