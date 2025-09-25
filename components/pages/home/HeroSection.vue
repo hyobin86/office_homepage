@@ -1,11 +1,34 @@
 <template>
   <section class="home-hero">
-    <div class="container">
-      <h1>FinGate</h1>
-      <p>혁신적인 금융 솔루션으로 미래를 만들어갑니다</p>
-      <div class="home-hero-actions">
-        <NuxtLink to="/about" class="btn btn--primary btn--large">회사소개</NuxtLink>
-        <NuxtLink to="/services" class="btn btn--secondary btn--large">서비스</NuxtLink>
+    <!-- Video 배경 -->
+    <div class="hero-video-container">
+      <video 
+        class="hero-video" 
+        autoplay 
+        muted 
+        loop 
+        playsinline
+        preload="metadata"
+      >
+        <source src="/videos/test.mp4" type="video/mp4">
+        <!-- Video가 지원되지 않는 경우 대체 텍스트 -->
+        <div class="video-fallback">
+          <p>Video를 지원하지 않는 브라우저입니다.</p>
+        </div>
+      </video>
+      <!-- Video 오버레이 (어둡게 처리) -->
+      <div class="hero-video-overlay"></div>
+    </div>
+    
+    <!-- 콘텐츠 -->
+    <div class="hero-content">
+      <div class="container">
+        <h1>FinGate</h1>
+        <p>혁신적인 금융 솔루션으로 미래를 만들어갑니다</p>
+        <div class="home-hero-actions">
+          <NuxtLink to="/about" class="btn btn--primary btn--large">회사소개</NuxtLink>
+          <NuxtLink to="/services" class="btn btn--secondary btn--large">서비스</NuxtLink>
+        </div>
       </div>
     </div>
   </section>
@@ -14,6 +37,7 @@
 <script setup>
 // GSAP과 ScrollTrigger 접근
 const { $gsap, $ScrollTrigger } = useNuxtApp()
+
 
 // 컴포넌트 마운트 후 애니메이션 설정
 onMounted(() => {

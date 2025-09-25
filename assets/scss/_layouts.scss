@@ -7,12 +7,12 @@
 
 // 헤더
 .header {
-  background: $color-bg-primary;
-  border-bottom: 1px solid $color-bg-tertiary;
+  background: transparent;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: $shadow-sm;
+  box-shadow: none;
   
   &-container {
     max-width: 1400px;
@@ -37,11 +37,11 @@
   &-logo {
     font-size: $font-size-xl;
     font-weight: $font-weight-bold;
-    color: $color-primary;
+    color: #ffffff;
     text-decoration: none;
     
     &:hover {
-      color: $color-primary-dark;
+      color: #60a5fa;
     }
   }
   
@@ -75,7 +75,7 @@
 }
 
 .nav-link {
-  color: $color-text-primary;
+  color: #e2e8f0;
   text-decoration: none;
   font-weight: $font-weight-medium;
   padding: $spacing-sm $spacing-md;
@@ -83,13 +83,13 @@
   transition: all $transition-normal;
   
   &:hover {
-    color: $color-primary;
-    background: rgba($color-primary, 0.1);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
   }
   
   &.active {
-    color: $color-primary;
-    background: rgba($color-primary, 0.1);
+    color: #60a5fa;
+    background: rgba(96, 165, 250, 0.1);
   }
 }
 
@@ -117,8 +117,9 @@
     right: 0;
     width: 280px;
     height: 100%;
-    background: $color-bg-primary;
-    box-shadow: $shadow-xl;
+    background: rgba(0, 15, 29, 0.98);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
   }
@@ -128,11 +129,11 @@
     align-items: center;
     justify-content: space-between;
     padding: $spacing-lg;
-    border-bottom: 1px solid $color-bg-tertiary;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     
     h3 {
       margin: 0;
-      color: $color-text-primary;
+      color: #ffffff;
     }
     
     button {
@@ -157,7 +158,7 @@
   }
   
   &-link {
-    color: $color-text-primary;
+    color: #e2e8f0;
     text-decoration: none;
     padding: $spacing-md;
     border-radius: $border-radius-md;
@@ -165,8 +166,8 @@
     transition: all $transition-normal;
     
     &:hover {
-      color: $color-primary;
-      background: rgba($color-primary, 0.1);
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
     }
   }
 }

@@ -14,9 +14,11 @@ body {
   font-family: $font-family-primary;
   font-size: $font-size-base;
   line-height: 1.6;
-  color: $color-text-primary;
+  color: #ffffff;
   margin: 0;
   padding: 0;
+  background-color: #000f1d;
+  min-height: 100vh;
 }
 
 // 컨테이너

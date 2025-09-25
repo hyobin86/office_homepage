@@ -7,60 +7,97 @@
 
 // 히어로 섹션
 .home-hero {
-  background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
-  color: $color-text-white;
-  @include section-padding;
-  text-align: center;
   position: relative;
+  height: 100vh;
+  min-height: 600px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
-  &::before {
-    content: '';
+  // Video 컨테이너
+  .hero-video-container {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-    opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
   }
   
-  h1 {
-    font-size: $font-size-5xl;
-    margin-bottom: $spacing-md;
+  // Video 스타일
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  // Video 대체 텍스트
+  .video-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 1.2rem;
+  }
+  
+  // Video 오버레이 (어둡게 처리)
+  .hero-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+  }
+  
+  // 콘텐츠 컨테이너
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
     color: $color-text-white;
-    position: relative;
-    z-index: 1;
+    width: 100%;
     
-    @include responsive(md) {
-      font-size: $font-size-3xl;
+    h1 {
+      font-size: $font-size-5xl;
+      margin-bottom: $spacing-md;
+      color: $color-text-white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      
+      @include responsive(md) {
+        font-size: $font-size-3xl;
+      }
+      
+      @include responsive(sm) {
+        font-size: $font-size-2xl;
+      }
     }
     
-    @include responsive(sm) {
-      font-size: $font-size-2xl;
+    p {
+      font-size: $font-size-xl;
+      margin-bottom: $spacing-xl;
+      color: $color-text-white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      
+      @include responsive(md) {
+        font-size: $font-size-lg;
+      }
+      
+      @include responsive(sm) {
+        font-size: $font-size-base;
+      }
     }
   }
   
-  p {
-    font-size: $font-size-xl;
-    margin-bottom: $spacing-xl;
-    color: $color-text-white;
-    position: relative;
-    z-index: 1;
-    
-    @include responsive(md) {
-      font-size: $font-size-lg;
-    }
-    
-    @include responsive(sm) {
-      font-size: $font-size-base;
-    }
-  }
-  
-  &-actions {
-    position: relative;
-    z-index: 1;
-    
+  // 액션 버튼들
+  .home-hero-actions {
     @include responsive(md) {
       flex-direction: column;
       gap: $spacing-md;
@@ -74,26 +111,25 @@
   }
 }
 
+
+
 // 기능 섹션
 .home-features {
   @include section-padding;
-  background: linear-gradient(135deg, $color-bg-secondary 0%, $color-bg-tertiary 100%);
+  background: transparent;
   position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%232563eb" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-    opacity: 0.5;
-  }
   
   .section-header {
     position: relative;
     z-index: 1;
+    
+    .section-title {
+      color: #ffffff;
+    }
+    
+    .section-subtitle {
+      color: #e2e8f0;
+    }
   }
   
   .flex-grid {
@@ -105,21 +141,10 @@
 // 통계 섹션
 .home-stats {
   @include section-padding;
-  background: linear-gradient(135deg, $color-bg-dark 0%, #334155 100%);
+  background: transparent;
   color: $color-text-white;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hexagons" width="30" height="26" patternUnits="userSpaceOnUse"><polygon points="15,2 25,8 25,18 15,24 5,18 5,8" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23hexagons)"/></svg>');
-    opacity: 0.3;
-  }
   
   .section-title {
     color: $color-text-white;
@@ -138,18 +163,15 @@
 // 기술 섹션
 .home-technology {
   @include section-padding;
-  background: linear-gradient(135deg, $color-bg-primary 0%, #f1f5f9 100%);
+  background: transparent;
   position: relative;
   
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="circuits" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20,0 L20,20 M0,20 L40,20 M20,20 L20,40" fill="none" stroke="%232563eb" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23circuits)"/></svg>');
-    opacity: 0.4;
+  .section-title {
+    color: #ffffff;
+  }
+  
+  .section-subtitle {
+    color: #e2e8f0;
   }
   
   .flex-grid {
@@ -167,6 +189,14 @@
 .tech-content {
   padding-right: $spacing-xl;
   
+  h3 {
+    color: #ffffff;
+  }
+  
+  p {
+    color: #e2e8f0;
+  }
+  
   @include responsive(md) {
     padding-right: 0;
     margin-bottom: $spacing-xl;
@@ -176,21 +206,10 @@
 // 고객 후기 섹션
 .home-testimonials {
   @include section-padding;
-  background: linear-gradient(135deg, $color-bg-darker 0%, $color-bg-dark 100%);
+  background: transparent;
   color: $color-text-white;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" width="25" height="25" patternUnits="userSpaceOnUse"><circle cx="12.5" cy="12.5" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
-    opacity: 0.3;
-  }
   
   .section-title {
     color: $color-text-white;
@@ -208,23 +227,12 @@
 
 // CTA 섹션
 .home-cta {
-  background: linear-gradient(135deg, $color-secondary 0%, $color-secondary-dark 100%);
+  background: transparent;
   color: $color-text-white;
   @include section-padding;
   text-align: center;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="waves" width="50" height="20" patternUnits="userSpaceOnUse"><path d="M0,10 Q12.5,0 25,10 T50,10 T75,10 T100,10 V20 H0 Z" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23waves)"/></svg>');
-    opacity: 0.3;
-  }
   
   h2 {
     color: $color-text-white;
