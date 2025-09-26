@@ -160,7 +160,7 @@ export default defineNuxtConfig({
     }
   },
   
-  // 빌드 설정
+  // 사이트맵 설정 (내장 기능 사용)
   nitro: {
     compressPublicAssets: true,
     prerender: {
@@ -172,7 +172,8 @@ export default defineNuxtConfig({
         '/contact',
         '/privacy',
         '/terms',
-        '/cookies'
+        '/cookies',
+        '/sitemap.xml'
       ]
     },
     output: {

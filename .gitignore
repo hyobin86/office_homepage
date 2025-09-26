@@ -53,3 +53,7 @@ jspm_packages/
 
 # Yarn Integrity file
 .yarn-integrity
+
+# Generated files
+public/sitemap.xml
+public/robots.txt

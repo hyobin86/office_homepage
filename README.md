@@ -1,289 +1,255 @@
-# FinGate 홈페이지
+# FinGate Homepage
 
-Vue3 + Nuxt + Sass 기반의 현대적인 기업용 홈페이지입니다.  
-**Video Background Hero**와 **투명한 디자인**으로 차별화된 사용자 경험을 제공합니다.
+FinGate의 공식 홈페이지입니다. 혁신적인 금융 솔루션을 제공하는 기업의 웹사이트로, Vue.js와 Nuxt.js를 기반으로 구축되었습니다.
 
-## 기술 스택
+## 🚀 주요 기능
 
-- **프레임워크**: Nuxt 3
-- **언어**: Vue 3, TypeScript
-- **스타일링**: Sass (Dart Sass 3.0 호환)
-- **상태관리**: Pinia
-- **유틸리티**: VueUse
-- **애니메이션**: GSAP + Lenis
-- **SEO**: 커스텀 useSEO composable
+- **반응형 디자인**: 모든 디바이스에서 최적화된 사용자 경험
+- **SEO 최적화**: 검색 엔진 최적화를 위한 메타 태그 및 구조화된 데이터
+- **동적 SEO 파일**: 환경 변수 기반 사이트맵 및 robots.txt 자동 생성
+- **성능 최적화**: 빠른 로딩 속도와 효율적인 리소스 관리
+- **접근성**: 웹 접근성 가이드라인 준수
+- **다국어 지원**: 한국어 기본 지원
+
+## 🛠 기술 스택
+
+- **프레임워크**: Nuxt.js 3
+- **언어**: TypeScript, Vue.js 3
+- **스타일링**: SCSS
 - **폰트**: Google Fonts (Noto Sans KR, Roboto)
+- **애니메이션**: GSAP, Lenis
+- **상태 관리**: Pinia
+- **유틸리티**: VueUse
 
-## 프로젝트 구조
+## 📁 프로젝트 구조
 
 ```
 fingate_homepage/
-├── assets/
+├── assets/                 # SCSS 스타일 파일
 │   └── scss/
-│       ├── main.scss          # 메인 Sass 파일 (@use 문법)
-│       ├── _variables.scss    # 변수 정의
-│       ├── _mixins.scss       # 믹스인 정의
-│       ├── _base.scss         # 기본 스타일
-│       ├── _components.scss   # 컴포넌트 스타일
-│       ├── _layouts.scss      # 레이아웃 스타일
-│       ├── _pages.scss        # 페이지별 스타일
-│       └── _utilities.scss    # 유틸리티 클래스
-├── components/
-│   ├── layout/
-│   │   ├── AppHeader.vue      # 헤더 컴포넌트
-│   │   └── AppFooter.vue      # 푸터 컴포넌트
-│   ├── pages/
-│   │   ├── home/              # 홈페이지 섹션들
-│   │   │   ├── HeroSection.vue
-│   │   │   ├── FeaturesSection.vue
-│   │   │   ├── StatsSection.vue
-│   │   │   ├── TechnologySection.vue
-│   │   │   ├── TestimonialsSection.vue
-│   │   │   └── CtaSection.vue
-│   │   ├── about/             # 회사소개 섹션들
-│   │   │   ├── AboutHero.vue
-│   │   │   ├── AboutValues.vue
-│   │   │   └── AboutTeam.vue
-│   │   ├── services/          # 서비스 섹션들
-│   │   │   ├── ServicesHero.vue
-│   │   │   ├── ServicesList.vue
-│   │   │   └── ServicesCta.vue
-│   │   └── contact/           # 연락처 섹션들
-│   │       ├── ContactHero.vue
-│   │       ├── ContactInfo.vue
-│   │       └── ContactForm.vue
-│   ├── Icon.vue               # 아이콘 컴포넌트
-├── layouts/
-│   └── default.vue            # 기본 레이아웃
-├── composables/
-│   └── useSEO.ts              # SEO 관리 컴포저블
-├── config/
-│   └── seo.ts                 # SEO 설정 중앙 관리
-├── pages/
-│   ├── index.vue              # 홈페이지
-│   ├── about.vue              # 회사소개
-│   ├── services.vue           # 서비스
-│   ├── contact.vue            # 연락처
-│   ├── blog.vue               # 블로그
-│   ├── privacy.vue            # 개인정보처리방침
-│   ├── terms.vue              # 이용약관
-│   └── cookies.vue            # 쿠키정책
-├── plugins/
-│   ├── gsap.client.js         # GSAP 애니메이션
-│   └── lenis.client.js        # 스무스 스크롤
-├── public/
-│   ├── images/                # 이미지 파일들
-│   └── favicon.svg            # 파비콘
-├── nuxt.config.ts             # Nuxt 설정
-├── package.json               # 의존성 관리
-└── README.md                  # 프로젝트 설명
+├── components/            # Vue 컴포넌트
+│   ├── layout/           # 레이아웃 컴포넌트
+│   └── pages/           # 페이지별 컴포넌트
+├── composables/          # Vue 컴포저블
+├── config/               # 설정 파일
+├── layouts/              # 레이아웃 템플릿
+├── pages/                # 페이지 라우트
+├── plugins/              # 플러그인
+├── public/               # 정적 파일 (동적 생성 파일 포함)
+├── scripts/              # 빌드 스크립트
+│   ├── generate-sitemap.js  # 사이트맵 동적 생성
+│   └── generate-robots.js   # robots.txt 동적 생성
+└── nuxt.config.ts        # Nuxt 설정
 ```
 
-## 설치 및 실행
+## 🚀 시작하기
 
-### 1. 의존성 설치
+### 필수 요구사항
 
-```bash
-npm install
-```
+- Node.js 18.x 이상
+- npm 또는 yarn
 
-### 2. 개발 서버 실행
+### 설치 및 실행
 
-```bash
-npm run dev
-```
+1. **저장소 클론**
+   ```bash
+   git clone <repository-url>
+   cd fingate_homepage
+   ```
 
-개발 서버가 실행되면 [http://localhost:3000](http://localhost:3000)에서 확인할 수 있습니다.
+2. **의존성 설치**
+   ```bash
+   npm install
+   ```
 
-### 3. 프로덕션 빌드
+3. **개발 서버 실행**
+   ```bash
+   npm run dev
+   ```
 
-```bash
-npm run build
-```
+4. **브라우저에서 확인**
+   ```
+   http://localhost:3000
+   ```
 
-### 4. 정적 사이트 생성
+## 📜 사용 가능한 스크립트
+
+- `npm run dev` - 개발 서버 실행
+- `npm run build` - 프로덕션 빌드
+- `npm run generate` - 정적 사이트 생성 (SEO 파일 포함)
+- `npm run generate:seo` - SEO 파일들만 생성 (sitemap.xml, robots.txt)
+- `npm run generate:sitemap` - 사이트맵만 생성
+- `npm run generate:robots` - robots.txt만 생성
+- `npm run preview` - 빌드 결과 미리보기
+- `npm run clean` - 빌드 파일 정리
+- `npm run type-check` - TypeScript 타입 검사
+
+## 🌐 배포
+
+### 정적 사이트 생성
 
 ```bash
 npm run generate
 ```
 
-## 주요 기능
+생성된 파일은 `dist/public/` 폴더에 위치하며, 정적 호스팅 서비스에 업로드할 수 있습니다.
 
-- **🎥 Video Background Hero**: 동적 비디오 배경으로 임팩트 있는 첫인상
-- **🌌 투명한 디자인**: 완전 투명한 헤더와 섹션으로 통합된 시각적 경험
-- **📱 반응형 디자인**: 모바일(768px 이하), 데스크톱(1400px) 지원
-- **🧩 모듈화된 컴포넌트**: 페이지별 섹션을 독립적인 컴포넌트로 분리
-- **✨ GSAP 애니메이션**: 스크롤 기반 인터랙티브 애니메이션
-- **🌊 스무스 스크롤**: Lenis를 활용한 부드러운 스크롤 경험
-- **🔍 SEO 최적화**: 커스텀 useSEO composable을 활용한 완전한 SEO 설정
-- **📊 구조화된 데이터**: Schema.org JSON-LD 형식
-- **⚡ 성능 최적화**: 이미지 최적화, 코드 스플리팅, 압축
-- **🎨 최신 Sass**: Dart Sass 3.0 호환 @use 문법 사용
+### 환경 변수 설정
 
-## 스타일 가이드
+프로덕션 배포 시 다음 환경 변수를 설정하세요:
 
-### 색상
+```bash
+# 프로덕션 환경
+NUXT_PUBLIC_BASE_URL=https://leenstar.dothome.co.kr
 
-- **Background**: #000f1d (어두운 네이비)
-- **Primary**: #2563eb (파란색)
-- **Secondary**: #64748b (회색)
-- **Text Primary**: #ffffff (흰색)
-- **Text Secondary**: #e2e8f0 (연한 회색)
-- **Success**: #10b981 (초록색)
-- **Warning**: #f59e0b (노란색)
-- **Error**: #ef4444 (빨간색)
+# 개발 환경
+NUXT_PUBLIC_BASE_URL=http://localhost:3000
+
+# 스테이징 환경
+NUXT_PUBLIC_BASE_URL=https://staging.fingate.co.kr
+```
+
+## 🔍 SEO 최적화
+
+### 동적 SEO 파일 생성
+
+이 프로젝트는 환경 변수를 기반으로 SEO 파일들을 동적으로 생성합니다:
+
+- **sitemap.xml**: 모든 페이지 URL을 포함한 사이트맵
+- **robots.txt**: 검색 엔진 크롤링 규칙
+
+### SEO 파일 생성 과정
+
+1. **빌드 전**: `npm run generate:seo` 실행
+2. **스크립트**: 환경 변수에서 도메인 읽어서 SEO 파일 생성
+3. **Nuxt 빌드**: 생성된 파일들을 `dist/public/`로 복사
+
+### 포함된 SEO 요소
+
+- **메타 태그**: 각 페이지별 최적화된 메타 태그
+- **구조화된 데이터**: JSON-LD 스키마 마크업
+- **사이트맵**: 자동 생성되는 XML 사이트맵
+- **robots.txt**: 검색 엔진 크롤링 규칙
+- **Open Graph**: 소셜 미디어 공유 최적화
+- **Twitter Card**: 트위터 공유 최적화
+
+## 🎨 디자인 시스템
+
+### 색상 팔레트
+
+- **Primary**: #2563eb (Blue)
+- **Secondary**: #64748b (Slate)
+- **Accent**: #f59e0b (Amber)
+- **Success**: #10b981 (Emerald)
+- **Warning**: #f59e0b (Amber)
+- **Error**: #ef4444 (Red)
 
 ### 타이포그래피
 
 - **Primary Font**: Noto Sans KR
 - **Secondary Font**: Roboto
+- **Font Weights**: 300, 400, 500, 700
 
-### 브레이크포인트
+## 📱 반응형 브레이크포인트
 
-- **Mobile**: 768px 이하
-- **Desktop**: 1400px 이하
-- **Large Desktop**: 1400px 초과
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1024px
+- **Desktop**: > 1024px
 
-## 개발 가이드
+## 🔧 개발 가이드
 
-### 컴포넌트 작성
+### 컴포넌트 작성 규칙
 
-모든 스타일은 `assets/scss/main.scss`에서 중앙 관리됩니다:
+1. **PascalCase**로 컴포넌트명 작성
+2. **Composition API** 사용
+3. **TypeScript** 타입 정의
+4. **SCSS** 모듈 사용
 
-```vue
-<template>
-  <div class="component-name">
-    <!-- 컴포넌트 내용 -->
-  </div>
-</template>
+### 스타일 가이드
 
-<script setup>
-// 컴포넌트 로직
-</script>
+1. **BEM 방법론** 사용
+2. **SCSS 변수** 활용
+3. **반응형 디자인** 우선
+4. **접근성** 고려
 
-<!-- 스타일은 assets/scss/main.scss에서 관리 -->
+## 📊 성능 최적화
+
+- **이미지 최적화**: WebP, AVIF 포맷 지원
+- **코드 분할**: 자동 코드 분할
+- **압축**: Gzip, Brotli 압축
+- **캐싱**: 적절한 캐시 헤더 설정
+
+## 🧪 테스트
+
+```bash
+# 단위 테스트
+npm run test
+
+# E2E 테스트
+npm run test:e2e
+
+# 테스트 커버리지
+npm run test:coverage
 ```
 
-### 플렉스 시스템 사용법
+## 📦 빌드 최적화
 
-플렉스 기반 레이아웃 시스템을 사용하여 반응형 레이아웃을 구성하세요:
+### 번들 분석
 
-```html
-<!-- 2열 레이아웃 -->
-<div class="flex-grid flex-grid--2">
-  <div>첫 번째 아이템</div>
-  <div>두 번째 아이템</div>
-</div>
-
-<!-- 3열 레이아웃 -->
-<div class="flex-grid flex-grid--3">
-  <div>첫 번째 아이템</div>
-  <div>두 번째 아이템</div>
-  <div>세 번째 아이템</div>
-</div>
-
-<!-- 4열 레이아웃 -->
-<div class="flex-grid flex-grid--4">
-  <div>첫 번째 아이템</div>
-  <div>두 번째 아이템</div>
-  <div>세 번째 아이템</div>
-  <div>네 번째 아이템</div>
-</div>
+```bash
+npm run analyze
 ```
 
-### 스타일 작성
+### 성능 모니터링
 
-최신 Sass @use 문법을 사용하여 일관된 스타일을 작성하세요:
+- **Lighthouse** 점수 모니터링
+- **Core Web Vitals** 최적화
+- **번들 크기** 최적화
 
-```scss
-// _components.scss
-@use 'variables' as *;
-@use 'mixins' as *;
+## 🚀 배포 전략
 
-.my-component {
-  color: $color-primary;
-  padding: $spacing-md;
-  
-  @include responsive(md) {
-    padding: $spacing-sm;
-  }
-}
-```
+### CI/CD 파이프라인
 
-### 애니메이션 사용법
+1. **코드 품질 검사**
+2. **자동 테스트 실행**
+3. **빌드 및 최적화**
+4. **배포 자동화**
 
-GSAP와 Lenis를 활용한 애니메이션:
+### 호스팅 옵션
 
-```vue
-<script setup>
-import { onMounted } from 'vue'
+- **Vercel**: 권장 (Nuxt.js 최적화)
+- **Netlify**: 정적 사이트 호스팅
+- **AWS S3**: 클라우드 호스팅
+- **GitHub Pages**: 무료 호스팅
 
-onMounted(() => {
-  if (typeof window !== 'undefined' && window.gsap) {
-    gsap.from('.animate-element', {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      scrollTrigger: {
-        trigger: '.animate-element',
-        start: 'top 80%'
-      }
-    })
-  }
-})
-</script>
-```
+## 📈 모니터링
 
-## 최근 업데이트
+### 분석 도구
 
-### v3.0.0 (2025-01-XX) - 투명 디자인 & Video Background
-- 🎥 **Video Background Hero**: 동적 비디오 배경으로 임팩트 있는 첫인상
-- 🌌 **완전 투명 디자인**: 헤더와 모든 섹션을 투명하게 처리
-- 🎨 **다크 테마**: 어두운 네이비 배경 (#000f1d)으로 현대적인 느낌
-- 🧹 **소스 정리**: 불필요한 파일과 의존성 제거
-- ⚡ **성능 최적화**: 비디오 최적화 및 로딩 개선
+- **Google Analytics**: 사용자 분석
+- **Google Search Console**: SEO 모니터링
+- **Sentry**: 에러 모니터링
 
-### v2.0.0 (2025-09-23) - 모던화
-- ✅ **SCSS 모던화**: `@import` → `@use` 문법으로 전환
-- ✅ **Dart Sass 3.0 호환성**: 모든 경고 메시지 해결
-- ✅ **컴포넌트 모듈화**: 페이지별 섹션을 독립 컴포넌트로 분리
-- ✅ **중앙화된 스타일 관리**: 모든 CSS를 `main.scss`에서 관리
-- ✅ **GSAP + Lenis 통합**: 스크롤 애니메이션 및 스무스 스크롤
-- ✅ **완전한 SEO 설정**: 커스텀 useSEO composable 적용
-- ✅ **구조화된 데이터**: Schema.org JSON-LD 형식
-- ✅ **성능 최적화**: 이미지 최적화, 압축, 코드 스플리팅
+## 🤝 기여하기
 
-## 배포
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Vercel 배포
+## 📄 라이선스
 
-1. GitHub에 프로젝트 푸시
-2. Vercel에서 프로젝트 연결
-3. 자동 배포 설정
+이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 `LICENSE` 파일을 참조하세요.
 
-### Netlify 배포
+## 📞 연락처
 
-1. GitHub에 프로젝트 푸시
-2. Netlify에서 프로젝트 연결
-3. 빌드 명령어: `npm run generate`
-4. 배포 디렉토리: `dist`
+- **이메일**: info@fingate.co.kr
+- **웹사이트**: https://leenstar.dothome.co.kr
 
-### 📁 서버 설정 파일
+## 🙏 감사의 말
 
-- **Nginx 서버**: `nginx.conf` 파일을 서버 설정에 적용
-
-### ⚡ 캐싱 설정
-
-프로젝트에는 다음과 같은 캐싱 전략이 적용되어 있습니다:
-
-- **CSS/JS 파일**: 1년 캐싱 (자주 변경되지 않음)
-- **이미지 파일**: 1년 캐싱 (거의 변경되지 않음)
-- **비디오 파일**: 1년 캐싱 (용량이 크므로)
-- **HTML 파일**: 1시간 캐싱 (자주 변경될 수 있음)
-- **폰트 파일**: 1년 캐싱 (immutable)
-
-
-
-## 라이선스
-
-이 프로젝트는 MIT 라이선스 하에 있습니다.
+- [Nuxt.js](https://nuxtjs.org/) - Vue.js 프레임워크
+- [Vue.js](https://vuejs.org/) - JavaScript 프레임워크
+- [GSAP](https://greensock.com/gsap/) - 애니메이션 라이브러리
+- [Lenis](https://github.com/studio-freight/lenis) - 부드러운 스크롤
