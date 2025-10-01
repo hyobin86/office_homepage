@@ -1,7 +1,7 @@
 <template>
-  <section class="about-hero">
+  <section class="company-hero">
     <div class="container">
-      <div class="about-hero-content">
+      <div class="company-hero-content">
         <h2>FinGate를 소개합니다</h2>
         <p>
           FinGate는 2020년 설립된 혁신적인 금융 기술 기업입니다. 
@@ -13,7 +13,7 @@
           금융 산업의 새로운 패러다임을 제시하고 있습니다.
         </p>
       </div>
-      <div class="about-hero-image">
+      <div class="company-hero-image">
         <img src="/images/blog-1.jpg" alt="FinGate 회사 소개" />
       </div>
     </div>

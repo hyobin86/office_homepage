@@ -1,5 +1,5 @@
 <template>
-  <section class="about-values">
+  <section class="company-values">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">핵심 가치</h2>

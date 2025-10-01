@@ -2,35 +2,55 @@
   <header class="header">
     <div class="header-container">
       <NuxtLink to="/" class="header-logo">
-        FinGate
+        {{ SITE_CONFIG.name }}
       </NuxtLink>
       
       <nav class="header-nav">
         <ul class="nav-list">
-          <li class="nav-item">
-            <NuxtLink to="/" class="nav-link" :class="{ active: $route.path === '/' }">
-              홈
+          <li 
+            v-for="item in MAIN_NAVIGATION" 
+            :key="item.path"
+            class="nav-item"
+            :class="{ 'nav-item--dropdown': item.hasDropdown }"
+            @mouseenter="item.hasDropdown && (showServicesDropdown = true)"
+            @mouseleave="item.hasDropdown && (showServicesDropdown = false)"
+          >
+            <!-- 일반 메뉴 아이템 -->
+            <NuxtLink 
+              v-if="!item.hasDropdown"
+              :to="item.path" 
+              class="nav-link" 
+              :class="{ active: $route.path === item.path }"
+            >
+              {{ item.name }}
             </NuxtLink>
-          </li>
-          <li class="nav-item">
-            <NuxtLink to="/about" class="nav-link" :class="{ active: $route.path === '/about' }">
-              회사소개
-            </NuxtLink>
-          </li>
-          <li class="nav-item">
-            <NuxtLink to="/services" class="nav-link" :class="{ active: $route.path === '/services' }">
-              서비스
-            </NuxtLink>
-          </li>
-          <li class="nav-item">
-            <NuxtLink to="/blog" class="nav-link" :class="{ active: $route.path === '/blog' }">
-              블로그
-            </NuxtLink>
-          </li>
-          <li class="nav-item">
-            <NuxtLink to="/contact" class="nav-link" :class="{ active: $route.path === '/contact' }">
-              연락처
-            </NuxtLink>
+            
+            <!-- 드롭다운 메뉴 아이템 -->
+            <template v-else>
+              <button 
+                class="nav-link nav-link--button" 
+                :class="{ active: $route.path.startsWith(item.path) }"
+                @click="toggleServicesDropdown"
+              >
+                {{ item.name }}
+                <Icon name="chevron-down" class="nav-arrow" :class="{ 'nav-arrow--rotated': showServicesDropdown }" />
+              </button>
+              <ul v-if="showServicesDropdown" class="nav-dropdown">
+                <li 
+                  v-for="child in item.children" 
+                  :key="child.path"
+                  class="nav-dropdown-item"
+                >
+                  <NuxtLink 
+                    :to="child.path" 
+                    class="nav-dropdown-link" 
+                    @click="closeServicesDropdown"
+                  >
+                    {{ child.name }}
+                  </NuxtLink>
+                </li>
+              </ul>
+            </template>
           </li>
         </ul>
       </nav>
@@ -55,11 +75,30 @@
           </button>
         </div>
         <nav class="mobile-menu-nav">
-          <NuxtLink to="/" class="mobile-menu-link" @click="closeMobileMenu">홈</NuxtLink>
-          <NuxtLink to="/about" class="mobile-menu-link" @click="closeMobileMenu">회사소개</NuxtLink>
-          <NuxtLink to="/services" class="mobile-menu-link" @click="closeMobileMenu">서비스</NuxtLink>
-          <NuxtLink to="/blog" class="mobile-menu-link" @click="closeMobileMenu">블로그</NuxtLink>
-          <NuxtLink to="/contact" class="mobile-menu-link" @click="closeMobileMenu">연락처</NuxtLink>
+          <NuxtLink to="/company" class="mobile-menu-link" @click="closeMobileMenu">Company</NuxtLink>
+          
+          <!-- Services 드롭다운 -->
+          <div class="mobile-menu-dropdown">
+            <button 
+              class="mobile-menu-dropdown-toggle" 
+              @click="toggleMobileServicesDropdown"
+              :class="{ active: isMobileServicesDropdownOpen }"
+            >
+              Services
+              <Icon name="chevron-down" class="mobile-menu-arrow" />
+            </button>
+            <ul v-if="isMobileServicesDropdownOpen" class="mobile-menu-dropdown-content">
+              <li>
+                <NuxtLink to="/services/service1" class="mobile-menu-sublink" @click="closeMobileMenu">Service1</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink to="/services/service2" class="mobile-menu-sublink" @click="closeMobileMenu">Service2</NuxtLink>
+              </li>
+            </ul>
+          </div>
+          
+          <NuxtLink to="/newvision" class="mobile-menu-link" @click="closeMobileMenu">New Vision</NuxtLink>
+          <NuxtLink to="/contact" class="mobile-menu-link" @click="closeMobileMenu">Contact Us</NuxtLink>
         </nav>
       </div>
     </div>
@@ -68,8 +107,12 @@
 
 <script setup>
 import Icon from '~/components/Icon.vue'
+import { MAIN_NAVIGATION, SERVICES_DROPDOWN } from '~/constants/navigation'
+import { SITE_CONFIG } from '~/constants/site'
 
 const isMobileMenuOpen = ref(false)
+const showServicesDropdown = ref(false)
+const isMobileServicesDropdownOpen = ref(false)
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
@@ -77,6 +120,19 @@ const toggleMobileMenu = () => {
 
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false
+  isMobileServicesDropdownOpen.value = false
+}
+
+const closeServicesDropdown = () => {
+  showServicesDropdown.value = false
+}
+
+const toggleServicesDropdown = () => {
+  showServicesDropdown.value = !showServicesDropdown.value
+}
+
+const toggleMobileServicesDropdown = () => {
+  isMobileServicesDropdownOpen.value = !isMobileServicesDropdownOpen.value
 }
 
 // 라우트 변경 시 모바일 메뉴 닫기

@@ -25,8 +25,8 @@
         <h1>FinGate - 혁신적인 금융 솔루션</h1>
         <p class="hero-subtitle">최첨단 기술과 전문성을 바탕으로 고객의 성공을 지원하는 금융 솔루션 기업입니다</p>
         <div class="home-hero-actions">
-          <NuxtLink to="/about" class="btn btn--primary btn--large">회사소개</NuxtLink>
-          <NuxtLink to="/services" class="btn btn--secondary btn--large">서비스</NuxtLink>
+          <NuxtLink to="/company" class="btn btn--primary btn--large">회사소개</NuxtLink>
+          <NuxtLink to="/services/service1" class="btn btn--secondary btn--large">서비스</NuxtLink>
         </div>
       </div>
     </div>

@@ -1,41 +1,50 @@
+/* ========================================
+   Robots.txt Generator
+   ======================================== */
+
 const fs = require('fs')
 const path = require('path')
 
-// 환경 변수에서 도메인 가져오기
-const baseUrl = process.env.NUXT_PUBLIC_BASE_URL || 'https://leenstar.dothome.co.kr'
-
-const robotsTxt = `User-agent: *
+// robots.txt 생성 함수
+function generateRobots() {
+  const baseUrl = process.env.NUXT_PUBLIC_BASE_URL || 'https://leenstar.dothome.co.kr'
+  
+  const robotsTxt = `User-agent: *
 Allow: /
 
 # 주요 페이지들
-Allow: /about
+Allow: /company
 Allow: /services
-Allow: /blog
+Allow: /newvision
 Allow: /contact
 
 # 정적 파일들
-Allow: /css/
-Allow: /js/
 Allow: /images/
-Allow: /fonts/
-Allow: /videos/
+Allow: /favicon.svg
+Allow: /_nuxt/
 
-# 사이트맵 위치
+# 사이트맵
 Sitemap: ${baseUrl}/sitemap.xml
 
 # 크롤링 지연 (선택사항)
 Crawl-delay: 1
+`
 
-# 금지할 디렉토리 (필요시)
-# Disallow: /admin/
-# Disallow: /private/`
+  // public 폴더에 robots.txt 저장
+  const publicDir = path.join(__dirname, '../public')
+  if (!fs.existsSync(publicDir)) {
+    fs.mkdirSync(publicDir, { recursive: true })
+  }
 
-// public 폴더에 robots.txt 생성
-const publicDir = path.join(__dirname, '..', 'public')
-if (!fs.existsSync(publicDir)) {
-  fs.mkdirSync(publicDir, { recursive: true })
+  const robotsPath = path.join(publicDir, 'robots.txt')
+  fs.writeFileSync(robotsPath, robotsTxt, 'utf8')
+  
+  console.log('✅ Robots.txt generated successfully:', robotsPath)
 }
 
-fs.writeFileSync(path.join(publicDir, 'robots.txt'), robotsTxt)
-console.log(`✅ Robots.txt generated with base URL: ${baseUrl}`)
-console.log(`📁 Generated file: ${path.join(publicDir, 'robots.txt')}`)
+// 스크립트 실행
+if (require.main === module) {
+  generateRobots()
+}
+
+module.exports = { generateRobots }

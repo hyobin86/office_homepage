@@ -81,6 +81,84 @@
   padding: $spacing-sm $spacing-md;
   border-radius: $border-radius-md;
   transition: all $transition-normal;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  &:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  &.active {
+    color: #60a5fa;
+    background: rgba(96, 165, 250, 0.1);
+  }
+  
+  &--button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    
+    &:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    &.active {
+      color: #60a5fa;
+      background: rgba(96, 165, 250, 0.1);
+    }
+  }
+}
+
+    .nav-arrow {
+      font-size: 0.75rem;
+      transition: transform $transition-normal;
+      
+      &--rotated {
+        transform: rotate(180deg);
+      }
+    }
+
+// 드롭다운 메뉴
+.nav-item--dropdown {
+  position: relative;
+  
+  &:hover .nav-arrow {
+    transform: rotate(180deg);
+  }
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(0, 15, 29, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $border-radius-md;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  min-width: 150px;
+  z-index: 1000;
+  padding: $spacing-sm 0;
+  margin-top: $spacing-xs;
+}
+
+.nav-dropdown-item {
+  margin: 0;
+}
+
+.nav-dropdown-link {
+  display: block;
+  padding: $spacing-sm $spacing-md;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-weight: $font-weight-medium;
+  transition: all $transition-normal;
   
   &:hover {
     color: #ffffff;
@@ -163,6 +241,69 @@
     padding: $spacing-md;
     border-radius: $border-radius-md;
     font-weight: $font-weight-medium;
+    transition: all $transition-normal;
+    
+    &:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  // 모바일 드롭다운
+  &-dropdown {
+    margin-bottom: $spacing-sm;
+  }
+  
+  &-dropdown-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #e2e8f0;
+    text-decoration: none;
+    padding: $spacing-md;
+    border-radius: $border-radius-md;
+    font-weight: $font-weight-medium;
+    transition: all $transition-normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    
+    &:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    &.active {
+      color: #60a5fa;
+      background: rgba(96, 165, 250, 0.1);
+    }
+  }
+  
+  &-arrow {
+    font-size: 0.75rem;
+    transition: transform $transition-normal;
+  }
+  
+  &-dropdown-toggle.active .mobile-menu-arrow {
+    transform: rotate(180deg);
+  }
+  
+  &-dropdown-content {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: $border-radius-sm;
+    margin-top: $spacing-xs;
+  }
+  
+  &-sublink {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: $spacing-sm $spacing-lg;
+    font-size: $font-size-sm;
     transition: all $transition-normal;
     
     &:hover {

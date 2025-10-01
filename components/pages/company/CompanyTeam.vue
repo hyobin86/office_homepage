@@ -1,5 +1,5 @@
 <template>
-  <section class="about-team">
+  <section class="company-team">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">리더십 팀</h2>

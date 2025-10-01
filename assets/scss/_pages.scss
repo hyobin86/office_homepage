@@ -1,15 +1,14 @@
 /* ========================================
-   FinGate Homepage Sections
+   FinGate Pages Styles (통합)
    ======================================== */
 
 @use 'variables' as *;
 @use 'mixins' as *;
 
 // ========================================
-// 페이지별 레이아웃 스타일
+// 공통 페이지 스타일
 // ========================================
 
-// 공통 페이지 헤더
 .page-header {
   padding: 2rem 0;
   text-align: center;
@@ -24,154 +23,20 @@
   margin: 0;
 }
 
-// 홈페이지 전체 레이아웃
+.page-subtitle {
+  font-size: $font-size-lg;
+  color: #e2e8f0;
+  margin-top: $spacing-md;
+}
+
+// ========================================
+// 홈페이지 스타일
+// ========================================
+
 .home {
   min-height: 100vh;
 }
 
-// 개인정보처리방침 페이지 스타일
-.privacy-content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.privacy-content h2 {
-  color: #2563eb;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.privacy-content h2:first-child {
-  margin-top: 0;
-}
-
-.privacy-content p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-  color: #374151;
-}
-
-.privacy-content ul {
-  margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
-}
-
-.privacy-content li {
-  margin-bottom: 0.5rem;
-  color: #374151;
-}
-
-.privacy-footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e5e7eb;
-}
-
-.privacy-footer p {
-  margin-bottom: 0.5rem;
-  color: #6b7280;
-}
-
-// 이용약관 페이지 스타일
-.terms-content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.terms-content h2 {
-  color: #2563eb;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.terms-content h2:first-child {
-  margin-top: 0;
-}
-
-.terms-content p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-  color: #374151;
-}
-
-.terms-content ul {
-  margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
-}
-
-.terms-content li {
-  margin-bottom: 0.5rem;
-  color: #374151;
-}
-
-.terms-footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e5e7eb;
-}
-
-.terms-footer p {
-  margin-bottom: 0.5rem;
-  color: #6b7280;
-}
-
-// 쿠키정책 페이지 스타일
-.cookies-content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.cookies-content h2 {
-  color: #2563eb;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.cookies-content h2:first-child {
-  margin-top: 0;
-}
-
-.cookies-content h3 {
-  color: #374151;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-}
-
-.cookies-content p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-  color: #374151;
-}
-
-.cookies-content ul {
-  margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
-}
-
-.cookies-content li {
-  margin-bottom: 0.5rem;
-  color: #374151;
-}
-
-.cookies-footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e5e7eb;
-}
-
-.cookies-footer p {
-  margin-bottom: 0.5rem;
-  color: #6b7280;
-}
-
-// 히어로 섹션
 .home-hero {
   position: relative;
   height: 100vh;
@@ -182,17 +47,15 @@
   align-items: center;
   justify-content: center;
   
-  // Video 컨테이너
   .hero-video-container {
     position: absolute;
-    top: 0; // 헤더 높이만큼 아래부터 시작
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% - 66px); // 헤더 높이만큼 빼기
+    height: calc(100% - 66px);
     z-index: 1;
     overflow: hidden;
     
-    // Video가 컨테이너를 완전히 덮도록
     &::before {
       content: '';
       position: absolute;
@@ -204,7 +67,6 @@
     }
   }
   
-  // Video 스타일
   .hero-video {
     width: 100%;
     height: 100%;
@@ -214,7 +76,6 @@
     min-height: 100%;
   }
   
-  // Video 대체 텍스트
   .video-fallback {
     width: 100%;
     height: 100%;
@@ -226,7 +87,6 @@
     font-size: 1.2rem;
   }
   
-  // 콘텐츠 컨테이너
   .hero-content {
     position: relative;
     z-index: 3;
@@ -265,7 +125,6 @@
     }
   }
   
-  // 액션 버튼들
   .home-hero-actions {
     @include responsive(md) {
       flex-direction: column;
@@ -280,9 +139,6 @@
   }
 }
 
-
-
-// 기능 섹션
 .home-features {
   @include section-padding;
   background: transparent;
@@ -307,7 +163,6 @@
   }
 }
 
-// 통계 섹션
 .home-stats {
   @include section-padding;
   background: transparent;
@@ -329,7 +184,6 @@
   }
 }
 
-// 기술 섹션
 .home-technology {
   @include section-padding;
   background: transparent;
@@ -372,7 +226,6 @@
   }
 }
 
-// 고객 후기 섹션
 .home-testimonials {
   @include section-padding;
   background: transparent;
@@ -394,7 +247,6 @@
   }
 }
 
-// CTA 섹션
 .home-cta {
   background: transparent;
   color: $color-text-white;
@@ -434,5 +286,599 @@
   .btn {
     position: relative;
     z-index: 1;
+  }
+}
+
+// ========================================
+// 회사소개 페이지 스타일
+// ========================================
+
+.company {
+  min-height: 100vh;
+}
+
+.company-hero {
+  @include section-padding;
+  background: transparent;
+  
+  .company-hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    
+    h2 {
+      font-size: $font-size-4xl;
+      color: #ffffff;
+      margin-bottom: $spacing-lg;
+    }
+    
+    p {
+      font-size: $font-size-lg;
+      color: #e2e8f0;
+      margin-bottom: $spacing-xl;
+      line-height: 1.6;
+    }
+  }
+  
+  .company-stats {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-2xl;
+    
+    @include responsive(md) {
+      flex-direction: column;
+      gap: $spacing-lg;
+    }
+    
+    .stat-item {
+      text-align: center;
+      
+      .stat-number {
+        font-size: $font-size-3xl;
+        font-weight: $font-weight-bold;
+        color: $color-primary;
+        display: block;
+        margin-bottom: $spacing-sm;
+      }
+      
+      .stat-label {
+        color: #e2e8f0;
+        font-size: $font-size-sm;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    }
+  }
+}
+
+.company-values {
+  @include section-padding;
+  background: transparent;
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $spacing-xl;
+    
+    .value-card {
+      @include card-style;
+      text-align: center;
+      
+      .value-icon {
+        width: 80px;
+        height: 80px;
+        background: $color-primary;
+        border-radius: 50%;
+        @include flex-center;
+        margin: 0 auto $spacing-lg;
+        color: $color-text-white;
+        font-size: $font-size-2xl;
+      }
+      
+      h3 {
+        color: #ffffff;
+        margin-bottom: $spacing-md;
+      }
+      
+      p {
+        color: #e2e8f0;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+.company-team {
+  @include section-padding;
+  background: transparent;
+  
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $spacing-xl;
+    
+    .team-member {
+      @include card-style;
+      text-align: center;
+      
+      .member-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        @include flex-center;
+        margin: 0 auto $spacing-lg;
+        color: #e2e8f0;
+        font-size: $font-size-2xl;
+      }
+      
+      .member-name {
+        color: #ffffff;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        margin-bottom: $spacing-sm;
+      }
+      
+      .member-position {
+        color: $color-primary;
+        font-size: $font-size-sm;
+        margin-bottom: $spacing-md;
+      }
+      
+      .member-description {
+        color: #e2e8f0;
+        font-size: $font-size-sm;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+// ========================================
+// 서비스 페이지 스타일
+// ========================================
+
+.service1-service,
+.service2-service {
+  min-height: 100vh;
+}
+
+.service1-hero,
+.service2-hero {
+  @include section-padding;
+  background: transparent;
+  
+  .service1-hero-content,
+  .service2-hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    
+    h2 {
+      font-size: $font-size-4xl;
+      color: #ffffff;
+      margin-bottom: $spacing-lg;
+    }
+    
+    p {
+      font-size: $font-size-lg;
+      color: #e2e8f0;
+      margin-bottom: $spacing-xl;
+      line-height: 1.6;
+    }
+  }
+  
+  .service1-features,
+  .service2-features {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-xl;
+    
+    @include responsive(md) {
+      flex-direction: column;
+      gap: $spacing-md;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      color: #ffffff;
+      font-weight: $font-weight-medium;
+    }
+  }
+}
+
+.service1-details,
+.service2-details {
+  @include section-padding;
+  background: transparent;
+  
+  .service1-info,
+  .service2-info {
+    h3 {
+      color: #ffffff;
+      margin-bottom: $spacing-lg;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      
+      li {
+        color: #e2e8f0;
+        margin-bottom: $spacing-md;
+        padding-left: $spacing-lg;
+        position: relative;
+        
+        &::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: #60a5fa;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  
+  .service1-visual,
+  .service2-visual {
+    @include flex-center;
+    
+    .visual-placeholder {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: $border-radius-lg;
+      padding: $spacing-2xl;
+      text-align: center;
+      color: #e2e8f0;
+      
+      p {
+        margin-top: $spacing-md;
+      }
+    }
+  }
+}
+
+.service1-services {
+  @include section-padding;
+  background: transparent;
+  
+  h3 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: $spacing-2xl;
+  }
+  
+  .service-card {
+    @include card-style;
+    text-align: center;
+    
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: $color-primary;
+      border-radius: $border-radius-lg;
+      @include flex-center;
+      margin: 0 auto $spacing-lg;
+      color: $color-text-white;
+      font-size: $font-size-2xl;
+    }
+    
+    h4 {
+      color: #ffffff;
+      margin-bottom: $spacing-md;
+    }
+    
+    p {
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+  }
+}
+
+.service1-contact,
+.service2-contact {
+  @include section-padding;
+  background: transparent;
+  text-align: center;
+  
+  h3 {
+    color: #ffffff;
+    margin-bottom: $spacing-md;
+  }
+  
+  p {
+    color: #e2e8f0;
+    margin-bottom: $spacing-xl;
+  }
+}
+
+// ========================================
+// New Vision 페이지 스타일
+// ========================================
+
+.newvision {
+  min-height: 100vh;
+}
+
+.newvision-hero {
+  @include section-padding;
+  background: transparent;
+  
+  .container {
+    text-align: center;
+    
+    h2 {
+      font-size: $font-size-4xl;
+      color: #ffffff;
+      margin-bottom: $spacing-lg;
+    }
+    
+    p {
+      font-size: $font-size-lg;
+      color: #e2e8f0;
+      margin-bottom: $spacing-xl;
+      line-height: 1.6;
+    }
+  }
+}
+
+.newvision-list {
+  @include section-padding;
+  background: transparent;
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .newvision-item {
+    @include card-style;
+    margin-bottom: $spacing-2xl;
+    overflow: hidden;
+    transition: transform $transition-normal;
+    
+    &:hover {
+      transform: translateY(-4px);
+    }
+    
+    .newvision-item-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: $border-radius-lg $border-radius-lg 0 0;
+    }
+    
+    .newvision-item-meta {
+      display: flex;
+      gap: $spacing-md;
+      margin-bottom: $spacing-md;
+      font-size: $font-size-sm;
+      color: #94a3b8;
+      
+      span {
+        background: rgba(96, 165, 250, 0.1);
+        padding: $spacing-xs $spacing-sm;
+        border-radius: $border-radius-sm;
+        color: #60a5fa;
+      }
+    }
+    
+    .newvision-item-title {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      color: #ffffff;
+      margin-bottom: $spacing-md;
+      line-height: 1.4;
+    }
+    
+    .newvision-item-excerpt {
+      color: #e2e8f0;
+      line-height: 1.6;
+      margin-bottom: $spacing-lg;
+    }
+    
+    .newvision-item-read-more {
+      color: $color-primary;
+      font-weight: $font-weight-medium;
+      text-decoration: none;
+      transition: color $transition-normal;
+      
+      &:hover {
+        color: #93c5fd;
+      }
+    }
+  }
+}
+
+.newvision-filters {
+  @include section-padding;
+  background: transparent;
+  
+  .filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-2xl;
+    
+    @include responsive(md) {
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      padding: $spacing-sm $spacing-lg;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: $border-radius-md;
+      color: #e2e8f0;
+      cursor: pointer;
+      transition: all $transition-normal;
+      
+      &:hover,
+      &.active {
+        background: $color-primary;
+        color: #ffffff;
+        border-color: $color-primary;
+      }
+    }
+  }
+}
+
+// ========================================
+// 연락처 페이지 스타일
+// ========================================
+
+.contact {
+  min-height: 100vh;
+}
+
+.contact-hero {
+  @include section-padding;
+  background: transparent;
+  
+  .container {
+    text-align: center;
+    
+    h2 {
+      font-size: $font-size-4xl;
+      color: #ffffff;
+      margin-bottom: $spacing-lg;
+    }
+    
+    p {
+      font-size: $font-size-lg;
+      color: #e2e8f0;
+      margin-bottom: $spacing-xl;
+      line-height: 1.6;
+    }
+  }
+}
+
+.contact-info {
+  @include section-padding;
+  background: transparent;
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: $spacing-xl;
+    
+    .contact-card {
+      @include card-style;
+      text-align: center;
+      
+      .contact-icon {
+        width: 80px;
+        height: 80px;
+        background: $color-primary;
+        border-radius: 50%;
+        @include flex-center;
+        margin: 0 auto $spacing-lg;
+        color: $color-text-white;
+        font-size: $font-size-2xl;
+      }
+      
+      h3 {
+        color: #ffffff;
+        margin-bottom: $spacing-md;
+      }
+      
+      p {
+        color: #e2e8f0;
+        line-height: 1.6;
+        margin-bottom: $spacing-md;
+      }
+      
+      .contact-link {
+        color: $color-primary;
+        text-decoration: none;
+        font-weight: $font-weight-medium;
+        transition: color $transition-normal;
+        
+        &:hover {
+          color: #93c5fd;
+        }
+      }
+    }
+  }
+}
+
+.contact-form {
+  @include section-padding;
+  background: transparent;
+  
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    
+    .contact-form-card {
+      @include card-style;
+      
+      .form-group {
+        margin-bottom: $spacing-lg;
+        
+        label {
+          display: block;
+          color: #ffffff;
+          font-weight: $font-weight-medium;
+          margin-bottom: $spacing-sm;
+        }
+        
+        input,
+        textarea {
+          width: 100%;
+          padding: $spacing-md;
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: $border-radius-md;
+          color: #ffffff;
+          font-size: $font-size-base;
+          transition: border-color $transition-normal;
+          
+          &:focus {
+            outline: none;
+            border-color: $color-primary;
+          }
+          
+          &::placeholder {
+            color: #94a3b8;
+          }
+        }
+        
+        textarea {
+          min-height: 120px;
+          resize: vertical;
+        }
+      }
+      
+      .form-actions {
+        text-align: center;
+        
+        .btn {
+          min-width: 200px;
+        }
+      }
+    }
+  }
+}
+
+.contact-map {
+  @include section-padding;
+  background: transparent;
+  
+  .map-container {
+    max-width: 800px;
+    margin: 0 auto;
+    
+    .map-placeholder {
+      width: 100%;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: $border-radius-lg;
+      @include flex-center;
+      color: #e2e8f0;
+      font-size: $font-size-lg;
+    }
   }
 }

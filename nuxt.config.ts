@@ -12,20 +12,9 @@ export default defineNuxtConfig({
   
   // 모듈 설정
   modules: [
-    '@nuxtjs/google-fonts',
     '@pinia/nuxt',
     '@vueuse/nuxt'
   ],
-  
-  // Google Fonts 설정
-  googleFonts: {
-    families: {
-      'Noto+Sans+KR': [300, 400, 500, 700],
-      'Roboto': [300, 400, 500, 700]
-    },
-    display: 'swap',
-    preload: true
-  },
   
   // 앱 설정
   app: {
@@ -51,13 +40,6 @@ export default defineNuxtConfig({
         { property: 'og:image', content: '/images/blog-1.jpg' },
         { property: 'og:url', content: process.env.NUXT_PUBLIC_BASE_URL },
         { property: 'og:locale', content: 'ko_KR' },
-        
-        // Twitter Card 태그
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: '@FinGate' },
-        { name: 'twitter:title', content: 'FinGate - 혁신적인 금융 솔루션' },
-        { name: 'twitter:description', content: 'FinGate는 최첨단 기술과 전문성을 바탕으로 고객의 성공을 지원하는 금융 솔루션 기업입니다.' },
-        { name: 'twitter:image', content: '/images/blog-1.jpg' },
         
         // 추가 메타 태그
         { name: 'theme-color', content: '#2563eb' },
@@ -91,7 +73,8 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'canonical', href: process.env.NUXT_PUBLIC_BASE_URL }
+        { rel: 'canonical', href: process.env.NUXT_PUBLIC_BASE_URL },
+        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css' }
       ],
       script: [
         {
@@ -163,19 +146,16 @@ export default defineNuxtConfig({
   // 사이트맵 설정 (내장 기능 사용)
   nitro: {
     compressPublicAssets: true,
-    prerender: {
-      routes: [
-        '/',
-        '/about',
-        '/services',
-        '/blog',
-        '/contact',
-        '/privacy',
-        '/terms',
-        '/cookies',
-        '/sitemap.xml'
-      ]
-    },
+      prerender: {
+        routes: [
+          '/',
+          '/company',
+          '/services/service1',
+          '/services/service2',
+          '/newvision',
+          '/contact'
+        ]
+      },
     output: {
       dir: 'dist'
     },
@@ -217,13 +197,11 @@ export default defineNuxtConfig({
     gzip: true,
     routes: [
       '/',
-      '/about',
-      '/services',
-      '/blog',
-      '/contact',
-      '/privacy',
-      '/terms',
-      '/cookies'
+      '/company',
+      '/services/service1',
+      '/services/service2',
+      '/newvision',
+      '/contact'
     ]
   },
   
