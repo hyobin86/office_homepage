@@ -336,23 +336,33 @@
   }
   
   &-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: $spacing-xl;
     margin-bottom: $spacing-xl;
     
     @include responsive(md) {
-      grid-template-columns: repeat(2, 1fr);
       gap: $spacing-lg;
+      
+      &-section {
+        flex: 1 1 calc(50% - calc(#{$spacing-lg} / 2));
+        min-width: 250px;
+      }
     }
     
     @include responsive(sm) {
-      grid-template-columns: 1fr;
       gap: $spacing-md;
+      
+      &-section {
+        flex: 1 1 100%;
+      }
     }
   }
   
   &-section {
+    flex: 1 1 calc(25% - calc(#{$spacing-xl} * 3 / 4));
+    min-width: 250px;
+    
     h3 {
       font-size: $font-size-lg;
       font-weight: $font-weight-semibold;

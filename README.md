@@ -4,13 +4,14 @@ FinGate의 공식 홈페이지입니다. 혁신적인 금융 솔루션을 제공
 
 ## 🚀 주요 기능
 
-- **반응형 디자인**: 모든 디바이스에서 최적화된 사용자 경험
+- **반응형 디자인**: 모든 디바이스에서 최적화된 사용자 경험 (Flexbox 기반)
 - **SEO 최적화**: 검색 엔진 최적화를 위한 메타 태그 및 구조화된 데이터
 - **동적 SEO 파일**: 환경 변수 기반 사이트맵 및 robots.txt 자동 생성
 - **성능 최적화**: 빠른 로딩 속도와 효율적인 리소스 관리
 - **부드러운 애니메이션**: GSAP과 Lenis를 활용한 고품질 사용자 경험
 - **접근성**: 웹 접근성 가이드라인 준수
 - **다국어 지원**: 한국어 기본 지원
+- **모던 레이아웃**: CSS Grid 대신 Flexbox를 활용한 유연한 레이아웃
 
 ## 🛠 기술 스택
 
@@ -65,6 +66,19 @@ office_homepage/
 │   ├── gsap.client.js     # GSAP 애니메이션
 │   └── lenis.client.js    # 부드러운 스크롤
 ├── public/                 # 정적 파일
+│   ├── images/            # 이미지 파일들
+│   │   ├── hero/         # 히어로 섹션 이미지
+│   │   ├── team/         # 팀 멤버 사진
+│   │   ├── services/     # 서비스 관련 이미지
+│   │   ├── logos/        # 로고 및 브랜드 이미지
+│   │   ├── icons/        # 아이콘 이미지
+│   │   ├── blog-1.jpg    # 블로그 이미지들
+│   │   ├── blog-2.jpg
+│   │   ├── blog-3.jpg
+│   │   └── blog-4.jpg
+│   ├── videos/           # 동영상 파일
+│   ├── sitemap.xml       # 자동 생성되는 사이트맵
+│   └── robots.txt        # 자동 생성되는 robots.txt
 ├── scripts/                # 빌드 스크립트
 │   ├── generate-sitemap.js # 사이트맵 동적 생성
 │   └── generate-robots.js  # robots.txt 동적 생성
@@ -185,14 +199,14 @@ NUXT_PUBLIC_BASE_URL=https://staging.fingate.co.kr
 
 ### SCSS 아키텍처
 
-프로젝트는 모듈화된 SCSS 구조를 사용합니다:
+프로젝트는 모듈화된 SCSS 구조를 사용하며, **CSS Grid 대신 Flexbox를 활용**합니다:
 
 - **`_variables.scss`**: 디자인 토큰 (색상, 폰트, 간격, 브레이크포인트)
-- **`_mixins.scss`**: 재사용 가능한 믹스인 (flex-center, button-style, responsive)
-- **`_base.scss`**: 기본 스타일 (리셋, 컨테이너, 버튼, 플렉스 그리드)
+- **`_mixins.scss`**: 재사용 가능한 믹스인 (flex-center, button-style, responsive, flex-grid)
+- **`_base.scss`**: 기본 스타일 (리셋, 컨테이너, 버튼, 플렉스 그리드 시스템)
 - **`_components.scss`**: 공통 컴포넌트 스타일 (카드, 아이템, 폼)
-- **`_layouts.scss`**: 레이아웃 스타일 (헤더, 푸터, 네비게이션)
-- **`_pages.scss`**: 페이지별 고유 스타일
+- **`_layouts.scss`**: 레이아웃 스타일 (헤더, 푸터, 네비게이션) - Flexbox 기반
+- **`_pages.scss`**: 페이지별 고유 스타일 - Flexbox 기반
 - **`_utilities.scss`**: 유틸리티 클래스
 
 ## 📱 반응형 브레이크포인트
@@ -222,13 +236,14 @@ NUXT_PUBLIC_BASE_URL=https://staging.fingate.co.kr
 
 ## 📊 성능 최적화
 
-- **이미지 최적화**: WebP, AVIF 포맷 지원, 지연 로딩
+- **이미지 최적화**: WebP, AVIF 포맷 지원, 지연 로딩, 정적 파일 서빙
 - **코드 분할**: 자동 코드 분할 및 번들 최적화
 - **압축**: Gzip, Brotli 압축 설정
 - **캐싱**: 적절한 캐시 헤더 설정
 - **애니메이션**: GSAP + ScrollTrigger 최적화
 - **스크롤**: Lenis 부드러운 스크롤 성능 최적화
 - **폰트**: Pretendard Variable 웹폰트 최적화
+- **레이아웃**: Flexbox 기반으로 브라우저 호환성 및 성능 향상
 
 ## 🧪 테스트 및 품질 관리
 
@@ -312,6 +327,28 @@ NUXT_PUBLIC_SITE_DESCRIPTION=혁신적인 금융 솔루션
 - **타입**: TypeScript 엄격 모드 사용
 - **커밋**: Conventional Commits 규칙 준수
 
+## 🔄 최근 업데이트 (2025.10.02)
+
+### 주요 변경사항
+
+- ✅ **CSS Grid 제거**: 모든 레이아웃을 Flexbox 기반으로 변경
+- ✅ **이미지 폴더 구조 개선**: `images/` → `public/images/`로 통합
+- ✅ **반응형 레이아웃 최적화**: 더 나은 브라우저 호환성과 성능
+- ✅ **Sass 경고 해결**: deprecated 문법을 최신 문법으로 업데이트
+
+### 변경된 파일들
+
+- `assets/scss/_pages.scss`: Grid → Flexbox 변환
+- `assets/scss/_layouts.scss`: Grid → Flexbox 변환  
+- `public/images/`: 이미지 파일 통합 및 폴더 구조 개선
+
+### 기술적 개선사항
+
+- **브라우저 호환성**: Flexbox는 더 넓은 브라우저 지원
+- **성능 향상**: Flexbox는 Grid보다 가벼운 계산
+- **유지보수성**: 더 직관적인 레이아웃 코드
+- **반응형 디자인**: 더 유연한 반응형 구현
+
 ## 📄 라이선스
 
 이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 `LICENSE` 파일을 참조하세요.
@@ -321,7 +358,7 @@ NUXT_PUBLIC_SITE_DESCRIPTION=혁신적인 금융 솔루션
 - **이메일**: info@fingate.co.kr
 - **웹사이트**: https://leenstar.dothome.co.kr
 - **프로젝트 상태**: ✅ 프로덕션 레디
-- **최종 업데이트**: 2025년 1월 23일
+- **최종 업데이트**: 2025년 10월 2일
 
 ## 🙏 감사의 말
 
