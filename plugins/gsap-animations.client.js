@@ -13,13 +13,14 @@ export default defineNuxtPlugin(() => {
         gsap.fromTo(element, 
           { 
             opacity: 0, 
-            y: 30 
+            y: 30 ,
           },
           {
             opacity: 1,
             y: 0,
-            duration: 0.6,
-            ease: "power2.out",
+            duration: 2,
+            ease: "power3.out",
+            delay: index * 0.3,  // 0.5초씩 늦게 시작 (더 명확한 시간차)
             scrollTrigger: {
               trigger: element,
               start: "top 85%",
@@ -40,7 +41,7 @@ export default defineNuxtPlugin(() => {
             opacity: 1,
             x: 0,
             duration: 0.6,
-            ease: "power2.out",
+            ease: "power2.inOut",
             scrollTrigger: {
               trigger: element,
               start: "top 80%",
@@ -61,7 +62,7 @@ export default defineNuxtPlugin(() => {
             opacity: 1,
             x: 0,
             duration: 0.6,
-            ease: "power2.out",
+            ease: "power2.inOut",
             scrollTrigger: {
               trigger: element,
               start: "top 80%",
@@ -82,7 +83,7 @@ export default defineNuxtPlugin(() => {
             opacity: 1,
             scale: 1,
             duration: 0.6,
-            ease: "power2.out",
+            ease: "power2.inOut",
             scrollTrigger: {
               trigger: element,
               start: "top 80%",

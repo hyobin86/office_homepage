@@ -250,6 +250,38 @@ npm run dev
 npm run build
 ```
 
+## 📧 EmailJS 설정
+
+### 1. EmailJS 계정 설정
+1. [EmailJS](https://www.emailjs.com/) 계정 생성
+2. 이메일 서비스 연결 (Gmail, Outlook 등)
+3. 템플릿 생성
+
+### 2. 환경 변수 설정
+`.env.example` 파일을 `.env`로 복사하고 실제 값으로 변경:
+
+```bash
+cp .env.example .env
+```
+
+`.env` 파일 내용:
+```env
+EMAILJS_SERVICE_ID=your_service_id_here
+EMAILJS_TEMPLATE_ID=your_template_id_here
+EMAILJS_PUBLIC_KEY=your_public_key_here
+EMAILJS_TO_EMAIL=your_email@example.com
+```
+
+### 3. EmailJS 템플릿 변수
+템플릿에서 사용할 변수들:
+- `{{name}}` - 사용자 이름
+- `{{email}}` - 사용자 이메일
+- `{{company}}` - 회사명
+- `{{phone}}` - 연락처
+- `{{inquiryType}}` - 문의유형
+- `{{message}}` - 문의사항
+- `{{time}}` - 전송시간
+
 ## 📋 코드 품질
 
 ### 검수 결과

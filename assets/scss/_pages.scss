@@ -871,6 +871,11 @@
       &::placeholder {
         color: #999999;
       }
+      
+      &.error {
+        border-color: #e74c3c;
+        background-color: #fdf2f2;
+      }
     }
     
     // textarea 래퍼
@@ -908,6 +913,14 @@
         margin-left: 0.4rem;
         color: #767676;
       }
+    }
+    
+    // 에러 메시지
+    .error-message {
+      font-size: 1.4rem;
+      color: #e74c3c;
+      font-weight: $font-weight-medium;
+      line-height: 1.6rem;
     }
   }
   

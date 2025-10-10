@@ -139,7 +139,13 @@ export default defineNuxtConfig({
       // 도메인 설정 (기본값 추가)
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL || 'https://leenstar.dothome.co.kr',
       siteName: 'FinGate',
-      siteDescription: 'FinGate는 최첨단 기술과 전문성을 바탕으로 고객의 성공을 지원하는 금융 솔루션 기업입니다.'
+      siteDescription: 'FinGate는 최첨단 기술과 전문성을 바탕으로 고객의 성공을 지원하는 금융 솔루션 기업입니다.',
+      
+      // EmailJS 설정
+      emailjsServiceId: process.env.EMAILJS_SERVICE_ID || 'your_service_id_here',
+      emailjsTemplateId: process.env.EMAILJS_TEMPLATE_ID || 'your_template_id_here',
+      emailjsPublicKey: process.env.EMAILJS_PUBLIC_KEY || 'your_public_key_here',
+      emailjsToEmail: process.env.EMAILJS_TO_EMAIL || 'your_email@example.com'
     }
   },
   
