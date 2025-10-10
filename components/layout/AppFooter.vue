@@ -2,54 +2,41 @@
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-content">
-        <div class="footer-section">
-          <h3>FinGate</h3>
-          <p>
-            혁신적인 금융 기술로 더 나은 미래를 만들어가는 기업입니다.
-            고객의 성공이 우리의 성공입니다.
-          </p>
+        <img src="/images/logos/fingate-logo.svg" alt="FINGATE 로고" class="footer-logo"/>
+        <div class="footer-section mt-40">
+          <div>
+            <div class="d-flex">
+              <div class="footer-section-item">
+                <div>대표자</div>
+                <div>한형규</div>
+              </div>
+              <div class="footer-section-item">
+                <div>사업자등록번호</div>
+                <div>349-81-02732</div>
+              </div>
+            </div>
+            <div class="d-flex mt-8">
+              <div class="footer-section-item">
+                <div>TEL</div>
+                <div><a href="tel:070-7954-2241">070-7954-2241</a></div>
+              </div>
+              <div class="footer-section-item">
+                <div>E-mail</div>
+                <div><a href="mailto:withus@fingate.co.kr">withus@fingate.co.kr</a></div>
+              </div>
+              <div class="footer-section-item">
+                <div>주소</div>
+                <div>마포구 월드컵북로2길 19 7층 (동교동, W위더스빌딩)</div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-section-item">
+            <div></div>
+            <div>FINGATE @ 2023. All rights reserved.</div>
+          </div>
         </div>
-        
-        <div class="footer-section">
-          <h3>서비스</h3>
-          <ul>
-            <li><NuxtLink to="/services/service1">금융 솔루션</NuxtLink></li>
-            <li><NuxtLink to="/services/service1">투자 관리</NuxtLink></li>
-            <li><NuxtLink to="/services/service1">리스크 관리</NuxtLink></li>
-            <li><NuxtLink to="/services/service1">컨설팅</NuxtLink></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
-          <h3>회사</h3>
-          <ul>
-            <li><NuxtLink to="/company">회사소개</NuxtLink></li>
-            <li><NuxtLink to="/company">팀</NuxtLink></li>
-            <li><NuxtLink to="/company">채용</NuxtLink></li>
-            <li><NuxtLink to="/contact">연락처</NuxtLink></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
-          <h3>고객지원</h3>
-          <ul>
-            <li><NuxtLink to="/contact">도움말</NuxtLink></li>
-            <li><NuxtLink to="/contact">FAQ</NuxtLink></li>
-            <li><NuxtLink to="/contact">문의하기</NuxtLink></li>
-            <li><NuxtLink to="/contact">기술지원</NuxtLink></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <p>&copy; 2024 FinGate. All rights reserved.</p>
       </div>
     </div>
   </footer>
 </template>
-
-<script setup>
-// 푸터 컴포넌트
-import Icon from '~/components/Icon.vue'
-</script>
 

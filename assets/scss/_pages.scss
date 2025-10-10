@@ -156,11 +156,6 @@
       color: #e2e8f0;
     }
   }
-  
-  .flex-grid {
-    position: relative;
-    z-index: 1;
-  }
 }
 
 .home-stats {
@@ -177,11 +172,6 @@
   .section-subtitle {
     color: $color-text-light;
   }
-  
-  .flex-grid {
-    position: relative;
-    z-index: 1;
-  }
 }
 
 .home-technology {
@@ -195,11 +185,6 @@
   
   .section-subtitle {
     color: #e2e8f0;
-  }
-  
-  .flex-grid {
-    position: relative;
-    z-index: 1;
   }
 }
 
@@ -239,11 +224,6 @@
   
   .section-subtitle {
     color: $color-text-light;
-  }
-  
-  .flex-grid {
-    position: relative;
-    z-index: 1;
   }
 }
 
@@ -758,163 +738,247 @@
 }
 
 .contact-hero {
-  @include section-padding;
-  background: transparent;
+  width: 100%;
+  height: 73.6rem;
+  background: url('/images/hero/contact-hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 30.6rem 0;
+}
+
+.contact-content {
+  background-color: #ffffff;
+  padding: 6rem 0;
   
-  .container {
-    text-align: center;
-    
-    h2 {
-      font-size: $font-size-4xl;
-      color: #ffffff;
-      margin-bottom: $spacing-lg;
-    }
-    
-    p {
-      font-size: $font-size-lg;
-      color: #e2e8f0;
-      margin-bottom: $spacing-xl;
-      line-height: 1.6;
-    }
+  @include responsive(md) {
+    padding: 4rem 0;
   }
 }
 
 .contact-info {
-  @include section-padding;
-  background: transparent;
+  padding: 12rem 0 16rem;
   
-  .contact-grid {
+  .info-item {
+    border-radius: 4rem;
+    width: 100%;
+    height: 55.2rem;
+    background-color: #F4F4F6;
+    padding: 8rem;
+    
+    &.map-img {
+      background: url('/images/etc/map.png') no-repeat center center;
+      background-size: cover;
+    }
+    
+    .info-title {
+      font-size: 4rem;
+      font-weight: $font-weight-semibold;
+      line-height: 4.8rem;
+      letter-spacing: -0.11em;
+    }
+    
+    .info-item-title {
+      font-size: 2rem;
+      font-weight: $font-weight-semibold;
+      line-height: 2.8rem;
+    }
+    
+    .info-item-content {
+      font-size: 1.8rem;
+      font-weight: $font-weight-normal;
+      color: $color-text-gray;
+      line-height: 2.8rem;
+    }
+  }
+}
+.contact-form {
+  padding: 16rem 0;
+  background-color: #F4F4F6;
+  
+  .form-wrap {
+    display: flex;
+    gap: 12rem;
+    .form-item:first-child {
+      min-width: max-content;
+      width: max-content;
+    }
+    .form-item:last-child {
+      width: 100%;
+    }
+  }
+  
+  .form-title-text {
+    font-size: 4rem;
+    font-weight: $font-weight-semibold;
+    line-height: 5.6rem;
+  }
+  
+  .form-title-subtext {
+    font-size: 1.6rem;
+    font-weight: $font-weight-normal;
+    line-height: 1.6rem;
+    color: $color-text-gray;
+  }
+  
+  .form-dot {
+    display: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    background-color: $color-bg-primary;
+    border-radius: 50%;
+  }
+  
+  .form-group {
+    width: 100%;
+    
+    label {
+      position: relative;
+      display: inline-block;
+      font-size: 2rem;
+      font-weight: $font-weight-medium;
+      line-height: 2.8rem;
+      
+      .form-dot {
+        position: absolute;
+        top: 0;
+        right: -1.8rem;
+      }
+    }
+    .form-label-subtext {
+      font-size: 1.8rem;
+      font-weight: $font-weight-normal;
+      line-height: 2.8rem;
+      color: $color-text-gray;
+    }
+    
+    input,
+    textarea {
+      width: 100%;
+      height: 6.4rem;
+      padding: 0 2.8rem;
+      border: 0.1rem solid $color-bg-quaternary;
+      border-radius: 0.8rem;
+      font-size: 1.8rem;
+      line-height: 2.8rem;
+      transition: border-color $transition-normal;
+      
+      &:focus {
+        outline: none;
+        border-color: $color-primary;
+      }
+      
+      &::placeholder {
+        color: #999999;
+      }
+    }
+    
+    // textarea 래퍼
+    .textarea-wrapper {
+      position: relative;
+      width: 100%;
+    }
+    
+    textarea {
+      padding: 2.8rem;
+      padding-bottom: 4rem; // 글자수 카운터 공간 확보
+      min-height: 240px;
+      resize: vertical;
+    }
+    
+    // 글자수 카운터
+    .char-counter {
+      position: absolute;
+      bottom: 1.2rem;
+      right: 1.2rem;
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      color: $color-text-gray;
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.4rem;
+      pointer-events: none;
+      
+      .char-count {
+        font-weight: $font-weight-normal;
+        color: $color-text-black;
+      }
+      
+      .char-max {
+        margin-left: 0.4rem;
+        color: #767676;
+      }
+    }
+  }
+  
+  // 라디오 버튼 스타일
+  .radio-group {
     display: flex;
     flex-wrap: wrap;
-    gap: $spacing-xl;
+    gap: 1rem;
     
-    .contact-card {
-      @include card-style;
-      text-align: center;
-      flex: 1 1 calc(33.333% - calc(#{$spacing-xl} * 2 / 3));
-      min-width: 300px;
-      
-      @include responsive(md) {
-        flex: 1 1 calc(50% - calc(#{$spacing-xl} / 2));
-        min-width: 250px;
-      }
-      
-      @include responsive(sm) {
-        flex: 1 1 100%;
-        min-width: auto;
-      }
-      
-      .contact-icon {
-        width: 80px;
-        height: 80px;
-        background: $color-primary;
-        border-radius: 50%;
-        @include flex-center;
-        margin: 0 auto $spacing-lg;
-        color: $color-text-white;
-        font-size: $font-size-2xl;
-      }
-      
-      h3 {
-        color: #ffffff;
-        margin-bottom: $spacing-md;
-      }
-      
-      p {
-        color: #e2e8f0;
-        line-height: 1.6;
-        margin-bottom: $spacing-md;
-      }
-      
-      .contact-link {
-        color: $color-primary;
-        text-decoration: none;
-        font-weight: $font-weight-medium;
-        transition: color $transition-normal;
-        
-        &:hover {
-          color: #93c5fd;
-        }
-      }
+    @media (max-width: $breakpoint-mobile) {
+      flex-direction: column;
+      gap: 0.75rem;
     }
   }
-}
-
-.contact-form {
-  @include section-padding;
-  background: transparent;
   
-  .form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    
-    .contact-form-card {
-      @include card-style;
-      
-      .form-group {
-        margin-bottom: $spacing-lg;
-        
-        label {
-          display: block;
-          color: #ffffff;
-          font-weight: $font-weight-medium;
-          margin-bottom: $spacing-sm;
-        }
-        
-        input,
-        textarea {
-          width: 100%;
-          padding: $spacing-md;
-          background: rgba(255, 255, 255, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          border-radius: $border-radius-md;
-          color: #ffffff;
-          font-size: $font-size-base;
-          transition: border-color $transition-normal;
-          
-          &:focus {
-            outline: none;
-            border-color: $color-primary;
-          }
-          
-          &::placeholder {
-            color: #94a3b8;
-          }
-        }
-        
-        textarea {
-          min-height: 120px;
-          resize: vertical;
-        }
-      }
-      
-      .form-actions {
-        text-align: center;
-        
-        .btn {
-          min-width: 200px;
-        }
-      }
-    }
+  .radio-input {
+    display: none; // 라디오 버튼 숨기기
   }
-}
-
-.contact-map {
-  @include section-padding;
-  background: transparent;
   
-  .map-container {
-    max-width: 800px;
-    margin: 0 auto;
+  .radio-button {
+    display: inline-block;
+    padding: 1.6rem 3.2rem;
+    background-color: $color-bg-white;
+    border: 0.1rem solid $color-bg-quaternary;
+    border-radius: 3rem;
+    font-size: 1.8rem;
+    font-weight: $font-weight-semibold;
+    color: #999999;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    text-align: center;
+    min-width: max-content;
+    &:hover {
+      background-color: $color-bg-primary;
+      border-color: $color-primary;
+      color: $color-text-white;
+    }
     
-    .map-placeholder {
+    @media (max-width: $breakpoint-mobile) {
       width: 100%;
-      height: 400px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: $border-radius-lg;
-      @include flex-center;
-      color: #e2e8f0;
-      font-size: $font-size-lg;
+      min-width: auto;
+    }
+  }
+  
+  // 선택된 상태
+  .radio-input:checked + .radio-button {
+    background-color: $color-primary;
+    border-color: $color-primary;
+    color: $color-text-white;
+    &:hover {
+      background-color: #0f8a9a;
+      border-color: #0f8a9a;
+    }
+  }
+
+  .submit-btn {
+    width: 100%;
+    height: 6.4rem;
+    border: none;
+    border-radius: 0.8rem;
+    background-color: $color-primary;
+    color: $color-text-white;
+    font-size: 2rem;
+    font-weight: $font-weight-bold;
+    line-height: 2.8rem;
+    cursor: pointer;
+    transition: all $transition-normal;
+    
+    &:hover {
+      background-color: #0f8a9a;
     }
   }
 }

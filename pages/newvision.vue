@@ -1,10 +1,5 @@
 <template>
   <div class="newvision">
-    <!-- 페이지 헤더 -->
-    <div class="page-header">
-      <h1 class="page-title">New Vision</h1>
-    </div>
-
     <!-- 히어로 섹션 -->
     <section class="newvision-hero">
       <div class="container">

@@ -10,23 +10,27 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 10px; // 1rem = 10px로 설정
+}
+
 body {
   font-family: $font-family-primary;
   font-size: $font-size-base;
   line-height: 1.6;
-  color: #ffffff;
   margin: 0;
   padding: 0;
-  background-color: #000f1d;
+  background-color: #ffffff;
   min-height: 100vh;
+  input, textarea {
+    font-family: $font-family-primary;
+  }
 }
 
 // 컨테이너
 .container {
   max-width: $container-max-width;
   margin: 0 auto;
-  padding: 0 $container-padding;
-  
   @include responsive(xl) {
     max-width: 1400px;
     padding: 0 1.5rem;
@@ -47,44 +51,12 @@ body {
   @include button-style;
 }
 
+// 히어로 헤더
+.hero-header {
+  @include hero-header;
+}
+
 // 섹션 헤더
 .section-header {
   @include section-header;
-}
-
-// 플렉스 그리드
-.flex-grid {
-  @include flex-grid(3);
-  
-  &--2 {
-    @include flex-grid(2);
-  }
-  
-  &--3 {
-    @include flex-grid(3);
-  }
-  
-  &--4 {
-    @include flex-grid(4);
-  }
-  
-  @include responsive(lg) {
-    &--3 > * {
-      flex: 1 1 calc(50% - 0.75rem);
-    }
-    
-    &--4 > * {
-      flex: 1 1 calc(50% - 0.75rem);
-    }
-  }
-  
-  @include responsive(md) {
-    gap: $spacing-md;
-    
-    &--2 > *,
-    &--3 > *,
-    &--4 > * {
-      flex: 1 1 100%;
-    }
-  }
 }

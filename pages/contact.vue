@@ -1,20 +1,11 @@
 <template>
   <div class="contact">
-    <!-- 페이지 헤더 -->
-    <div class="page-header">
-      <h1 class="page-title">연락처</h1>
-    </div>
-
     <!-- 히어로 섹션 -->
     <ContactHero />
-
-    <!-- 연락처 정보 및 폼 -->
-    <section class="contact-content">
-      <div class="container">
-        <ContactInfo />
-        <ContactForm />
-      </div>
-    </section>
+    <!-- 연락처 정보 -->
+    <ContactInfo />
+    <!-- 연락처 폼 -->
+    <ContactForm />
   </div>
 </template>
 

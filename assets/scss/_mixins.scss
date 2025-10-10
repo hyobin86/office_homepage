@@ -11,28 +11,23 @@
   justify-content: center;
 }
 
-// 플렉스 그리드
-@mixin flex-grid($columns: 3, $gap: $spacing-lg) {
-  display: flex;
-  gap: $gap;
-  flex-wrap: wrap;
-  
-  > * {
-    flex: 1 1 calc((100% / #{$columns}) - calc(#{$gap} * (#{$columns} - 1) / #{$columns}));
-    min-width: 0;
-  }
-}
-
-// 반응형 브레이크포인트
+// 반응형 브레이크포인트 (웹/모바일 2단계)
 @mixin responsive($breakpoint) {
-  @if $breakpoint == sm {
-    @media (max-width: $breakpoint-sm) { @content; }
+  @if $breakpoint == mobile {
+    @media (max-width: $breakpoint-mobile) { @content; }
   }
+  @if $breakpoint == desktop {
+    @media (max-width: $breakpoint-desktop) { @content; }
+  }
+  // 기존 호환성 유지
   @if $breakpoint == md {
-    @media (max-width: $breakpoint-md) { @content; }
+    @media (max-width: $breakpoint-mobile) { @content; }
+  }
+  @if $breakpoint == sm {
+    @media (max-width: $breakpoint-mobile) { @content; }
   }
   @if $breakpoint == xl {
-    @media (max-width: $breakpoint-xl) { @content; }
+    @media (max-width: $breakpoint-desktop) { @content; }
   }
 }
 
@@ -45,16 +40,15 @@
   }
 }
 
-// 섹션 헤더
-@mixin section-header {
-  text-align: center;
-  margin-bottom: $spacing-2xl;
-  
-  .section-title {
-    font-size: $font-size-4xl;
-    font-weight: $font-weight-bold;
-    margin-bottom: $spacing-md;
-    color: $color-text-primary;
+// 히어로 헤더
+@mixin hero-header {
+  width: max-content;
+  .hero-title {
+    font-size: 5.6rem;
+    font-weight: $font-weight-semibold;
+    color: $color-text-white;
+    line-height: 7.2rem;
+    letter-spacing: -0.11rem;
     
     @include responsive(md) {
       font-size: $font-size-3xl;
@@ -65,17 +59,36 @@
     }
   }
   
-  .section-subtitle {
-    font-size: $font-size-lg;
-    color: $color-text-secondary;
-    max-width: 600px;
-    margin: 0 auto;
-    
+  .hero-subtitle {
+    font-size: 2.1rem;
+    font-weight: $font-weight-semibold;
+    color: $color-text-primary;
+    line-height: 2.8rem;
+    letter-spacing: 0.84rem;
     @include responsive(sm) {
       font-size: $font-size-base;
     }
   }
 }
+
+// 섹션 헤더
+@mixin section-header {
+  .section-title {
+    font-size: 4.8rem;
+    font-weight: $font-weight-semibold;
+    line-height: 6.4rem;
+    letter-spacing: -0.11rem;
+    
+    @include responsive(md) {
+      font-size: $font-size-3xl;
+    }
+    
+    @include responsive(sm) {
+      font-size: $font-size-2xl;
+    }
+  }
+}
+
 
 // 카드 스타일
 @mixin card-style {

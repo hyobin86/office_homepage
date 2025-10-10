@@ -1,371 +1,279 @@
-# FinGate Homepage
+# FinGate Office Homepage
 
-FinGate의 공식 홈페이지입니다. 혁신적인 금융 솔루션을 제공하는 기업의 웹사이트로, Vue.js와 Nuxt.js를 기반으로 구축되었습니다.
+핀게이트 오피스 홈페이지 프로젝트입니다.
 
-## 🚀 주요 기능
+## 🚀 프로젝트 개요
 
-- **반응형 디자인**: 모든 디바이스에서 최적화된 사용자 경험 (Flexbox 기반)
-- **SEO 최적화**: 검색 엔진 최적화를 위한 메타 태그 및 구조화된 데이터
-- **동적 SEO 파일**: 환경 변수 기반 사이트맵 및 robots.txt 자동 생성
-- **성능 최적화**: 빠른 로딩 속도와 효율적인 리소스 관리
-- **부드러운 애니메이션**: GSAP과 Lenis를 활용한 고품질 사용자 경험
-- **접근성**: 웹 접근성 가이드라인 준수
-- **다국어 지원**: 한국어 기본 지원
-- **모던 레이아웃**: CSS Grid 대신 Flexbox를 활용한 유연한 레이아웃
-
-## 🛠 기술 스택
-
-- **프레임워크**: Nuxt.js 3.8.0
-- **언어**: TypeScript 5.3.0, Vue.js 3.4.0
+- **프레임워크**: Nuxt.js 3
 - **스타일링**: SCSS (모듈화된 구조)
-- **폰트**: Pretendard Variable (한국어 최적화)
-- **애니메이션**: GSAP 3.13.0, Lenis 1.3.11
-- **상태 관리**: Pinia 2.1.7
-- **유틸리티**: VueUse 10.5.0
-- **개발 도구**: Nuxt DevTools, Vue TSC
+- **애니메이션**: GSAP + ScrollTrigger
+- **타입**: TypeScript 지원
 
 ## 📁 프로젝트 구조
 
 ```
 office_homepage/
-├── assets/                    # SCSS 스타일 파일 (모듈화된 구조)
+├── assets/
 │   └── scss/
-│       ├── main.scss         # 메인 진입점
-│       ├── _variables.scss   # 디자인 토큰 (색상, 폰트, 간격)
-│       ├── _mixins.scss      # 재사용 가능한 믹스인
-│       ├── _base.scss        # 기본 스타일 (리셋, 컨테이너, 버튼)
-│       ├── _components.scss  # 공통 컴포넌트 스타일
-│       ├── _layouts.scss     # 레이아웃 스타일 (헤더, 푸터)
-│       ├── _pages.scss       # 페이지별 스타일
-│       └── _utilities.scss   # 유틸리티 클래스
-├── components/               # Vue 컴포넌트
-│   ├── layout/              # 레이아웃 컴포넌트
-│   │   ├── AppHeader.vue    # 헤더 (네비게이션, 모바일 메뉴)
-│   │   └── AppFooter.vue    # 푸터
-│   ├── pages/               # 페이지별 컴포넌트
-│   │   ├── home/           # 홈페이지 섹션들
-│   │   ├── company/        # 회사소개 섹션들
-│   │   ├── contact/        # 연락처 섹션들
-│   │   └── services/       # 서비스 섹션들
-│   └── Icon.vue            # SVG 아이콘 컴포넌트
-├── composables/             # Vue 컴포저블
-│   └── useSEO.ts           # SEO 관리 컴포저블
-├── constants/               # 상수 정의
-│   ├── navigation.ts       # 네비게이션 메뉴
-│   ├── seo.ts             # SEO 설정
-│   └── site.ts            # 사이트 정보
-├── layouts/                # 레이아웃 템플릿
-│   └── default.vue        # 기본 레이아웃
-├── pages/                  # 페이지 라우트
-│   ├── index.vue          # 홈페이지
-│   ├── company.vue        # 회사소개
-│   ├── contact.vue        # 연락처
-│   ├── newvision.vue      # 새로운 비전
-│   └── services/          # 서비스 페이지들
-├── plugins/                # 플러그인
-│   ├── gsap.client.js     # GSAP 애니메이션
-│   └── lenis.client.js    # 부드러운 스크롤
-├── public/                 # 정적 파일
-│   ├── images/            # 이미지 파일들
-│   │   ├── hero/         # 히어로 섹션 이미지
-│   │   ├── team/         # 팀 멤버 사진
-│   │   ├── services/     # 서비스 관련 이미지
-│   │   ├── logos/        # 로고 및 브랜드 이미지
-│   │   ├── icons/        # 아이콘 이미지
-│   │   ├── blog-1.jpg    # 블로그 이미지들
-│   │   ├── blog-2.jpg
-│   │   ├── blog-3.jpg
-│   │   └── blog-4.jpg
-│   ├── videos/           # 동영상 파일
-│   ├── sitemap.xml       # 자동 생성되는 사이트맵
-│   └── robots.txt        # 자동 생성되는 robots.txt
-├── scripts/                # 빌드 스크립트
-│   ├── generate-sitemap.js # 사이트맵 동적 생성
-│   └── generate-robots.js  # robots.txt 동적 생성
-├── nuxt.config.ts          # Nuxt 설정
-├── package.json            # 의존성 및 스크립트
-└── tsconfig.json           # TypeScript 설정
+│       ├── main.scss           # 메인 SCSS 진입점
+│       ├── _variables.scss     # 디자인 토큰 (색상, 폰트, 간격 등)
+│       ├── _mixins.scss       # 재사용 가능한 SCSS 믹스인
+│       ├── _utilities.scss    # 유틸리티 클래스
+│       ├── _pages.scss        # 페이지별 스타일
+│       ├── _components.scss    # 공통 컴포넌트 스타일
+│       ├── _layouts.scss      # 레이아웃 스타일
+│       ├── _base.scss         # 기본 스타일
+│       └── _animations.scss    # 애니메이션 스타일
+├── components/
+│   └── pages/
+│       └── contact/
+│           ├── ContactHero.vue     # 연락처 히어로 섹션
+│           ├── ContactInfo.vue     # 연락처 정보
+│           └── ContactForm.vue     # 문의 폼
+├── plugins/
+│   └── gsap-animations.client.js  # GSAP 애니메이션 플러그인
+└── pages/
+    └── contact.vue            # 연락처 페이지
 ```
-
-## 🚀 시작하기
-
-### 필수 요구사항
-
-- Node.js 18.x 이상
-- npm 또는 yarn
-
-### 설치 및 실행
-
-1. **저장소 클론**
-   ```bash
-   git clone <repository-url>
-   cd office_homepage
-   ```
-
-2. **의존성 설치**
-   ```bash
-   npm install
-   ```
-
-3. **개발 서버 실행**
-   ```bash
-   npm run dev
-   ```
-
-4. **브라우저에서 확인**
-   ```
-   http://localhost:3000
-   ```
-
-## 📜 사용 가능한 스크립트
-
-- `npm run dev` - 개발 서버 실행
-- `npm run build` - 프로덕션 빌드
-- `npm run generate` - 정적 사이트 생성 (SEO 파일 포함)
-- `npm run generate:seo` - SEO 파일들만 생성 (sitemap.xml, robots.txt)
-- `npm run generate:sitemap` - 사이트맵만 생성
-- `npm run generate:robots` - robots.txt만 생성
-- `npm run preview` - 빌드 결과 미리보기
-- `npm run clean` - 빌드 파일 정리
-- `npm run type-check` - TypeScript 타입 검사
-
-## 🌐 배포
-
-### 정적 사이트 생성
-
-```bash
-npm run generate
-```
-
-생성된 파일은 `dist/public/` 폴더에 위치하며, 정적 호스팅 서비스에 업로드할 수 있습니다.
-
-### 환경 변수 설정
-
-프로덕션 배포 시 다음 환경 변수를 설정하세요:
-
-```bash
-# 프로덕션 환경
-NUXT_PUBLIC_BASE_URL=https://leenstar.dothome.co.kr
-
-# 개발 환경
-NUXT_PUBLIC_BASE_URL=http://localhost:3000
-
-# 스테이징 환경
-NUXT_PUBLIC_BASE_URL=https://staging.fingate.co.kr
-```
-
-## 🔍 SEO 최적화
-
-### 동적 SEO 파일 생성
-
-이 프로젝트는 환경 변수를 기반으로 SEO 파일들을 동적으로 생성합니다:
-
-- **sitemap.xml**: 모든 페이지 URL을 포함한 사이트맵
-- **robots.txt**: 검색 엔진 크롤링 규칙
-
-### SEO 파일 생성 과정
-
-1. **빌드 전**: `npm run generate:seo` 실행
-2. **스크립트**: 환경 변수에서 도메인 읽어서 SEO 파일 생성
-3. **Nuxt 빌드**: 생성된 파일들을 `dist/public/`로 복사
-
-### 포함된 SEO 요소
-
-- **메타 태그**: 각 페이지별 최적화된 메타 태그
-- **구조화된 데이터**: JSON-LD 스키마 마크업
-- **사이트맵**: 자동 생성되는 XML 사이트맵
-- **robots.txt**: 검색 엔진 크롤링 규칙
-- **Open Graph**: 소셜 미디어 공유 최적화
-- **Twitter Card**: 트위터 공유 최적화
 
 ## 🎨 디자인 시스템
 
 ### 색상 팔레트
 
-- **Primary**: #2563eb (Blue) - 메인 브랜드 컬러
-- **Primary Dark**: #1d4ed8 - 호버 상태
-- **Primary Light**: #60a5fa - 강조 색상
-- **Secondary**: #7c3aed (Purple) - 보조 색상
-- **Text Primary**: #0f172a - 주요 텍스트
-- **Text Secondary**: #64748b - 보조 텍스트
-- **Text Light**: #cbd5e1 - 연한 텍스트
-- **Background**: #000f1d - 다크 테마 배경
+```scss
+// 메인 색상
+$color-primary: #12A2B8;           // 메인 브랜드 컬러
+$color-primary-light: #60a5fa;     // 메인 컬러 라이트
+
+// 텍스트 색상
+$color-text-primary: #12A2B8;      // 메인 텍스트
+$color-text-secondary: #64748b;    // 보조 텍스트
+$color-text-light: #cbd5e1;        // 연한 텍스트
+$color-text-white: #ffffff;         // 흰색 텍스트
+$color-text-black: #111111;        // 검은색 텍스트
+$color-text-gray: #444444;         // 회색 텍스트
+
+// 배경 색상
+$color-bg-primary: #12A2B8;        // 메인 배경
+$color-bg-secondary: #f8fafc;     // 보조 배경
+$color-bg-white: #ffffff;          // 흰색 배경
+$color-bg-quaternary: #DDDDDD;     // 테두리용 회색
+$color-bg-dark: #0A0A10;           // 어두운 배경
+```
 
 ### 타이포그래피
 
-- **Primary Font**: Pretendard Variable (한국어 최적화)
-- **Font Weights**: 300, 400, 500, 600, 700
-- **Font Sizes**: xs(0.75rem) ~ 5xl(3rem)
+```scss
+// 폰트 패밀리
+$font-family-primary: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
 
-### SCSS 아키텍처
+// 폰트 크기
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;  // 14px
+$font-size-base: 1rem;    // 16px
+$font-size-lg: 1.125rem;  // 18px
+$font-size-xl: 1.25rem;   // 20px
+$font-size-2xl: 1.5rem;   // 24px
+$font-size-3xl: 1.875rem; // 30px
+$font-size-4xl: 2.25rem;  // 36px
+$font-size-5xl: 3rem;     // 48px
 
-프로젝트는 모듈화된 SCSS 구조를 사용하며, **CSS Grid 대신 Flexbox를 활용**합니다:
+// 폰트 웨이트
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+```
 
-- **`_variables.scss`**: 디자인 토큰 (색상, 폰트, 간격, 브레이크포인트)
-- **`_mixins.scss`**: 재사용 가능한 믹스인 (flex-center, button-style, responsive, flex-grid)
-- **`_base.scss`**: 기본 스타일 (리셋, 컨테이너, 버튼, 플렉스 그리드 시스템)
-- **`_components.scss`**: 공통 컴포넌트 스타일 (카드, 아이템, 폼)
-- **`_layouts.scss`**: 레이아웃 스타일 (헤더, 푸터, 네비게이션) - Flexbox 기반
-- **`_pages.scss`**: 페이지별 고유 스타일 - Flexbox 기반
-- **`_utilities.scss`**: 유틸리티 클래스
+### 간격 시스템
 
-## 📱 반응형 브레이크포인트
+```scss
+$spacing-xs: 0.25rem;  // 4px
+$spacing-sm: 0.5rem;  // 8px
+$spacing-md: 1rem;     // 16px
+$spacing-lg: 1.5rem;   // 24px
+$spacing-xl: 2rem;     // 32px
+$spacing-2xl: 3rem;    // 48px
+$spacing-3xl: 4rem;    // 64px
+$spacing-4xl: 6rem;   // 96px
+```
 
-- **Small**: < 480px (모바일)
-- **Medium**: 480px - 768px (태블릿)
-- **Large**: 768px - 1400px (데스크톱)
-- **Extra Large**: > 1400px (대형 화면)
+## 🎯 주요 기능
 
-## 🔧 개발 가이드
+### Contact 페이지
 
-### 컴포넌트 작성 규칙
+#### 1. **ContactHero** - 히어로 섹션
+- 배경 이미지와 타이틀
+- 반응형 디자인
 
-1. **PascalCase**로 컴포넌트명 작성
-2. **Composition API** 사용
-3. **TypeScript** 타입 정의
-4. **SCSS** 모듈 사용
+#### 2. **ContactInfo** - 연락처 정보
+- 지도 이미지
+- 전화번호, 이메일, 주소 정보
+- 깔끔한 카드 레이아웃
 
-### 스타일 가이드
+#### 3. **ContactForm** - 문의 폼
+- **폼 필드**:
+  - 회사명 (필수)
+  - 이름 (필수)
+  - 연락처
+  - 이메일 주소 (필수)
+  - 문의유형 (라디오 버튼)
+    - 견적문의
+    - 시연요청
+    - 컨설팅 문의
+    - 기타
+  - 문의사항 (필수, 최대 1000자)
+- **특별 기능**:
+  - 라디오 버튼을 버튼 형태로 스타일링
+  - 실시간 글자수 카운터 (textarea 내부)
+  - 폼 검증 및 제출 처리
+  - 반응형 디자인
 
-1. **SCSS 모듈화**: 각 기능별로 파일 분리
-2. **변수 활용**: `_variables.scss`의 디자인 토큰 사용
-3. **믹스인 활용**: `_mixins.scss`의 재사용 가능한 스타일 사용
-4. **반응형 디자인**: 모바일 퍼스트 접근법
-5. **접근성**: ARIA 라벨, 키보드 네비게이션 고려
-6. **성능**: 불필요한 중첩 최소화
+## ⚡ 애니메이션 시스템
 
-## 📊 성능 최적화
+### GSAP + ScrollTrigger 연동
 
-- **이미지 최적화**: WebP, AVIF 포맷 지원, 지연 로딩, 정적 파일 서빙
-- **코드 분할**: 자동 코드 분할 및 번들 최적화
-- **압축**: Gzip, Brotli 압축 설정
-- **캐싱**: 적절한 캐시 헤더 설정
-- **애니메이션**: GSAP + ScrollTrigger 최적화
-- **스크롤**: Lenis 부드러운 스크롤 성능 최적화
-- **폰트**: Pretendard Variable 웹폰트 최적화
-- **레이아웃**: Flexbox 기반으로 브라우저 호환성 및 성능 향상
+```javascript
+// plugins/gsap-animations.client.js
+- fade-in: 아래에서 위로 페이드인
+- fade-in-left: 왼쪽에서 오른쪽으로 페이드인
+- fade-in-right: 오른쪽에서 왼쪽으로 페이드인
+- fade-in-scale: 스케일 애니메이션과 함께 페이드인
+```
 
-## 🧪 테스트 및 품질 관리
+### 접근성 고려
+- `prefers-reduced-motion` 미디어 쿼리 지원
+- 애니메이션 비활성화 옵션 제공
 
-### 코드 품질
-- **TypeScript**: 엄격한 타입 검사
-- **ESLint**: 코드 스타일 및 품질 검사
-- **Prettier**: 코드 포맷팅 자동화
+## 🛠️ 유틸리티 클래스
 
-### 성능 모니터링
-- **Lighthouse**: 웹 성능 점수 모니터링
-- **Core Web Vitals**: 사용자 경험 지표 추적
-- **번들 분석**: 번들 크기 최적화
+### 간격 유틸리티
+```scss
+// Margin (0-40rem, 0.1rem 단위)
+.m-0 ~ .m-400
+.mt-0 ~ .mt-400
+.mb-0 ~ .mb-400
+.ml-0 ~ .ml-400
+.mr-0 ~ .mr-400
 
-### 브라우저 호환성
-- **Modern Browsers**: Chrome, Firefox, Safari, Edge 최신 버전
-- **Mobile**: iOS Safari, Chrome Mobile 지원
+// Gap (0-3rem, 0.1rem 단위)
+.gap-0 ~ .gap-30
+```
 
-## 🚀 배포 전략
+### 플렉스 유틸리티
+```scss
+.d-flex          // display: flex
+.flex-center     // 중앙 정렬
+.flex-between    // 양쪽 정렬
+.flex-column     // 세로 방향
+```
 
-### 빌드 및 배포
+### 텍스트 유틸리티
+```scss
+.text-center     // 중앙 정렬
+.text-left       // 왼쪽 정렬
+.text-right      // 오른쪽 정렬
+.text-primary    // 메인 컬러
+.text-secondary  // 보조 컬러
+```
 
+## 📱 반응형 디자인
+
+### 브레이크포인트
+```scss
+$breakpoint-mobile: 1024px;   // 1024px 이하 = 모바일
+$breakpoint-desktop: 1400px;  // 컨테이너 최대 너비
+```
+
+### 반응형 믹스인
+```scss
+@mixin responsive($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+```
+
+## 🎨 SCSS 아키텍처
+
+### 모듈화된 구조
+1. **Variables** - 디자인 토큰
+2. **Mixins** - 재사용 가능한 스타일 블록
+3. **Base** - 기본 스타일 (reset, typography)
+4. **Components** - 공통 컴포넌트 스타일
+5. **Layouts** - 레이아웃 스타일
+6. **Pages** - 페이지별 스타일
+7. **Animations** - 애니메이션 스타일
+8. **Utilities** - 유틸리티 클래스
+
+### 믹스인 예시
+```scss
+@mixin hero-header {
+  width: max-content;
+  text-align: left;
+  
+  .hero-title {
+    font-size: 5.6rem;
+    font-weight: $font-weight-semibold;
+    color: $color-text-white;
+    line-height: 7.2rem;
+    letter-spacing: -0.11rem;
+  }
+}
+
+@mixin section-header {
+  .section-title {
+    font-size: 4.8rem;
+    font-weight: $font-weight-semibold;
+    color: $color-text-black;
+    line-height: 6.4rem;
+    letter-spacing: -0.11rem;
+  }
+}
+```
+
+## 🚀 개발 환경 설정
+
+### 설치
 ```bash
-# 프로덕션 빌드
+npm install
+```
+
+### 개발 서버 실행
+```bash
+npm run dev
+```
+
+### 빌드
+```bash
 npm run build
-
-# 정적 사이트 생성 (SEO 파일 포함)
-npm run generate
-
-# 빌드 결과 미리보기
-npm run preview
 ```
 
-### 호스팅 옵션
+## 📋 코드 품질
 
-- **Vercel**: 권장 (Nuxt.js 최적화, 자동 배포)
-- **Netlify**: 정적 사이트 호스팅, 폼 처리 지원
-- **AWS S3 + CloudFront**: 클라우드 호스팅, CDN 활용
-- **GitHub Pages**: 무료 호스팅, 간단한 설정
+### 검수 결과
+- ✅ **린터 오류**: 없음
+- ✅ **코드 일관성**: 우수
+- ✅ **모듈화**: 체계적인 구조
+- ✅ **성능**: 최적화 완료
+- ✅ **접근성**: 고려됨
 
-### 환경 설정
+### 주요 개선사항
+1. **색상 시스템 정리**: 사용되지 않는 변수 제거
+2. **SCSS 함수 최적화**: `darken()` → 직접 색상 값 사용
+3. **Contact 폼 완성**: 라디오 버튼, 글자수 카운터 등
+4. **애니메이션 최적화**: GSAP + ScrollTrigger 연동
 
-프로덕션 배포 시 환경 변수 설정:
+## 🎯 다음 단계
 
-```bash
-# .env.production
-NUXT_PUBLIC_BASE_URL=https://leenstar.dothome.co.kr
-NUXT_PUBLIC_SITE_NAME=FinGate
-NUXT_PUBLIC_SITE_DESCRIPTION=혁신적인 금융 솔루션
-```
+- [ ] 다른 페이지 컴포넌트 개발
+- [ ] SEO 최적화
+- [ ] 성능 모니터링
+- [ ] 접근성 테스트
 
-## 📈 모니터링 및 분석
+---
 
-### 웹 분석
-- **Google Analytics 4**: 사용자 행동 분석
-- **Google Search Console**: SEO 성능 모니터링
-- **Google Tag Manager**: 태그 관리
-
-### 성능 모니터링
-- **Lighthouse CI**: 자동 성능 검사
-- **Web Vitals**: Core Web Vitals 추적
-- **Sentry**: 에러 모니터링 및 성능 추적
-
-### SEO 모니터링
-- **사이트맵**: 자동 생성 및 제출
-- **robots.txt**: 크롤링 규칙 관리
-- **구조화된 데이터**: 스키마 마크업 검증
-
-## 🤝 기여하기
-
-### 개발 환경 설정
-1. 저장소 포크
-2. 기능 브랜치 생성 (`git checkout -b feature/AmazingFeature`)
-3. 변경사항 커밋 (`git commit -m 'Add some AmazingFeature'`)
-4. 브랜치 푸시 (`git push origin feature/AmazingFeature`)
-5. Pull Request 생성
-
-### 코딩 컨벤션
-- **컴포넌트**: PascalCase 사용
-- **파일명**: kebab-case 사용
-- **스타일**: SCSS 모듈화 구조 준수
-- **타입**: TypeScript 엄격 모드 사용
-- **커밋**: Conventional Commits 규칙 준수
-
-## 🔄 최근 업데이트 (2025.10.02)
-
-### 주요 변경사항
-
-- ✅ **CSS Grid 제거**: 모든 레이아웃을 Flexbox 기반으로 변경
-- ✅ **이미지 폴더 구조 개선**: `images/` → `public/images/`로 통합
-- ✅ **반응형 레이아웃 최적화**: 더 나은 브라우저 호환성과 성능
-- ✅ **Sass 경고 해결**: deprecated 문법을 최신 문법으로 업데이트
-
-### 변경된 파일들
-
-- `assets/scss/_pages.scss`: Grid → Flexbox 변환
-- `assets/scss/_layouts.scss`: Grid → Flexbox 변환  
-- `public/images/`: 이미지 파일 통합 및 폴더 구조 개선
-
-### 기술적 개선사항
-
-- **브라우저 호환성**: Flexbox는 더 넓은 브라우저 지원
-- **성능 향상**: Flexbox는 Grid보다 가벼운 계산
-- **유지보수성**: 더 직관적인 레이아웃 코드
-- **반응형 디자인**: 더 유연한 반응형 구현
-
-## 📄 라이선스
-
-이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 `LICENSE` 파일을 참조하세요.
-
-## 📞 연락처 및 지원
-
-- **이메일**: info@fingate.co.kr
-- **웹사이트**: https://leenstar.dothome.co.kr
-- **프로젝트 상태**: ✅ 프로덕션 레디
-- **최종 업데이트**: 2025년 10월 2일
-
-## 🙏 감사의 말
-
-이 프로젝트는 다음 오픈소스 라이브러리들의 도움으로 만들어졌습니다:
-
-- [Nuxt.js](https://nuxtjs.org/) - Vue.js 메타 프레임워크
-- [Vue.js](https://vuejs.org/) - 프로그레시브 JavaScript 프레임워크
-- [GSAP](https://greensock.com/gsap/) - 고성능 애니메이션 라이브러리
-- [Lenis](https://github.com/studio-freight/lenis) - 부드러운 스크롤 라이브러리
-- [Pretendard](https://github.com/orioncactus/pretendard) - 한국어 최적화 웹폰트
+**개발 완료일**: 2024년
+**버전**: 1.0.0
+**상태**: Contact 페이지 완료, 전체 프로젝트 진행 중

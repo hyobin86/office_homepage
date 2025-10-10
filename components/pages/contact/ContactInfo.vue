@@ -1,44 +1,25 @@
 <template>
   <div class="contact-info">
-    <h3>연락처 정보</h3>
-    
-    <div class="info-item">
-      <div class="info-item-icon">
-        <Icon name="check" />
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title text-center">
+          고객의 비즈니스 고민을<br/>
+          핀게이트가 함께 해결하겠습니다.
+        </div>
       </div>
-      <div class="info-item-content">
-        <h4>주소</h4>
-        <p>서울특별시 강남구 테헤란로 123, FinGate 빌딩 10층</p>
-      </div>
-    </div>
-    
-    <div class="info-item">
-      <div class="info-item-icon">
-        <Icon name="check" />
-      </div>
-      <div class="info-item-content">
-        <h4>전화번호</h4>
-        <p>02-1234-5678</p>
-      </div>
-    </div>
-    
-    <div class="info-item">
-      <div class="info-item-icon">
-        <Icon name="check" />
-      </div>
-      <div class="info-item-content">
-        <h4>이메일</h4>
-        <p>info@fingate.co.kr</p>
-      </div>
-    </div>
-    
-    <div class="info-item">
-      <div class="info-item-icon">
-        <Icon name="check" />
-      </div>
-      <div class="info-item-content">
-        <h4>운영시간</h4>
-        <p>평일 09:00 - 18:00 (토, 일, 공휴일 휴무)</p>
+      <div class="d-flex gap-24 mt-120">
+        <div class="info-item map-img"></div>
+        <div class="info-item">
+          <div class="info-title">
+            오시는 길
+          </div>
+          <div class="info-item-title mt-48">TEL</div>
+          <div class="info-item-content mt-16">070-7854-2241</div>
+          <div class="info-item-title mt-40">E-mail</div>
+          <div class="info-item-content mt-16">withus@fingate.co.kr</div>
+          <div class="info-item-title mt-40">Address.</div>
+          <div class="info-item-content mt-16">서울 마포구 월드컵북로2길 19 7층 (동교동, W위더스빌딩)</div>
+        </div>
       </div>
     </div>
   </div>

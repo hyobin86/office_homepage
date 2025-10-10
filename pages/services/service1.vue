@@ -1,11 +1,5 @@
 <template>
   <div class="service1-service">
-    <!-- 페이지 헤더 -->
-    <div class="page-header">
-      <h1 class="page-title">Service1</h1>
-      <p class="page-subtitle">혁신적인 디지털 솔루션</p>
-    </div>
-
     <!-- Service1 히어로 섹션 -->
     <section class="service1-hero">
       <div class="container">

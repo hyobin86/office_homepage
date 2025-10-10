@@ -1,10 +1,10 @@
 <template>
   <section class="contact-hero">
     <div class="container">
-      <h2>문의하기</h2>
-      <p>
-        궁금한 점이 있으시거나 상담이 필요하시면 언제든지 연락주세요.
-      </p>
+      <div class="hero-header">
+        <div class="hero-subtitle">Contact Us</div>
+        <div class="hero-title mt-24">소통으로 찾는 비즈니스 해답</div>
+      </div>
     </div>
   </section>
-</template>
+</template> 

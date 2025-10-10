@@ -4,24 +4,6 @@
 
 @use 'variables' as *;
 
-// 애니메이션 초기 상태 (클라이언트에서만 적용)
-@media (prefers-reduced-motion: no-preference) {
-  .home-hero h1,
-  .home-hero p,
-  .home-hero-actions,
-  .feature-card,
-  .section-header,
-  .stat-item,
-  .tech-content,
-  .tech-visual,
-  .testimonial-card,
-  .home-cta h2,
-  .home-cta p,
-  .home-cta .btn {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-}
 
 // 텍스트 유틸리티
 .text-center { text-align: center; }
@@ -44,6 +26,14 @@
 .mb-0 { margin-bottom: 0; }
 .ml-0 { margin-left: 0; }
 .mr-0 { margin-right: 0; }
+
+@for $i from 0 through 400 {
+  .m-#{$i} { margin: #{$i * 0.1}rem; }
+  .mt-#{$i} { margin-top: #{$i * 0.1}rem; }
+  .mb-#{$i} { margin-bottom: #{$i * 0.1}rem; }
+  .ml-#{$i} { margin-left: #{$i * 0.1}rem; }
+  .mr-#{$i} { margin-right: #{$i * 0.1}rem; }
+}
 
 .p-0 { padding: 0; }
 .pt-0 { padding-top: 0; }
@@ -73,6 +63,11 @@
 .align-start { align-items: flex-start; }
 .align-end { align-items: flex-end; }
 
+// Gap 유틸리티
+@for $i from 0 through 30 {
+  .gap-#{$i} { gap: #{$i * 0.1}rem; }
+}
+
 // 위치 유틸리티
 .position-relative { position: relative; }
 .position-absolute { position: absolute; }
@@ -80,11 +75,11 @@
 .position-sticky { position: sticky; }
 
 // 보더 유틸리티
-.border { border: 1px solid $color-bg-tertiary; }
-.border-top { border-top: 1px solid $color-bg-tertiary; }
-.border-bottom { border-bottom: 1px solid $color-bg-tertiary; }
-.border-left { border-left: 1px solid $color-bg-tertiary; }
-.border-right { border-right: 1px solid $color-bg-tertiary; }
+.border { border: 1px solid $color-bg-quaternary; }
+.border-top { border-top: 1px solid $color-bg-quaternary; }
+.border-bottom { border-bottom: 1px solid $color-bg-quaternary; }
+.border-left { border-left: 1px solid $color-bg-quaternary; }
+.border-right { border-right: 1px solid $color-bg-quaternary; }
 
 .border-none { border: none; }
 
@@ -96,13 +91,13 @@
 .shadow-none { box-shadow: none; }
 
 // 반응형 유틸리티
-@media (max-width: $breakpoint-md) {
+@media (max-width: $breakpoint-mobile) {
   .d-md-none { display: none; }
   .d-md-block { display: block; }
   .d-md-flex { display: flex; }
 }
 
-@media (max-width: $breakpoint-sm) {
+@media (max-width: $breakpoint-mobile) {
   .d-sm-none { display: none; }
   .d-sm-block { display: block; }
   .d-sm-flex { display: flex; }
