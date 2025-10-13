@@ -39,7 +39,6 @@ export const MAIN_NAVIGATION: NavigationItem[] = [
   }
 ] as const
 
-export const SERVICES_DROPDOWN = [
-  { name: 'Service1', path: '/services/service1' },
-  { name: 'Service2', path: '/services/service2' }
-] as const
+// SERVICES_DROPDOWN을 MAIN_NAVIGATION에서 추출하여 중복 제거
+export const SERVICES_DROPDOWN = MAIN_NAVIGATION
+  .find(item => item.name === 'SERVICES')?.children || []

@@ -8,132 +8,50 @@
 - **스타일링**: SCSS (모듈화된 구조)
 - **애니메이션**: GSAP + ScrollTrigger
 - **타입**: TypeScript 지원
+- **SEO**: 자동 사이트맵/robots.txt 생성
 
 ## 📁 프로젝트 구조
 
 ```
 office_homepage/
-├── assets/
-│   └── scss/
-│       ├── main.scss           # 메인 SCSS 진입점
-│       ├── _variables.scss     # 디자인 토큰 (색상, 폰트, 간격 등)
-│       ├── _mixins.scss       # 재사용 가능한 SCSS 믹스인
-│       ├── _utilities.scss    # 유틸리티 클래스
-│       ├── _pages.scss        # 페이지별 스타일
-│       ├── _components.scss    # 공통 컴포넌트 스타일
-│       ├── _layouts.scss      # 레이아웃 스타일
-│       ├── _base.scss         # 기본 스타일
-│       └── _animations.scss    # 애니메이션 스타일
-├── components/
-│   └── pages/
-│       └── contact/
-│           ├── ContactHero.vue     # 연락처 히어로 섹션
-│           ├── ContactInfo.vue     # 연락처 정보
-│           └── ContactForm.vue     # 문의 폼
-├── plugins/
-│   └── gsap-animations.client.js  # GSAP 애니메이션 플러그인
-└── pages/
-    └── contact.vue            # 연락처 페이지
-```
-
-## 🎨 디자인 시스템
-
-### 색상 팔레트
-
-```scss
-// 메인 색상
-$color-primary: #12A2B8;           // 메인 브랜드 컬러
-$color-primary-light: #60a5fa;     // 메인 컬러 라이트
-
-// 텍스트 색상
-$color-text-primary: #12A2B8;      // 메인 텍스트
-$color-text-secondary: #64748b;    // 보조 텍스트
-$color-text-light: #cbd5e1;        // 연한 텍스트
-$color-text-white: #ffffff;         // 흰색 텍스트
-$color-text-black: #111111;        // 검은색 텍스트
-$color-text-gray: #444444;         // 회색 텍스트
-
-// 배경 색상
-$color-bg-primary: #12A2B8;        // 메인 배경
-$color-bg-secondary: #f8fafc;     // 보조 배경
-$color-bg-white: #ffffff;          // 흰색 배경
-$color-bg-quaternary: #DDDDDD;     // 테두리용 회색
-$color-bg-dark: #0A0A10;           // 어두운 배경
-```
-
-### 타이포그래피
-
-```scss
-// 폰트 패밀리
-$font-family-primary: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-
-// 폰트 크기
-$font-size-xs: 0.75rem;    // 12px
-$font-size-sm: 0.875rem;  // 14px
-$font-size-base: 1rem;    // 16px
-$font-size-lg: 1.125rem;  // 18px
-$font-size-xl: 1.25rem;   // 20px
-$font-size-2xl: 1.5rem;   // 24px
-$font-size-3xl: 1.875rem; // 30px
-$font-size-4xl: 2.25rem;  // 36px
-$font-size-5xl: 3rem;     // 48px
-
-// 폰트 웨이트
-$font-weight-light: 300;
-$font-weight-normal: 400;
-$font-weight-medium: 500;
-$font-weight-semibold: 600;
-$font-weight-bold: 700;
-```
-
-### 간격 시스템
-
-```scss
-$spacing-xs: 0.25rem;  // 4px
-$spacing-sm: 0.5rem;  // 8px
-$spacing-md: 1rem;     // 16px
-$spacing-lg: 1.5rem;   // 24px
-$spacing-xl: 2rem;     // 32px
-$spacing-2xl: 3rem;    // 48px
-$spacing-3xl: 4rem;    // 64px
-$spacing-4xl: 6rem;   // 96px
+├── assets/scss/           # SCSS 스타일 시스템
+├── components/           # Vue 컴포넌트
+│   ├── layout/          # 레이아웃 컴포넌트
+│   └── pages/           # 페이지별 컴포넌트
+├── config/              # 설정 파일
+│   ├── site.ts         # 사이트 정보 (중앙 관리)
+│   └── seo.ts          # SEO 설정
+├── composables/         # Vue 컴포저블
+├── constants/           # 상수 정의
+├── docs/               # 문서
+├── layouts/            # 레이아웃
+├── pages/              # 페이지
+├── plugins/            # 플러그인
+├── scripts/            # 빌드 스크립트
+└── public/             # 정적 파일
 ```
 
 ## 🎯 주요 기능
 
+### 중앙 집중식 설정 관리
+- **`config/site.ts`**: 모든 사이트 정보를 한 곳에서 관리
+- **연락처 정보**: Footer, ContactInfo에서 동일한 정보 사용
+- **도메인 관리**: 모든 파일에서 일관된 도메인 사용
+
+### SEO 최적화
+- **자동 사이트맵 생성**: `scripts/generate-sitemap.js`
+- **자동 robots.txt 생성**: `scripts/generate-robots.js`
+- **페이지별 SEO 설정**: `config/seo.ts`
+- **구조화된 데이터**: JSON-LD 스키마
+
 ### Contact 페이지
-
-#### 1. **ContactHero** - 히어로 섹션
-- 배경 이미지와 타이틀
-- 반응형 디자인
-
-#### 2. **ContactInfo** - 연락처 정보
-- 지도 이미지
-- 전화번호, 이메일, 주소 정보
-- 깔끔한 카드 레이아웃
-
-#### 3. **ContactForm** - 문의 폼
-- **폼 필드**:
-  - 회사명 (필수)
-  - 이름 (필수)
-  - 연락처
-  - 이메일 주소 (필수)
-  - 문의유형 (라디오 버튼)
-    - 견적문의
-    - 시연요청
-    - 컨설팅 문의
-    - 기타
-  - 문의사항 (필수, 최대 1000자)
-- **특별 기능**:
-  - 라디오 버튼을 버튼 형태로 스타일링
-  - 실시간 글자수 카운터 (textarea 내부)
-  - 폼 검증 및 제출 처리
-  - 반응형 디자인
+- **ContactHero**: 히어로 섹션
+- **ContactInfo**: 연락처 정보 (중앙 관리)
+- **ContactForm**: EmailJS 연동 문의 폼
 
 ## ⚡ 애니메이션 시스템
 
 ### GSAP + ScrollTrigger 연동
-
 ```javascript
 // plugins/gsap-animations.client.js
 - fade-in: 아래에서 위로 페이드인
@@ -145,93 +63,6 @@ $spacing-4xl: 6rem;   // 96px
 ### 접근성 고려
 - `prefers-reduced-motion` 미디어 쿼리 지원
 - 애니메이션 비활성화 옵션 제공
-
-## 🛠️ 유틸리티 클래스
-
-### 간격 유틸리티
-```scss
-// Margin (0-40rem, 0.1rem 단위)
-.m-0 ~ .m-400
-.mt-0 ~ .mt-400
-.mb-0 ~ .mb-400
-.ml-0 ~ .ml-400
-.mr-0 ~ .mr-400
-
-// Gap (0-3rem, 0.1rem 단위)
-.gap-0 ~ .gap-30
-```
-
-### 플렉스 유틸리티
-```scss
-.d-flex          // display: flex
-.flex-center     // 중앙 정렬
-.flex-between    // 양쪽 정렬
-.flex-column     // 세로 방향
-```
-
-### 텍스트 유틸리티
-```scss
-.text-center     // 중앙 정렬
-.text-left       // 왼쪽 정렬
-.text-right      // 오른쪽 정렬
-.text-primary    // 메인 컬러
-.text-secondary  // 보조 컬러
-```
-
-## 📱 반응형 디자인
-
-### 브레이크포인트
-```scss
-$breakpoint-mobile: 1024px;   // 1024px 이하 = 모바일
-$breakpoint-desktop: 1400px;  // 컨테이너 최대 너비
-```
-
-### 반응형 믹스인
-```scss
-@mixin responsive($breakpoint) {
-  @media (max-width: $breakpoint) {
-    @content;
-  }
-}
-```
-
-## 🎨 SCSS 아키텍처
-
-### 모듈화된 구조
-1. **Variables** - 디자인 토큰
-2. **Mixins** - 재사용 가능한 스타일 블록
-3. **Base** - 기본 스타일 (reset, typography)
-4. **Components** - 공통 컴포넌트 스타일
-5. **Layouts** - 레이아웃 스타일
-6. **Pages** - 페이지별 스타일
-7. **Animations** - 애니메이션 스타일
-8. **Utilities** - 유틸리티 클래스
-
-### 믹스인 예시
-```scss
-@mixin hero-header {
-  width: max-content;
-  text-align: left;
-  
-  .hero-title {
-    font-size: 5.6rem;
-    font-weight: $font-weight-semibold;
-    color: $color-text-white;
-    line-height: 7.2rem;
-    letter-spacing: -0.11rem;
-  }
-}
-
-@mixin section-header {
-  .section-title {
-    font-size: 4.8rem;
-    font-weight: $font-weight-semibold;
-    color: $color-text-black;
-    line-height: 6.4rem;
-    letter-spacing: -0.11rem;
-  }
-}
-```
 
 ## 🚀 개발 환경 설정
 
@@ -250,6 +81,11 @@ npm run dev
 npm run build
 ```
 
+### SEO 파일 생성
+```bash
+npm run generate:seo
+```
+
 ## 📧 EmailJS 설정
 
 ### 1. EmailJS 계정 설정
@@ -258,13 +94,7 @@ npm run build
 3. 템플릿 생성
 
 ### 2. 환경 변수 설정
-`.env.example` 파일을 `.env`로 복사하고 실제 값으로 변경:
-
-```bash
-cp .env.example .env
-```
-
-`.env` 파일 내용:
+`.env` 파일 생성:
 ```env
 EMAILJS_SERVICE_ID=your_service_id_here
 EMAILJS_TEMPLATE_ID=your_template_id_here
@@ -290,22 +120,37 @@ EMAILJS_TO_EMAIL=your_email@example.com
 - ✅ **모듈화**: 체계적인 구조
 - ✅ **성능**: 최적화 완료
 - ✅ **접근성**: 고려됨
+- ✅ **중앙 관리**: 사이트 정보 통합 관리
 
 ### 주요 개선사항
-1. **색상 시스템 정리**: 사용되지 않는 변수 제거
-2. **SCSS 함수 최적화**: `darken()` → 직접 색상 값 사용
-3. **Contact 폼 완성**: 라디오 버튼, 글자수 카운터 등
+1. **중앙 집중식 설정**: 모든 사이트 정보를 `site.ts`에서 관리
+2. **SEO 최적화**: 자동 사이트맵/robots.txt 생성
+3. **일관성**: 네비게이션과 SEO 설정의 서비스명 일치
 4. **애니메이션 최적화**: GSAP + ScrollTrigger 연동
+
+## 📚 문서
+
+- **[SCSS 스타일 가이드](./docs/SCSS_GUIDE.md)** - 디자인 시스템과 SCSS 사용법
+- **[컴포넌트 가이드](./docs/COMPONENTS.md)** - 컴포넌트 사용법 (예정)
+- **[SEO 가이드](./docs/SEO_GUIDE.md)** - SEO 설정 가이드 (예정)
 
 ## 🎯 다음 단계
 
 - [ ] 다른 페이지 컴포넌트 개발
-- [ ] SEO 최적화
 - [ ] 성능 모니터링
 - [ ] 접근성 테스트
+- [ ] 문서화 완성
 
 ---
 
-**개발 완료일**: 2024년
-**버전**: 1.0.0
+**개발 완료일**: 2024년  
+**버전**: 1.0.0  
 **상태**: Contact 페이지 완료, 전체 프로젝트 진행 중
+
+## 📝 프로젝트 목적
+
+본 프로젝트는 개인 포트폴리오 및 사내 웹사이트 구축을 목적으로 제작되었습니다.
+
+- **포트폴리오**: 현대적인 웹 개발 기술과 모범 사례를 보여주는 프로젝트
+- **사내 웹사이트**: FinGate의 실제 업무용 홈페이지로 활용
+- **학습 목적**: Nuxt.js 3, TypeScript, SCSS, GSAP 등 최신 기술 스택 학습 및 적용
