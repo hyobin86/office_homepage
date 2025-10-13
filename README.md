@@ -1,156 +1,266 @@
-# FinGate Office Homepage
+# FinGate 홈페이지
 
-핀게이트 오피스 홈페이지 프로젝트입니다.
+보험을 가장 잘 아는 인슈어테크 기업 FinGate의 공식 홈페이지입니다.
 
 ## 🚀 프로젝트 개요
 
-- **프레임워크**: Nuxt.js 3
-- **스타일링**: SCSS (모듈화된 구조)
-- **애니메이션**: GSAP + ScrollTrigger
-- **타입**: TypeScript 지원
-- **SEO**: 자동 사이트맵/robots.txt 생성
+이 프로젝트는 Nuxt.js 3를 기반으로 구축된 현대적인 기업 홈페이지로, GSAP 애니메이션과 반응형 디자인을 통해 사용자에게 매력적인 경험을 제공합니다.
+
+## ✨ 주요 기능
+
+### 🎨 애니메이션 시스템
+- **GSAP 기반 애니메이션**: 부드럽고 자연스러운 스크롤 기반 애니메이션
+- **카드 스프레드 애니메이션**: 중앙에서 퍼져나가는 카드 레이아웃
+- **텍스트 마스크 애니메이션**: 연극의 장막이 올라가는 듯한 텍스트 등장 효과
+- **스크롤 다운 인디케이터**: 무한 반복되는 스크롤 가이드 애니메이션
+
+### 🎯 컴포넌트 구조
+- **MainHero**: 비디오 배경과 메인 타이틀
+- **MainCompany**: 회사 소개 및 서비스 카드 레이아웃
+- **MainServices**: 서비스 소개 섹션
+- **MainPartners**: 파트너사 소개
+- **MainVision**: 비전 및 미래 계획
+- **MainBanner**: CTA 배너
+
+### 🎨 디자인 시스템
+- **Poppins 폰트**: 메인 타이틀용 현대적인 폰트
+- **Pretendard Variable**: 본문용 한글 최적화 폰트
+- **SCSS 모듈화**: 변수, 믹스인, 컴포넌트별 스타일 분리
+- **반응형 디자인**: 모바일부터 데스크톱까지 완벽 대응
+
+## 🛠 기술 스택
+
+### 프론트엔드
+- **Nuxt.js 3.8.0**: Vue.js 기반 풀스택 프레임워크
+- **Vue 3.4.0**: 컴포지션 API 기반 프론트엔드 프레임워크
+- **TypeScript 5.3.0**: 타입 안전성 보장
+- **SCSS**: CSS 전처리기
+
+### 애니메이션 & UX
+- **GSAP 3.13.0**: 고성능 애니메이션 라이브러리
+- **Lenis 1.3.11**: 부드러운 스크롤 라이브러리
+- **ScrollTrigger**: 스크롤 기반 애니메이션 트리거
+
+### 상태 관리 & 유틸리티
+- **Pinia 2.1.7**: Vue 상태 관리
+- **VueUse**: Vue 컴포지션 유틸리티
+- **EmailJS**: 클라이언트 사이드 이메일 전송
 
 ## 📁 프로젝트 구조
 
 ```
 office_homepage/
-├── assets/scss/           # SCSS 스타일 시스템
-├── components/           # Vue 컴포넌트
-│   ├── layout/          # 레이아웃 컴포넌트
-│   └── pages/           # 페이지별 컴포넌트
-├── config/              # 설정 파일
-│   ├── site.ts         # 사이트 정보 (중앙 관리)
-│   └── seo.ts          # SEO 설정
-├── composables/         # Vue 컴포저블
-├── constants/           # 상수 정의
-├── docs/               # 문서
-├── layouts/            # 레이아웃
-├── pages/              # 페이지
-├── plugins/            # 플러그인
-├── scripts/            # 빌드 스크립트
-└── public/             # 정적 파일
+├── assets/
+│   └── scss/
+│       ├── main.scss          # 메인 SCSS 파일
+│       ├── _variables.scss    # 색상, 폰트, 간격 변수
+│       ├── _mixins.scss       # 재사용 가능한 믹스인
+│       ├── _base.scss         # 기본 스타일 및 공통 애니메이션
+│       └── _pages.scss        # 페이지별 스타일
+├── components/
+│   ├── layout/                # 레이아웃 컴포넌트
+│   └── pages/
+│       └── main/              # 메인 페이지 컴포넌트
+│           ├── MainHero.vue
+│           ├── MainCompany.vue
+│           ├── MainServices.vue
+│           ├── MainPartners.vue
+│           ├── MainVision.vue
+│           └── MainBanner.vue
+├── pages/
+│   ├── index.vue             # 메인 페이지
+│   ├── company.vue           # 회사 소개
+│   ├── services/             # 서비스 페이지
+│   ├── newvision.vue         # 비전 페이지
+│   └── contact.vue           # 연락처 페이지
+├── plugins/
+│   ├── gsap-animations.client.js  # GSAP 애니메이션 플러그인
+│   └── lenis.client.js            # 부드러운 스크롤 플러그인
+├── config/
+│   └── site.ts               # 사이트 설정
+└── public/
+    └── images/               # 이미지 리소스
 ```
 
-## 🎯 주요 기능
+## 🎬 애니메이션 시스템
 
-### 중앙 집중식 설정 관리
-- **`config/site.ts`**: 모든 사이트 정보를 한 곳에서 관리
-- **연락처 정보**: Footer, ContactInfo에서 동일한 정보 사용
-- **도메인 관리**: 모든 파일에서 일관된 도메인 사용
+### 애니메이션 클래스
+- **`.fade-in`**: 기본 페이드인 애니메이션 (아래에서 위로)
+- **`.fade-in-delayed`**: 지연된 페이드인 (hero-title 완료 후)
+- **`.fade-out-delayed`**: 지연된 페이드아웃 (위에서 아래로)
+- **`.fade-in-left`**: 왼쪽에서 오른쪽으로 슬라이드
+- **`.fade-in-right`**: 오른쪽에서 왼쪽으로 슬라이드
+- **`.mask-reveal-up`**: 마스크 효과로 텍스트 등장
+- **`.scroll-dot-bounce`**: 스크롤 다운 점 애니메이션
+- **`.cards-spread-out`**: 카드 중앙에서 퍼져나가는 애니메이션
 
-### SEO 최적화
-- **자동 사이트맵 생성**: `scripts/generate-sitemap.js`
-- **자동 robots.txt 생성**: `scripts/generate-robots.js`
-- **페이지별 SEO 설정**: `config/seo.ts`
-- **구조화된 데이터**: JSON-LD 스키마
-
-### Contact 페이지
-- **ContactHero**: 히어로 섹션
-- **ContactInfo**: 연락처 정보 (중앙 관리)
-- **ContactForm**: EmailJS 연동 문의 폼
-
-## ⚡ 애니메이션 시스템
-
-### GSAP + ScrollTrigger 연동
+### 애니메이션 타이밍
 ```javascript
-// plugins/gsap-animations.client.js
-- fade-in: 아래에서 위로 페이드인
-- fade-in-left: 왼쪽에서 오른쪽으로 페이드인
-- fade-in-right: 오른쪽에서 왼쪽으로 페이드인
-- fade-in-scale: 스케일 애니메이션과 함께 페이드인
+// MainCompany 섹션 애니메이션 순서
+1. hero-title (fade-in) → 즉시 시작
+2. hero-subtitle (fade-in-delayed) → 1.0초 후 시작
+3. hero-desc (fade-out-delayed) → 1.2초 후 시작
+4. company-cards (cards-spread-out) → 0.7초 후 시작
 ```
 
-### 접근성 고려
-- `prefers-reduced-motion` 미디어 쿼리 지원
-- 애니메이션 비활성화 옵션 제공
+## 🎨 스타일링 시스템
 
-## 🚀 개발 환경 설정
+### 색상 팔레트
+```scss
+// 주요 색상
+$color-primary: #00A8B5;        // 메인 브랜드 컬러
+$color-secondary: #1A1A1A;      // 보조 컬러
+$color-text-white: #FFFFFF;      // 흰색 텍스트
+$color-text-gray: #767676;      // 회색 텍스트
+```
 
-### 설치
+### 폰트 시스템
+```scss
+// 폰트 패밀리
+$font-family-primary: 'Pretendard Variable', sans-serif;
+$font-family-secondary: 'Poppins', sans-serif;
+$font-family-poppins: 'Poppins', sans-serif;
+```
+
+### 간격 시스템
+```scss
+// 간격 변수
+$spacing-xs: 0.8rem;
+$spacing-sm: 1.2rem;
+$spacing-md: 1.6rem;
+$spacing-lg: 2.4rem;
+$spacing-xl: 3.2rem;
+$spacing-2xl: 4.8rem;
+```
+
+## 🚀 시작하기
+
+### 필수 요구사항
+- Node.js 18.0.0 이상
+- npm 또는 yarn
+
+### 설치 및 실행
+
 ```bash
+# 의존성 설치
 npm install
-```
 
-### 개발 서버 실행
-```bash
+# 개발 서버 실행
 npm run dev
-```
 
-### 빌드
-```bash
+# 프로덕션 빌드
 npm run build
+
+# 프로덕션 미리보기
+npm run preview
 ```
 
-### SEO 파일 생성
+### 사용 가능한 스크립트
+
 ```bash
-npm run generate:seo
+npm run dev          # 개발 서버 실행
+npm run build        # 프로덕션 빌드
+npm run generate     # 정적 사이트 생성
+npm run preview      # 빌드된 사이트 미리보기
+npm run clean        # 빌드 캐시 정리
+npm run type-check   # TypeScript 타입 체크
 ```
 
-## 📧 EmailJS 설정
+## 📱 반응형 디자인
 
-### 1. EmailJS 계정 설정
-1. [EmailJS](https://www.emailjs.com/) 계정 생성
-2. 이메일 서비스 연결 (Gmail, Outlook 등)
-3. 템플릿 생성
-
-### 2. 환경 변수 설정
-`.env` 파일 생성:
-```env
-EMAILJS_SERVICE_ID=your_service_id_here
-EMAILJS_TEMPLATE_ID=your_template_id_here
-EMAILJS_PUBLIC_KEY=your_public_key_here
-EMAILJS_TO_EMAIL=your_email@example.com
+### 브레이크포인트
+```scss
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+$breakpoint-desktop: 1200px;
 ```
 
-### 3. EmailJS 템플릿 변수
-템플릿에서 사용할 변수들:
-- `{{name}}` - 사용자 이름
-- `{{email}}` - 사용자 이메일
-- `{{company}}` - 회사명
-- `{{phone}}` - 연락처
-- `{{inquiryType}}` - 문의유형
-- `{{message}}` - 문의사항
-- `{{time}}` - 전송시간
+### 반응형 믹스인
+```scss
+@include responsive(md) {
+  // 태블릿 스타일
+}
 
-## 📋 코드 품질
+@include responsive(sm) {
+  // 모바일 스타일
+}
+```
 
-### 검수 결과
-- ✅ **린터 오류**: 없음
-- ✅ **코드 일관성**: 우수
-- ✅ **모듈화**: 체계적인 구조
-- ✅ **성능**: 최적화 완료
-- ✅ **접근성**: 고려됨
-- ✅ **중앙 관리**: 사이트 정보 통합 관리
+## 🎯 주요 컴포넌트
 
-### 주요 개선사항
-1. **중앙 집중식 설정**: 모든 사이트 정보를 `site.ts`에서 관리
-2. **SEO 최적화**: 자동 사이트맵/robots.txt 생성
-3. **일관성**: 네비게이션과 SEO 설정의 서비스명 일치
-4. **애니메이션 최적화**: GSAP + ScrollTrigger 연동
+### MainCompany 컴포넌트
+회사 소개 섹션으로, 중앙에서 퍼져나가는 카드 레이아웃이 특징입니다.
 
-## 📚 문서
+**특징:**
+- 5개의 서비스 카드가 중앙에서 각자의 위치로 퍼져나가는 애니메이션
+- SCSS에서 시작점 관리, GSAP에서 최종점 애니메이션
+- 호버 시 이미지 확대 효과
+- 클릭 시 해당 서비스 페이지로 이동
 
-- **[SCSS 스타일 가이드](./docs/SCSS_GUIDE.md)** - 디자인 시스템과 SCSS 사용법
-- **[컴포넌트 가이드](./docs/COMPONENTS.md)** - 컴포넌트 사용법 (예정)
-- **[SEO 가이드](./docs/SEO_GUIDE.md)** - SEO 설정 가이드 (예정)
+**애니메이션 타이밍:**
+- 텍스트 등장 → 카드 애니메이션 순서로 자연스러운 플로우
 
-## 🎯 다음 단계
+### MainHero 컴포넌트
+메인 히어로 섹션으로, 비디오 배경과 텍스트 마스크 애니메이션이 특징입니다.
 
-- [ ] 다른 페이지 컴포넌트 개발
-- [ ] 성능 모니터링
-- [ ] 접근성 테스트
-- [ ] 문서화 완성
+**특징:**
+- 비디오 배경 (fallback 이미지 지원)
+- 그라데이션 오버레이
+- 마스크 효과로 텍스트 등장
+- 스크롤 다운 인디케이터
+
+## 🔧 커스터마이징
+
+### 애니메이션 타이밍 조정
+`plugins/gsap-animations.client.js`에서 애니메이션 타이밍을 조정할 수 있습니다:
+
+```javascript
+// 지연 시간 조정
+delay: 1.0 + (index * 0.2)
+
+// 애니메이션 지속 시간 조정
+duration: 1.5
+
+// 이징 함수 변경
+ease: "power2.out"
+```
+
+### 카드 위치 조정
+`assets/scss/_pages.scss`에서 카드의 최종 위치를 조정할 수 있습니다:
+
+```scss
+.company-card-1 {
+  transform: translate(-10px, -300px);
+}
+```
+
+### 색상 테마 변경
+`assets/scss/_variables.scss`에서 브랜드 색상을 변경할 수 있습니다:
+
+```scss
+$color-primary: #00A8B5;  // 메인 브랜드 컬러
+```
+
+## 📄 라이선스
+
+이 프로젝트는 FinGate의 소유입니다.
+
+## 🤝 기여하기
+
+프로젝트에 기여하고 싶으시다면 다음 단계를 따르세요:
+
+1. 프로젝트를 포크합니다
+2. 새로운 기능 브랜치를 생성합니다 (`git checkout -b feature/AmazingFeature`)
+3. 변경사항을 커밋합니다 (`git commit -m 'Add some AmazingFeature'`)
+4. 브랜치에 푸시합니다 (`git push origin feature/AmazingFeature`)
+5. Pull Request를 생성합니다
+
+## 📞 연락처
+
+- **이메일**: contact@fingate.co.kr
+- **전화**: 02-1234-5678
+- **주소**: 서울특별시 강남구 테헤란로 123
 
 ---
 
-**개발 완료일**: 2024년  
-**버전**: 1.0.0  
-**상태**: Contact 페이지 완료, 전체 프로젝트 진행 중
-
-## 📝 프로젝트 목적
-
-본 프로젝트는 개인 포트폴리오 및 사내 웹사이트 구축을 목적으로 제작되었습니다.
-
-- **포트폴리오**: 현대적인 웹 개발 기술과 모범 사례를 보여주는 프로젝트
-- **사내 웹사이트**: FinGate의 실제 업무용 홈페이지로 활용
-- **학습 목적**: Nuxt.js 3, TypeScript, SCSS, GSAP 등 최신 기술 스택 학습 및 적용
+**FinGate** - 보험을 가장 잘 아는 인슈어테크 기업

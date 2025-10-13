@@ -69,6 +69,13 @@
       font-size: $font-size-base;
     }
   }
+
+  .hero-desc {
+    font-size: 2.4rem;
+    font-weight: $font-weight-normal;
+    color: $color-text-white;
+    line-height: 3.2rem;
+  }
 }
 
 // 섹션 헤더

@@ -30,14 +30,21 @@
 }
 
 // ========================================
-// 홈페이지 스타일
+// 메인 페이지 스타일
 // ========================================
 
-.home {
+.main {
   min-height: 100vh;
+  position: relative;
 }
 
-.home-hero {
+.content-section {
+  min-height: 5623px;
+  position: relative;
+  background: url('/images/main/main-bg.png') center top / cover no-repeat;
+}
+
+.main-hero {
   position: relative;
   height: 100vh;
   min-height: 100vh;
@@ -52,10 +59,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% - 66px);
+    height: 100%;
     z-index: 1;
     overflow: hidden;
-    
+    background: rgba(58, 58, 58, 1);
     &::before {
       content: '';
       position: absolute;
@@ -63,7 +70,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 1;
+      background: 
+        linear-gradient(0deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32)),
+        linear-gradient(180deg, rgba(11, 16, 33, 0) 60%, #12192f 100%);
+      z-index: 2;
+      pointer-events: none;
     }
   }
   
@@ -83,189 +94,152 @@
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    color: $color-text-white;
     font-size: 1.2rem;
   }
   
   .hero-content {
+    margin-top: -6.5rem;
     position: relative;
     z-index: 3;
-    text-align: center;
     color: $color-text-white;
     width: 100%;
-    
-    h1 {
-      font-size: $font-size-5xl;
-      margin-bottom: $spacing-md;
-      color: $color-text-white;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-      
-      @include responsive(md) {
-        font-size: $font-size-3xl;
-      }
-      
-      @include responsive(sm) {
-        font-size: $font-size-2xl;
-      }
+    .hero-title {
+      font-family: $font-family-poppins;
+      font-size: 7.2rem;
+      font-weight: $font-weight-bold;
+      line-height: 9.2rem;
     }
-    
-    p {
-      font-size: $font-size-xl;
-      margin-bottom: $spacing-xl;
-      color: $color-text-white;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-      
-      @include responsive(md) {
-        font-size: $font-size-lg;
-      }
-      
-      @include responsive(sm) {
-        font-size: $font-size-base;
-      }
-    }
-  }
-  
-  .home-hero-actions {
-    @include responsive(md) {
-      flex-direction: column;
-      gap: $spacing-md;
-      
-      .btn {
-        margin: 0;
-        width: 100%;
-        max-width: 300px;
-      }
+    .hero-subtitle {
+      font-size: 3.2rem;
+      font-weight: $font-weight-normal;
+      line-height: 4rem;
     }
   }
 }
 
-.home-features {
-  @include section-padding;
-  background: transparent;
-  position: relative;
-  
-  .section-header {
-    position: relative;
-    z-index: 1;
-    
-    .section-title {
-      color: #ffffff;
-    }
-    
-    .section-subtitle {
-      color: #e2e8f0;
-    }
-  }
-}
-
-.home-stats {
-  @include section-padding;
-  background: transparent;
-  color: $color-text-white;
-  position: relative;
-  overflow: hidden;
-  
-  .section-title {
-    color: $color-text-white;
-  }
-  
-  .section-subtitle {
-    color: $color-text-light;
-  }
-}
-
-.home-technology {
-  @include section-padding;
-  background: transparent;
-  position: relative;
-  
-  .section-title {
-    color: #ffffff;
-  }
-  
-  .section-subtitle {
-    color: #e2e8f0;
-  }
-}
-
-.tech-content,
-.tech-visual {
-  position: relative;
-  z-index: 1;
-}
-
-.tech-content {
-  padding-right: $spacing-xl;
-  
-  h3 {
-    color: #ffffff;
-  }
-  
-  p {
-    color: #e2e8f0;
-  }
-  
-  @include responsive(md) {
-    padding-right: 0;
-    margin-bottom: $spacing-xl;
-  }
-}
-
-.home-testimonials {
-  @include section-padding;
-  background: transparent;
-  color: $color-text-white;
-  position: relative;
-  overflow: hidden;
-  
-  .section-title {
-    color: $color-text-white;
-  }
-  
-  .section-subtitle {
-    color: $color-text-light;
-  }
-}
-
-.home-cta {
-  background: transparent;
-  color: $color-text-white;
-  @include section-padding;
+// 스크롤 다운 컨테이너 - 브라우저 전체 너비에서 중앙 정렬
+.scroll-down-container {
+  position: absolute;
+  bottom: 8rem;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  z-index: 4;
   
-  h2 {
+  .scroll-down {
+    width: 3.2rem;
+    height: 4.8rem;
+    border-radius: 1.6rem;
+    border: 0.2rem solid $color-bg-white;
+    margin: 0 auto $spacing-md;
+    position: relative;
+    
+    .scroll-dot {
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      border-radius: 50%;
+      width: 0.4rem;
+      height: 0.4rem;
+      background-color: $color-bg-white;
+      transform: translateX(-50%);
+    }
+  }
+  
+  .scroll-down-text {
+    font-size: 1.2rem;
+    font-weight: $font-weight-semibold;
+    line-height: 2.4rem;
     color: $color-text-white;
-    margin-bottom: $spacing-md;
-    font-size: $font-size-4xl;
-    position: relative;
-    z-index: 1;
-    
-    @include responsive(md) {
-      font-size: $font-size-3xl;
-    }
-    
-    @include responsive(sm) {
-      font-size: $font-size-2xl;
-    }
+  }
+}
+
+.main-company {
+  position: relative;
+  height: 100vh;  // 풀 스크린 높이로 고정
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .hero-header {
+    text-align: center;
+    z-index: 2;
+    margin-top: -14vh;  // 살짝 위로 올리기
   }
   
-  p {
-    color: #e0e7ff;
-    margin-bottom: $spacing-xl;
-    font-size: $font-size-lg;
+  .company-cards {
     position: relative;
-    z-index: 1;
     
-    @include responsive(sm) {
-      font-size: $font-size-base;
+    .company-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: center center; // 중앙 기준으로 변형
+      border-radius: 2rem;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0;
+      &:hover {
+        
+        .card-image {
+          background-size: 120%;
+        }
+      }
+      
+      .card-image {
+        width: 100%;
+        height: 100%;
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: background-size 0.4s linear;
+      }
+      
+      .card-title {
+        padding: 3.2rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: $color-text-white;
+        font-size: 2rem;
+        font-weight: $font-weight-semibold;
+        line-height: 2.8rem;
+      }
+      &.company-card-1 {
+        width: 28.8rem;
+        height: 37.2rem;
+        transform: translate(290px, -300px);
+      }
+      &.company-card-2 {
+        width: 22.8rem;
+        height: 28.4rem;
+        transform: translate(160px, -10px);
+      }
+      &.company-card-3 {
+        width: 20.4rem;
+        height: 27.2rem;
+        transform: translate(-270px, -20px);
+      }
+      &.company-card-4 {
+        width: 20.4rem;
+        height: 27.2rem;
+        transform: translate(-610px, -200px);
+      }
+      &.company-card-5 {
+        width: 11.8rem;
+        height: 16rem;
+        transform: translate(-280px, -300px);
+        .card-title {
+          padding: 2.4rem;
+          font-size: 1.6rem;
+        }
+      }
     }
-  }
-  
-  .btn {
-    position: relative;
-    z-index: 1;
   }
 }
 
@@ -740,7 +714,7 @@
 .contact-hero {
   width: 100%;
   height: 73.6rem;
-  background: url('/images/hero/contact-hero.png');
+  background: url('/images/contact/contact-hero.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

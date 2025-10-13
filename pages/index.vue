@@ -1,37 +1,45 @@
 <template>
-  <div class="home">
-    <!-- 히어로 섹션 -->
-    <HeroSection />
+  <div class="main">
     
-    <!-- 주요 기능 섹션 -->
-    <FeaturesSection />
+    <!-- 히어로 섹션 (비디오 배경) -->
+    <section class="hero-section">
+      <MainHero />
+    </section>
     
-    <!-- 통계 섹션 -->
-    <StatsSection />
+    <!-- 컨텐츠 섹션  -->
+    <section class="content-section">
+      <!-- 회사 소개 섹션 -->
+      <MainCompany />
+      
+      <!-- 서비스 섹션 -->
+      <!-- <MainServices /> -->
 
-    <!-- 기술 섹션 -->
-    <TechnologySection />
+      <!-- 파트너 섹션 -->
+      <!-- <MainPartners /> -->
 
-    <!-- 고객 후기 섹션 -->
-    <TestimonialsSection />
-    
-    <!-- CTA 섹션 -->
-    <CtaSection />
+      <!-- 비전 섹션 -->
+      <!-- <MainVision /> -->
+
+      <!-- 배너 섹션 -->
+      <!-- <MainBanner /> -->
+    </section>
   </div>
 </template>
 
 <script setup>
 // 컴포넌트 import
-import HeroSection from '~/components/pages/home/HeroSection.vue'
-import FeaturesSection from '~/components/pages/home/FeaturesSection.vue'
-import StatsSection from '~/components/pages/home/StatsSection.vue'
-import TechnologySection from '~/components/pages/home/TechnologySection.vue'
-import TestimonialsSection from '~/components/pages/home/TestimonialsSection.vue'
-import CtaSection from '~/components/pages/home/CtaSection.vue'
+import MainHero from '~/components/pages/main/MainHero.vue'
+import MainCompany from '~/components/pages/main/MainCompany.vue'
+import MainServices from '~/components/pages/main/MainServices.vue'
+import MainPartners from '~/components/pages/main/MainPartners.vue'
+import MainVision from '~/components/pages/main/MainVision.vue'
+import MainBanner from '~/components/pages/main/MainBanner.vue'
 
 // SEO 메타데이터 (중앙화된 관리)
 const seoData = useSEO('index')
 useHead(seoData)
+
+// 페이지 전환 로직 제거 - 단순한 구조로 변경
 </script>
 
 

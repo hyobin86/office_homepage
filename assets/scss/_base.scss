@@ -60,3 +60,8 @@ body {
 .section-header {
   @include section-header;
 }
+
+// 공통 애니메이션 클래스들
+.mask-reveal-up {
+  clip-path: inset(100% 0 0 0);
+}
