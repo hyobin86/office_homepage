@@ -12,13 +12,13 @@
       <MainCompany />
       
       <!-- 서비스 섹션 -->
-      <!-- <MainServices /> -->
+      <MainServices />
 
       <!-- 파트너 섹션 -->
-      <!-- <MainPartners /> -->
+      <MainPartners />
 
       <!-- 비전 섹션 -->
-      <!-- <MainVision /> -->
+      <MainVision />
 
       <!-- 배너 섹션 -->
       <!-- <MainBanner /> -->

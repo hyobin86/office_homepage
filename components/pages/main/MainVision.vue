@@ -1,39 +1,21 @@
 <template>
-  <section class="main-vision vision-section">
+  <section class="main-vision">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">NEW VISION</h2>
-        <p class="section-subtitle">
-          AI와 함께 만드는 보험 IT의 새로운 기준
-        </p>
-        <p class="section-description">
-          AI와 클라우드 기반의 혁신적인 기술로 미래를 만듭니다.
-        </p>
+      <!-- 섹션 헤더 -->
+      <div class="hero-header fade-in">
+        <div class="hero-subtitle">NEW VISION</div>
+        <div class="hero-title mt-20">AI와 함께 만드는 보험 IT의 새로운 기준</div>
+        <div class="hero-desc mt-40">복잡한 보험 업무를 데이터와 AI로 혁신적인 경험을 만듭니다.</div>
       </div>
-      
-      <div class="flex-grid flex-grid--3">
-        <div class="vision-card">
-          <div class="vision-icon">
-            <div class="icon-placeholder">📊</div>
-          </div>
-          <h3>데이터 분석</h3>
-          <p>AI 기반의 고급 데이터 분석으로 인사이트를 제공합니다.</p>
-        </div>
-        
-        <div class="vision-card">
-          <div class="vision-icon">
-            <div class="icon-placeholder">🔍</div>
-          </div>
-          <h3>스마트 검증</h3>
-          <p>머신러닝을 활용한 자동화된 검증 시스템을 구축합니다.</p>
-        </div>
-        
-        <div class="vision-card">
-          <div class="vision-icon">
-            <div class="icon-placeholder">⚙️</div>
-          </div>
-          <h3>자동화 솔루션</h3>
-          <p>AI와 클라우드 기술로 업무 프로세스를 혁신합니다.</p>
+      <div class="d-flex gap-24 mt-120">
+        <div 
+          v-for="(card, index) in visionCards"
+          :key="index"
+          :class="`vision-card-${index + 1}`"
+          class="vision-card"
+        >
+          <div class="vision-card-title">{{ card.title }}</div>
+          <div class="vision-card-desc mt-24" v-html="card.desc"></div>
         </div>
       </div>
     </div>
@@ -44,24 +26,40 @@
 // GSAP과 ScrollTrigger 접근
 const { $gsap, $ScrollTrigger } = useNuxtApp()
 
+// 비전 카드 데이터
+const visionCards = ref([
+  {
+    title: '맞춤형 AI 보장 컨설팅',
+    desc: '고객의 라이프스타일과 건강 데이터를 AI로<br>분석하여 최적의 보장 조합을 제안합니다.'
+  },
+  {
+    title: 'AI 어드바이저',
+    desc: '설계사의 업무를 데이터 기반으로 지원하여<br>상담의 정확성과 신뢰성을 강화합니다.'
+  },
+  {
+    title: 'AI RPA',
+    desc: '이미지 패턴 인식 기술로 반복적인 문서 업무를<br>자동화하여 더 가치있는 업무에 집중합니다.'
+  }
+])
+
 // 컴포넌트 마운트 후 애니메이션 설정
 onMounted(() => {
   // 클라이언트에서만 실행되도록 추가 체크
   if (typeof window !== 'undefined' && $gsap && $ScrollTrigger) {
-    // 비전 섹션 애니메이션
+    // 비전 섹션 애니메이션 (헤더 이후 카드 순차 등장, 역스크롤 시 역재생)
     $gsap.fromTo('.vision-card', 
-      { y: 60, opacity: 0 },
+      { y: 40, opacity: 0 },
       { 
         y: 0, 
         opacity: 1, 
-        duration: 0.8, 
-        stagger: 0.2,
-        ease: 'power3.out',
+        duration: 0.6, 
+        stagger: 0.18,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: '.main-vision',
-          start: 'top 80%',
-          end: 'bottom 20%',
-          toggleActions: 'play none none reverse'
+          start: 'top 78%',
+          end: 'bottom 10%',
+          toggleActions: 'play reverse play reverse'
         }
       }
     )

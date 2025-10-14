@@ -1,3 +1,10 @@
+# FinGate Homepage - Quick Guide
+
+## 문서
+- Scroll: `docs/scroll.md`
+- Layout: `docs/layout.md`
+- Animations: `docs/animations.md`
+
 # FinGate 홈페이지
 
 보험을 가장 잘 아는 인슈어테크 기업 FinGate의 공식 홈페이지입니다.
