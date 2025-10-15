@@ -1,127 +1,36 @@
 <template>
   <div class="newvision">
+    
     <!-- 히어로 섹션 -->
-    <section class="newvision-hero">
-      <div class="container">
-        <h2>미래를 향한 우리의 새로운 비전</h2>
-        <p>
-          FinGate의 전문가들이 전하는 최신 금융 기술 트렌드와 혁신적인 접근 방식을 확인하세요.
-        </p>
-      </div>
+    <section class="hero-section">
+      <NewvisionHero />
     </section>
+    
+    <!-- 컨텐츠 섹션 -->
+    <section class="content-section">
+      <!-- 아젠다 섹션 -->
+      <NewvisionAgenda />
+      
+      <!-- 넥스트스텝 섹션 -->
+      <NewvisionNextstep />
 
-    <!-- 비전 목록 -->
-    <section class="newvision-list">
-      <div class="container">
-        <div class="newvision-item">
-          <NuxtImg 
-            src="/images/blog-1.jpg" 
-            alt="핀테크의 미래" 
-            class="newvision-item-image"
-            format="webp"
-            loading="lazy"
-            :width="600"
-            :height="400"
-            quality="85"
-          />
-          <div class="newvision-item-meta">
-            <span>2024.01.15</span>
-            <span>핀테크</span>
-          </div>
-          <h3 class="newvision-item-title">
-            핀테크의 미래: AI와 블록체인의 융합
-          </h3>
-          <p class="newvision-item-excerpt">
-            인공지능과 블록체인 기술이 결합하여 만들어낼 금융 서비스의 새로운 패러다임에 대해 알아봅니다.
-          </p>
-          <span class="newvision-item-read-more">
-            준비 중 →
-          </span>
-        </div>
+      <!-- 가치 섹션 -->
+      <NewvisionValue />
 
-        <div class="newvision-item">
-          <NuxtImg 
-            src="/images/blog-2.jpg" 
-            alt="디지털 금융" 
-            class="newvision-item-image"
-            format="webp"
-            loading="lazy"
-            :width="600"
-            :height="400"
-            quality="85"
-          />
-          <div class="newvision-item-meta">
-            <span>2024.01.10</span>
-            <span>디지털 금융</span>
-          </div>
-          <h3 class="newvision-item-title">
-            디지털 뱅킹의 진화와 고객 경험
-          </h3>
-          <p class="newvision-item-excerpt">
-            디지털 뱅킹이 어떻게 발전해왔는지, 그리고 향후 어떤 방향으로 나아갈지 살펴봅니다.
-          </p>
-          <span class="newvision-item-read-more">
-            준비 중 →
-          </span>
-        </div>
-
-        <div class="newvision-item">
-          <NuxtImg 
-            src="/images/blog-3.jpg" 
-            alt="투자 전략" 
-            class="newvision-item-image"
-            format="webp"
-            loading="lazy"
-            :width="600"
-            :height="400"
-            quality="85"
-          />
-          <div class="newvision-item-meta">
-            <span>2024.01.05</span>
-            <span>투자 전략</span>
-          </div>
-          <h3 class="newvision-item-title">
-            2024년 글로벌 투자 전략
-          </h3>
-          <p class="newvision-item-excerpt">
-            새로운 해를 맞아 글로벌 시장의 변화와 함께 고려해야 할 투자 전략을 제안합니다.
-          </p>
-          <span class="newvision-item-read-more">
-            준비 중 →
-          </span>
-        </div>
-
-        <div class="newvision-item">
-          <NuxtImg 
-            src="/images/blog-4.jpg" 
-            alt="금융 규제" 
-            class="newvision-item-image"
-            format="webp"
-            loading="lazy"
-            :width="600"
-            :height="400"
-            quality="85"
-          />
-          <div class="newvision-item-meta">
-            <span>2023.12.28</span>
-            <span>금융 규제</span>
-          </div>
-          <h3 class="newvision-item-title">
-            금융 규제의 변화와 대응 방안
-          </h3>
-          <p class="newvision-item-excerpt">
-            최근 금융 규제 환경의 변화와 기업들이 어떻게 대응해야 하는지에 대해 설명합니다.
-          </p>
-          <span class="newvision-item-read-more">
-            준비 중 →
-          </span>
-        </div>
-      </div>
+      <!-- 연락 섹션 -->
+      <NewvisionContact />
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
+// 컴포넌트 import
+import NewvisionHero from '~/components/pages/newvision/NewvisionHero.vue'
+import NewvisionAgenda from '~/components/pages/newvision/NewvisionAgenda.vue'
+import NewvisionNextstep from '~/components/pages/newvision/NewvisionNextstep.vue'
+import NewvisionValue from '~/components/pages/newvision/NewvisionValue.vue'
+import NewvisionContact from '~/components/pages/newvision/NewvisionContact.vue'
+
 // SEO 메타데이터 (중앙화된 관리)
 const seoData = useSEO('newvision')
 useHead(seoData)

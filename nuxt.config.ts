@@ -65,7 +65,9 @@ export default defineNuxtConfig({
       brotli: true
     },
     prerender: { 
-      routes: ['/', '/company', '/services/service1', '/services/service2', '/newvision', '/contact'] 
+      routes: ['/', '/company', '/services/service1', '/services/service2', '/newvision', '/contact'],
+      ignore: ['/services'],
+      failOnError: false
     },
     output: { dir: 'dist' }
   },
@@ -79,11 +81,22 @@ export default defineNuxtConfig({
     build: { 
       rollupOptions: { 
         output: { 
-          manualChunks: {
-            'vendor-gsap': ['gsap'],
-            'vendor-lenis': ['lenis'],
-            'vendor-emailjs': ['@emailjs/browser'],
-            'vendor-vue': ['vue']
+          manualChunks(id) {
+            // node_modules의 패키지들만 분리 (SSR 안전)
+            if (id.includes('node_modules')) {
+              if (id.includes('@emailjs/browser')) {
+                return 'vendor-emailjs'
+              }
+              if (id.includes('lenis')) {
+                return 'vendor-lenis'
+              }
+              if (id.includes('gsap')) {
+                return 'vendor-gsap'
+              }
+              if (id.includes('vue')) {
+                return 'vendor-vue'
+              }
+            }
           }
         } 
       } 

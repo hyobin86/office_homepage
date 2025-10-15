@@ -94,7 +94,7 @@ office_homepage/
 │   ├── index.vue                    # 메인 페이지
 │   ├── company.vue                  # 회사소개
 │   ├── contact.vue                  # 연락처
-│   ├── newvision.vue                # 뉴비전
+│   ├── newvision.vue                # 뉴비전 (5개 섹션: Hero, Agenda, Nextstep, Value, Contact)
 │   └── services/
 │       ├── service1.vue             # 클라우드 솔루션
 │       └── service2.vue             # 데이터 분석
@@ -111,7 +111,7 @@ office_homepage/
 │   ├── _pages-main.scss             # 메인 페이지 (543줄)
 │   ├── _pages-company.scss          # 회사소개 페이지
 │   ├── _pages-services.scss         # 서비스 페이지
-│   ├── _pages-newvision.scss        # 뉴비전 페이지
+│   ├── _pages-newvision.scss        # 뉴비전 페이지 (Agenda 섹션 복잡한 애니메이션)
 │   └── _pages-contact.scss          # 연락처 페이지 (원본 스태틱 값 유지)
 │
 ├── 📂 plugins/

@@ -12,12 +12,10 @@
 .main {
   min-height: 100vh;
   position: relative;
-}
-
-.content-section {
-  // min-height: 5623px;
-  position: relative;
-  background: url('/images/main/main-bg.png') center top / cover no-repeat;
+  .content-section {
+    position: relative;
+    background: url('/images/main/main-bg.png') center top / cover no-repeat;
+  }
 }
 
 // --- 메인 히어로 섹션 ---

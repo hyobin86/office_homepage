@@ -2,7 +2,7 @@
   <div class="contact-info">
     <div class="container">
       <div class="section-header fade-in">
-        <h2 class="section-title text-center">
+        <h2 class="section-title text-black text-center">
           고객의 비즈니스 고민을<br/>
           핀게이트가 함께 해결하겠습니다.
         </h2>
