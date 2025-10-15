@@ -14,8 +14,20 @@
         </p>
       </div>
       <div class="company-hero-image">
-        <img src="/images/blog-1.jpg" alt="FinGate 회사 소개" />
+        <NuxtImg 
+          src="/images/blog-1.jpg" 
+          alt="FinGate 회사 소개"
+          format="webp"
+          loading="lazy"
+          :width="800"
+          :height="600"
+          quality="85"
+          sizes="sm:400px md:600px lg:800px"
+        />
       </div>
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+</script>

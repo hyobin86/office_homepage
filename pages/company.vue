@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // 컴포넌트 import
 import CompanyHero from '~/components/pages/company/CompanyHero.vue'
 import CompanyValues from '~/components/pages/company/CompanyValues.vue'

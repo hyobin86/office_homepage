@@ -47,6 +47,16 @@
       stroke-linejoin="round"
     />
     
+    <!-- 아래 화살표 아이콘 -->
+    <path 
+      v-else-if="name === 'chevron-down'" 
+      d="M6 9L12 15L18 9" 
+      stroke="currentColor" 
+      stroke-width="2" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+    />
+    
     <!-- 기본 아이콘 (사각형) -->
     <rect 
       v-else 

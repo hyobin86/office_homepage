@@ -9,7 +9,15 @@
       <div class="flex-grid flex-grid--3">
         <div class="team-member">
           <div class="team-member-photo">
-            <img src="/images/blog-2.jpg" alt="CEO 김대표" />
+            <NuxtImg 
+              src="/images/blog-2.jpg" 
+              alt="CEO 김대표"
+              format="webp"
+              loading="lazy"
+              :width="400"
+              :height="400"
+              quality="85"
+            />
           </div>
           <h3 class="team-member-name">김대표</h3>
           <p class="team-member-position">CEO & Founder</p>
@@ -20,7 +28,15 @@
         
         <div class="team-member">
           <div class="team-member-photo">
-            <img src="/images/blog-3.jpg" alt="CTO 이기술" />
+            <NuxtImg 
+              src="/images/blog-3.jpg" 
+              alt="CTO 이기술"
+              format="webp"
+              loading="lazy"
+              :width="400"
+              :height="400"
+              quality="85"
+            />
           </div>
           <h3 class="team-member-name">이기술</h3>
           <p class="team-member-position">CTO</p>
@@ -31,7 +47,15 @@
         
         <div class="team-member">
           <div class="team-member-photo">
-            <img src="/images/blog-4.jpg" alt="CFO 박재무" />
+            <NuxtImg 
+              src="/images/blog-4.jpg" 
+              alt="CFO 박재무"
+              format="webp"
+              loading="lazy"
+              :width="400"
+              :height="400"
+              quality="85"
+            />
           </div>
           <h3 class="team-member-name">박재무</h3>
           <p class="team-member-position">CFO</p>
@@ -43,3 +67,6 @@
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+</script>

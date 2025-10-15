@@ -5,13 +5,24 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-// 기본 리셋 및 기본 스타일
-* {
+// ========================================
+// CSS Reset (완전 초기화)
+// ========================================
+
+// 1. 모든 요소 기본 초기화
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+// 2. HTML & Body 설정
 html {
   font-size: 10px; // 1rem = 10px로 설정
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -22,9 +33,103 @@ body {
   padding: 0;
   background-color: #ffffff;
   min-height: 100vh;
-  input, textarea {
+  
+  input, textarea, select, button {
     font-family: $font-family-primary;
   }
+}
+
+// 3. Heading 태그 완전 초기화
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+// 4. 텍스트 요소 초기화
+p, span, label {
+  margin: 0;
+  padding: 0;
+}
+
+// 5. 리스트 초기화
+ul, ol, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// 6. 링크 초기화
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// 7. 버튼 초기화
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+// 8. Input 초기화
+input, textarea, select {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+// 9. 이미지 초기화
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+// 10. Form 요소 초기화
+form, fieldset, legend {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+// 11. Figure 초기화
+figure, figcaption {
+  margin: 0;
+  padding: 0;
+}
+
+// 12. Table 초기화
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// 13. 기타 요소 초기화
+blockquote, q {
+  margin: 0;
+  padding: 0;
+  quotes: none;
+}
+
+address {
+  font-style: normal;
 }
 
 // 컨테이너

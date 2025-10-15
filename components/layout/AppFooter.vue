@@ -40,7 +40,7 @@
   </footer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { SITE_CONFIG } from '~/config/site'
 </script>
 

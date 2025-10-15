@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // 컴포넌트 import
 import MainHero from '~/components/pages/main/MainHero.vue'
 import MainCompany from '~/components/pages/main/MainCompany.vue'
@@ -38,8 +38,6 @@ import MainBanner from '~/components/pages/main/MainBanner.vue'
 // SEO 메타데이터 (중앙화된 관리)
 const seoData = useSEO('index')
 useHead(seoData)
-
-// 페이지 전환 로직 제거 - 단순한 구조로 변경
 </script>
 
 

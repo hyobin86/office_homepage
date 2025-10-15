@@ -52,31 +52,42 @@
   </section>
 </template>
 
-<script setup>
-// GSAP과 ScrollTrigger 접근
-const { $gsap, $ScrollTrigger } = useNuxtApp()
+<script setup lang="ts">
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// 컴포넌트 마운트 후 애니메이션 설정
+if (process.client) {
+  gsap.registerPlugin(ScrollTrigger)
+}
+
+let gsapContext: gsap.Context | null = null
+
 onMounted(() => {
-  // 클라이언트에서만 실행되도록 추가 체크
-  if (typeof window !== 'undefined' && $gsap && $ScrollTrigger) {
-    // 고객 후기 섹션 애니메이션
-    $gsap.fromTo('.testimonial-card', 
-      { y: 60, opacity: 0 },
-      { 
-        y: 0, 
-        opacity: 1, 
-        duration: 0.8, 
-        stagger: 0.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.main-testimonials',
-          start: 'top 80%',
-          end: 'bottom 20%',
-          toggleActions: 'play none none reverse'
+  if (process.client) {
+    gsapContext = gsap.context(() => {
+      gsap.fromTo('.testimonial-card', 
+        { y: 60, opacity: 0 },
+        { 
+          y: 0, 
+          opacity: 1, 
+          duration: 0.8, 
+          stagger: 0.2,
+          ease: 'power3.out',
+          force3D: true,
+          scrollTrigger: {
+            trigger: '.main-banner',
+            start: 'top 80%',
+            toggleActions: 'play reverse play reverse'
+          }
         }
-      }
-    )
+      )
+    })
+  }
+})
+
+onUnmounted(() => {
+  if (gsapContext) {
+    gsapContext.revert()
   }
 })
 </script>

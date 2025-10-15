@@ -8,8 +8,7 @@
   </div>
 </template>
 
-<script setup>
-// 기본 레이아웃 컴포넌트
+<script setup lang="ts">
 import AppHeader from '~/components/layout/AppHeader.vue'
 import AppFooter from '~/components/layout/AppFooter.vue'
 </script>

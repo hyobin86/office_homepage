@@ -11,15 +11,15 @@
           </p>
           <div class="service1-features">
             <div class="feature-item">
-              <Icon name="cloud" />
+              <span class="feature-emoji">☁️</span>
               <span>클라우드 솔루션</span>
             </div>
             <div class="feature-item">
-              <Icon name="analytics" />
+              <span class="feature-emoji">📊</span>
               <span>데이터 분석</span>
             </div>
             <div class="feature-item">
-              <Icon name="security" />
+              <span class="feature-emoji">🔒</span>
               <span>보안 관리</span>
             </div>
           </div>
@@ -33,7 +33,7 @@
         <div class="flex-grid flex-grid--2">
           <div class="service1-visual">
             <div class="visual-placeholder">
-              <Icon name="platform" />
+              <span class="platform-emoji">🏗️</span>
               <p>Service1 플랫폼 아키텍처</p>
             </div>
           </div>
@@ -57,21 +57,21 @@
         <div class="flex-grid flex-grid--3">
           <div class="service-card">
             <div class="service-icon">
-              <Icon name="cloud-computing" />
+              <span class="service-emoji">☁️</span>
             </div>
             <h4>클라우드 컴퓨팅</h4>
             <p>확장 가능하고 안정적인 클라우드 인프라 서비스</p>
           </div>
           <div class="service-card">
             <div class="service-icon">
-              <Icon name="data-analytics" />
+              <span class="service-emoji">📊</span>
             </div>
             <h4>데이터 분석</h4>
             <p>빅데이터 분석 및 비즈니스 인텔리전스</p>
           </div>
           <div class="service-card">
             <div class="service-icon">
-              <Icon name="cyber-security" />
+              <span class="service-emoji">🔐</span>
             </div>
             <h4>사이버 보안</h4>
             <p>종합적인 보안 솔루션 및 위협 관리</p>
@@ -93,14 +93,7 @@
   </div>
 </template>
 
-<script setup>
-import Icon from '~/components/Icon.vue'
-
-// SEO 메타데이터 (중앙화된 관리)
+<script setup lang="ts">
 const seoData = useSEO('services/service1')
 useHead(seoData)
 </script>
-
-<style scoped lang="scss">
-// 외부 SCSS 파일 사용 (assets/scss/pages/_services.scss)
-</style>

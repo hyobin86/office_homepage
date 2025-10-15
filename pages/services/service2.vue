@@ -11,15 +11,15 @@
           </p>
           <div class="service2-features">
             <div class="feature-item">
-              <Icon name="speed" />
+              <span class="feature-emoji">⚡</span>
               <span>고속 인터넷</span>
             </div>
             <div class="feature-item">
-              <Icon name="shield" />
+              <span class="feature-emoji">🛡️</span>
               <span>안정적인 연결</span>
             </div>
             <div class="feature-item">
-              <Icon name="support" />
+              <span class="feature-emoji">💬</span>
               <span>24/7 지원</span>
             </div>
           </div>
@@ -42,7 +42,7 @@
           </div>
           <div class="service2-visual">
             <div class="visual-placeholder">
-              <Icon name="network" />
+              <span class="platform-emoji">🌐</span>
               <p>Service2 네트워크 다이어그램</p>
             </div>
           </div>
@@ -63,14 +63,7 @@
   </div>
 </template>
 
-<script setup>
-import Icon from '~/components/Icon.vue'
-
-// SEO 메타데이터 (중앙화된 관리)
+<script setup lang="ts">
 const seoData = useSEO('services/service2')
 useHead(seoData)
 </script>
-
-<style scoped lang="scss">
-// 외부 SCSS 파일 사용 (assets/scss/pages/_services.scss)
-</style>

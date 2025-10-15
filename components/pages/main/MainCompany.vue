@@ -1,38 +1,52 @@
 <template>
-  <section class="main-company">
+  <section class="main-company" aria-labelledby="company-heading">
     <div class="container">
-      <!-- 섹션 헤더 -->
       <div class="hero-header">
         <div class="hero-subtitle fade-in-delayed">COMPANY</div>
-        <div class="hero-title mt-20 fade-in">보험을 가장 잘 아는 인슈어테크 기업</div>
-        <div class="hero-desc mt-40 fade-out-delayed">실무에서 검증된 IT 경험과 혁신 기술로 고객의 비즈니스 가치를 높입니다.</div>
+        <h2 id="company-heading" class="hero-title mt-20 fade-in">보험을 가장 잘 아는 인슈어테크 기업</h2>
+        <p class="hero-desc mt-40 fade-out-delayed">실무에서 검증된 IT 경험과 혁신 기술로 고객의 비즈니스 가치를 높입니다.</p>
       </div>
       
-      <!-- 회사 카드들 -->
-      <div class="company-cards cards-spread-out">
+      <div 
+        class="company-cards cards-spread-out" 
+        role="list" 
+        aria-label="회사 주요 서비스"
+        @mouseover="handleCardHover"
+        @mouseleave="hideCustomCursor"
+      >
         <NuxtLink 
           v-for="(card, index) in companyCards" 
           :key="index"
           :to="card.link"
           class="company-card"
-          :class="`company-card-${index + 1}`"
-          @mouseenter="showCustomCursor"
-          @mouseleave="hideCustomCursor"
+          :class="cardClasses[index]"
+          :aria-label="`${cleanTitles[index]} 서비스 상세보기`"
+          role="listitem"
         >
-          <div class="card-image" :style="{ backgroundImage: `url(${card.image})` }"></div>
-          <div class="card-title" v-html="card.title"></div>
+          <div class="card-image">
+            <NuxtImg 
+              :src="card.image"
+              :alt="`${cleanTitles[index]} 이미지`"
+              format="webp"
+              loading="lazy"
+              :width="288"
+              :height="372"
+              quality="85"
+              sizes="sm:228px md:288px"
+            />
+          </div>
+          <div class="card-title" v-html="card.title" aria-hidden="true"></div>
         </NuxtLink>
       </div>
 
-       <!-- 커스텀 커서 -->
-      <div class="custom-cursor" ref="customCursor">
+      <div class="custom-cursor" ref="customCursor" aria-hidden="true">
         <div class="cursor-text">MORE VIEW</div>
       </div>
     </div>
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -42,7 +56,7 @@ if (process.client) {
 }
 
 // 회사 카드 데이터
-const companyCards = ref([
+const companyCards = [
   {
     title: 'Cloud · 보안성 강화',
     image: '/images/main/main-card1.png',
@@ -68,15 +82,26 @@ const companyCards = ref([
     image: '/images/main/main-card5.png',
     link: '/services/service2'
   }
-])
+]
+
+// 카드 제목에서 HTML 태그 제거 (빌드 타임 계산)
+const cleanTitles = companyCards.map(card => card.title.replace(/<br\/?>/g, ' '))
+
+// 카드 클래스명 미리 계산
+const cardClasses = companyCards.map((_, index) => `company-card-${index + 1}`)
 
 // 커스텀 커서 관련
-const customCursor = ref(null)
+const customCursor = ref<HTMLElement | null>(null)
 
-// 커스텀 커서 표시
-const showCustomCursor = () => {
-  if (customCursor.value) {
+// 이벤트 위임을 통한 커서 표시 (카드에 마우스 진입 시)
+const handleCardHover = (e: Event) => {
+  const target = e.target as HTMLElement
+  const card = target.closest('.company-card')
+  
+  if (card && customCursor.value) {
     customCursor.value.classList.add('show')
+  } else if (!card && customCursor.value) {
+    customCursor.value.classList.remove('show')
   }
 }
 
@@ -87,21 +112,36 @@ const hideCustomCursor = () => {
   }
 }
 
-// 마우스 이동 이벤트 - 간단하게
-const handleMouseMove = (e) => {
-  if (customCursor.value) {
-    customCursor.value.style.left = e.clientX + 'px'
-    customCursor.value.style.top = e.clientY + 'px'
-  }
+// 마우스 이동 이벤트 - requestAnimationFrame으로 최적화
+let rafId: number | null = null
+const handleMouseMove = (e: MouseEvent) => {
+  if (!customCursor.value) return
+  
+  // 이전 RAF가 실행 중이면 취소
+  if (rafId !== null) return
+  
+  // RAF를 사용하여 브라우저 렌더링 사이클에 맞춰 업데이트
+  rafId = requestAnimationFrame(() => {
+    if (customCursor.value) {
+      // 커서 중앙 정렬: 커서 크기(20rem = 200px)의 절반(100px)을 빼줌
+      customCursor.value.style.transform = 
+        `translate3d(${e.clientX - 100}px, ${e.clientY - 100}px, 0)`
+    }
+    rafId = null
+  })
 }
 
-// 컴포넌트 마운트 시 이벤트 리스너 추가
-onMounted(() => {
-  document.addEventListener('mousemove', handleMouseMove)
+// GSAP Context (자동 클린업)
+let gsapContext: gsap.Context | null = null
+let observer: IntersectionObserver | null = null
+
+// GSAP 애니메이션 초기화 함수
+const initGsapAnimations = () => {
+  if (gsapContext) return // 이미 초기화되었으면 리턴
   
-  if (process.client) {
+  gsapContext = gsap.context(() => {
     // cards-spread-out 애니메이션
-    gsap.utils.toArray('.cards-spread-out').forEach((container) => {
+    (gsap.utils.toArray('.cards-spread-out') as Element[]).forEach((container) => {
       const cards = Array.from(container.querySelectorAll('.company-card'))
 
       const finalPositions = [
@@ -113,7 +153,7 @@ onMounted(() => {
       ]
 
       cards.forEach((card, i) => {
-        gsap.set(card, { opacity: 0 })
+        gsap.set(card, { opacity: 0, force3D: true })
         
         gsap.to(card, {
           x: finalPositions[i].x,
@@ -121,6 +161,7 @@ onMounted(() => {
           opacity: 1,
           duration: 0.8,
           ease: 'power1.out',
+          force3D: true,
           immediateRender: false,
           delay: 0.3 + (i * 0.05),
           overwrite: 'auto',
@@ -132,6 +173,31 @@ onMounted(() => {
         })
       })
     })
+  })
+}
+
+// 컴포넌트 마운트 시 이벤트 리스너 추가
+onMounted(() => {
+  document.addEventListener('mousemove', handleMouseMove, { passive: true })
+  
+  if (process.client) {
+    // Intersection Observer로 뷰포트 진입 시 애니메이션 초기화
+    const section = document.querySelector('.main-company')
+    if (section) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              initGsapAnimations()
+              // 한 번만 실행하고 observer 해제
+              observer?.disconnect()
+            }
+          })
+        },
+        { rootMargin: '100px' } // 뷰포트 100px 전에 미리 초기화
+      )
+      observer.observe(section)
+    }
   }
 })
 
@@ -139,8 +205,19 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener('mousemove', handleMouseMove)
   
-  if (process.client) {
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+  // RAF 취소
+  if (rafId !== null) {
+    cancelAnimationFrame(rafId)
+  }
+  
+  // Intersection Observer 정리
+  if (observer) {
+    observer.disconnect()
+  }
+  
+  // GSAP Context로 모든 애니메이션/ScrollTrigger 자동 제거
+  if (gsapContext) {
+    gsapContext.revert()
   }
 })
 </script>

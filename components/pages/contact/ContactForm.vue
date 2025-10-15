@@ -3,17 +3,17 @@
     <div class="container">
       <div class="form-wrap fade-in">
         <div class="form-item">
-          <div class="form-title-text">
+          <h2 class="form-title-text">
             궁금하신 사항을 문의 주시면,<br/>
             빠르게 답변 드리겠습니다.
-          </div>
-          <div class="form-title-subtext mt-40">
-            <em class="form-dot mr-8"/>
+          </h2>
+          <p class="form-title-subtext mt-40">
+            <em class="form-dot mr-8" aria-hidden="true"/>
             필수 입력 항목
-          </div>
+          </p>
         </div>
         <div class="form-item mt-80">
-          <form @submit.prevent="submitForm">
+          <form @submit.prevent="submitForm" aria-label="문의 폼">
             <div class="form-group">
               <label class="form-label" for="company">
                 회사명
@@ -26,8 +26,12 @@
                 class="form-input mt-20" 
                 :class="{ 'error': formErrors.company }"
                 placeholder="소속된 회사 또는 기관명을 입력해 주세요."
+                required
+                :aria-required="true"
+                :aria-invalid="!!formErrors.company"
+                :aria-describedby="formErrors.company ? 'company-error' : undefined"
               />
-              <div v-if="formErrors.company" class="error-message mt-8">
+              <div v-if="formErrors.company" id="company-error" class="error-message mt-8" role="alert">
                 {{ formErrors.company }}
               </div>
             </div>
@@ -44,8 +48,12 @@
                   class="form-input mt-20" 
                   :class="{ 'error': formErrors.name }"
                   placeholder="담당자 이름을 입력해 주세요."
+                  required
+                  :aria-required="true"
+                  :aria-invalid="!!formErrors.name"
+                  :aria-describedby="formErrors.name ? 'name-error' : undefined"
                 />
-                <div v-if="formErrors.name" class="error-message mt-8">
+                <div v-if="formErrors.name" id="name-error" class="error-message mt-8" role="alert">
                   {{ formErrors.name }}
                 </div>
               </div>
@@ -72,20 +80,23 @@
                 class="form-input mt-20" 
                 :class="{ 'error': formErrors.email }"
                 placeholder="답변 받을 이메일을 입력해 주세요."
+                required
+                :aria-required="true"
+                :aria-invalid="!!formErrors.email"
+                :aria-describedby="formErrors.email ? 'email-error' : undefined"
               />
-              <div v-if="formErrors.email" class="error-message mt-8">
+              <div v-if="formErrors.email" id="email-error" class="error-message mt-8" role="alert">
                 {{ formErrors.email }}
               </div>
             </div>
             <div class="form-group mt-40">
-              <div>
-                <label class="form-label">
+              <fieldset>
+                <legend class="form-label">
                   문의유형
-                  <em class="form-dot"/>
-                </label>
+                  <em class="form-dot" aria-hidden="true"/>
+                </legend>
                 <span class="form-label-subtext ml-40">문의 유형을 선택해 주세요.</span>
-              </div>
-              <div class="radio-group mt-20">
+              <div class="radio-group mt-20" role="radiogroup" aria-required="true">
                 <input 
                   id="inquiry-general"
                   v-model="form.inquiryType"
@@ -119,9 +130,10 @@
                 />
                 <label for="inquiry-technical" class="radio-button">기타</label>
               </div>
-              <div v-if="formErrors.inquiryType" class="error-message mt-8">
+              <div v-if="formErrors.inquiryType" id="inquiryType-error" class="error-message mt-8" role="alert">
                 {{ formErrors.inquiryType }}
               </div>
+              </fieldset>
             </div>
             <div class="form-group mt-40">
               <label class="form-label" for="message">문의 사항</label>
@@ -133,32 +145,68 @@
                   :class="{ 'error': formErrors.message }"
                   placeholder="문의내용을 입력하세요"
                   maxlength="1000"
+                  :aria-invalid="!!formErrors.message"
+                  :aria-describedby="formErrors.message ? 'message-error' : 'message-counter'"
                 ></textarea>
-                <div class="char-counter">
+                <div id="message-counter" class="char-counter" aria-live="polite">
                   <span class="char-count">{{ form.message.length }}</span>
                   <span class="char-max">/ 1000</span>
                 </div>
               </div>
-              <div v-if="formErrors.message" class="error-message mt-8">
+              <div v-if="formErrors.message" id="message-error" class="error-message mt-8" role="alert">
                 {{ formErrors.message }}
               </div>
             </div>
-            <button type="submit" class="submit-btn mt-48">
-              문의하기
+            <button 
+              type="submit" 
+              class="submit-btn mt-48" 
+              :disabled="isSubmitting"
+              :aria-label="isSubmitting ? '전송 중...' : '문의 내용 전송'"
+            >
+              {{ isSubmitting ? '전송 중...' : '문의하기' }}
             </button>
           </form>
         </div>
       </div>
     </div>
+    
+    <div 
+      v-if="showToast" 
+      class="toast-notification" 
+      :class="[`toast-${toastType}`, { 'toast-show': showToast }]"
+      role="alert"
+      aria-live="polite"
+    >
+      <div class="toast-content">
+        <span class="toast-icon">{{ toastType === 'success' ? '✓' : '✕' }}</span>
+        <span class="toast-message">{{ toastMessage }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
-<script setup>
-// EmailJS import
+<script setup lang="ts">
 import emailjs from '@emailjs/browser'
 
-// 폼 데이터
-const form = reactive({
+interface FormData {
+  name: string
+  email: string
+  phone: string
+  company: string
+  inquiryType: string
+  message: string
+}
+
+interface FormErrors {
+  name: string
+  email: string
+  company: string
+  inquiryType: string
+  message: string
+  [key: string]: string
+}
+
+const form = reactive<FormData>({
   name: '',
   email: '',
   phone: '',
@@ -167,14 +215,18 @@ const form = reactive({
   message: ''
 })
 
-// 폼 에러 상태
-const formErrors = reactive({
+const formErrors = reactive<FormErrors>({
   name: '',
   email: '',
   company: '',
   inquiryType: '',
   message: ''
 })
+
+const isSubmitting = ref<boolean>(false)
+const showToast = ref<boolean>(false)
+const toastMessage = ref<string>('')
+const toastType = ref<'success' | 'error'>('success')
 
 // 폼 검증 함수
 const validateForm = () => {
@@ -224,23 +276,31 @@ const validateForm = () => {
   return isValid
 }
 
-// 폼 제출 처리
+const displayToast = (message: string, type: 'success' | 'error' = 'success') => {
+  toastMessage.value = message
+  toastType.value = type
+  showToast.value = true
+  
+  setTimeout(() => {
+    showToast.value = false
+  }, 4000)
+}
+
 const submitForm = async () => {
-  // 폼 검증
   if (!validateForm()) {
-    alert('입력 정보를 확인해주세요.')
+    displayToast('입력 정보를 확인해주세요.', 'error')
     return
   }
   
+  isSubmitting.value = true
+  
   try {
-    // EmailJS 설정 (Nuxt 런타임 설정 사용)
     const config = useRuntimeConfig()
     const serviceId = config.public.emailjsServiceId
     const templateId = config.public.emailjsTemplateId
     const publicKey = config.public.emailjsPublicKey
     const toEmail = config.public.emailjsToEmail
     
-    // 이메일 전송
     await emailjs.send(
       serviceId,
       templateId,
@@ -264,16 +324,17 @@ const submitForm = async () => {
       publicKey
     )
     
-    alert('문의가 정상적으로 전송되었습니다. 빠른 시일 내에 연락드리겠습니다.')
+    displayToast('문의가 정상적으로 전송되었습니다. 빠른 시일 내에 연락드리겠습니다.', 'success')
     
-    // 폼 초기화
     Object.keys(form).forEach(key => {
-      form[key] = ''
+      form[key as keyof FormData] = ''
     })
     
   } catch (error) {
     console.error('EmailJS Error:', error)
-    alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.')
+    displayToast('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.', 'error')
+  } finally {
+    isSubmitting.value = false
   }
 }
 </script>

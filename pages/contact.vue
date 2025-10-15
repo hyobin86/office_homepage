@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // 컴포넌트 import
 import ContactHero from '~/components/pages/contact/ContactHero.vue'
 import ContactInfo from '~/components/pages/contact/ContactInfo.vue'

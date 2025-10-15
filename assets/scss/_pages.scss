@@ -167,7 +167,6 @@
   align-items: center;
   justify-content: center;
   
-  // 커스텀 커서 스타일 - 카드 영역에만 적용
   .custom-cursor {
     position: fixed;
     top: 0;
@@ -176,31 +175,31 @@
     height: 20rem;
     border-radius: 50%;
     background: rgba($color-bg-primary, 0.8);
-    backdrop-filter: blur(6px); /* 배경 블러 효과 */
-    opacity: 0; /* 기본적으로 숨김 */
+    backdrop-filter: blur(6px);
+    opacity: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     pointer-events: none;
     z-index: 9999;
-    transform: translate(-50%, -50%); /* 중앙 정렬만 */
-    transition: opacity 0.3s ease; /* 투명도만 애니메이션 */
+    will-change: transform;
+    transition: opacity 0.3s ease;
     
     .cursor-text {
       color: white;
       font-size: 2rem;
       font-weight: $font-weight-normal;
       text-align: center;
-      opacity: 0; /* 텍스트도 처음엔 숨김 */
-      transition: opacity 0.3s ease 0.1s; /* 약간의 딜레이 후 나타남 */
+      opacity: 0;
+      transition: opacity 0.3s ease 0.1s;
     }
     
     &.show {
-      opacity: 1; /* 카드 hover 시에만 표시 */
-      backdrop-filter: blur(8px); /* 더 강한 블러 효과 */
+      opacity: 1;
+      backdrop-filter: blur(8px);
       
       .cursor-text {
-        opacity: 1; /* 텍스트도 나타남 */
+        opacity: 1;
       }
     }
   }
@@ -230,9 +229,11 @@
       opacity: 0;
       cursor: none; /* 기본 커서 숨기기 */
       box-sizing: border-box;
+      will-change: transform, opacity; // GPU 가속 힌트
+      contain: layout style paint; // 렌더링 격리로 성능 향상
       
       &:hover {
-        .card-image {
+        .card-image img {
           transform: scale(1.1);
         }
       }
@@ -247,11 +248,17 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        transition: transform 0.4s ease;
+        overflow: hidden;
         z-index: 1;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          transition: transform 0.4s ease;
+          will-change: transform;
+        }
       }
       
       .card-title {
@@ -338,11 +345,17 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        transition: transform 0.4s ease;
+        overflow: hidden;
         z-index: 1;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          transition: transform 0.4s ease;
+          will-change: transform;
+        }
       }
       .card-text {
         position: absolute;
@@ -379,7 +392,7 @@
         transform: translate(-107px,1170px);
       }
       &:hover {
-        .card-image {
+        .card-image img {
           transform: scale(1.15);
         }
         .card-text {
@@ -413,6 +426,22 @@
     justify-content: center;
     text-align: center;
   }
+  
+  // 파트너 로고 스타일
+  .partner-logo {
+    max-width: 45rem; // 450px
+    height: auto;
+    object-fit: contain;
+    opacity: 0; // GSAP에서 애니메이션
+    
+    @include responsive(md) {
+      max-width: 38rem;
+    }
+    
+    @include responsive(sm) {
+      max-width: 30rem;
+    }
+  }
 }
 
 // --- 메인 비전 섹션 ---
@@ -441,6 +470,13 @@
       padding: 6.4rem 4.8rem;
       color: $color-text-white;
       text-align: left;
+      cursor: pointer;
+      position: relative;
+      
+      &.animate-complete {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
       &.vision-card-1 {
         background: url('/images/main/main-card-bg1.png') center center / cover no-repeat;
       }
@@ -450,14 +486,58 @@
       &.vision-card-3 {
         background: url('/images/main/main-card-bg3.png') center center / cover no-repeat;
       }
+      
+      &:hover {
+        transform: translate3d(0, -2.4rem, 0) !important;
+        box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.2);
+        z-index: 10;
+      }
+      
+      @include responsive(md) {
+        width: 38rem;
+        height: 42rem;
+        padding: 5rem 4rem;
+        
+        &:hover {
+          transform: translate3d(0, -1.6rem, 0) !important;
+        }
+      }
+      
+      @include responsive(sm) {
+        width: 100%;
+        max-width: 35rem;
+        height: 38rem;
+        padding: 4rem 3rem;
+        
+        &:hover {
+          transform: translate3d(0, -1.2rem, 0) !important;
+        }
+      }
     }
     .vision-card-title {
       font-size: 2.8rem;
       font-weight: $font-weight-semibold;
+      
+      @include responsive(md) {
+        font-size: 2.4rem;
+      }
+      
+      @include responsive(sm) {
+        font-size: 2.2rem;
+      }
     }
     .vision-card-desc { 
       font-size: 1.8rem;
       font-weight: $font-weight-normal;
+      line-height: 1.5;
+      
+      @include responsive(md) {
+        font-size: 1.6rem;
+      }
+      
+      @include responsive(sm) {
+        font-size: 1.5rem;
+      }
     }
     
   }
@@ -1183,8 +1263,71 @@
     cursor: pointer;
     transition: all $transition-normal;
     
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: #0f8a9a;
+    }
+    
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+  
+  .toast-notification {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    min-width: 30rem;
+    max-width: 50rem;
+    padding: 1.6rem 2rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateX(40rem);
+    transition: all 0.3s ease-in-out;
+    
+    &.toast-show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    &.toast-success {
+      background-color: #10b981;
+      color: white;
+    }
+    
+    &.toast-error {
+      background-color: #ef4444;
+      color: white;
+    }
+    
+    .toast-content {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      
+      .toast-icon {
+        font-size: 2rem;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+      
+      .toast-message {
+        font-size: 1.6rem;
+        line-height: 1.5;
+      }
+    }
+    
+    @media (max-width: $breakpoint-mobile) {
+      left: 2rem;
+      right: 2rem;
+      min-width: auto;
+      transform: translateY(-10rem);
+      
+      &.toast-show {
+        transform: translateY(0);
+      }
     }
   }
 }

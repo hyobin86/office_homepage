@@ -6,9 +6,9 @@ import { SITE_CONFIG } from '~/config/site'
 
 // SEO 기본값
 export const SEO_DEFAULTS = {
-  title: `${SITE_CONFIG.name} - 혁신적인 금융 솔루션`,
-  description: 'FinGate는 최첨단 기술과 전문성을 바탕으로 고객의 성공을 지원하는 금융 솔루션 기업입니다.',
-  keywords: '금융솔루션, 핀테크, 디지털뱅킹, 투자관리, 금융컨설팅, FinGate',
+  title: `${SITE_CONFIG.name} - 보험을 가장 잘 아는 인슈어테크 기업`,
+  description: '실무에서 검증된 IT 경험과 혁신 기술로 고객의 비즈니스 가치를 높입니다. Cloud, MSA, 통합시스템 등 보험 IT 전문 솔루션을 제공합니다.',
+  keywords: '인슈어테크, 보험IT, 핀게이트, 보험시스템, Cloud, MSA, 통합시스템, GA시스템, 원스톱상담솔루션',
   image: SITE_CONFIG.defaultImage,
   type: 'website',
   robots: 'index,follow',
@@ -18,34 +18,34 @@ export const SEO_DEFAULTS = {
 // 페이지별 SEO 설정
 export const PAGE_SEO = {
   index: {
-    title: 'FinGate - 혁신적인 금융 솔루션',
-    description: 'FinGate는 최첨단 기술과 전문성을 바탕으로 고객의 성공을 지원하는 금융 솔루션 기업입니다. 디지털 뱅킹, 투자 관리, 보안 솔루션을 제공합니다.',
-    keywords: '금융솔루션, 핀테크, 디지털뱅킹, 투자관리, 금융컨설팅, FinGate'
+    title: '핀게이트 - 보험을 가장 잘 아는 인슈어테크 기업',
+    description: '실무에서 검증된 IT 경험과 혁신 기술로 고객의 비즈니스 가치를 높입니다. Cloud, MSA, 보험 인하우스 IT 전문가, 통합시스템, IT 인프라 등 전문 솔루션을 제공합니다.',
+    keywords: '인슈어테크, 보험IT솔루션, 핀게이트, Cloud보안, MSA, 보험인하우스, 통합시스템, IT인프라, 보험시스템개발'
   },
   company: {
-    title: '회사소개 | FinGate',
-    description: 'FinGate는 혁신적인 금융 기술 기업으로, 고객의 성공을 지원하는 다양한 솔루션을 제공합니다. 우리의 미션, 비전, 핵심 가치를 알아보세요.',
-    keywords: 'FinGate Company, 금융기술기업, 핀테크회사, 금융솔루션, 회사미션, 핵심가치, 팀소개'
+    title: '회사 소개 - 핀게이트',
+    description: '핀게이트는 보험 IT 전문 인슈어테크 기업입니다. 실무에서 검증된 기술력과 보험 도메인 전문성으로 고객의 디지털 혁신을 지원합니다.',
+    keywords: '핀게이트, 회사소개, 인슈어테크기업, 보험IT전문, 금융기술, 디지털혁신, 보험시스템전문'
   },
   'services/service1': {
-    title: 'GA 통합 운영 시스템 | FinGate',
-    description: 'GA 통합 운영 시스템은 최신 기술을 활용한 혁신적인 디지털 플랫폼으로, 기업의 디지털 전환을 지원하는 종합 솔루션을 제공합니다.',
-    keywords: 'GA 통합 운영 시스템, 디지털플랫폼, 클라우드솔루션, 데이터분석, 사이버보안, 디지털전환, FinGate GA 시스템'
+    title: 'GA 통합 운영 시스템 - 핀게이트',
+    description: '보험 영업조직 관리를 위한 GA 통합 운영 시스템입니다. 배정 DB 관리, 상담/계약관리, 교육/영업 평가, 수수료 관리 등 영업지원 솔루션을 제공합니다.',
+    keywords: 'GA시스템, 통합운영시스템, 영업지원솔루션, 보험영업관리, 배정DB관리, 계약관리, 수수료관리, 핀게이트'
   },
   'services/service2': {
-    title: '원스톱 상담지원 솔루션 | FinGate',
-    description: 'FinGate의 원스톱 상담지원 솔루션은 최신 기술과 안정적인 인프라를 바탕으로 고객에게 빠르고 안정적인 인터넷 연결을 제공합니다.',
-    keywords: '원스톱 상담지원 솔루션, 인터넷서비스, 인터넷제공업체, 고속인터넷, 안정적인연결, FinGate 상담솔루션'
+    title: '원스톱 상담지원 솔루션 - 핀게이트',
+    description: '보험 상담을 위한 원스톱 솔루션입니다. 인사/위촉후보자 관리, 임차/자산 관리, 채권추심, 준법 등 경영지원 및 통합지원 솔루션을 제공합니다.',
+    keywords: '원스톱상담솔루션, 보험상담시스템, 경영지원솔루션, 통합지원시스템, 인사관리, 자산관리, 고객관리, 핀게이트'
   },
   newvision: {
-    title: 'New Vision | FinGate',
-    description: 'FinGate의 전문가들이 전하는 최신 금융 기술 트렌드와 혁신적인 접근 방식을 확인하세요. 핀테크, 디지털뱅킹, 투자전략, 금융규제에 대한 전문적인 콘텐츠를 제공합니다.',
-    keywords: 'FinGate New Vision, 금융기술 트렌드, 핀테크 인사이트, 디지털뱅킹, 투자전략, 금융규제, 금융기술 비전'
+    title: '새로운 비전 - 핀게이트',
+    description: '핀게이트의 인슈어테크 비전과 보험 IT 트렌드를 확인하세요. 핀테크, 디지털 금융, 보험 기술 혁신에 대한 전문 인사이트를 제공합니다.',
+    keywords: '핀게이트비전, 인슈어테크트렌드, 보험IT혁신, 디지털금융, 핀테크인사이트, 보험기술, 금융혁신'
   },
   contact: {
-    title: '연락처 | FinGate',
-    description: 'FinGate에 문의하세요. 궁금한 점이나 상담이 필요하시면 언제든지 연락주세요. 전문적인 금융 솔루션에 대한 문의나 상담을 받으실 수 있습니다.',
-    keywords: 'FinGate 연락처, 금융솔루션 문의, 핀테크 상담, 고객지원, 문의하기'
+    title: '문의하기 - 핀게이트',
+    description: '핀게이트에 문의하세요. 보험 IT 솔루션, 인슈어테크 서비스에 대한 상담이 필요하시면 언제든지 연락주세요. 고객의 비즈니스 고민을 함께 해결하겠습니다.',
+    keywords: '핀게이트문의, 보험IT상담, 인슈어테크문의, 시스템도입상담, 고객지원, 비즈니스상담'
   }
 } as const
 

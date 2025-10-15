@@ -14,10 +14,15 @@
     <section class="newvision-list">
       <div class="container">
         <div class="newvision-item">
-          <img 
+          <NuxtImg 
             src="/images/blog-1.jpg" 
             alt="핀테크의 미래" 
             class="newvision-item-image"
+            format="webp"
+            loading="lazy"
+            :width="600"
+            :height="400"
+            quality="85"
           />
           <div class="newvision-item-meta">
             <span>2024.01.15</span>
@@ -35,10 +40,15 @@
         </div>
 
         <div class="newvision-item">
-          <img 
+          <NuxtImg 
             src="/images/blog-2.jpg" 
             alt="디지털 금융" 
             class="newvision-item-image"
+            format="webp"
+            loading="lazy"
+            :width="600"
+            :height="400"
+            quality="85"
           />
           <div class="newvision-item-meta">
             <span>2024.01.10</span>
@@ -56,10 +66,15 @@
         </div>
 
         <div class="newvision-item">
-          <img 
+          <NuxtImg 
             src="/images/blog-3.jpg" 
             alt="투자 전략" 
             class="newvision-item-image"
+            format="webp"
+            loading="lazy"
+            :width="600"
+            :height="400"
+            quality="85"
           />
           <div class="newvision-item-meta">
             <span>2024.01.05</span>
@@ -77,10 +92,15 @@
         </div>
 
         <div class="newvision-item">
-          <img 
+          <NuxtImg 
             src="/images/blog-4.jpg" 
             alt="금융 규제" 
             class="newvision-item-image"
+            format="webp"
+            loading="lazy"
+            :width="600"
+            :height="400"
+            quality="85"
           />
           <div class="newvision-item-meta">
             <span>2023.12.28</span>
@@ -101,7 +121,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // SEO 메타데이터 (중앙화된 관리)
 const seoData = useSEO('newvision')
 useHead(seoData)
