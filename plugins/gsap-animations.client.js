@@ -10,6 +10,10 @@ export default defineNuxtPlugin(() => {
       if (!gsap || !ScrollTrigger) return
       // fade-in 애니메이션
       gsap.utils.toArray('.fade-in').forEach((element, index) => {
+        // MainServices 섹션의 fade-in은 섹션을 벗어날 때까지 유지
+        const parentSection = element.closest('.main-services')
+        const isInServicesSection = !!parentSection
+        
         gsap.fromTo(element, 
           { 
             opacity: 0, 
@@ -18,13 +22,15 @@ export default defineNuxtPlugin(() => {
           {
             opacity: 1,
             y: 0,
-            duration: 1.5,
+            duration: 1.2,
             ease: "power3.out",
-            delay: index * 0.2,
+            delay: 0.5,
             scrollTrigger: {
               trigger: element,
               start: "top 60%",
-              toggleActions: "play reverse play reverse"
+              end: isInServicesSection ? () => parentSection.offsetTop + parentSection.offsetHeight : undefined,
+              toggleActions: isInServicesSection ? "play none none reverse" : "play reverse play reverse",
+              invalidateOnRefresh: false
             }
           }
         )
@@ -40,9 +46,9 @@ export default defineNuxtPlugin(() => {
           {
             opacity: 1,
             y: 0,
-            duration: 1.5,
+            duration: 1.1,
             ease: "power3.out",
-            delay: 0.7 + (index * 0.2), // hero-title 완료 후 시작
+            delay: 0.9,
             scrollTrigger: {
               trigger: element,
               start: "top 60%",
@@ -61,9 +67,9 @@ export default defineNuxtPlugin(() => {
           {
             opacity: 1,
             y: 0,
-            duration: 1.5,
+            duration: 1.1,
             ease: "power3.out",
-            delay: 0.7 + (index * 0.2), // hero-title 완료 후 시작
+            delay: 0.9,
             scrollTrigger: {
               trigger: element,
               start: "top 60%",

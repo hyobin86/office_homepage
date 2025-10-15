@@ -73,8 +73,10 @@
 </template>
 
 <script setup lang="ts">
+type IconName = 'menu' | 'close' | 'arrow-right' | 'check' | 'chevron-down'
+
 const props = withDefaults(defineProps<{
-  name: string
+  name: IconName
   size?: string | number
   className?: string
 }>(), {

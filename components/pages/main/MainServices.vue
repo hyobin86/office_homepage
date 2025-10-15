@@ -84,10 +84,10 @@ onMounted(() => {
         if (cardElement) {
           // 각 카드마다 다른 트리거 시작점 설정
           const triggerStart = [
-            "top 68%", // 카드 1: 가장 일찍
-            "top 67%", // 카드 2: 조금 늦게
-            "top 66%", // 카드 3: 더 늦게
-            "top 65%"  // 카드 4: 가장 늦게
+            "top 20%", // 카드 1: 가장 일찍
+            "top 50%", // 카드 2: 조금 늦게
+            "top 55%", // 카드 3: 더 늦게
+            "top 60%"  // 카드 4: 가장 늦게
           ]
           
           gsap.fromTo(cardElement, 
@@ -99,8 +99,8 @@ onMounted(() => {
             {
               opacity: 1,
               y: "-=150",
-              duration: 0.6,
-              ease: "power2.out",
+              duration: 0.5,
+              ease: "power3.out",
               force3D: true,
               scrollTrigger: {
                 trigger: cardElement,

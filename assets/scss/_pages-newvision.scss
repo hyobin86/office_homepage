@@ -1,0 +1,89 @@
+/* ========================================
+   FinGate New Vision Page Styles
+   ======================================== */
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ========================================
+// 뉴비전 페이지 (newvision)
+// ========================================
+
+.newvision {
+  min-height: 100vh;
+}
+
+.newvision-hero {
+  @include section-padding;
+  background: transparent;
+  
+  .newvision-hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    
+    h2 {
+      font-size: $font-size-4xl;
+      color: #ffffff;
+      margin-bottom: $spacing-lg;
+    }
+    
+    p {
+      font-size: $font-size-lg;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+  }
+}
+
+.newvision-content {
+  @include section-padding;
+  background: transparent;
+  
+  h3 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: $spacing-2xl;
+  }
+  
+  .blog-post {
+    @include card-style;
+    margin-bottom: $spacing-2xl;
+    
+    .post-header {
+      text-align: center;
+      margin-bottom: $spacing-xl;
+      
+      h4 {
+        color: #ffffff;
+        margin-bottom: $spacing-md;
+      }
+      
+      .post-meta {
+        color: #a0aec0;
+        font-size: $font-size-sm;
+        
+        span {
+          margin: 0 $spacing-sm;
+        }
+      }
+    }
+    
+    .post-image {
+      width: 100%;
+      height: auto;
+      border-radius: $border-radius-lg;
+      margin-bottom: $spacing-lg;
+    }
+    
+    .post-content {
+      color: #e2e8f0;
+      line-height: 1.8;
+      
+      p {
+        margin-bottom: $spacing-md;
+      }
+    }
+  }
+}
+

@@ -60,27 +60,27 @@ const companyCards = [
   {
     title: 'Cloud · 보안성 강화',
     image: '/images/main/main-card1.png',
-    link: '/services/service2'
+    link: '/company'
   },
   {
     title: 'MSA',
     image: '/images/main/main-card2.png',
-    link: '/services/service2'
+    link: '/company'
   },
   {
     title: '보험 인하우스 <br/>IT 전문가',
     image: '/images/main/main-card3.png',
-    link: '/services/service2'
+    link: '/company'
   },
   {
     title: '통합시스템',
     image: '/images/main/main-card4.png',
-    link: '/services/service2'
+    link: '/company'
   },
   {
     title: 'IT 인프라',
     image: '/images/main/main-card5.png',
-    link: '/services/service2'
+    link: '/company'
   }
 ]
 
@@ -159,11 +159,11 @@ const initGsapAnimations = () => {
           x: finalPositions[i].x,
           y: finalPositions[i].y,
           opacity: 1,
-          duration: 0.8,
+          duration: 0.7,
           ease: 'power1.out',
           force3D: true,
           immediateRender: false,
-          delay: 0.3 + (i * 0.05),
+          delay: 0.7 + (i * 0.05),
           overwrite: 'auto',
           scrollTrigger: {
             trigger: container,

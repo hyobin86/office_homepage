@@ -21,7 +21,7 @@
       <MainVision />
 
       <!-- 배너 섹션 -->
-      <!-- <MainBanner /> -->
+      <MainBanner />
     </section>
   </div>
 </template>

@@ -2,17 +2,16 @@ import Lenis from 'lenis'
 
 export default defineNuxtPlugin((nuxtApp) => {
   if (process.client) {
-    // 스냅 동작 관련 상수 (필요 시 여기서만 조정)
-    const SNAP_NEXT_THRESHOLD = 0.48 // services 진행률 기준 (48%)
-    const SNAP_PREV_DEADZONE = 0.12  // 위로 이동 허용 임계 (12%)
+    // 스냅 동작 관련 상수
     const SNAP_BOTTOM_TOUCH = 0.995  // 마지막 카드 바닥이 거의 완전히 뷰포트 하단에 닿았을 때
     const SNAP_TOP_TOUCH = 0.05      // 카드 상단이 상단에 충분히 근접했을 때
-    const MIN_DURATION = 0.65
-    const MAX_DURATION = 0.95
+    const MIN_DURATION = 0.55
+    const MAX_DURATION = 0.75
 
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 0.85,
+      // easeOutCubic: 부드러운 감속 (계산 간단)
+      easing: (t) => 1 - Math.pow(1 - t, 3),
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
@@ -25,8 +24,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     // 섹션 인덱스 관리
     let currentSectionIndex = 0
     let isScrolling = false
-    const sections = ['hero', 'company', 'services', 'partners', 'vision', 'banner'] // 섹션들
-    const sectionHeights = [100, 100, 200, 100, 100, 100] // 각 섹션의 높이 비율 (vh 기준)
+    const sections = ['hero', 'company', 'services', 'partners', 'vision', 'banner']
 
     // 뷰포트에 보이는 섹션과 인덱스를 동기화
     const updateCurrentSectionIndex = () => {
@@ -91,7 +89,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       }
 
       // 일반 섹션들 (100vh)
-      console.log('Handling normal section')
       if (isScrollingDown && currentSectionIndex < sections.length - 1) {
         currentSectionIndex++
         scrollToSection(currentSectionIndex)
@@ -106,6 +103,24 @@ export default defineNuxtPlugin((nuxtApp) => {
       if (isScrolling) return
       
       isScrolling = true
+      
+      // Banner 섹션(마지막 섹션)으로 이동하는 경우, 페이지 맨 아래로 스크롤
+      if (index === sections.length - 1) {
+        const scrollToBottom = document.documentElement.scrollHeight - window.innerHeight
+        
+        const easeOutQuint = (t) => 1 - Math.pow(1 - t, 5)
+        
+        lenis.scrollTo(scrollToBottom, {
+          duration: 0.95,
+          easing: easeOutQuint
+        })
+        
+        setTimeout(() => {
+          isScrolling = false
+        }, 1100)
+        return
+      }
+      
       const targetSection = document.querySelector(`.${sections[index]}-section`) || 
                            document.querySelector(`.main-${sections[index]}`)
       

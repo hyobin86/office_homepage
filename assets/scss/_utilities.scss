@@ -4,8 +4,32 @@
 
 @use 'variables' as *;
 
+// ========================================
+// Margin & Padding Utilities
+// ========================================
 
-// 텍스트 유틸리티
+// 0-100 범위 (0-10rem) - 가장 많이 사용되는 범위
+@for $i from 0 through 100 {
+  .m-#{$i} { margin: #{$i * 0.1}rem; }
+  .mt-#{$i} { margin-top: #{$i * 0.1}rem; }
+  .mb-#{$i} { margin-bottom: #{$i * 0.1}rem; }
+  .ml-#{$i} { margin-left: #{$i * 0.1}rem; }
+  .mr-#{$i} { margin-right: #{$i * 0.1}rem; }
+  
+  .p-#{$i} { padding: #{$i * 0.1}rem; }
+  .pt-#{$i} { padding-top: #{$i * 0.1}rem; }
+  .pb-#{$i} { padding-bottom: #{$i * 0.1}rem; }
+  .pl-#{$i} { padding-left: #{$i * 0.1}rem; }
+  .pr-#{$i} { padding-right: #{$i * 0.1}rem; }
+}
+
+// 큰 값들 (10rem 이상) - 선택적으로 추가
+.mt-120 { margin-top: 12rem; }
+.mb-120 { margin-bottom: 12rem; }
+
+// ========================================
+// Text Utilities
+// ========================================
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .text-right { text-align: right; }
@@ -15,33 +39,16 @@
 .text-light { color: $color-text-light; }
 .text-white { color: $color-text-white; }
 
-// 배경 유틸리티
+// ========================================
+// Background Utilities
+// ========================================
 .bg-primary { background-color: $color-bg-primary; }
 .bg-secondary { background-color: $color-bg-secondary; }
 .bg-dark { background-color: $color-bg-dark; }
 
-// 간격 유틸리티
-.m-0 { margin: 0; }
-.mt-0 { margin-top: 0; }
-.mb-0 { margin-bottom: 0; }
-.ml-0 { margin-left: 0; }
-.mr-0 { margin-right: 0; }
-
-@for $i from 0 through 400 {
-  .m-#{$i} { margin: #{$i * 0.1}rem; }
-  .mt-#{$i} { margin-top: #{$i * 0.1}rem; }
-  .mb-#{$i} { margin-bottom: #{$i * 0.1}rem; }
-  .ml-#{$i} { margin-left: #{$i * 0.1}rem; }
-  .mr-#{$i} { margin-right: #{$i * 0.1}rem; }
-}
-
-.p-0 { padding: 0; }
-.pt-0 { padding-top: 0; }
-.pb-0 { padding-bottom: 0; }
-.pl-0 { padding-left: 0; }
-.pr-0 { padding-right: 0; }
-
-// 플렉스 유틸리티
+// ========================================
+// Display & Flex Utilities
+// ========================================
 .d-flex { display: flex; }
 .d-block { display: block; }
 .d-none { display: none; }
@@ -63,34 +70,43 @@
 .align-start { align-items: flex-start; }
 .align-end { align-items: flex-end; }
 
-// Gap 유틸리티
+// ========================================
+// Gap Utilities
+// ========================================
 @for $i from 0 through 30 {
   .gap-#{$i} { gap: #{$i * 0.1}rem; }
 }
 
-// 위치 유틸리티
+// ========================================
+// Position Utilities
+// ========================================
 .position-relative { position: relative; }
 .position-absolute { position: absolute; }
 .position-fixed { position: fixed; }
 .position-sticky { position: sticky; }
 
-// 보더 유틸리티
+// ========================================
+// Border Utilities
+// ========================================
 .border { border: 1px solid $color-bg-quaternary; }
 .border-top { border-top: 1px solid $color-bg-quaternary; }
 .border-bottom { border-bottom: 1px solid $color-bg-quaternary; }
 .border-left { border-left: 1px solid $color-bg-quaternary; }
 .border-right { border-right: 1px solid $color-bg-quaternary; }
-
 .border-none { border: none; }
 
-// 그림자 유틸리티
+// ========================================
+// Shadow Utilities
+// ========================================
 .shadow-sm { box-shadow: $shadow-sm; }
 .shadow-md { box-shadow: $shadow-md; }
 .shadow-lg { box-shadow: $shadow-lg; }
 .shadow-xl { box-shadow: $shadow-xl; }
 .shadow-none { box-shadow: none; }
 
-// 반응형 유틸리티
+// ========================================
+// Responsive Utilities
+// ========================================
 @media (max-width: $breakpoint-mobile) {
   .d-md-none { display: none; }
   .d-md-block { display: block; }

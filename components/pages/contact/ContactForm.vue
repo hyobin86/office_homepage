@@ -94,8 +94,8 @@
                 <legend class="form-label">
                   문의유형
                   <em class="form-dot" aria-hidden="true"/>
+                  <span class="form-label-subtext ml-40">문의 유형을 선택해 주세요.</span>
                 </legend>
-                <span class="form-label-subtext ml-40">문의 유형을 선택해 주세요.</span>
               <div class="radio-group mt-20" role="radiogroup" aria-required="true">
                 <input 
                   id="inquiry-general"

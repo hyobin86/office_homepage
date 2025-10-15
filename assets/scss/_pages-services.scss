@@ -1,0 +1,167 @@
+/* ========================================
+   FinGate Services Page Styles
+   ======================================== */
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ========================================
+// 서비스 페이지 (service1, service2)
+// ========================================
+
+.service1-service,
+.service2-service {
+  min-height: 100vh;
+}
+
+.service1-hero,
+.service2-hero {
+  @include section-padding;
+  background: transparent;
+  
+  .service1-hero-content,
+  .service2-hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    
+    h2 {
+      font-size: $font-size-4xl;
+      color: #ffffff;
+      margin-bottom: $spacing-lg;
+    }
+    
+    p {
+      font-size: $font-size-lg;
+      color: #e2e8f0;
+      margin-bottom: $spacing-xl;
+      line-height: 1.6;
+    }
+  }
+  
+  .service1-features,
+  .service2-features {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-xl;
+    
+    @include responsive(md) {
+      flex-direction: column;
+      gap: $spacing-md;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      color: #ffffff;
+      font-weight: $font-weight-medium;
+    }
+  }
+}
+
+.service1-details,
+.service2-details {
+  @include section-padding;
+  background: transparent;
+  
+  .service1-info,
+  .service2-info {
+    h3 {
+      color: #ffffff;
+      margin-bottom: $spacing-lg;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      
+      li {
+        color: #e2e8f0;
+        margin-bottom: $spacing-md;
+        padding-left: $spacing-lg;
+        position: relative;
+        
+        &::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: #60a5fa;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  
+  .service1-visual,
+  .service2-visual {
+    @include flex-center;
+    
+    .visual-placeholder {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: $border-radius-lg;
+      padding: $spacing-2xl;
+      text-align: center;
+      color: #e2e8f0;
+      
+      p {
+        margin-top: $spacing-md;
+      }
+    }
+  }
+}
+
+.service1-services {
+  @include section-padding;
+  background: transparent;
+  
+  h3 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: $spacing-2xl;
+  }
+  
+  .service-card {
+    @include card-style;
+    text-align: center;
+    
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: $color-primary;
+      border-radius: $border-radius-lg;
+      @include flex-center;
+      margin: 0 auto $spacing-lg;
+      color: $color-text-white;
+      font-size: $font-size-2xl;
+    }
+    
+    h4 {
+      color: #ffffff;
+      margin-bottom: $spacing-md;
+    }
+    
+    p {
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+  }
+}
+
+.service1-contact,
+.service2-contact {
+  @include section-padding;
+  background: transparent;
+  text-align: center;
+  
+  h3 {
+    color: #ffffff;
+    margin-bottom: $spacing-md;
+  }
+  
+  p {
+    color: #e2e8f0;
+    margin-bottom: $spacing-xl;
+  }
+}
+

@@ -7,17 +7,18 @@
         <p class="hero-desc mt-40">복잡한 보험 업무를 데이터와 AI로 혁신적인 경험을 만듭니다.</p>
       </div>
       <div class="d-flex gap-24 mt-120" role="list" aria-label="비전 카드 목록">
-        <article 
+        <NuxtLink 
           v-for="(card, index) in visionCards"
           :key="index"
+          :to="card.link"
           :class="`vision-card-${index + 1}`"
           class="vision-card"
           role="listitem"
-          :aria-label="card.title"
+          :aria-label="`${card.title} 페이지로 이동`"
         >
           <h3 class="vision-card-title">{{ card.title }}</h3>
           <p class="vision-card-desc mt-24" v-html="card.desc"></p>
-        </article>
+        </NuxtLink>
       </div>
     </div>
   </section>
@@ -34,15 +35,18 @@ if (process.client) {
 const visionCards = [
   {
     title: '맞춤형 AI 보장 컨설팅',
-    desc: '고객의 라이프스타일과 건강 데이터를 AI로<br>분석하여 최적의 보장 조합을 제안합니다.'
+    desc: '고객의 라이프스타일과 건강 데이터를 AI로<br>분석하여 최적의 보장 조합을 제안합니다.',
+    link: '/newvision'
   },
   {
     title: 'AI 어드바이저',
-    desc: '설계사의 업무를 데이터 기반으로 지원하여<br>상담의 정확성과 신뢰성을 강화합니다.'
+    desc: '설계사의 업무를 데이터 기반으로 지원하여<br>상담의 정확성과 신뢰성을 강화합니다.',
+    link: '/newvision'
   },
   {
     title: 'AI RPA',
-    desc: '이미지 패턴 인식 기술로 반복적인 문서 업무를<br>자동화하여 더 가치있는 업무에 집중합니다.'
+    desc: '이미지 패턴 인식 기술로 반복적인 문서 업무를<br>자동화하여 더 가치있는 업무에 집중합니다.',
+    link: '/newvision'
   }
 ]
 
