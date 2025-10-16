@@ -14,7 +14,9 @@
 
 - ✅ **TypeScript 100%** - 모든 Vue 컴포넌트 타입 안정성 보장
 - ✅ **GSAP 애니메이션** - ScrollTrigger, Context API로 최적화된 인터랙션
-- ✅ **Lenis 스무스 스크롤** - 부드러운 섹션 전환 및 스냅 효과
+- ✅ **Lenis 스무스 스크롤** - 부드러운 섹션 전환 및 스냅 효과 (메인 6개, 뉴비전 5개 섹션)
+- ✅ **복잡한 스크롤 애니메이션** - NewvisionAgenda 200vh 높이, 이미지 마스크 reveal, 텍스트 순차 등장
+- ✅ **인덱스 기반 애니메이션** - 동적 요소 순차 등장 (0.7초 + 0.6초 간격)
 - ✅ **성능 최적화** - RAF, Throttle, Intersection Observer, GPU 가속
 - ✅ **이미지 최적화** - @nuxt/image로 WebP/AVIF 자동 변환, Lazy loading
 - ✅ **SEO 완벽 지원** - 메타태그, Sitemap, Robots.txt, JSON-LD 구조화 데이터
@@ -76,6 +78,12 @@ office_homepage/
 │   │   │   ├── MainPartners.vue    # 파트너사 (로고 애니메이션)
 │   │   │   ├── MainVision.vue      # 비전 (순차 등장, Hover 효과)
 │   │   │   └── MainBanner.vue      # 배너 (CTA)
+│   │   ├── newvision/
+│   │   │   ├── NewvisionHero.vue   # 뉴비전 히어로 (비디오 배경)
+│   │   │   ├── NewvisionAgenda.vue # 아젠다 (복잡한 스크롤 애니메이션, 200vh)
+│   │   │   ├── NewvisionNextstep.vue # 넥스트스텝 (인덱스 기반 순차 등장)
+│   │   │   ├── NewvisionValue.vue  # 가치 (버튼 클릭 시 콘텐츠 전환)
+│   │   │   └── NewvisionContact.vue # 연락 (단순 fade-in)
 │   │   ├── company/
 │   │   │   ├── CompanyHero.vue
 │   │   │   ├── CompanyValues.vue
@@ -111,7 +119,7 @@ office_homepage/
 │   ├── _pages-main.scss             # 메인 페이지 (543줄)
 │   ├── _pages-company.scss          # 회사소개 페이지
 │   ├── _pages-services.scss         # 서비스 페이지
-│   ├── _pages-newvision.scss        # 뉴비전 페이지 (Agenda 섹션 복잡한 애니메이션)
+│   ├── _pages-newvision.scss        # 뉴비전 페이지 (361줄, 복잡한 스크롤 애니메이션)
 │   └── _pages-contact.scss          # 연락처 페이지 (원본 스태틱 값 유지)
 │
 ├── 📂 plugins/
@@ -200,24 +208,43 @@ office_homepage/
 | **MainVision** | 비전 섹션 | 순차 등장 애니메이션, CSS Hover 효과, GSAP 완료 후 CSS 전환 |
 | **MainPartners** | 파트너사 섹션 | 로고 Stagger 애니메이션, NuxtImg 최적화 |
 | **MainBanner** | CTA 배너 | Footer와 한 화면 구성 (60vh), 스크롤 스냅 |
+| **NewvisionHero** | 뉴비전 히어로 섹션 | 비디오 배경, 기본 fade-in 애니메이션 |
+| **NewvisionAgenda** | 아젠다 섹션 | 복잡한 스크롤 애니메이션, 이미지 마스크 reveal, 텍스트 순차 등장 (200vh) |
+| **NewvisionNextstep** | 넥스트스텝 섹션 | 인덱스 기반 순차 등장 (0.7초 + 0.6초 간격), 6개 POINT 카드 |
+| **NewvisionValue** | 가치 섹션 | 인덱스 기반 순차 등장, 버튼 클릭 시 콘텐츠 전환 애니메이션 |
+| **NewvisionContact** | 연락 섹션 | 단순 fade-in 애니메이션, CTA 버튼 |
 | **ContactForm** | 연락 폼 | EmailJS 통합, Toast 알림, Loading 상태, 폼 검증 |
 
 ### 주요 애니메이션
 
 #### 1. **Lenis 스무스 스크롤 + 섹션 스냅**
 ```javascript
-// Vision → Banner 전환 시 자동으로 페이지 최하단 스냅
-lenis.scrollTo(document.documentElement.scrollHeight - window.innerHeight)
+// 메인 페이지: 6개 섹션 스냅 (hero, company, services, partners, vision, banner)
+// 뉴비전 페이지: 5개 섹션 스냅 (hero, agenda, nextstep, value, contact)
+const mainSections = ['hero', 'company', 'services', 'partners', 'vision', 'banner']
+const newvisionSections = ['hero', 'agenda', 'nextstep', 'value', 'contact']
 ```
 
-#### 2. **GSAP ScrollTrigger**
+#### 2. **NewvisionAgenda 복잡한 스크롤 애니메이션**
 ```javascript
-// MainServices 헤더: 섹션을 벗어날 때까지 유지
-toggleActions: "play none none reverse"
-end: () => parentSection.offsetTop + parentSection.offsetHeight
+// 이미지 마스크 reveal + 텍스트 순차 등장 (200vh 높이)
+gsap.fromTo(imgElement, 
+  { clipPath: 'inset(0 0 100% 0)' },
+  { clipPath: 'inset(0 0 0% 0)', delay: 1, scrub: false }
+)
 ```
 
-#### 3. **커스텀 커서 (MainCompany)**
+#### 3. **인덱스 기반 순차 등장 (NewvisionNextstep, NewvisionValue)**
+```javascript
+// container 바로 아래 3개 요소 순차 등장
+children.forEach((child, index) => {
+  gsap.fromTo(child, { opacity: 0, y: 50 }, {
+    opacity: 1, y: 0, delay: 0.7 + (index * 0.6)
+  })
+})
+```
+
+#### 4. **커스텀 커서 (MainCompany)**
 ```javascript
 // RAF로 최적화된 마우스 추적
 requestAnimationFrame(() => {

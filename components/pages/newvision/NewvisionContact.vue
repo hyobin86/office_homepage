@@ -1,15 +1,26 @@
 <template>
   <section class="newvision-contact" aria-labelledby="contact-heading">
-    <div class="container">
-      <div class="hero-header fade-in">
-        <h2 id="contact-heading" class="hero-title">함께 미래를 만들어갑니다</h2>
-        <p class="hero-desc mt-60">새로운 비전에 대한 궁금증이나 협업 제안이 있으시다면 언제든 연락주세요.</p>
+    <div class="contact-container fade-in">
+      <div class="contact-image">
+        <NuxtImg 
+          src="/images/newvision/newvision-card11.png"
+          alt="Contact Visual"
+          loading="lazy"
+          format="webp"
+          width="1772"
+          height="320"
+          quality="85"
+        />
       </div>
-      <NuxtLink to="/contact" class="button mt-120 fade-in" aria-label="연락페이지로 이동">CONTACT US</NuxtLink>
+      <div class="contact-visual">
+        <h2 id="contact-heading" class="contact-title">
+          보험 IT의 미래, 핀게이트와 함께 시작하세요.
+        </h2>
+        <NuxtLink to="/contact" class="button" aria-label="연락페이지로 이동">
+          CONTACT US
+        </NuxtLink>
+      </div>
     </div>
   </section>
 </template>
-
-<script setup lang="ts">
-</script>
 

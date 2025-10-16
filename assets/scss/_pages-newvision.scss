@@ -104,7 +104,7 @@
 // --- 아젠다 섹션 ---
 .newvision-agenda {
   position: relative;
-  min-height: 150vh; // 스크롤 영역 확보
+  min-height: 200vh; // 스크롤 영역 확보
   
   .container {
     position: relative;
@@ -113,6 +113,7 @@
   
   .agenda-cards-container {
     position: relative;
+    padding-top: 12rem;
     width: 100%;
   }
   
@@ -155,7 +156,7 @@
   .agenda-cards {
     position: relative;
     width: 100%;
-    height: 1800px; // 이미지 3쌍 × 520px + 여유
+    height: 180rem; // 이미지 3쌍 × 520px + 여유
     
     .agenda-card-pair {
       position: relative;
@@ -184,7 +185,7 @@
         
         &:nth-child(even) {
           right: 0rem;
-          margin-top: 20rem;
+          margin-top: 18rem;
         }
       }
     }
@@ -195,13 +196,53 @@
 .newvision-nextstep {
   position: relative;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .container {
+    padding-top: 12rem;
+    text-align: center;
+  }
   
-  .nextstep-content {
+  .point-cards {
     width: 100%;
-    // 추후 콘텐츠 스타일 추가
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.4rem;
+    
+    .point-card {
+      height: 44.8rem;
+      padding: 5.6rem;
+      border-radius: 2rem;
+      position: relative;
+      text-align: left;
+      background: rgba(30, 46, 65, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      
+      .point-number {
+        color: $color-text-primary;
+        font-size: 1.8rem;
+        font-weight: $font-weight-semibold;
+        line-height: 2.8rem;
+      }
+      
+      .point-title {
+        color: $color-text-white;
+        font-size: 2.8rem;
+        font-weight: $font-weight-semibold;
+        line-height: 3.2rem;
+      }
+      
+      .point-desc {
+        color: $color-text-white;
+        font-size: 1.8rem;
+        font-weight: $font-weight-light;
+        line-height: 2.8rem;
+      }
+      
+      .point-icon {
+        position: absolute;
+        bottom: 5.6rem;
+        right: 5.6rem;
+      }
+    }
   }
 }
 
@@ -213,23 +254,107 @@
   align-items: center;
   justify-content: center;
   
+  .container {
+    padding-top: 10rem;
+    text-align: center;
+    width: 100%;
+    height: 130rem;
+  }
+  
+  .value-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+  
   .value-content {
     width: 100%;
-    // 추후 콘텐츠 스타일 추가
+    
+    .content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      
+      .content-text {
+        min-width: 66.8rem;
+        text-align: left;
+        
+        .content-title {
+          color: $color-text-white;
+          font-size: 3.6rem;
+          font-weight: $font-weight-semibold;
+          line-height: 3.2rem;
+        }
+        
+        .content-points {
+          display: flex;
+          flex-direction: column;
+          gap: 4rem;
+          
+          .content-point {
+            padding-bottom: 4rem;
+            border-bottom: 0.1rem solid rgba($color-border-quaternary, 0.2);
+            
+            &:last-child {
+              border-bottom: none;
+            }
+            
+            .point-title {
+              color: $color-text-white;
+              font-size: 2rem;
+              font-weight: $font-weight-semibold;
+              line-height: 3.2rem;
+            }
+            
+            .point-desc {
+              color: $color-text-white;
+              font-size: 1.8rem;
+              font-weight: $font-weight-light;
+              line-height: 2.8rem;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
 // --- 연락 섹션 ---
 .newvision-contact {
   position: relative;
-  height: 60vh;
-  min-height: 60vh;
-  max-height: 60vh;
+  min-height: calc(100vh - 36rem);
   display: flex;
-  align-items: center;
   justify-content: center;
-  
-  .container {
-    text-align: center;
+  align-items: center;
+  .contact-container {
+    .contact-visual {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      padding: 0 16rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      .contact-title {
+        font-size: 4rem;
+        font-weight: $font-weight-semibold;
+        color: $color-text-white;
+        line-height: 5.6rem;
+      }
+    }
+  }
+  .contact-image {
+    width: 100%;
+    
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    
   }
 }

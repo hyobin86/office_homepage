@@ -22,7 +22,7 @@
         </div>
 
         <!-- 이미지 카드 영역 -->
-        <div class="agenda-cards mt-120">
+        <div class="agenda-cards mt-80">
           <article class="agenda-card-pair">
             <template v-for="(card, index) in agendaCards" :key="index">
               <!-- 왼쪽 이미지 -->
@@ -80,18 +80,18 @@ const agendaCards = [
     title: '복잡한 보장 분석',
     desc: '보험사별로 흩어진 정보를 확인하기 위해 설계사는 여러 전산을<br/>오가야 하므로, 한 번에 비교 · 분석이 어렵습니다.',
     imageLeft: '/images/newvision/newvision-card1.png',
-    imageRight: '/images/newvision/newvision-card2.png',
+    imageRight: '/images/newvision/newvision-card4.png',
   },
   {
     title: '불안정한 신규 설계사 온보딩',
     desc: '신규 설계사는 경험 부족으로 초기 실수가 잦아 안정적인<br/>고객 관리와 정착에 어려움을 겪습니다.',
-    imageLeft: '/images/newvision/newvision-card3.png',
-    imageRight: '/images/newvision/newvision-card4.png',
+    imageLeft: '/images/newvision/newvision-card2.png',
+    imageRight: '/images/newvision/newvision-card5.png',
   },
   {
     title: '비효율적인 반복업무',
     desc: '각 보험사 사이트에서 계약 · 수수료 데이터를 다운받아<br/>다시 등록해야하는 비효율적인 업무가 여전히 존재합니다.',
-    imageLeft: '/images/newvision/newvision-card5.png',
+    imageLeft: '/images/newvision/newvision-card3.png',
     imageRight: '/images/newvision/newvision-card6.png',
   }
 ]
@@ -120,95 +120,110 @@ onMounted(() => {
         // 초기 위치 설정 (쌍으로 같은 위치, 520px 간격)
         gsap.set(image, { y: `${pairIndex * pairGap}px` })
 
-        // 이미지 y 위치 이동 (롤링)
-        // gsap.to(image, {
-        //   y: `${(pairIndex - 1) * pairGap}px`,
-        //   scrollTrigger: {
-        //     trigger: cardsContainer,
-        //     start: `top+=${pairIndex * pairGap}px top`,
-        //     end: `top+=${(pairIndex + 1) * pairGap}px top`,
-        //     scrub: 1,
-        //   }
-        // })
-
-        // 각 쌍별로 순차적으로 mask reveal (텍스트보다 0.5초 더 빠르게)
-        gsap.fromTo(image.querySelector('img'), 
-          { clipPath: 'inset(0 0 100% 0)' },
-          {
-            clipPath: 'inset(0 0 0% 0)',
-            scrollTrigger: {
-              trigger: cardsContainer,
-              start: `top+=${pairIndex * pairGap - 800}px top`,  // 텍스트보다 0.5초 더 빠르게
-              end: `top+=${pairIndex * pairGap - 400}px top`,    // 더 빨리 완료
-              scrub: 1,
-            }
+        // 각 쌍별로 순차적으로 mask reveal - 첫 번째 pair는 천천히
+        const imgElement = image.querySelector('img')
+        if (imgElement) {
+          if (pairIndex === 0) {
+            // 첫 번째 pair: top 도달 후 delay로 천천히 시작
+            gsap.fromTo(imgElement, 
+              { clipPath: 'inset(0 0 100% 0)' },
+              {
+                clipPath: 'inset(0 0 0% 0)',
+                delay: 1,  // top 도달 후 0.5초 delay
+                scrollTrigger: {
+                  trigger: cardsContainer,
+                  start: "top 60%",  // top에 도달하면
+                  end: "top 30%",    
+                  scrub: false,      // scrub 비활성화 (delay 사용)
+                }
+              }
+            )
+          } else {
+            // 나머지 pair들: 기존 속도
+            gsap.fromTo(imgElement, 
+              { clipPath: 'inset(0 0 100% 0)' },
+              {
+                clipPath: 'inset(0 0 0% 0)',
+                scrollTrigger: {
+                  trigger: cardsContainer,
+                  start: `top+=${pairIndex * pairGap - 800}px top`,
+                  end: `top+=${pairIndex * pairGap - 400}px top`,
+                  scrub: 1,
+                }
+              }
+            )
           }
-        )
+        }
       }
 
-      // 텍스트 애니메이션 (3개) - 깔끔하게 정리
+      // 텍스트 애니메이션 (3개) - 순차적으로 등장하고 사라짐
       agendaCards.forEach((_, index) => {
         const centerText = document.querySelector(`.card-text-${index + 1}`)
         if (!centerText) return
 
         const pairIndex = index // 0, 1, 2
 
-        // 텍스트 등장 - 순차적으로 약간씩 늦춤
+        // 텍스트 등장
         if (index === 0) {
-          // 첫 번째 텍스트는 이미지보다 0.5초 늦게
+          // 첫 번째 텍스트: 아래에서 위로 등장
           gsap.fromTo(centerText,
-            { opacity: 0 },
+            { 
+              opacity: 0,
+              y: 50  // 아래에서 시작
+            },
             {
               opacity: 1,
+              y: 0,  // 위로 이동
+              delay: 1.3,  // top 도달 후 1.3초 delay
+              duration: 1.1,  // 1.1초 동안 애니메이션
+              ease: "power2.out",  // 부드러운 ease
               scrollTrigger: {
                 trigger: cardsContainer,
-                start: "top 50%",  // 이미지보다 약간 늦게
-                end: "top 45%",
-                scrub: 1,
-              }
-            }
-          )
-        } else if (index === 1) {
-          // 두 번째 텍스트는 더 빨리 등장
-          gsap.fromTo(centerText,
-            { opacity: 0 },
-            {
-              opacity: 1,
-              scrollTrigger: {
-                trigger: cardsContainer,
-                start: `top+=${pairIndex * pairGap - 600}px top`,   // 더 빨리 등장
-                end: `top+=${pairIndex * pairGap - 200}px top`,     // 빠르게 완료
-                scrub: 1,
+                start: "top 60%",  // top에 도달하면
+                end: "top 30%",    
+                scrub: false,      // scrub 비활성화 (delay 사용)
               }
             }
           )
         } else {
-          // 세 번째 텍스트는 더 빨리 등장
+          // 나머지 텍스트들: 순차적으로 등장
           gsap.fromTo(centerText,
             { opacity: 0 },
             {
               opacity: 1,
               scrollTrigger: {
                 trigger: cardsContainer,
-                start: `top+=${pairIndex * pairGap - 600}px top`,  // 더 빨리 등장
-                end: `top+=${pairIndex * pairGap - 200}px top`,    // 빠르게 완료
+                start: `top+=${pairIndex * pairGap - 600}px top`,
+                end: `top+=${pairIndex * pairGap - 200}px top`,
                 scrub: 1,
               }
             }
           )
         }
 
-        // 텍스트 사라짐 - 매우 부드럽게 사라짐
+        // 텍스트 사라짐 - 다음 텍스트가 나타나기 전에 사라짐
         if (index < agendaCards.length - 1) {
+          // 다음 텍스트가 나타나기 전에 사라짐 (거의 동시에)
           gsap.to(centerText,
             {
               opacity: 0,
-              duration: 1.5,  // 훨씬 더 긴 duration
-              ease: "power3.out",  // 더 부드러운 ease
               scrollTrigger: {
                 trigger: cardsContainer,
-                start: `top+=${(pairIndex + 1) * pairGap - 600}px top`,  // 더 일찍 시작
-                end: `top+=${(pairIndex + 1) * pairGap + 100}px top`,      // 더 긴 시간에 걸쳐
+                start: `top+=${(pairIndex + 1) * pairGap - 650}px top`, // 다음 텍스트 등장 직전에 사라짐 시작
+                end: `top+=${(pairIndex + 1) * pairGap - 550}px top`,   // 다음 텍스트 등장과 거의 동시에 완전히 사라짐
+                scrub: 1,
+              }
+            }
+          )
+        } else {
+          // 마지막 텍스트: 아젠다 섹션이 끝날 때 사라짐
+          gsap.to(centerText,
+            {
+              opacity: 0,
+              scrollTrigger: {
+                trigger: cardsContainer,
+                start: `top+=${(agendaCards.length - 1) * pairGap + 200}px top`,
+                end: `top+=${(agendaCards.length - 1) * pairGap + 400}px top`,
                 scrub: 1,
               }
             }

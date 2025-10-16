@@ -30,10 +30,8 @@
           오늘도 미래를 준비하고 있습니다.
         </p>
       </div>
+      
     </div>
   </section>
 </template>
-
-<script setup lang="ts">
-</script>
 

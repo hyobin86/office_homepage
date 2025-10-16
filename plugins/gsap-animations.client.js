@@ -17,13 +17,13 @@ export default defineNuxtPlugin(() => {
         gsap.fromTo(element, 
           { 
             opacity: 0, 
-            y: 30 ,
+            y: 50 ,
           },
           {
             opacity: 1,
             y: 0,
             duration: 1.2,
-            ease: "power3.out",
+            ease: "power2.out",
             delay: 0.5,
             scrollTrigger: {
               trigger: element,
@@ -48,10 +48,10 @@ export default defineNuxtPlugin(() => {
             y: 0,
             duration: 1.1,
             ease: "power3.out",
-            delay: 0.9,
+            delay: 1,
             scrollTrigger: {
               trigger: element,
-              start: "top 60%",
+              start: "top 80%",
               toggleActions: "play reverse play reverse"
             }
           }
