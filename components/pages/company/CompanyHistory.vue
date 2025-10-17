@@ -1,33 +1,34 @@
 <template>
   <section class="company-history" aria-labelledby="history-heading">
-    <div class="container">
+    <div class="container fade-in">
       <div class="section-header">
-        <div class="section-subtitle">Our History</div>
+        <div class="section-subtitle">Trust First, Grow Always</div>
         <h2 id="history-heading" class="section-title mt-24">
-          핀게이트의 성장 여정
+          신뢰를 우선으로 끊임없이<br>성장합니다.
         </h2>
-        <p class="section-desc mt-32">
-          지난 10년간 보험업계의 디지털 전환을 이끌어온 핀게이트의 발자취를 확인해보세요.
-        </p>
       </div>
-      
-      <div class="history-content mt-80">
-        <div class="timeline">
-          <div 
-            v-for="(event, index) in historyEvents" 
-            :key="index"
-            class="timeline-item"
-            :class="{ 'timeline-item--right': index % 2 === 1 }"
+
+      <div class="timeline-shell">
+        <div
+          class="timeline-scroll"
+          ref="timelineRef"
+          data-lenis-prevent
+          aria-label="연혁 스크롤 목록"
+        >
+          <article
+            v-for="y in historyData"
+            :key="y.year"
+            class="year-block mb-120"
+            :data-year="y.year"
           >
-            <div class="timeline-marker">
-              <div class="marker-dot"></div>
-              <div class="marker-year">{{ event.year }}</div>
-            </div>
-            <div class="timeline-content">
-              <h3 class="event-title">{{ event.title }}</h3>
-              <p class="event-desc mt-16">{{ event.description }}</p>
-            </div>
-          </div>
+            <h3 class="year-label" :aria-label="`${y.year} 연혁`">{{ y.year }}</h3>
+            <ul class="year-events mt-40">
+              <li v-for="(e, i) in y.events" :key="i" class="event-item mt-24">
+                <span class="event-month">{{ e.month }}</span>
+                <span class="event-text ml-40" v-html="e.text"></span>
+              </li>
+            </ul>
+          </article>
         </div>
       </div>
     </div>
@@ -35,80 +36,137 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-if (process.client) {
-  gsap.registerPlugin(ScrollTrigger)
-}
+if (process.client) gsap.registerPlugin(ScrollTrigger)
 
-let gsapContext: gsap.Context | null = null
+type YearData = { year: string; events: { month: string; text: string }[] }
 
-const historyEvents = [
+const historyData: YearData[] = [
   {
-    year: '2014',
-    title: '핀게이트 설립',
-    description: '보험업계 IT 전문 기업으로 출발, 첫 번째 보험 시스템 개발 프로젝트 시작'
-  },
-  {
-    year: '2016',
-    title: '클라우드 전환',
-    description: '보험업계 최초 클라우드 기반 시스템 구축, 확장성과 안정성 확보'
-  },
-  {
-    year: '2018',
-    title: 'AI 기술 도입',
-    description: '머신러닝 기반 리스크 분석 시스템 개발, 보험업계 혁신 선도'
-  },
-  {
-    year: '2020',
-    title: '디지털 전환 가속화',
-    description: '코로나19 대응 원격 업무 시스템 구축, 디지털 전환 가속화'
-  },
-  {
-    year: '2022',
-    title: '글로벌 진출',
-    description: '해외 보험사와의 파트너십 체결, 글로벌 시장 진출'
+    year: '2025',
+    events: [
+      { month: '06', text: '<b>더베스트파트너스</b> GA 보험설계사 인프라 구축 프로젝트 진행' },
+      { month: '06', text: '<b>카카오페이보험</b> GA 보험설계사 인프라 구축 프로젝트 진행' },
+      { month: '06', text: '<b>AIA 프리미어 파트너스</b> GA 보험설계사 인프라 구축 프로젝트 (3차)' }
+    ]
   },
   {
     year: '2024',
-    title: '미래 준비',
-    description: 'AI와 블록체인 기술 융합, 보험업계 미래 기술 선도'
-  }
+    events: [
+      { month: '06', text: '<b>더베스트파트너스</b> GA 보험설계사 인프라 구축 프로젝트 진행' },
+      { month: '06', text: '<b>카카오페이보험</b> GA 보험설계사 인프라 구축 프로젝트 진행' },
+      { month: '06', text: '<b>AIA 프리미어 파트너스</b> GA 보험설계사 인프라 구축 프로젝트 (3차)' }
+    ]
+  },
+  {
+    year: '2023',
+    events: [
+      { month: '06', text: '(주)핀게이트 설립' },
+      { month: '06', text: 'GA 보험 통합시스템 EPIKA v.1 오픈' }
+    ]
+  },
 ]
 
+const timelineRef = ref<HTMLElement | null>(null)
+let ctx: gsap.Context | undefined
+let ro: ResizeObserver | undefined
+
 onMounted(() => {
-  if (process.client) {
-    gsapContext = gsap.context(() => {
-      // container 바로 아래 2개 덩어리 순차 등장
-      const container = document.querySelector('.company-history .container')
-      if (container) {
-        const children = Array.from(container.children)
-        
-        children.forEach((child, index) => {
-          gsap.fromTo(child,
-            { opacity: 0, y: 50 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              delay: index * 0.4,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: '.company-history',
-                start: "top 80%",
-              }
-            }
-          )
-        })
-      }
-    })
+  if (!process.client) return
+  const scroller = timelineRef.value
+  
+  if (!scroller) return // scroller가 null이면 종료
+
+  // 스크롤 이벤트 제어 함수 (내부 스크롤 영역 제외)
+  const preventScroll = (e: Event) => {
+    // 내부 스크롤 영역에서는 막지 않음
+    if (scroller.contains(e.target as Node)) {
+      return
+    }
+    e.preventDefault()
+    e.stopPropagation()
+    return false
   }
+
+  const enableScrollPrevention = () => {
+    document.addEventListener('wheel', preventScroll, { passive: false })
+    document.addEventListener('touchmove', preventScroll, { passive: false })
+  }
+
+  const disableScrollPrevention = () => {
+    document.removeEventListener('wheel', preventScroll)
+    document.removeEventListener('touchmove', preventScroll)
+  }
+
+  // 스크롤 전환 로직
+  let isScrollPreventionActive = false
+  let lastScrollTop = scroller.scrollTop
+  
+  scroller.addEventListener('mouseenter', () => {
+    if (!isScrollPreventionActive) {
+      enableScrollPrevention()
+      isScrollPreventionActive = true
+    }
+  })
+  
+  scroller.addEventListener('mouseleave', () => {
+    if (isScrollPreventionActive) {
+      disableScrollPrevention()
+      isScrollPreventionActive = false
+    }
+    // 영역을 벗어나면 스크롤을 맨 위로 초기화
+    scroller.scrollTo({ top: 0 })
+  })
+  
+  // 상단/하단 도달 시 외부 스크롤 허용
+  scroller.addEventListener('scroll', () => {
+    const { scrollTop, scrollHeight, clientHeight } = scroller
+    const isAtTop = scrollTop <= 3
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 3
+    const scrollDirection = scrollTop > lastScrollTop ? 1 : -1
+    
+    if (isScrollPreventionActive) {
+      if ((isAtTop && scrollDirection === -1) || (isAtBottom && scrollDirection === 1)) {
+        disableScrollPrevention()
+        isScrollPreventionActive = false
+      }
+    }
+    
+    lastScrollTop = scrollTop
+  }, { passive: true })
+
+  ctx = gsap.context(() => {
+    // 섹션에 진입하면 좌측 헤더 pin
+    ScrollTrigger.create({
+      trigger: '.company-history',
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: '.company-history .section-header',
+      pinSpacing: true,
+    })
+
+    // 내부 스크롤 컨테이너 기준으로 year-block 활성화
+    gsap.utils.toArray<HTMLElement>('.company-history .year-block').forEach((el) => {
+      ScrollTrigger.create({
+        trigger: el,
+        scroller,
+        start: 'top 30%',
+        end: 'bottom 30%',
+        toggleClass: { targets: el, className: 'active' },
+      })
+    })
+  })
+
+  // 내부 스크롤 높이 변동 대응
+  ro = new ResizeObserver(() => ScrollTrigger.refresh())
+  ro.observe(scroller)
 })
 
 onUnmounted(() => {
-  if (gsapContext) {
-    gsapContext.revert()
-  }
+  ctx?.revert()
+  ro?.disconnect()
 })
 </script>

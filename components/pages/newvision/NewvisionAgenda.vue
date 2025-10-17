@@ -22,7 +22,7 @@
         </div>
 
         <!-- 이미지 카드 영역 -->
-        <div class="agenda-cards mt-80">
+        <div class="agenda-cards mt-120">
           <article class="agenda-card-pair">
             <template v-for="(card, index) in agendaCards" :key="index">
               <!-- 왼쪽 이미지 -->
@@ -193,42 +193,24 @@ onMounted(() => {
               opacity: 1,
               scrollTrigger: {
                 trigger: cardsContainer,
-                start: `top+=${pairIndex * pairGap - 600}px top`,
+                start: `top+=${pairIndex * pairGap - 400}px top`, // 더 늦게 등장 (200px 늦춤)
                 end: `top+=${pairIndex * pairGap - 200}px top`,
                 scrub: 1,
               }
             }
           )
         }
-
-        // 텍스트 사라짐 - 다음 텍스트가 나타나기 전에 사라짐
-        if (index < agendaCards.length - 1) {
-          // 다음 텍스트가 나타나기 전에 사라짐 (거의 동시에)
-          gsap.to(centerText,
+        gsap.to(centerText,
             {
               opacity: 0,
               scrollTrigger: {
                 trigger: cardsContainer,
-                start: `top+=${(pairIndex + 1) * pairGap - 650}px top`, // 다음 텍스트 등장 직전에 사라짐 시작
-                end: `top+=${(pairIndex + 1) * pairGap - 550}px top`,   // 다음 텍스트 등장과 거의 동시에 완전히 사라짐
+                start: `top+=${(pairIndex + 1) * pairGap - 450}px top`, // 더 늦게 사라지기 시작 (200px 늦춤)
+                end: `top+=${(pairIndex + 1) * pairGap - 350}px top`,   // 더 늦게 완전히 사라짐 (200px 늦춤)
                 scrub: 1,
               }
             }
           )
-        } else {
-          // 마지막 텍스트: 아젠다 섹션이 끝날 때 사라짐
-          gsap.to(centerText,
-            {
-              opacity: 0,
-              scrollTrigger: {
-                trigger: cardsContainer,
-                start: `top+=${(agendaCards.length - 1) * pairGap + 200}px top`,
-                end: `top+=${(agendaCards.length - 1) * pairGap + 400}px top`,
-                scrub: 1,
-              }
-            }
-          )
-        }
       })
     })
   }

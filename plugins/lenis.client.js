@@ -33,7 +33,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       const path = window.location.pathname
       if (path === '/newvision') {
         currentPage = 'newvision'
-        return newvisionSections
+        return [] // Newvision 페이지도 스냅 비활성화
       } else if (path === '/company') {
         currentPage = 'company'
         return [] // Company 페이지는 스냅 비활성화
@@ -86,7 +86,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       const sections = getCurrentSections()
       
       // Company 페이지는 스냅 비활성화 - 자연스러운 스크롤 허용
-      if (currentPage === 'company') {
+      if (currentPage === 'company' || currentPage === 'newvision') {
         return true
       }
       
@@ -106,64 +106,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 
           const atSectionEnd = targetRect.bottom <= vh * SNAP_BOTTOM_TOUCH
           const atSectionStart = (cardsContainer ? cardsContainer.getBoundingClientRect().top : servicesSection.getBoundingClientRect().top) >= vh * SNAP_TOP_TOUCH
-
-          if (isScrollingDown && atSectionEnd) {
-            if (currentSectionIndex < sections.length - 1) {
-              currentSectionIndex++
-              scrollToSection(currentSectionIndex)
-            }
-          } else if (isScrollingUp && atSectionStart) {
-            if (currentSectionIndex > 0) {
-              currentSectionIndex--
-              scrollToSection(currentSectionIndex)
-            }
-          }
-          return
-        }
-      }
-
-      // NewvisionAgenda 섹션 특별 처리
-      if (currentPage === 'newvision' && currentSectionIndex === 1) {
-        const agendaSection = document.querySelector('.newvision-agenda')
-        
-        if (agendaSection) {
-          const currentScrollY = window.scrollY || window.pageYOffset
-          const sectionTop = agendaSection.offsetTop
-          const sectionHeight = agendaSection.offsetHeight
-          const sectionBottom = sectionTop + sectionHeight
-          const vh = window.innerHeight || 1
-
-          const atSectionEnd = currentScrollY >= sectionBottom - 200
-          const atSectionStart = agendaSection.getBoundingClientRect().top >= vh * SNAP_TOP_TOUCH
-
-          if (isScrollingDown && atSectionEnd) {
-            if (currentSectionIndex < sections.length - 1) {
-              currentSectionIndex++
-              scrollToSection(currentSectionIndex)
-            }
-          } else if (isScrollingUp && atSectionStart) {
-            if (currentSectionIndex > 0) {
-              currentSectionIndex--
-              scrollToSection(currentSectionIndex)
-            }
-          }
-          return
-        }
-      }
-
-      // NewvisionNextstep 섹션 특별 처리
-      if (currentPage === 'newvision' && currentSectionIndex === 2) {
-        const nextstepSection = document.querySelector('.newvision-nextstep')
-        
-        if (nextstepSection) {
-          const currentScrollY = window.scrollY || window.pageYOffset
-          const sectionTop = nextstepSection.offsetTop
-          const sectionHeight = nextstepSection.offsetHeight
-          const sectionBottom = sectionTop + sectionHeight
-          const vh = window.innerHeight || 1
-
-          const atSectionEnd = currentScrollY >= sectionBottom - 200
-          const atSectionStart = nextstepSection.getBoundingClientRect().top >= vh * SNAP_TOP_TOUCH
 
           if (isScrollingDown && atSectionEnd) {
             if (currentSectionIndex < sections.length - 1) {

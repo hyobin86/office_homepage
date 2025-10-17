@@ -2,48 +2,87 @@
   <section class="company-business" aria-labelledby="business-heading">
     <div class="container">
       <div class="section-header">
-        <div class="section-subtitle">Our Business</div>
+        <div class="section-subtitle">Comprehensive Insurance IT Business</div>
         <h2 id="business-heading" class="section-title mt-24">
-          핀게이트의 핵심 사업 영역
+          SI와 솔루션까지, 보험 IT의 모든 것을 제공합니다.
         </h2>
-        <p class="section-desc mt-32">
-          보험업계의 디지털 전환을 위한 종합적인 IT 솔루션을 제공합니다.
-        </p>
       </div>
       
-      <div class="business-content mt-80">
-        <div class="business-cards">
-          <div 
-            v-for="(business, index) in businesses" 
-            :key="index"
-            class="business-card"
-          >
-            <div class="card-image">
-              <NuxtImg 
-                :src="business.image"
-                :alt="business.title"
-                loading="lazy"
-                format="webp"
-                width="400"
-                height="280"
-                quality="85"
-              />
-            </div>
-            <div class="card-content">
-              <h3 class="card-title mt-24">{{ business.title }}</h3>
-              <p class="card-desc mt-16">{{ business.description }}</p>
-              <ul class="card-features mt-24">
-                <li 
-                  v-for="(feature, featureIndex) in business.features" 
-                  :key="featureIndex"
-                  class="feature-item"
-                >
-                  {{ feature }}
-                </li>
-              </ul>
+      <!-- 버튼 영역 -->
+      <div class="business-buttons mt-80">
+        <button 
+          v-for="(button, index) in businessButtons" 
+          :key="index"
+          :class="['button','button-small', { active: activeButton === index }]"
+          @click="setActiveButton(index)"
+        >
+          {{ button.label }}
+        </button>
+      </div>
+      
+      <!-- 콘텐츠 영역 -->
+      <div class="business-content mt-120">
+        <div class="content-wrapper">
+          <div class="content-background">
+            <NuxtImg 
+              :src="currentContent.backgroundImage"
+              :alt="currentContent.title"
+              loading="lazy"
+              format="webp"
+              width="1400"
+              height="648"
+              quality="85"
+            />
+          </div>
+          <div class="content-overlay">
+            <h3 class="content-title">{{ currentContent.title }}</h3>
+            <div class="content-cards">
+              <div 
+                v-for="(card, index) in currentContent.cards" 
+                :key="`${activeButton}-${index}-${card.icon}`"
+                class="business-card"
+              >
+                <div class="card-icon">
+                  <NuxtImg 
+                    :key="`${activeButton}-${index}-${card.icon}`"
+                    :src="card.icon"
+                    :alt="card.title"
+                    loading="lazy"
+                    format="webp"
+                    width="48"
+                    height="48"
+                    quality="85"
+                  />
+                </div>
+                <h4 class="card-title mt-24" v-html="card.title"></h4>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="business-container fade-in">
+      <div class="business-image">
+        <NuxtImg 
+          src="/images/company/company-card8.png"
+          alt="business Visual"
+          loading="lazy"
+          format="webp"
+          width="1680"
+          height="320"
+          quality="85"
+        />
+      </div>
+      <div class="business-visual">
+        <div class="business-visual-content">
+          <h2 id="business-heading" class="business-title">
+            핀게이트만의 강점으로 완성된 보험 IT 솔루션을 소개합니다.
+          </h2>
+          <p class="business-description mt-24">차별화된 솔루션으로 보험 비즈니스 성공을 함께 이끕니다.</p>
+        </div>
+        <NuxtLink to="/services/service1" class="button" aria-label="서비스 페이지로 이동">
+          MORE VIEW
+        </NuxtLink>
       </div>
     </div>
   </section>
@@ -58,68 +97,205 @@ if (process.client) {
 }
 
 let gsapContext: gsap.Context | null = null
+const activeButton = ref(0)
 
-const businesses = [
+const businessButtons = [
+  { label: '시스템 통합·관리' },
+  { label: '보험 솔루션 개발' },
+  { label: '솔루션 유통' },
+  { label: 'IT 아웃소싱 및 컨설팅' }
+]
+
+const businessContents = [
   {
-    title: '보험 시스템 개발',
-    description: '보험업계 특화 시스템 개발 및 운영',
-    image: '/images/company/business-system.jpg',
-    features: [
-      '보험 상품 관리 시스템',
-      '청약 및 계약 관리',
-      '보험금 지급 시스템',
-      '고객 관리 시스템'
+    title: '시스템 통합 · 관리',
+    backgroundImage: '/images/company/company-card4.png',
+    cards: [
+      {
+        icon: '/images/company/company-icon5.svg',
+        title: '보험금융 시스템<br>개발 및 통합',
+      },
+      {
+        icon: '/images/company/company-icon6.svg',
+        title: '정보자원 통합<br>관리 및 운영',
+      },
+      {
+        icon: '/images/company/company-icon7.svg',
+        title: '시스템 위탁운영 및<br>유지보수',
+      },
+      {
+        icon: '/images/company/company-icon8.svg',
+        title: '모바일 / 하이브리드<br>앱 플랫폼',
+      },
+      {
+        icon: '/images/company/company-icon9.svg',
+        title: '온라인<br>플랫폼 개발',
+      },
+      {
+        icon: '/images/company/company-icon10.svg',
+        title: '기술 지원',
+      }
     ]
   },
   {
-    title: '데이터 분석 솔루션',
-    description: '빅데이터를 활용한 보험업계 인사이트 제공',
-    image: '/images/company/business-data.jpg',
-    features: [
-      '고객 행동 분석',
-      '리스크 예측 모델',
-      '시장 트렌드 분석',
-      '성과 지표 대시보드'
+    title: '보험 솔루션 개발',
+    backgroundImage: '/images/company/company-card5.png',
+    cards: [
+      {
+        icon: '/images/company/company-icon11.svg',
+        title: 'GA 영업 및<br>정산관리',
+      },
+      {
+        icon: '/images/company/company-icon12.svg',
+        title: 'GA 경영 및<br>리스트 관리',
+      },
+      {
+        icon: '/images/company/company-icon13.svg',
+        title: 'DB 마케팅',
+      },
+      {
+        icon: '/images/company/company-icon14.svg',
+        title: '설계사 상담지원',
+      },
+      {
+        icon: '/images/company/company-icon15.svg',
+        title: 'TM Call 관리',
+      },
+      {
+        icon: '/images/company/company-icon16.svg',
+        title: 'Scraping 및 RPA',
+      }
     ]
   },
   {
-    title: '클라우드 인프라',
-    description: '안정적이고 확장 가능한 클라우드 환경 구축',
-    image: '/images/company/business-cloud.jpg',
-    features: [
-      'AWS/Azure 클라우드 구축',
-      '마이크로서비스 아키텍처',
-      '자동 스케일링',
-      '보안 및 모니터링'
+    title: '솔루션 유통',
+    backgroundImage: '/images/company/company-card6.png',
+    cards: [
+      {
+        icon: '/images/company/company-icon17.svg',
+        title: '자사 솔루션<br>SaaS 유통',
+      },
+      {
+        icon: '/images/company/company-icon18.svg',
+        title: '자사 솔루션<br>ASP 구축',
+      },
+      {
+        icon: '/images/company/company-icon19.svg',
+        title: '기업 및 보안<br>솔루션 유통',
+      },
+      {
+        icon: '/images/company/company-icon20.svg',
+        title: '설계사 플랫폼<br>서비스 공급',
+      }
+    ]
+  },
+  {
+    title: 'IT 아웃소싱 및 컨설팅',
+    backgroundImage: '/images/company/company-card7.png',
+    cards: [
+      {
+        icon: '/images/company/company-icon21.svg',
+        title: 'IT 인력 파견 공급',
+      },
+      {
+        icon: '/images/company/company-icon22.svg',
+        title: '정보전략계획(ISP)',
+      },
+      {
+        icon: '/images/company/company-icon23.svg',
+        title: '시스템 도입 지원<br>인프라도입 컨설팅',
+      },
+      {
+        icon: '/images/company/company-icon24.svg',
+        title: 'ISTM 도입 컨설팅',
+      },
+      {
+        icon: '/images/company/company-icon25.svg',
+        title: '시스템 유지보수 최적화',
+      }
     ]
   }
 ]
 
+const currentContent = computed(() => businessContents[activeButton.value])
+
+const setActiveButton = (index: number) => {
+  if (activeButton.value === index) return
+  
+  // 콘텐츠 영역 fade out
+  gsap.to('.content-wrapper', {
+    opacity: 0,
+    duration: 0.3,
+    ease: "power2.inOut",
+    onComplete: () => {
+      // 콘텐츠 변경
+      activeButton.value = index
+      
+      // 콘텐츠 영역 fade in
+      gsap.fromTo('.content-wrapper', 
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out"
+        }
+      )
+    }
+  })
+}
+
 onMounted(() => {
   if (process.client) {
     gsapContext = gsap.context(() => {
-      // container 바로 아래 2개 덩어리 순차 등장
-      const container = document.querySelector('.company-business .container')
-      if (container) {
-        const children = Array.from(container.children)
-        
-        children.forEach((child, index) => {
-          gsap.fromTo(child,
-            { opacity: 0, y: 50 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              delay: index * 0.4,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: '.company-business',
-                start: "top 80%",
-              }
-            }
-          )
-        })
-      }
+      // 각 섹션별로 개별 애니메이션 적용
+      gsap.fromTo('.company-business .section-header',
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: '.company-business .section-header',
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      )
+      
+      gsap.fromTo('.company-business .business-buttons',
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: '.company-business .business-buttons',
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      )
+      
+      gsap.fromTo('.company-business .business-content',
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: '.company-business .business-content',
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      )
     })
   }
 })

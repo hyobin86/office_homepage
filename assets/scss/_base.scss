@@ -197,6 +197,10 @@ address {
     border: 0.2rem solid $color-bg-primary;
     background-color: $color-bg-primary;
   }
+  &-small {
+    height: 6.4rem;
+    font-size: 1.8rem;
+  }
 }
 
 // ========================================

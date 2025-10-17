@@ -13,6 +13,10 @@
   min-height: max-content;
   position: relative;
   background: url('/images/company/company-bg.png') center top / cover no-repeat;
+
+  .section-subtitle {
+    letter-spacing: 0.18rem !important;
+  }
 }
 
 // --- 히어로 섹션 ---
@@ -41,12 +45,6 @@
     padding: 12rem 0 14rem;
     width: 100%;
     text-align: center;
-    .section-header {
-      opacity: 0;
-    }
-    .section-subtitle {
-      letter-spacing: 0 !important;
-    }
   }
   
   .value-cards {
@@ -112,10 +110,6 @@
     
     .section-header {
       width: max-content;
-      
-      .section-subtitle {
-        letter-spacing: 0 !important;
-      }
     }
     
     .carousel-nav-container {
@@ -134,7 +128,6 @@
     margin-bottom: 14rem;
   }
 
-  /* 높이는 JS에서 카드 비율로 주입 */
   .carousel-viewport {
     position: relative;
     width: 100%;
@@ -145,30 +138,27 @@
     display: flex;
     height: 100%;
     will-change: transform;
-    gap: var(--gap, 24px);    /* 카드 간 간격 */
+    gap: var(--gap, 24px);
   }
 
-  /* 카드: 고정폭 박스(반응형으로 JS가 --card-w 변경) */
   .carousel-slide {
-    flex: 0 0 auto;                      /* 100%가 아니라 고정폭 카드로 */
+    flex: 0 0 auto;
     width: var(--card-w, 1210px);
     height: 100%;
-    position: relative;                  /* 오버레이 기준 */
+    position: relative;
     display: grid;
     place-items: center;
+    
+    img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1210 / 420;
+      object-fit: cover;
+      border-radius: 3.2rem;
+      display: block;
+    }
   }
 
-  /* 이미지 카드 */
-  .carousel-slide img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1210 / 420;           /* 비율 고정 */
-    object-fit: cover;
-    border-radius: 3.2rem;
-    display: block;
-  }
-
-  /* 오버레이: 카드 너비에 맞춰 하단에 */
   .slide-content {
     position: absolute;
     left: 50%;
@@ -191,12 +181,12 @@
     line-height: 3.2rem;
   }
 
-  /* 네비 버튼이 항상 위로 보이도록 */
   .carousel-nav-container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2.4rem;
+    
     .carousel-nav {
       width: 7.2rem;
       height: 7.2rem;
@@ -220,9 +210,7 @@
       }
     }
   }
- 
 
-  /* 스크린 리더 전용 */
   .sr-only {
     position: absolute;
     width: 1px;
@@ -239,189 +227,277 @@
 // --- 사업 영역 섹션 ---
 .company-business {
   position: relative;
-  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: $color-bg-white;
   
   .container {
-    padding-top: 12rem;
+    width: 100%;
+    padding-top: 14rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-  }
-  
-  .business-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4rem;
     
-    .business-card {
-      background: $color-bg-white;
-      border-radius: 2rem;
-      overflow: hidden;
-      box-shadow: 0 0.4rem 2rem rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .business-buttons {
+      display: flex;
+      gap: 1.6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .business-content {
+      width: 100%;
+      max-width: 140rem;
       
-      &:hover {
-        transform: translateY(-0.8rem);
-        box-shadow: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.12);
-      }
-      
-      .card-image {
-        width: 100%;
-        height: 28rem;
+      .content-wrapper {
+        position: relative;
+        border-radius: 3.2rem;
         overflow: hidden;
+        min-height: 60rem;
         
-        img {
+        .content-background {
+          position: absolute;
+          top: 0;
+          left: 0;
           width: 100%;
           height: 100%;
-          object-fit: cover;
-          object-position: center;
-        }
-      }
-      
-      .card-content {
-        padding: 3.2rem 2.4rem;
-        text-align: left;
-        
-        .card-title {
-          font-size: 2.4rem;
-          font-weight: $font-weight-semibold;
-          color: $color-text-black;
-          line-height: 3.2rem;
+          z-index: 1;
         }
         
-        .card-desc {
-          font-size: 1.6rem;
-          font-weight: $font-weight-light;
-          color: $color-text-gray;
-          line-height: 2.4rem;
-        }
-        
-        .card-features {
-          list-style: none;
-          padding: 0;
-          margin: 0;
+        .content-overlay {
+          position: relative;
+          z-index: 2;
+          padding: 10rem 8rem;
+          height: 100%;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: row;
           
-          .feature-item {
-            position: relative;
-            padding-left: 2rem;
-            font-size: 1.4rem;
-            font-weight: $font-weight-light;
-            color: $color-text-gray;
-            line-height: 2.4rem;
+          .content-title {
+            color: $color-text-white;
+            font-size: 3.2rem;
+            font-weight: $font-weight-semibold;
+          }
+          
+          .content-cards {
+            max-width: 88rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+            gap: 1.6rem;
+            flex: 1;
             
-            &::before {
-              content: '•';
-              position: absolute;
-              left: 0;
-              color: $color-primary;
-              font-weight: $font-weight-bold;
+            // 4개 아이템: 2x2 그리드
+            &:has(.business-card:nth-child(4):last-child) {
+              max-width: 58.2rem;
+              grid-template-columns: repeat(2, 1fr);
             }
             
-            &:not(:last-child) {
-              margin-bottom: 0.8rem;
+            // 5개 아이템: 3열 그리드, 오른쪽 정렬
+            &:has(.business-card:nth-child(5):last-child) {
+              grid-template-columns: repeat(3, 1fr);
+              
+              .business-card:nth-child(4) {
+                grid-column: 2 / 3;
+              }
+              
+              .business-card:nth-child(5) {
+                grid-column: 3 / 4;
+              }
+            }
+            
+            // 6개 아이템: 3x2 그리드
+            &:has(.business-card:nth-child(6):last-child) {
+              grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .business-card {
+              border-radius: 1.6rem;
+              background: rgba(79, 82, 89, 0.32);
+              padding: 4rem;
+              text-align: center;
+              backdrop-filter: blur(5px);
+              color: $color-text-white;
+              
+              .card-icon {
+                width: 4.8rem;
+                height: 4.8rem;
+                margin: 0 auto 2.4rem;
+              }
+              
+              .card-title {
+                height: 6.4rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                font-weight: $font-weight-normal;
+                line-height: 3.2rem;
+              }
             }
           }
         }
       }
     }
   }
-}
-
-// --- 연혁 섹션 ---
-.company-history {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: $color-bg-secondary;
   
-  .container {
-    padding-top: 12rem;
-    text-align: center;
-  }
-  
-  .timeline {
-    position: relative;
-    max-width: 80rem;
-    margin: 0 auto;
+  .business-container {
+    margin-top: 16rem;
+    margin-bottom: 24rem;
     
-    &::before {
-      content: '';
+    .business-visual {
       position: absolute;
-      left: 50%;
       top: 0;
-      bottom: 0;
-      width: 0.2rem;
-      background: $color-primary;
-      transform: translateX(-50%);
-    }
-    
-    .timeline-item {
-      position: relative;
-      margin-bottom: 6rem;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      padding: 0 16rem;
       display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       align-items: center;
       
-      &:last-child {
-        margin-bottom: 0;
-      }
-      
-      &--right {
-        flex-direction: row-reverse;
+      .business-visual-content {
+        color: $color-text-white;
         
-        .timeline-content {
-          text-align: right;
-        }
-      }
-      
-      .timeline-marker {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        
-        .marker-dot {
-          width: 2rem;
-          height: 2rem;
-          background: $color-primary;
-          border-radius: 50%;
-          border: 0.4rem solid $color-bg-white;
-          box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
-        }
-        
-        .marker-year {
-          margin-top: 1.2rem;
-          font-size: 1.8rem;
+        .business-title {
+          font-size: 4rem;
           font-weight: $font-weight-semibold;
-          color: $color-primary;
-          line-height: 2.4rem;
+          line-height: 5.6rem;
         }
-      }
-      
-      .timeline-content {
-        flex: 1;
-        margin: 0 4rem;
-        padding: 2.4rem;
-        background: $color-bg-white;
-        border-radius: 1.6rem;
-        box-shadow: 0 0.4rem 2rem rgba(0, 0, 0, 0.08);
         
-        .event-title {
-          font-size: 2.4rem;
-          font-weight: $font-weight-semibold;
-          color: $color-text-black;
+        .business-description {
+          font-size: 2rem;
+          font-weight: $font-weight-light;
           line-height: 3.2rem;
         }
+      }
+    }
+    
+    .business-image {
+      width: 100%;
+      
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+  }
+}
+
+
+// --- 회사 연혁 섹션 ---
+.company-history {
+  position: relative;
+  
+  .container {
+    margin-top: 9rem;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    
+    .section-header {
+      min-width: max-content;
+    }
+  }
+  
+  // 오른쪽 타임라인 영역
+  .timeline-shell {
+    flex: 1;
+    max-width: 77.2rem;
+    min-height: 80vh;
+    
+    .timeline-scroll {
+      max-height: 80vh;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      overscroll-behavior: auto;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+      
+      // 스크롤바 숨김
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      
+      // 바닥 그라데이션 효과
+      &::after {
+        content: '';
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30rem;
+        background: linear-gradient(to top, #11151E, transparent);
+        pointer-events: none;
+        z-index: 10;
+      }
+    }
+    
+    // 연도 블록
+    .year-block {
+      transition: opacity 0.3s ease;
+      will-change: opacity;
+      opacity: 0.2;
+      
+      &.active {
+        opacity: 1;
         
-        .event-desc {
-          font-size: 1.6rem;
-          font-weight: $font-weight-light;
-          color: $color-text-gray;
-          line-height: 2.4rem;
+        .year-label {
+          color: $color-text-primary;
+          font-weight: $font-weight-semibold;
+        }
+      }
+      
+      &:first-child {
+        padding-top: 20rem;
+      }
+      
+      &:last-child {
+        padding-bottom: 40rem;
+      }
+    }
+    
+    .year-label {
+      font-family: $font-family-secondary;
+      color: $color-text-white;
+      font-size: 7.2rem;
+      font-weight: $font-weight-normal;
+      line-height: 8rem;
+      letter-spacing: -0.02em;
+      transition: color 0.3s ease, font-weight 0.3s ease;
+    }
+    
+    .event-item {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 2.4rem;
+      align-items: start;
+      position: relative;
+      color: $color-text-white;
+      
+      .event-month {
+        font-family: $font-family-secondary;
+        font-size: 2.4rem;
+        font-weight: $font-weight-semibold;
+        line-height: 3.2rem;
+        letter-spacing: -0.02em;
+      }
+      
+      .event-text {
+        font-size: 1.8rem;
+        font-weight: $font-weight-normal;
+        line-height: 3.2rem;
+        
+        b {
+          margin-right: 1.6rem;
         }
       }
     }
@@ -431,135 +507,153 @@
 // --- 연락 섹션 ---
 .company-contact {
   position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: $color-bg-white;
   
-  .container {
-    padding-top: 12rem;
-    text-align: center;
-  }
-  
-  .contact-info {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4rem;
-    margin-bottom: 8rem;
+  // 상단 히어로 섹션
+  .contact-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1d29 0%, #2d3142 50%, #1a1d29 100%);
+    overflow: hidden;
     
-    .info-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    // 배경 패턴 (리본 형태)
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="ribbon1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%2333415a;stop-opacity:0.8"/><stop offset="100%" style="stop-color:%231a1d29;stop-opacity:0.6"/></linearGradient></defs><path d="M0,200 Q300,100 600,200 T1200,200 L1200,0 L0,0 Z" fill="url(%23ribbon1)"/><path d="M0,400 Q400,300 800,400 T1200,400 L1200,200 L0,200 Z" fill="url(%23ribbon1)" opacity="0.7"/><path d="M0,600 Q200,500 400,600 T800,600 T1200,600 L1200,400 L0,400 Z" fill="url(%23ribbon1)" opacity="0.5"/></svg>') center/cover no-repeat;
+      opacity: 0.6;
+    }
+    
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
       text-align: center;
+    }
+    
+    .hero-content {
+      max-width: 80rem;
+      margin: 0 auto;
       
-      .info-icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 6.4rem;
-        height: 6.4rem;
-        background: rgba($color-primary, 0.1);
-        border-radius: 50%;
+      .section-subtitle {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.4rem;
+        font-weight: $font-weight-light;
+        letter-spacing: 0.2rem;
         margin-bottom: 2.4rem;
       }
       
-      .info-title {
-        font-size: 2.4rem;
-        font-weight: $font-weight-semibold;
-        color: $color-text-black;
-        line-height: 3.2rem;
-        margin-bottom: 1.2rem;
+      .section-title {
+        color: $color-text-white;
+        font-size: 4.8rem;
+        font-weight: $font-weight-bold;
+        line-height: 1.2;
+        margin-bottom: 4rem;
       }
       
-      .info-desc {
-        font-size: 1.6rem;
-        font-weight: $font-weight-light;
-        color: $color-text-gray;
-        line-height: 2.4rem;
-      }
-    }
-  }
-  
-  .contact-action {
-    text-align: center;
-  }
-}
-
-// 반응형 디자인
-@include responsive(md) {
-  .company-growth .value-cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.4rem;
-  }
-  
-  .company-strength .strength-cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.4rem;
-  }
-  
-  .company-business .business-cards {
-    grid-template-columns: 1fr;
-    gap: 3.2rem;
-  }
-  
-  .company-contact .contact-info {
-    grid-template-columns: 1fr;
-    gap: 3.2rem;
-  }
-}
-
-@include responsive(sm) {
-  .company-hero .hero-title {
-    font-size: 4.8rem;
-    line-height: 5.6rem;
-  }
-  
-  .company-hero .hero-desc {
-    font-size: 2rem;
-    line-height: 2.8rem;
-  }
-  
-  .company-growth .value-cards {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  
-  .company-strength .strength-cards {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  
-  .company-history .timeline {
-    &::before {
-      left: 2rem;
-    }
-    
-    .timeline-item {
-      flex-direction: column;
-      align-items: flex-start;
-      padding-left: 4rem;
-      
-      &--right {
-        flex-direction: column;
-        align-items: flex-start;
+      .button--outline {
+        border: 0.1rem solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.05);
+        color: $color-text-white;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
         
-        .timeline-content {
-          text-align: left;
+        &:hover {
+          border-color: rgba(255, 255, 255, 0.6);
+          background: rgba(255, 255, 255, 0.1);
         }
       }
-      
-      .timeline-marker {
-        position: absolute;
-        left: -4rem;
-        top: 0;
+    }
+  }
+  
+  // 하단 연락처 정보 섹션
+  .contact-info-section {
+    background: #f8f9fa;
+    position: relative;
+    
+    // 배경 패턴 (세로 줄무늬)
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 4rem,
+        rgba(255, 192, 203, 0.1) 4rem,
+        rgba(255, 192, 203, 0.1) 4.2rem
+      );
+      opacity: 0.3;
+    }
+    
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 12rem 0;
+    }
+    
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: start;
+    }
+    
+    .contact-details {
+      .section-subtitle {
+        color: #6c757d;
+        font-size: 1.4rem;
+        font-weight: $font-weight-light;
+        letter-spacing: 0.1rem;
+        margin-bottom: 2.4rem;
       }
       
-      .timeline-content {
-        margin: 0;
-        width: 100%;
+      .contact-title {
+        color: #8b4513;
+        font-size: 3.6rem;
+        font-weight: $font-weight-bold;
+        line-height: 1.3;
+        margin-bottom: 4rem;
       }
+      
+      .contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2.4rem;
+        
+        .contact-item {
+          display: flex;
+          align-items: baseline;
+          gap: 1.6rem;
+          
+          .contact-label {
+            color: #495057;
+            font-size: 1.6rem;
+            font-weight: $font-weight-semibold;
+            min-width: 8rem;
+          }
+          
+          .contact-value {
+            color: #212529;
+            font-size: 1.6rem;
+            font-weight: $font-weight-normal;
+            line-height: 1.5;
+          }
+        }
+      }
+    }
+    
+    .contact-map {
     }
   }
 }

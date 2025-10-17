@@ -82,7 +82,7 @@ onMounted(() => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: '.section-header',
-            start: "top 70%",
+            start: "top 60%",
             end: "bottom 30%",
             toggleActions: "play none none reverse"
           }

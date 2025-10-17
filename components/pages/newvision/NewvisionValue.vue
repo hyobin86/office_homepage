@@ -16,7 +16,7 @@
         <button 
           v-for="(button, index) in valueButtons" 
           :key="index"
-          :class="['button', { active: activeButton === index }]"
+          :class="['button','button-small', { active: activeButton === index }]"
           @click="setActiveButton(index)"
         >
           {{ button.label }}
