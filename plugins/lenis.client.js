@@ -26,6 +26,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     let currentPage = ''
     const mainSections = ['hero', 'company', 'services', 'partners', 'vision', 'banner']
     const newvisionSections = ['hero', 'agenda', 'nextstep', 'value', 'contact']
+    const companySections = ['hero', 'growth', 'strength', 'business', 'history', 'contact']
 
     // 현재 페이지와 섹션 배열 결정
     const getCurrentSections = () => {
@@ -33,6 +34,9 @@ export default defineNuxtPlugin((nuxtApp) => {
       if (path === '/newvision') {
         currentPage = 'newvision'
         return newvisionSections
+      } else if (path === '/company') {
+        currentPage = 'company'
+        return [] // Company 페이지는 스냅 비활성화
       } else {
         currentPage = 'main'
         return mainSections
@@ -45,6 +49,8 @@ export default defineNuxtPlugin((nuxtApp) => {
       const selectors = sections.map((name) => {
         if (currentPage === 'newvision') {
           return `.newvision-${name}, .${name}-section`
+        } else if (currentPage === 'company') {
+          return `.company-${name}, .${name}-section`
         } else {
           return `.${name}-section, .main-${name}`
         }
@@ -78,6 +84,12 @@ export default defineNuxtPlugin((nuxtApp) => {
       }
 
       const sections = getCurrentSections()
+      
+      // Company 페이지는 스냅 비활성화 - 자연스러운 스크롤 허용
+      if (currentPage === 'company') {
+        return true
+      }
+      
       const deltaY = e.deltaY
       const isScrollingDown = deltaY > 0
       const isScrollingUp = deltaY < 0
@@ -205,6 +217,9 @@ export default defineNuxtPlugin((nuxtApp) => {
       let targetSection
       if (currentPage === 'newvision') {
         targetSection = document.querySelector(`.newvision-${sections[index]}`) || 
+                      document.querySelector(`.${sections[index]}-section`)
+      } else if (currentPage === 'company') {
+        targetSection = document.querySelector(`.company-${sections[index]}`) || 
                       document.querySelector(`.${sections[index]}-section`)
       } else {
         targetSection = document.querySelector(`.${sections[index]}-section`) || 

@@ -33,17 +33,6 @@ $color-bg-dark: #0A0A10;           // 어두운 배경
 // 폰트 패밀리
 $font-family-primary: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
 
-// 폰트 크기
-$font-size-xs: 0.75rem;    // 12px
-$font-size-sm: 0.875rem;  // 14px
-$font-size-base: 1rem;    // 16px
-$font-size-lg: 1.125rem;  // 18px
-$font-size-xl: 1.25rem;   // 20px
-$font-size-2xl: 1.5rem;   // 24px
-$font-size-3xl: 1.875rem; // 30px
-$font-size-4xl: 2.25rem;  // 36px
-$font-size-5xl: 3rem;     // 48px
-
 // 폰트 웨이트
 $font-weight-light: 300;
 $font-weight-normal: 400;
@@ -52,20 +41,6 @@ $font-weight-semibold: 600;
 $font-weight-bold: 700;
 ```
 
-### 간격 시스템
-
-```scss
-$spacing-xs: 0.25rem;  // 4px
-$spacing-sm: 0.5rem;  // 8px
-$spacing-md: 1rem;     // 16px
-$spacing-lg: 1.5rem;   // 24px
-$spacing-xl: 2rem;     // 32px
-$spacing-2xl: 3rem;    // 48px
-$spacing-3xl: 4rem;    // 64px
-$spacing-4xl: 6rem;   // 96px
-```
-
-## 🛠️ 유틸리티 클래스
 
 ### 간격 유틸리티
 ```scss

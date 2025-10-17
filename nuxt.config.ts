@@ -2,7 +2,9 @@ import { SITE_CONFIG } from './config/site'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ['~/assets/scss/main.scss'],
+  css: [
+    '~/assets/scss/main.scss'
+  ],
   modules: ['@pinia/nuxt', '@vueuse/nuxt', '@nuxt/image'],
   
   // 이미지 최적화 설정

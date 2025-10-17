@@ -149,7 +149,7 @@
       font-size: 1.8rem;
       color: $color-text-black;
       line-height: 2.8rem;
-      transition: border-color $transition-normal;
+      transition: border-color 0.2s ease-in-out;
       
       &:focus {
         outline: none;
@@ -238,7 +238,7 @@
     font-weight: $font-weight-normal;
     line-height: 2.8rem;
     cursor: pointer;
-    transition: all $transition-normal;
+    transition: all 0.2s ease-in-out;
     
     &:hover {
       border-color: $color-primary;
@@ -265,7 +265,7 @@
     font-weight: $font-weight-semibold;
     line-height: 2.8rem;
     cursor: pointer;
-    transition: all $transition-normal;
+    transition: all 0.2s ease-in-out;
     
     &:hover:not(:disabled) {
       background-color: #0e8a9e;
@@ -288,7 +288,7 @@
     color: $color-text-white;
     font-weight: $font-weight-medium;
     font-size: 1.6rem;
-    transition: all $transition-normal;
+    transition: all 0.2s ease-in-out;
     z-index: 9999;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     

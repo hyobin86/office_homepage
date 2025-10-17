@@ -26,15 +26,15 @@
     margin: 0 auto;
     
     h2 {
-      font-size: $font-size-4xl;
+      font-size: $font-size-base;
       color: #ffffff;
-      margin-bottom: $spacing-lg;
+      margin-bottom: 1.5rem;
     }
     
     p {
-      font-size: $font-size-lg;
+      font-size: $font-size-base;
       color: #e2e8f0;
-      margin-bottom: $spacing-xl;
+      margin-bottom: 2rem;
       line-height: 1.6;
     }
   }
@@ -43,17 +43,17 @@
   .service2-features {
     display: flex;
     justify-content: center;
-    gap: $spacing-xl;
+    gap: 2rem;
     
     @include responsive(md) {
       flex-direction: column;
-      gap: $spacing-md;
+      gap: 1rem;
     }
     
     .feature-item {
       display: flex;
       align-items: center;
-      gap: $spacing-sm;
+      gap: 0.5rem;
       color: #ffffff;
       font-weight: $font-weight-medium;
     }
@@ -69,7 +69,7 @@
   .service2-info {
     h3 {
       color: #ffffff;
-      margin-bottom: $spacing-lg;
+      margin-bottom: 1.5rem;
     }
     
     ul {
@@ -78,8 +78,8 @@
       
       li {
         color: #e2e8f0;
-        margin-bottom: $spacing-md;
-        padding-left: $spacing-lg;
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
         position: relative;
         
         &::before {
@@ -99,13 +99,13 @@
     
     .visual-placeholder {
       background: rgba(255, 255, 255, 0.1);
-      border-radius: $border-radius-lg;
-      padding: $spacing-2xl;
+      border-radius: 0.5rem;
+      padding: 3rem;
       text-align: center;
       color: #e2e8f0;
       
       p {
-        margin-top: $spacing-md;
+        margin-top: 1rem;
       }
     }
   }
@@ -118,7 +118,7 @@
   h3 {
     text-align: center;
     color: #ffffff;
-    margin-bottom: $spacing-2xl;
+    margin-bottom: 3rem;
   }
   
   .service-card {
@@ -129,16 +129,16 @@
       width: 60px;
       height: 60px;
       background: $color-primary;
-      border-radius: $border-radius-lg;
+      border-radius: 0.5rem;
       @include flex-center;
-      margin: 0 auto $spacing-lg;
+      margin: 0 auto 1.5rem;
       color: $color-text-white;
-      font-size: $font-size-2xl;
+      font-size: $font-size-base;
     }
     
     h4 {
       color: #ffffff;
-      margin-bottom: $spacing-md;
+      margin-bottom: 1rem;
     }
     
     p {
@@ -156,12 +156,12 @@
   
   h3 {
     color: #ffffff;
-    margin-bottom: $spacing-md;
+    margin-bottom: 1rem;
   }
   
   p {
     color: #e2e8f0;
-    margin-bottom: $spacing-xl;
+    margin-bottom: 2rem;
   }
 }
 

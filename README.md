@@ -72,21 +72,22 @@ office_homepage/
 │   │   └── AppFooter.vue           # 푸터 (TypeScript)
 │   ├── pages/
 │   │   ├── main/
-│   │   │   ├── MainHero.vue        # 메인 히어로 (비디오 배경, 마스크 애니메이션)
-│   │   │   ├── MainServices.vue    # 서비스 소개 (카드 애니메이션)
-│   │   │   ├── MainCompany.vue     # 회사 소개 (커스텀 커서, 카드 분산)
-│   │   │   ├── MainPartners.vue    # 파트너사 (로고 애니메이션)
-│   │   │   ├── MainVision.vue      # 비전 (순차 등장, Hover 효과)
-│   │   │   └── MainBanner.vue      # 배너 (CTA)
+│   │   │   ├── MainHero.vue        # 메인 히어로
+│   │   │   ├── MainServices.vue    # 서비스 소개
+│   │   │   ├── MainCompany.vue     # 회사 소개
+│   │   │   ├── MainPartners.vue    # 파트너사
+│   │   │   ├── MainVision.vue      # 비전
+│   │   │   └── MainBanner.vue      # 배너
 │   │   ├── newvision/
-│   │   │   ├── NewvisionHero.vue   # 뉴비전 히어로 (비디오 배경)
-│   │   │   ├── NewvisionAgenda.vue # 아젠다 (복잡한 스크롤 애니메이션, 200vh)
-│   │   │   ├── NewvisionNextstep.vue # 넥스트스텝 (인덱스 기반 순차 등장)
-│   │   │   ├── NewvisionValue.vue  # 가치 (버튼 클릭 시 콘텐츠 전환)
-│   │   │   └── NewvisionContact.vue # 연락 (단순 fade-in)
+│   │   │   ├── NewvisionHero.vue   # 뉴비전 히어로
+│   │   │   ├── NewvisionAgenda.vue # 아젠다
+│   │   │   ├── NewvisionNextstep.vue # 넥스트스텝
+│   │   │   ├── NewvisionValue.vue  # 가치
+│   │   │   └── NewvisionContact.vue # 연락
 │   │   ├── company/
 │   │   │   ├── CompanyHero.vue
 │   │   │   ├── CompanyValues.vue
+│   │   │   ├── CompanyStrength.vue    # 회사 강점 슬라이더
 │   │   │   └── CompanyTeam.vue
 │   │   ├── services/
 │   │   │   ├── ServicesHero.vue
@@ -96,13 +97,13 @@ office_homepage/
 │   │       ├── ContactHero.vue
 │   │       ├── ContactForm.vue     # EmailJS 통합, Toast 알림
 │   │       └── ContactInfo.vue
-│   └── Icon.vue                     # SVG 아이콘 (엄격한 타입)
+│   └── Icon.vue                     # SVG 아이콘
 │
 ├── 📂 pages/
 │   ├── index.vue                    # 메인 페이지
 │   ├── company.vue                  # 회사소개
 │   ├── contact.vue                  # 연락처
-│   ├── newvision.vue                # 뉴비전 (5개 섹션: Hero, Agenda, Nextstep, Value, Contact)
+│   ├── newvision.vue                # 뉴비전
 │   └── services/
 │       ├── service1.vue             # 클라우드 솔루션
 │       └── service2.vue             # 데이터 분석
@@ -114,13 +115,13 @@ office_homepage/
 │   ├── _base.scss                   # CSS Reset, 공통 버튼
 │   ├── _layouts.scss                # 헤더, 푸터 스타일
 │   ├── _animations.scss             # GSAP 애니메이션 클래스
-│   ├── _utilities.scss              # 유틸리티 클래스 (m-0~100, gap, flex 등)
+│   ├── _utilities.scss              # 유틸리티 클래스
 │   ├── _pages.scss                  # 페이지별 스타일 통합
-│   ├── _pages-main.scss             # 메인 페이지 (543줄)
+│   ├── _pages-main.scss             # 메인 페이지
 │   ├── _pages-company.scss          # 회사소개 페이지
 │   ├── _pages-services.scss         # 서비스 페이지
-│   ├── _pages-newvision.scss        # 뉴비전 페이지 (361줄, 복잡한 스크롤 애니메이션)
-│   └── _pages-contact.scss          # 연락처 페이지 (원본 스태틱 값 유지)
+│   ├── _pages-newvision.scss        # 뉴비전 페이지
+│   └── _pages-contact.scss          # 연락처 페이지
 │
 ├── 📂 plugins/
 │   ├── gsap.client.js               # GSAP + ScrollTrigger 전역 설정
@@ -214,6 +215,8 @@ office_homepage/
 | **NewvisionValue** | 가치 섹션 | 인덱스 기반 순차 등장, 버튼 클릭 시 콘텐츠 전환 애니메이션 |
 | **NewvisionContact** | 연락 섹션 | 단순 fade-in 애니메이션, CTA 버튼 |
 | **ContactForm** | 연락 폼 | EmailJS 통합, Toast 알림, Loading 상태, 폼 검증 |
+
+|| **CompanyStrength** | 회사 강점 섹션 | 커스텀 슬라이더 (Composition API), NuxtImg 최적화, 접근성 지원 |
 
 ### 주요 애니메이션
 
@@ -317,18 +320,6 @@ $color-bg-quaternary: #DDDDDD;     // 보더 색상
 ```scss
 // 폰트 패밀리
 $font-family-primary: 'Pretendard Variable', ...;
-$font-family-poppins: 'Poppins', ...;
-
-// 폰트 크기 (1rem = 10px)
-$font-size-xs: 0.75rem;   // 7.5px
-$font-size-sm: 0.875rem;  // 8.75px
-$font-size-base: 1rem;    // 10px
-$font-size-lg: 1.125rem;  // 11.25px
-$font-size-xl: 1.25rem;   // 12.5px
-$font-size-2xl: 1.5rem;   // 15px
-$font-size-3xl: 1.875rem; // 18.75px
-$font-size-4xl: 2.25rem;  // 22.5px
-$font-size-5xl: 3rem;     // 30px
 
 // 폰트 굵기
 $font-weight-light: 300;
@@ -336,24 +327,6 @@ $font-weight-normal: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
-```
-
-### 간격 시스템
-
-```scss
-$spacing-xs: 0.25rem;   // 2.5px
-$spacing-sm: 0.5rem;    // 5px
-$spacing-md: 1rem;      // 10px
-$spacing-lg: 1.5rem;    // 15px
-$spacing-xl: 2rem;      // 20px
-$spacing-2xl: 3rem;     // 30px
-$spacing-3xl: 4rem;     // 40px
-$spacing-4xl: 6rem;     // 60px
-
-// 유틸리티 클래스
-.mt-20 { margin-top: 2rem; }    // 20px
-.mt-40 { margin-top: 4rem; }    // 40px
-.gap-24 { gap: 2.4rem; }        // 24px
 ```
 
 ### 반응형
