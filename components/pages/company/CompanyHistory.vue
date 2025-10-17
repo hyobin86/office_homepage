@@ -9,16 +9,11 @@
       </div>
 
       <div class="timeline-shell">
-        <div
-          class="timeline-scroll"
-          ref="timelineRef"
-          data-lenis-prevent
-          aria-label="연혁 스크롤 목록"
-        >
+        <div class="timeline-scroll" aria-label="연혁 목록">
           <article
             v-for="y in historyData"
             :key="y.year"
-            class="year-block mb-120"
+            class="year-block"
             :data-year="y.year"
           >
             <h3 class="year-label" :aria-label="`${y.year} 연혁`">{{ y.year }}</h3>
@@ -36,10 +31,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
 if (process.client) gsap.registerPlugin(ScrollTrigger)
 
 type YearData = { year: string; events: { month: string; text: string }[] }
@@ -70,103 +64,34 @@ const historyData: YearData[] = [
   },
 ]
 
-const timelineRef = ref<HTMLElement | null>(null)
 let ctx: gsap.Context | undefined
-let ro: ResizeObserver | undefined
 
 onMounted(() => {
   if (!process.client) return
-  const scroller = timelineRef.value
-  
-  if (!scroller) return // scroller가 null이면 종료
-
-  // 스크롤 이벤트 제어 함수 (내부 스크롤 영역 제외)
-  const preventScroll = (e: Event) => {
-    // 내부 스크롤 영역에서는 막지 않음
-    if (scroller.contains(e.target as Node)) {
-      return
-    }
-    e.preventDefault()
-    e.stopPropagation()
-    return false
-  }
-
-  const enableScrollPrevention = () => {
-    document.addEventListener('wheel', preventScroll, { passive: false })
-    document.addEventListener('touchmove', preventScroll, { passive: false })
-  }
-
-  const disableScrollPrevention = () => {
-    document.removeEventListener('wheel', preventScroll)
-    document.removeEventListener('touchmove', preventScroll)
-  }
-
-  // 스크롤 전환 로직
-  let isScrollPreventionActive = false
-  let lastScrollTop = scroller.scrollTop
-  
-  scroller.addEventListener('mouseenter', () => {
-    if (!isScrollPreventionActive) {
-      enableScrollPrevention()
-      isScrollPreventionActive = true
-    }
-  })
-  
-  scroller.addEventListener('mouseleave', () => {
-    if (isScrollPreventionActive) {
-      disableScrollPrevention()
-      isScrollPreventionActive = false
-    }
-    // 영역을 벗어나면 스크롤을 맨 위로 초기화
-    scroller.scrollTo({ top: 0 })
-  })
-  
-  // 상단/하단 도달 시 외부 스크롤 허용
-  scroller.addEventListener('scroll', () => {
-    const { scrollTop, scrollHeight, clientHeight } = scroller
-    const isAtTop = scrollTop <= 3
-    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 3
-    const scrollDirection = scrollTop > lastScrollTop ? 1 : -1
-    
-    if (isScrollPreventionActive) {
-      if ((isAtTop && scrollDirection === -1) || (isAtBottom && scrollDirection === 1)) {
-        disableScrollPrevention()
-        isScrollPreventionActive = false
-      }
-    }
-    
-    lastScrollTop = scrollTop
-  }, { passive: true })
 
   ctx = gsap.context(() => {
-    // 섹션에 진입하면 좌측 헤더 pin
+    // 좌측 헤더 pin (윈도우 스크롤 기준)
     ScrollTrigger.create({
       trigger: '.company-history',
       start: 'top top',
       end: 'bottom bottom',
-      pin: '.company-history .section-header',
-      pinSpacing: true,
     })
 
-    // 내부 스크롤 컨테이너 기준으로 year-block 활성화
+    // 각 연도 블록이 "뷰포트 중앙"을 지날 때 active 토글
     gsap.utils.toArray<HTMLElement>('.company-history .year-block').forEach((el) => {
       ScrollTrigger.create({
         trigger: el,
-        scroller,
-        start: 'top 30%',
-        end: 'bottom 30%',
+        start: 'top center',
+        end: 'bottom center',
         toggleClass: { targets: el, className: 'active' },
+        // markers: true,
       })
     })
   })
-
-  // 내부 스크롤 높이 변동 대응
-  ro = new ResizeObserver(() => ScrollTrigger.refresh())
-  ro.observe(scroller)
 })
 
 onUnmounted(() => {
   ctx?.revert()
-  ro?.disconnect()
 })
 </script>
+
