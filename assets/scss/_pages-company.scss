@@ -10,9 +10,8 @@
 // ========================================
 
 .company {
-  min-height: max-content;
   position: relative;
-  background: url('/images/company/company-bg.png') center top no-repeat;
+  background: url('/images/company/company-bg.png') center top/ cover no-repeat;
 
   .section-subtitle {
     letter-spacing: 0.18rem !important;
@@ -351,7 +350,7 @@
       left: 0;
       z-index: 2;
       width: 100%;
-      height: 100%;
+      height: 32rem;
       padding: 0 16rem;
       display: flex;
       flex-direction: row;
@@ -405,6 +404,13 @@
       top: 20vh;
       flex: 0 0 36rem;      // 고정 폭
       min-width: max-content;
+    }
+    &.next-step {
+      padding: 25em 0 16em; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
   }
   
@@ -469,6 +475,7 @@
       }
     }
   }
+
 }
 
 // --- 연락 섹션 ---
@@ -476,70 +483,53 @@
   position: relative;
   
   .container {
-    margin-top: 30rem;
-    width: 100%;
-    height: 100vh;
-    text-align: center;
-  }
-  // 하단 연락처 정보 섹션
-  .contact-info-section {
-    background: #ffffff;
     position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 16rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+  
+  // 연락처 정보 섹션
+  .contact-info {
+    background-color: $color_bg_white;
+    position: relative;
+    padding: 0;
     
-    .container {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      padding: 12rem 0;
+    .section-subtitle {
+      letter-spacing: 0.18rem !important;
     }
     
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8rem;
-      align-items: start;
+    .section-title {
+      color: $color_text_black !important;
     }
     
-    .contact-details {
-      .section-subtitle {
-        color: #6c757d;
-        font-size: 1.4rem;
-        font-weight: $font-weight-light;
-        letter-spacing: 0.1rem;
-        margin-bottom: 2.4rem;
-      }
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.4rem;
       
-      .contact-title {
-        color: #8b4513;
-        font-size: 3.6rem;
-        font-weight: $font-weight-bold;
-        line-height: 1.3;
-        margin-bottom: 4rem;
-      }
-      
-      .contact-list {
+      .contact-item-wrapper {
         display: flex;
-        flex-direction: column;
-        gap: 2.4rem;
+        flex-direction: row;
+        gap: 15rem;
+      }
+      
+      .contact-item {
+        .contact-label {
+          min-width: 14.7rem;
+          font-size: 2.4rem;
+          font-weight: $font-weight-semibold;
+          line-height: 3.2rem;
+        }
         
-        .contact-item {
-          display: flex;
-          align-items: baseline;
-          gap: 1.6rem;
-          
-          .contact-label {
-            color: #495057;
-            font-size: 1.6rem;
-            font-weight: $font-weight-semibold;
-            min-width: 8rem;
-          }
-          
-          .contact-value {
-            color: #212529;
-            font-size: 1.6rem;
-            font-weight: $font-weight-normal;
-            line-height: 1.5;
-          }
+        .contact-value {
+          font-size: 1.8rem;
+          font-weight: $font-weight-normal;
+          line-height: 2.8rem;
         }
       }
     }

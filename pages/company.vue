@@ -14,10 +14,10 @@
 
     <!-- 연혁 섹션 -->
     <CompanyHistory />
-
-    <!-- 연락 섹션 -->
-    <CompanyContact />
   </div>
+  
+  <!-- 연락 섹션 (별도 섹션으로 분리) -->
+  <CompanyContact />
 </template>
 
 <script setup lang="ts">

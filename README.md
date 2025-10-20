@@ -22,6 +22,8 @@
 - ✅ **SEO 완벽 지원** - 메타태그, Sitemap, Robots.txt, JSON-LD 구조화 데이터
 - ✅ **반응형 디자인** - 모바일(~1024px) / 데스크톱(1024px+) 완벽 대응
 - ✅ **모듈화된 SCSS** - 페이지별 분리, 유틸리티 최적화
+- ✅ **SITE_CONFIG 중앙 관리** - 연락처 정보, 회사 정보 통합 관리
+- ✅ **회사소개 페이지 완성** - 6개 섹션 (히어로, 성장, 강점, 사업영역, 연혁, 연락처)
 
 ---
 
@@ -85,10 +87,12 @@ office_homepage/
 │   │   │   ├── NewvisionValue.vue  # 가치
 │   │   │   └── NewvisionContact.vue # 연락
 │   │   ├── company/
-│   │   │   ├── CompanyHero.vue
-│   │   │   ├── CompanyValues.vue
+│   │   │   ├── CompanyHero.vue        # 회사 히어로 섹션
+│   │   │   ├── CompanyGrowth.vue      # 성장 가치 카드 섹션
 │   │   │   ├── CompanyStrength.vue    # 회사 강점 슬라이더
-│   │   │   └── CompanyTeam.vue
+│   │   │   ├── CompanyBusiness.vue    # 사업 영역 섹션
+│   │   │   ├── CompanyHistory.vue     # 회사 연혁 + AI 히어로 섹션
+│   │   │   └── CompanyContact.vue      # 연락처 정보 + 지도 섹션
 │   │   ├── services/
 │   │   │   ├── ServicesHero.vue
 │   │   │   ├── ServicesList.vue
@@ -216,7 +220,12 @@ office_homepage/
 | **NewvisionContact** | 연락 섹션 | 단순 fade-in 애니메이션, CTA 버튼 |
 | **ContactForm** | 연락 폼 | EmailJS 통합, Toast 알림, Loading 상태, 폼 검증 |
 
+|| **CompanyHero** | 회사 히어로 섹션 | 회사 소개 메인 섹션, 배경 이미지 최적화 |
+|| **CompanyGrowth** | 성장 가치 섹션 | 4개 가치 카드 그리드 레이아웃, 순차 등장 애니메이션 |
 || **CompanyStrength** | 회사 강점 섹션 | 커스텀 슬라이더 (Composition API), NuxtImg 최적화, 접근성 지원 |
+|| **CompanyBusiness** | 사업 영역 섹션 | 동적 비즈니스 카드 그리드, 배경 오버레이 효과 |
+|| **CompanyHistory** | 회사 연혁 섹션 | 타임라인 스크롤 애니메이션, AI 히어로 섹션 통합 |
+|| **CompanyContact** | 연락처 섹션 | SITE_CONFIG 기반 연락처 정보, NuxtImg 지도, Flexbox 레이아웃 |
 
 ### 주요 애니메이션
 
