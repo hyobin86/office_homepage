@@ -1,7 +1,7 @@
 import Lenis from 'lenis'
 
 export default defineNuxtPlugin((nuxtApp) => {
-  if (process.client) { // Lenis 다시 활성화
+  if (process.client) {
     // 스냅 동작 관련 상수
     const SNAP_BOTTOM_TOUCH = 0.3
     const SNAP_TOP_TOUCH = 0.7
@@ -24,28 +24,44 @@ export default defineNuxtPlugin((nuxtApp) => {
     let currentSectionIndex = 0
     let isScrolling = false
     let currentPage = ''
+    
+    // 메인 페이지 섹션들 (snap 기능 활성화)
     const mainSections = ['hero', 'company', 'services', 'partners', 'vision', 'banner']
-    const newvisionSections = ['hero', 'agenda', 'nextstep', 'value', 'contact']
-    const companySections = ['hero', 'growth', 'strength', 'business', 'history', 'contact']
+    
+    // snap 기능 비활성화 페이지들
+    const snapDisabledPages = ['newvision', 'company', 'service1']
 
     // 현재 페이지와 섹션 배열 결정
     const getCurrentSections = () => {
       const path = window.location.pathname
+      
       if (path === '/newvision') {
         currentPage = 'newvision'
-        return [] // Newvision 페이지도 스냅 비활성화
+        return [] // snap 비활성화
       } else if (path === '/company') {
         currentPage = 'company'
-        return [] // Company 페이지는 스냅 비활성화
+        return [] // snap 비활성화
+      } else if (path === '/services/service1') {
+        currentPage = 'service1'
+        return [] // snap 비활성화
       } else {
         currentPage = 'main'
-        return mainSections
+        return mainSections // snap 활성화
       }
+    }
+
+    // snap 기능이 비활성화된 페이지인지 확인
+    const isSnapDisabled = () => {
+      return snapDisabledPages.includes(currentPage)
     }
 
     // 뷰포트에 보이는 섹션과 인덱스를 동기화
     const updateCurrentSectionIndex = () => {
       const sections = getCurrentSections()
+      
+      // snap 비활성화 페이지는 섹션 인덱스 업데이트 불필요
+      if (sections.length === 0) return
+      
       const selectors = sections.map((name) => {
         if (currentPage === 'newvision') {
           return `.newvision-${name}, .${name}-section`
@@ -83,13 +99,12 @@ export default defineNuxtPlugin((nuxtApp) => {
         return false
       }
 
-      const sections = getCurrentSections()
-      
-      // Company 페이지는 스냅 비활성화 - 자연스러운 스크롤 허용
-      if (currentPage === 'company' || currentPage === 'newvision') {
+      // snap 비활성화 페이지는 자연스러운 스크롤 허용
+      if (isSnapDisabled()) {
         return true
       }
       
+      const sections = getCurrentSections()
       const deltaY = e.deltaY
       const isScrollingDown = deltaY > 0
       const isScrollingUp = deltaY < 0

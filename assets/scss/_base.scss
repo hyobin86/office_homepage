@@ -192,6 +192,7 @@ address {
   cursor: pointer;
   transition: all 0.3s ease;
   
+  &:hover,
   &.active {
     border: 0.2rem solid $color-bg-primary;
     background-color: $color-bg-primary;

@@ -1,7 +1,7 @@
 <template>
   <div class="contact-form">
     <div class="container">
-      <div class="form-wrap fade-in">
+      <div class="form-wrap" ref="formRef">
         <div class="form-item">
           <h2 class="form-title-text">
             궁금하신 사항을 문의 주시면,<br/>
@@ -187,6 +187,11 @@
 
 <script setup lang="ts">
 import emailjs from '@emailjs/browser'
+import { onMounted, onBeforeUnmount, ref, reactive } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface FormData {
   name: string
@@ -228,28 +233,26 @@ const showToast = ref<boolean>(false)
 const toastMessage = ref<string>('')
 const toastType = ref<'success' | 'error'>('success')
 
-// 폼 검증 함수
+const formRef = ref<HTMLElement | null>(null)
+let gsapContext: gsap.Context | null = null
+
 const validateForm = () => {
-  // 에러 초기화
   Object.keys(formErrors).forEach(key => {
     formErrors[key] = ''
   })
   
   let isValid = true
   
-  // 이름 검증
   if (!form.name.trim()) {
     formErrors.name = '이름을 입력해주세요.'
     isValid = false
   }
   
-  // 회사명 검증
   if (!form.company.trim()) {
     formErrors.company = '회사명을 입력해주세요.'
     isValid = false
   }
   
-  // 이메일 검증
   if (!form.email.trim()) {
     formErrors.email = '이메일을 입력해주세요.'
     isValid = false
@@ -258,13 +261,11 @@ const validateForm = () => {
     isValid = false
   }
   
-  // 문의유형 검증
   if (!form.inquiryType) {
     formErrors.inquiryType = '문의유형을 선택해주세요.'
     isValid = false
   }
   
-  // 문의사항 검증
   if (!form.message.trim()) {
     formErrors.message = '문의사항을 입력해주세요.'
     isValid = false
@@ -337,5 +338,32 @@ const submitForm = async () => {
     isSubmitting.value = false
   }
 }
+
+onMounted(() => {
+  if (process.client) {
+    gsapContext = gsap.context(() => {
+      if (formRef.value) {
+        gsap.fromTo(formRef.value,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: formRef.value,
+              start: "top 80%",
+              toggleActions: "play reverse play reverse"
+            }
+          }
+        )
+      }
+    })
+  }
+})
+
+onBeforeUnmount(() => {
+  gsapContext?.revert()
+})
 </script>
 

@@ -1,15 +1,15 @@
 <template>
   <section class="company-business" aria-labelledby="business-heading">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" ref="headerRef">
         <div class="section-subtitle">Comprehensive Insurance IT Business</div>
-        <h2 id="business-heading" class="section-title mt-24">
+        <h2 class="section-title mt-24">
           SI와 솔루션까지, 보험 IT의 모든 것을 제공합니다.
         </h2>
       </div>
       
       <!-- 버튼 영역 -->
-      <div class="business-buttons mt-80">
+      <div class="business-buttons mt-80" ref="buttonsRef">
         <button 
           v-for="(button, index) in businessButtons" 
           :key="index"
@@ -21,7 +21,7 @@
       </div>
       
       <!-- 콘텐츠 영역 -->
-      <div class="business-content mt-120">
+      <div class="business-content mt-120" ref="contentRef">
         <div class="content-wrapper">
           <div class="content-background">
             <NuxtImg 
@@ -61,7 +61,7 @@
         </div>
       </div>
     </div>
-    <div class="business-container fade-in">
+    <div class="business-container" ref="containerRef">
       <div class="business-image">
         <NuxtImg 
           src="/images/company/company-card8.png"
@@ -98,6 +98,12 @@ if (process.client) {
 
 let gsapContext: gsap.Context | null = null
 const activeButton = ref(0)
+
+// refs
+const headerRef = ref<HTMLElement | null>(null)
+const buttonsRef = ref<HTMLElement | null>(null)
+const contentRef = ref<HTMLElement | null>(null)
+const containerRef = ref<HTMLElement | null>(null)
 
 const businessButtons = [
   { label: '시스템 통합·관리' },
@@ -248,54 +254,77 @@ const setActiveButton = (index: number) => {
 onMounted(() => {
   if (process.client) {
     gsapContext = gsap.context(() => {
-      // 각 섹션별로 개별 애니메이션 적용
-      gsap.fromTo('.company-business .section-header',
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: '.company-business .section-header',
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
+      // 헤더 애니메이션
+      if (headerRef.value) {
+        gsap.fromTo(headerRef.value,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: headerRef.value,
+              start: "top 60%",
+              toggleActions: "play none none reverse"
+            }
           }
-        }
-      )
+        )
+      }
       
-      gsap.fromTo('.company-business .business-buttons',
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: '.company-business .business-buttons',
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
+      // 버튼 애니메이션
+      if (buttonsRef.value) {
+        gsap.fromTo(buttonsRef.value,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: buttonsRef.value,
+              start: "top 60%",
+              toggleActions: "play none none reverse"
+            }
           }
-        }
-      )
+        )
+      }
       
-      gsap.fromTo('.company-business .business-content',
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: '.company-business .business-content',
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
+      // 콘텐츠 애니메이션
+      if (contentRef.value) {
+        gsap.fromTo(contentRef.value,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: contentRef.value,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
           }
-        }
-      )
+        )
+      }
+      
+      // 컨테이너 애니메이션
+      if (containerRef.value) {
+        gsap.fromTo(containerRef.value,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: containerRef.value,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        )
+      }
     })
   }
 })

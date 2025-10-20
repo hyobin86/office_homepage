@@ -72,8 +72,8 @@ const valueCards = [
 onMounted(() => {
   if (process.client) {
     gsapContext = gsap.context(() => {
-      // 섹션 헤더 애니메이션 (양방향)
-      gsap.fromTo('.section-header',
+      // 섹션 헤더 애니메이션 (양방향) - company-growth 섹션만
+      gsap.fromTo('.company-growth .section-header',
         { opacity: 0, y: 50 },
         {
           opacity: 1,
@@ -81,7 +81,7 @@ onMounted(() => {
           duration: 0.8,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: '.section-header',
+            trigger: '.company-growth .section-header',
             start: "top 60%",
             end: "bottom 30%",
             toggleActions: "play none none reverse"
@@ -90,7 +90,7 @@ onMounted(() => {
       )
       
       // 가치 카드들 순차 등장 (양방향)
-      const cards = document.querySelectorAll('.value-card')
+      const cards = document.querySelectorAll('.company-growth .value-card')
       cards.forEach((card, index) => {
         gsap.fromTo(card,
           { opacity: 0, y: 80 },
@@ -101,7 +101,7 @@ onMounted(() => {
             delay: 0.5 + (index * 0.2),
             ease: "power2.out",
             scrollTrigger: {
-              trigger: '.section-header',
+              trigger: '.company-growth .section-header',
               start: "top 60%",
               end: "bottom 20%",
               toggleActions: "play none none reverse"

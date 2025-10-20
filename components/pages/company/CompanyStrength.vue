@@ -1,6 +1,6 @@
 <template>
   <section class="company-strength" aria-labelledby="strength-heading">
-    <div class="container fade-in">
+    <div class="container" ref="containerRef">
       <div class="section-header">
         <div class="section-subtitle">Our Strength</div>
         <p class="section-title mt-24">
@@ -31,7 +31,7 @@
       </div>
     </div>
     <section 
-      class="carousel fade-in" 
+      class="carousel" 
       ref="carouselRef"
       role="region"
       aria-label="회사 강점 슬라이더"
@@ -83,6 +83,7 @@ interface CarouselControl {
   prev: () => void
 }
 
+const containerRef = ref<HTMLElement | null>(null)
 const carouselRef = ref<HTMLElement | null>(null)
 
 // 원본 슬라이드 데이터 (3장)
@@ -235,6 +236,45 @@ onMounted(() => {
 
   ro.value = new ResizeObserver(() => recalc())
   ro.value.observe(viewport.value)
+
+  // GSAP 애니메이션
+  if (process.client) {
+    import('gsap').then(({ gsap }) => {
+      // 컨테이너 애니메이션
+      if (containerRef.value) {
+        gsap.set(containerRef.value, { opacity: 0, y: 50 })
+        gsap.to(containerRef.value, {
+          opacity: 1,
+          y: 0,
+          delay: 0.2,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: containerRef.value,
+            start: 'top 50%',
+            toggleActions: 'play reverse play reverse'
+          }
+        })
+      }
+
+      // 캐러셀 애니메이션
+      if (carouselRef.value) {
+        gsap.set(carouselRef.value, { opacity: 0, y: 50 })
+        gsap.to(carouselRef.value, {
+          opacity: 1,
+          y: 0,
+          duration: 1.0,
+          delay: 0.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: carouselRef.value,
+            start: 'top 80%',
+            toggleActions: 'play reverse play reverse'
+          }
+        })
+      }
+    })
+  }
 })
 
 onBeforeUnmount(() => {
