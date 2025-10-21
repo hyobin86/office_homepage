@@ -1,0 +1,563 @@
+/* ========================================
+   FinGate Service2 Page Styles
+   ======================================== */
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ========================================
+// Service2 페이지
+// ========================================
+.service2-service {
+  position: relative;
+  background: url('/images/services/service2-bg.png') center top/ cover no-repeat;
+}
+
+// --- 히어로 섹션 ---
+.service2-hero {
+  position: relative;
+  height: 73vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('/images/services/service2-hero.png') center top/ cover no-repeat;
+  
+  .container {
+    margin-top: -6rem;
+    width: 100%;
+  }
+}
+
+// --- Service2 Recommend 섹션 ---
+.service2-recommend {
+  position: relative;
+  
+  .container {
+    width: 100%;
+    padding: 16rem 0;
+    text-align: center;
+  }
+  
+  .speech-bubbles {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+  
+  .bubble-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: $color-bg-white;
+    border-radius: 6.4rem;
+    padding: 2.4rem 8rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 0, 0, 0.05);
+    
+    .bubble-text {
+      flex: 1;
+      font-size: 1.8rem;
+      font-weight: $font-weight-normal;
+      line-height: 3.6rem;
+      text-align: left;
+    }
+    
+    .bubble-icon {
+      flex-shrink: 0;
+      img {
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+// --- Service2 Onestop 섹션 ---
+.service2-onestop {
+  position: relative;
+  
+  .container {
+    width: 100%;
+    padding-top: 16rem;
+    text-align: center;
+  }
+}
+
+.dashboard-cards {
+  position: relative;
+  width: 100%;
+  height: 75rem;
+  margin-top: 11rem;
+  overflow: hidden;
+  
+  // 하단 dim 처리
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20rem;
+    background: linear-gradient(to bottom, 
+      transparent 0%, 
+      rgba(19, 25, 36, 0) 40%, 
+      rgba(19, 25, 36, 1) 84%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .card {
+    position: absolute;
+    // 중앙 기준 좌표 설정
+    top: 1rem;
+    left: 50%;
+    
+    // GSAP가 완전히 제어하도록 초기 상태 제거
+    opacity: 0;
+    
+    img {
+      display: block;
+    }
+  }
+  
+  // 카드 1: 예산 건정성
+  .card-1 {
+    transform: translate(-92.8rem, 14.8rem);
+  }
+  
+  // 카드 2: 보험료
+  .card-2 {
+    transform: translate(-92.8rem, 22.8rem);
+  }
+  
+  // 카드 3: 보장점수
+  .card-3 {
+    transform: translate(-92.8rem, 51.5rem);
+  }
+  
+  // 카드 4: 월납보험료
+  .card-4 {
+    transform: translate(-92.8rem, 64.4rem);
+  }
+  
+  // 카드 5: 연금
+  .card-5 {
+    transform: translate(-56.1rem, 8rem);
+  }
+  
+  // 카드 6: 가족
+  .card-6 {
+    transform: translate(-50%,0);
+  }
+  
+  // 카드 7: 미납
+  .card-7 {
+    transform: translate(-50%, 8rem);
+  }
+  
+  // 카드 8-11: 추가 카드들 (필요에 따라 위치 조정)
+  .card-8 {
+    transform: translate(36.8rem, 11.2rem);
+  }
+  
+  .card-9 {
+    transform: translate(36.8rem, 32.7rem);
+  }
+  
+  .card-10 {
+    transform: translate(66rem, 32.7rem);
+  }
+  
+  .card-11 {
+    transform: translate(36.8rem, 52.5rem);
+  }
+}
+
+// --- Service2 Manage 섹션 ---
+.service2-manage {
+  position: relative;
+  
+  .container {
+    width: 100%;
+    padding-top: 10rem;
+    text-align: center;
+  }
+  
+  .manage-content {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 3rem;
+    }
+  }
+  
+  .manage-features {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  
+  .feature-card {
+    background: rgba(46, 46, 51, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2rem;
+    padding: 3rem;
+    text-align: left;
+    
+    .feature-icon {
+      margin-bottom: 2rem;
+      
+      .icon-emoji {
+        font-size: 3rem;
+      }
+    }
+    
+    h4 {
+      font-size: 2.2rem;
+      font-weight: $font-weight-semibold;
+      color: $color-text-white;
+      margin-bottom: 1.6rem;
+    }
+    
+    p {
+      font-size: 1.6rem;
+      color: $color-text-white;
+      line-height: 2.4rem;
+      margin-bottom: 2rem;
+    }
+    
+    ul {
+      list-style: none;
+      
+      li {
+        font-size: 1.4rem;
+        color: $color-text-white;
+        line-height: 2.2rem;
+        margin-bottom: 0.8rem;
+        position: relative;
+        padding-left: 1.6rem;
+        
+        &::before {
+          content: '•';
+          position: absolute;
+          left: 0;
+        }
+      }
+    }
+  }
+  
+  .manage-dashboard {
+    flex: 1;
+    
+    .dashboard-placeholder {
+      background: rgba(46, 46, 51, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 2rem;
+      padding: 4rem;
+      text-align: center;
+      
+      .platform-emoji {
+        font-size: 6rem;
+        display: block;
+        margin-bottom: 2rem;
+      }
+      
+      p {
+        font-size: 1.8rem;
+        color: $color-text-white;
+      }
+    }
+  }
+}
+
+// --- Service2 Manage 섹션 ---
+.service2-manage {
+  position: relative;
+  
+  .container {
+    width: 100%;
+    padding-top: 28rem;
+    text-align: center;
+  }
+  
+  .manage-content {
+    display: flex;
+    gap: 2.4rem;
+    padding-top: 12rem;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .manage-area {
+    text-align: left;
+    .area-details-image {
+      position: relative;
+      .area-details-image-overlay {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        & > img {
+          position: absolute;
+          box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+          z-index: 2;
+        }
+        .overlay-image1 {
+          top: 14.9rem;
+          left: 8rem;
+        }
+        .overlay-image2 {
+          top: 14.5rem;
+          left: 33.9rem;
+        }
+        .overlay-image3 {
+          top: 20.7rem;
+          left: 22.1rem;
+        }
+      }
+    }
+  }
+  .area-title {
+    font-size: 3.2rem;
+    font-weight: $font-weight-semibold;
+    color: $color-text-white;
+    line-height: 4.0rem;
+  }
+  .area-desc {
+    font-size: 1.8rem;
+    font-weight: $font-weight-normal;
+    color: $color-text-white;
+    line-height: 2.8rem;
+  }
+}
+
+// --- Service2 Diagnosis 섹션 ---
+.service2-diagnosis {
+  position: relative;
+  
+  .container {
+    width: 100%;
+    padding: 29.2rem 0 0;
+    text-align: left;
+  }
+  
+  .diagnosis-content {
+    margin-top: 6rem;
+    padding-bottom: 16rem;
+    width: 100%;
+    display: flex;
+    gap: 14.3rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .diagnosis-buttons {
+    flex: 0 0 40rem;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    min-width: 66.8rem;
+    .diagnosis-button {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s linear;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      height: 16.8rem; // 168px = 16.8rem (1rem = 10px)
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      .button-title {
+        font-size: 4rem;
+        font-weight: $font-weight-semibold;
+        color: $color-text-white;
+        opacity: 0.2;
+        transition: all 0.5s linear;
+      }
+      
+      .button-subtitle {
+        margin-top: 2.4rem;
+        font-size: 1.8rem;
+        color: $color-text-white;
+        font-weight: $font-weight-light;
+        line-height: 2.8rem;
+        opacity: 0;
+        transition: all 0.5s linear;
+      }
+      
+      &.active {
+        height: 22rem; // 220px = 22rem (1rem = 10px)
+        
+        .button-title {
+          opacity: 1;
+        }
+        
+        .button-subtitle {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  
+  .diagnosis-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+}
+
+// --- Service2 Report 섹션 ---
+.service2-report {
+  position: relative;
+  
+  .container {
+    width: 100%;
+    padding-top: 10rem;
+    text-align: center;
+  }
+  
+  .report-content {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+    margin-top: 6rem;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 3rem;
+    }
+  }
+  
+  .report-info {
+    flex: 1;
+    text-align: left;
+    
+    h4 {
+      font-size: 2.8rem;
+      font-weight: $font-weight-semibold;
+      color: $color-text-white;
+      margin-bottom: 2rem;
+    }
+    
+    p {
+      font-size: 1.8rem;
+      color: $color-text-white;
+      line-height: 2.8rem;
+      margin-bottom: 4rem;
+    }
+  }
+  
+  .report-types {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  
+  .report-type {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    
+    .report-icon {
+      flex-shrink: 0;
+      
+      .icon-emoji {
+        font-size: 3rem;
+      }
+    }
+    
+    .report-details {
+      h5 {
+        font-size: 2rem;
+        font-weight: $font-weight-semibold;
+        color: $color-text-white;
+        margin-bottom: 1rem;
+      }
+      
+      p {
+        font-size: 1.6rem;
+        color: $color-text-white;
+        line-height: 2.4rem;
+        margin-bottom: 1.6rem;
+      }
+      
+      ul {
+        list-style: none;
+        
+        li {
+          font-size: 1.4rem;
+          color: $color-text-white;
+          line-height: 2.2rem;
+          margin-bottom: 0.8rem;
+          position: relative;
+          padding-left: 1.6rem;
+          
+          &::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+  
+  .report-visual {
+    flex: 1;
+    
+    .visual-placeholder {
+      background: rgba(46, 46, 51, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 2rem;
+      padding: 4rem;
+      text-align: center;
+      
+      .platform-emoji {
+        font-size: 6rem;
+        display: block;
+        margin-bottom: 2rem;
+      }
+      
+      p {
+        font-size: 1.8rem;
+        color: $color-text-white;
+      }
+    }
+  }
+}
+
+// --- Service2 Contact 섹션 ---
+.service2-contact {
+  position: relative;
+  
+  .container {
+    width: 100%;
+    padding-top: 10rem;
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 3.2rem;
+    font-weight: $font-weight-semibold;
+    color: $color-text-white;
+    margin-bottom: 2rem;
+  }
+  
+  p {
+    font-size: 1.8rem;
+    color: $color-text-white;
+    line-height: 2.8rem;
+    margin-bottom: 4rem;
+  }
+}

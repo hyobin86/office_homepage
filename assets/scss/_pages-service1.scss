@@ -1,18 +1,17 @@
 /* ========================================
-   FinGate Services Page Styles
+   FinGate Service1 Page Styles
    ======================================== */
 
 @use 'variables' as *;
 @use 'mixins' as *;
 
 // ========================================
-// 서비스 페이지 (service1, service2)
+// Service1 페이지
 // ========================================
 .service1-service {
   position: relative;
   background: url('/images/services/service1-bg.png') center top/ cover no-repeat;
 }
-
 
 // --- 히어로 섹션 ---
 .service1-hero {

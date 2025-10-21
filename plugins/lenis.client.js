@@ -29,7 +29,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     const mainSections = ['hero', 'company', 'services', 'partners', 'vision', 'banner']
     
     // snap 기능 비활성화 페이지들
-    const snapDisabledPages = ['newvision', 'company', 'service1']
+    const snapDisabledPages = ['newvision', 'company', 'service1', 'service2']
 
     // 현재 페이지와 섹션 배열 결정
     const getCurrentSections = () => {
@@ -43,6 +43,9 @@ export default defineNuxtPlugin((nuxtApp) => {
         return [] // snap 비활성화
       } else if (path === '/services/service1') {
         currentPage = 'service1'
+        return [] // snap 비활성화
+      } else if (path === '/services/service2') {
+        currentPage = 'service2'
         return [] // snap 비활성화
       } else {
         currentPage = 'main'

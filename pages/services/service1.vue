@@ -24,13 +24,13 @@
 
 <script setup lang="ts">
 // 컴포넌트 import
-import Service1Hero from '~/components/pages/services/Service1Hero.vue'
-import Service1Reason from '~/components/pages/services/Service1Reason.vue'
-import Service1Solution from '~/components/pages/services/Service1Solution.vue'
-import Service1Total from '~/components/pages/services/Service1Total.vue'
-import Service1Revolution from '~/components/pages/services/Service1Revolution.vue'
-import Service1Custom from '~/components/pages/services/Service1Custom.vue'
-import Service1Contact from '~/components/pages/services/Service1Contact.vue'
+import Service1Hero from '~/components/pages/services/service1/Service1Hero.vue'
+import Service1Reason from '~/components/pages/services/service1/Service1Reason.vue'
+import Service1Solution from '~/components/pages/services/service1/Service1Solution.vue'
+import Service1Total from '~/components/pages/services/service1/Service1Total.vue'
+import Service1Revolution from '~/components/pages/services/service1/Service1Revolution.vue'
+import Service1Custom from '~/components/pages/services/service1/Service1Custom.vue'
+import Service1Contact from '~/components/pages/services/service1/Service1Contact.vue'
 
 // SEO 메타데이터
 const seoData = useSEO('services/service1')

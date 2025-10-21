@@ -5,11 +5,10 @@
         <h2 id="custom-heading" class="section-title text-black">
           고객사의 니즈에 맞춰 솔루션을 커스터마이징합니다.
         </h2>
-        <p class="section-desc text-black mt-32">
+        <p class="section-desc text-gray mt-32">
           고객 요구에 유연하게 대응하는 전문 커스터마이징 서비스를 제공합니다.
         </p>
       </div>
-      
       <div class="custom-points mt-120">
         <div 
           v-for="(point, index) in customPoints" 

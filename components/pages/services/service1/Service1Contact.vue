@@ -5,7 +5,7 @@
         <h2 id="contact-heading" class="section-title text-black">
           고객사의 신뢰가 우리의 강점을 증명합니다.
         </h2>
-        <p class="section-desc text-black mt-32">
+        <p class="section-desc text-gray mt-32">
           핀게이트만의 보험 IT 솔루션으로 고객사의 성장을 지원하며 함께 미래를 열어갑니다.
         </p>
       </div>

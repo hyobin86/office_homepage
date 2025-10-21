@@ -25,6 +25,7 @@
 - ✅ **SITE_CONFIG 중앙 관리** - 연락처 정보, 회사 정보 통합 관리
 - ✅ **회사소개 페이지 완성** - 6개 섹션 (히어로, 성장, 강점, 사업영역, 연혁, 연락처)
 - ✅ **서비스 페이지 완성** - Service1 (GA 통합 운영 시스템) 5개 섹션 구현
+- ✅ **Service2 페이지 완성** - 원스톱 상담지원 솔루션 6개 섹션 구현
 - ✅ **연락처 페이지 완성** - 히어로, 연락처 정보, 문의 폼 (EmailJS 통합)
 
 ---
@@ -96,14 +97,21 @@ office_homepage/
 │   │   │   ├── CompanyHistory.vue     # 회사 연혁 + AI 히어로 섹션
 │   │   │   └── CompanyContact.vue      # 연락처 정보 + 지도 섹션
 │   │   ├── services/
-│   │   │   ├── ServicesHero.vue
-│   │   │   ├── ServicesList.vue
-│   │   │   ├── ServicesCta.vue
-│   │   │   ├── Service1Solution.vue    # 솔루션 소개 섹션
-│   │   │   ├── Service1Total.vue       # 통합 서비스 카드 섹션
-│   │   │   ├── Service1Revolution.vue  # 지그재그 혁신 섹션
-│   │   │   ├── Service1Custom.vue      # 커스터마이징 POINT 섹션
-│   │   │   └── Service1Contact.vue     # 고객사 로고 + CTA 섹션
+│   │   │   ├── service1/
+│   │   │   │   ├── Service1Hero.vue        # Service1 히어로 섹션
+│   │   │   │   ├── Service1Solution.vue    # 솔루션 소개 섹션
+│   │   │   │   ├── Service1Total.vue       # 통합 서비스 카드 섹션
+│   │   │   │   ├── Service1Revolution.vue  # 지그재그 혁신 섹션
+│   │   │   │   ├── Service1Custom.vue      # 커스터마이징 POINT 섹션
+│   │   │   │   ├── Service1Reason.vue     # 선택 이유 섹션
+│   │   │   │   └── Service1Contact.vue     # 고객사 로고 + CTA 섹션
+│   │   │   └── service2/
+│   │   │       ├── Service2Hero.vue        # Service2 히어로 섹션
+│   │   │       ├── Service2Recommend.vue   # 추천 섹션 (말풍선 애니메이션)
+│   │   │       ├── Service2Onestop.vue     # 원스톱 섹션 (11개 카드 대시보드)
+│   │   │       ├── Service2Manage.vue      # 고객 관리 섹션 (순차 애니메이션)
+│   │   │       ├── Service2Diagnosis.vue   # 보험 진단 섹션 (인터랙티브 버튼)
+│   │   │       └── Service2Report.vue      # 리포트 섹션
 │   │   └── contact/
 │   │       ├── ContactHero.vue         # 연락처 히어로 섹션
 │   │       ├── ContactInfo.vue         # 연락처 정보 + 지도 섹션
@@ -130,7 +138,8 @@ office_homepage/
 │   ├── _pages.scss                  # 페이지별 스타일 통합
 │   ├── _pages-main.scss             # 메인 페이지
 │   ├── _pages-company.scss          # 회사소개 페이지
-│   ├── _pages-services.scss         # 서비스 페이지
+│   ├── _pages-service1.scss         # Service1 페이지 (GA 통합 운영 시스템)
+│   ├── _pages-service2.scss         # Service2 페이지 (원스톱 상담지원 솔루션)
 │   ├── _pages-newvision.scss        # 뉴비전 페이지
 │   └── _pages-contact.scss          # 연락처 페이지
 │
@@ -233,6 +242,36 @@ office_homepage/
 || **CompanyBusiness** | 사업 영역 섹션 | 동적 비즈니스 카드 그리드, 배경 오버레이 효과 |
 || **CompanyHistory** | 회사 연혁 섹션 | 타임라인 스크롤 애니메이션, AI 히어로 섹션 통합 |
 || **CompanyContact** | 연락처 섹션 | SITE_CONFIG 기반 연락처 정보, NuxtImg 지도, Flexbox 레이아웃 |
+
+### Service2 주요 기능
+
+#### 1. **Service2Diagnosis 인터랙티브 시스템**
+```vue
+// 버튼 높이 애니메이션 (168px → 220px)
+.diagnosis-button {
+  height: 16.8rem; // 비활성 상태
+  transition: all 0.3s linear;
+  
+  &.active {
+    height: 22rem; // 활성 상태
+  }
+}
+```
+
+#### 2. **Service2Onestop 대시보드**
+```vue
+// 11개 카드 절대 위치 기반 레이아웃
+.card-1 { transform: translate(-50%, -50%) translate(-200px, -100px); }
+.card-2 { transform: translate(-50%, -50%) translate(-100px, -150px); }
+// ... 각 카드별 개별 위치와 딜레이
+```
+
+#### 3. **Service2Manage 순차 애니메이션**
+```javascript
+// 타이틀 → 영역1 → 이미지1 → 영역2 → 이미지2 순차 등장
+gsap.fromTo(area1Ref.value, { opacity: 0, y: 100 }, { opacity: 1, y: 0, delay: 0.3 })
+gsap.fromTo(img1Ref.value, { opacity: 0, y: 80 }, { opacity: 1, y: 0, delay: 1.2 })
+```
 
 ### 주요 애니메이션
 
