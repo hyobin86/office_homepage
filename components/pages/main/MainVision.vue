@@ -1,7 +1,7 @@
 <template>
   <section class="main-vision" aria-labelledby="vision-heading">
     <div class="container">
-      <div class="hero-header fade-in">
+      <div class="hero-header" ref="heroHeaderRef">
         <div class="hero-subtitle">NEW VISION</div>
         <h2 id="vision-heading" class="hero-title mt-20">AI와 함께 만드는 보험 IT의 새로운 기준</h2>
         <p class="hero-desc mt-40">복잡한 보험 업무를 데이터와 AI로 혁신적인 경험을 만듭니다.</p>
@@ -12,7 +12,7 @@
           :key="index"
           :to="card.link"
           :class="`vision-card-${index + 1}`"
-          class="vision-card"
+          class="vision-card mt-20"
           role="listitem"
           :aria-label="`${card.title} 페이지로 이동`"
         >
@@ -52,9 +52,30 @@ const visionCards = [
 
 let gsapContext: gsap.Context | null = null
 
+// 헤더 ref
+const heroHeaderRef = ref<HTMLElement | null>(null)
+
 onMounted(() => {
   if (process.client) {
     gsapContext = gsap.context(() => {
+      // 헤더 애니메이션
+      if (heroHeaderRef.value) {
+        gsap.fromTo(heroHeaderRef.value, 
+          { opacity: 0, y: 50 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: '.main-vision',
+              start: 'top 50%',
+              toggleActions: 'play reverse play reverse'
+            }
+          }
+        )
+      }
+
       const cards = document.querySelectorAll('.vision-card')
       
       cards.forEach((card, index) => {
@@ -73,7 +94,7 @@ onMounted(() => {
           delay: 1 + (index * 0.2),
           scrollTrigger: {
             trigger: '.main-vision',
-            start: 'top 70%',
+            start: 'top 60%',
             toggleActions: 'play reverse play reverse'
           },
           onComplete: function() {

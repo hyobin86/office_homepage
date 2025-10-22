@@ -93,7 +93,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-diagnosis',
           start: 'top 70%',
-          toggleActions: 'play none none reverse'
+          toggleActions: 'play reverse play reverse'
         }
       }
     )
@@ -101,17 +101,17 @@ onMounted(() => {
   
   if (areaRef.value) {
     gsap.fromTo(areaRef.value, 
-      { opacity: 0, y: 100 },
+      { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
         duration: 0.8,
-        delay: 0.3,
+        delay: 0.5,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-diagnosis',
-          start: 'top 60%',
-          toggleActions: 'play none none reverse'
+          start: 'top 50%',
+          toggleActions: 'play reverse play reverse'
         }
       }
     )

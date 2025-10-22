@@ -37,7 +37,7 @@
           alt="Contact Visual"
           loading="lazy"
           format="webp"
-          width="1772"
+          width="1722"
           height="320"
           quality="85"
         />
@@ -80,9 +80,9 @@ const setLogoRef = (el: Element | ComponentPublicInstance | null, index: number)
 }
 
 const clientLogos: ClientLogo[] = [
-  { name: '더베스트', image: 'best-logo-w.png' },
-  { name: 'AIA프리미어파트너스', image: 'aia-logo-w.png' },
   { name: '카카오페이인슈어런스', image: 'kakao-logo-w.png' },
+  { name: 'AIA프리미어파트너스', image: 'aia-logo-w.png' },
+  { name: '더베스트', image: 'best-logo-w.png' },
 ]
 
 onMounted(() => {

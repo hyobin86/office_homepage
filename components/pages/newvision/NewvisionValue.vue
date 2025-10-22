@@ -138,10 +138,9 @@ const setActiveButton = (index: number) => {
       
       // 콘텐츠 영역 fade in
       gsap.fromTo('.content-wrapper', 
-        { opacity: 0, y: 20 },
+        { opacity: 0,  },
         {
           opacity: 1,
-          y: 0,
           duration: 0.7,
           ease: "power2.out"
         }

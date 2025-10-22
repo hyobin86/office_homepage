@@ -1,7 +1,7 @@
 <template>
   <section class="service1-solution" aria-labelledby="solution-heading">
     <div class="container">
-      <div class="section-header fade-in" ref="headerRef">
+      <div class="section-header" ref="headerRef">
         <h2 id="solution-heading" class="section-title">
           최신 IT 기술이 만든 차세대 보험 솔루션
         </h2>
@@ -102,6 +102,24 @@ const features: FeatureItem[] = [
 onMounted(() => {
   if (process.client) {
     gsapContext = gsap.context(() => {
+      // 헤더 애니메이션
+      if (headerRef.value) {
+        gsap.fromTo(headerRef.value, 
+          { opacity: 0, y: 50 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: '.service1-solution',
+              start: 'top 60%',
+              toggleActions: 'play reverse play reverse'
+            }
+          }
+        )
+      }
+
       // 각 피처 아이템 개별 트리거 애니메이션
       featureRefs.value.forEach((featureRef, index) => {
         console.log(`Feature ${index}:`, featureRef)
@@ -115,7 +133,7 @@ onMounted(() => {
             ease: "power2.out",
             scrollTrigger: {
               trigger: featureRef,
-              start: 'top 60%',
+              start: 'top 70%',
               toggleActions: 'play reverse play reverse'
             }
           })

@@ -35,7 +35,7 @@ export default defineNuxtPlugin(() => {
               trigger: element,
               start: "top 60%",
               end: isInServicesSection ? () => mainServicesSection.offsetTop + mainServicesSection.offsetHeight : undefined,
-              toggleActions: isInServicesSection ? "play none none reverse" : "play reverse play reverse",
+              toggleActions: isInServicesSection ? "play reverse play reverse" : "play reverse play reverse",
               invalidateOnRefresh: false
             }
           }

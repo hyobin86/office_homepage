@@ -140,15 +140,6 @@ address {
     max-width: 1400px;
     padding: 0 1.5rem;
   }
-  
-  @include responsive(md) {
-    max-width: 100%;
-    padding: 0 1rem;
-  }
-  
-  @include responsive(sm) {
-    padding: 0 0.75rem;
-  }
 }
 
 // 버튼
@@ -200,6 +191,15 @@ address {
   &-small {
     height: 6.4rem;
     font-size: 1.8rem;
+    font-weight: $font-weight-normal;
+  }
+  &-default {
+    border: 0.2rem solid $color-border-quaternary;
+    color: $color-text-quaternary;
+    &:hover,
+    &.active {
+      color: $color-text-white;
+    }
   }
 }
 
@@ -230,17 +230,6 @@ address {
   svg {
     width: 3.2rem;
     height: 3.2rem;
-  }
-  
-  @include responsive(md) {
-    right: 2.4rem;
-    width: 4.8rem;
-    height: 4.8rem;
-    
-    svg {
-      width: 2rem;
-      height: 2rem;
-    }
   }
 }
 

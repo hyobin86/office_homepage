@@ -1,7 +1,7 @@
 <template>
   <section class="service2-onestop" aria-labelledby="onestop-heading">
-    <div class="container">
-      <div class="section-header" ref="headerRef">
+    <div class="container" ref="headerRef">
+      <div class="section-header" >
         <h2 id="onestop-heading" class="section-title">
           설계사의 모든 고민, ISP 하나로 끝!
         </h2>
@@ -136,25 +136,26 @@ const setCardRef = (el: Element | ComponentPublicInstance | null, index: number)
 }
 
 onMounted(() => {
-  // 타이틀 애니메이션
+  // 타이틀 애니메이션 (더 간단하고 확실한 방법)
   if (headerRef.value) {
-    gsap.fromTo('.section-header', 
-      { 
-        opacity: 0, 
-        y: 50 
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.service2-onestop',
-          start: 'top 60%',
-          toggleActions: 'play none none reverse'
-        }
+    // 초기 상태 설정
+    gsap.set(headerRef.value, {
+      opacity: 0,
+      y: 50
+    })
+    
+    // 애니메이션 실행
+    gsap.to(headerRef.value, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.service2-onestop', // 섹션 전체를 트리거로 사용
+        start: 'top 70%',
+        toggleActions: 'play reverse play reverse'
       }
-    )
+    })
   }
   
   // 카드들 애니메이션 - 등장해서 고정 위치로 이동
@@ -177,7 +178,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.dashboard-cards',  // dashboard-cards 전체를 트리거로 사용
           start: 'top 70%',
-          toggleActions: 'play none none reverse'
+          toggleActions: 'play reverse play reverse'
         }
       })
     }

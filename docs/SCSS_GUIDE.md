@@ -76,15 +76,17 @@ $font-weight-bold: 700;
 
 ### 브레이크포인트
 ```scss
-$breakpoint-mobile: 1024px;   // 1024px 이하 = 모바일
 $breakpoint-desktop: 1400px;  // 컨테이너 최대 너비
 ```
 
 ### 반응형 믹스인
 ```scss
 @mixin responsive($breakpoint) {
-  @media (max-width: $breakpoint) {
-    @content;
+  @if $breakpoint == desktop {
+    @media (max-width: $breakpoint-desktop) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (max-width: $breakpoint-desktop) { @content; }
   }
 }
 ```
@@ -169,7 +171,7 @@ assets/scss/
 .responsive-element {
   font-size: $font-size-xl;
   
-  @include responsive($breakpoint-mobile) {
+  @include responsive(desktop) {
     font-size: $font-size-lg;
   }
 }

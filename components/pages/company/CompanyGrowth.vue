@@ -84,7 +84,7 @@ onMounted(() => {
             trigger: '.company-growth .section-header',
             start: "top 60%",
             end: "bottom 30%",
-            toggleActions: "play none none reverse"
+            toggleActions: "play reverse play reverse"
           }
         }
       )
@@ -104,7 +104,7 @@ onMounted(() => {
               trigger: '.company-growth .section-header',
               start: "top 60%",
               end: "bottom 20%",
-              toggleActions: "play none none reverse"
+              toggleActions: "play reverse play reverse"
             }
           }
         )

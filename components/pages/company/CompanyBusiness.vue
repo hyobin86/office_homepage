@@ -239,10 +239,9 @@ const setActiveButton = (index: number) => {
       
       // 콘텐츠 영역 fade in
       gsap.fromTo('.content-wrapper', 
-        { opacity: 0, y: 20 },
+        { opacity: 0},
         {
           opacity: 1,
-          y: 0,
           duration: 0.7,
           ease: "power2.out"
         }
@@ -266,7 +265,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: headerRef.value,
               start: "top 60%",
-              toggleActions: "play none none reverse"
+              toggleActions: "play reverse play reverse"
             }
           }
         )
@@ -284,7 +283,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: buttonsRef.value,
               start: "top 60%",
-              toggleActions: "play none none reverse"
+              toggleActions: "play reverse play reverse"
             }
           }
         )
@@ -302,7 +301,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: contentRef.value,
               start: "top 80%",
-              toggleActions: "play none none reverse"
+              toggleActions: "play reverse play reverse"
             }
           }
         )
@@ -320,7 +319,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: containerRef.value,
               start: "top 80%",
-              toggleActions: "play none none reverse"
+              toggleActions: "play reverse play reverse"
             }
           }
         )

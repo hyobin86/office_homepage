@@ -11,20 +11,10 @@
   justify-content: center;
 }
 
-// 반응형 브레이크포인트 (웹/모바일 2단계)
+// 반응형 브레이크포인트
 @mixin responsive($breakpoint) {
-  @if $breakpoint == mobile {
-    @media (max-width: $breakpoint-mobile) { @content; }
-  }
   @if $breakpoint == desktop {
     @media (max-width: $breakpoint-desktop) { @content; }
-  }
-  // 기존 호환성 유지
-  @if $breakpoint == md {
-    @media (max-width: $breakpoint-mobile) { @content; }
-  }
-  @if $breakpoint == sm {
-    @media (max-width: $breakpoint-mobile) { @content; }
   }
   @if $breakpoint == xl {
     @media (max-width: $breakpoint-desktop) { @content; }
@@ -34,10 +24,6 @@
 // 섹션 패딩
 @mixin section-padding {
   padding: 6rem 0;
-  
-  @include responsive(md) {
-    padding: 4rem 0;
-  }
 }
 
 // 히어로 헤더
@@ -49,14 +35,6 @@
     color: $color-text-white;
     line-height: 7.2rem;
     letter-spacing: -0.11rem;
-    
-    @include responsive(md) {
-      font-size: $font-size-base;
-    }
-    
-    @include responsive(sm) {
-      font-size: $font-size-base;
-    }
   }
   
   .hero-subtitle {
@@ -65,9 +43,6 @@
     color: $color-text-primary;
     line-height: 2.8rem;
     letter-spacing: 0.84rem;
-    @include responsive(sm) {
-      font-size: $font-size-base;
-    }
   }
   .hero-desc {
     font-size: 2.4rem;
@@ -92,9 +67,6 @@
     color: $color-text-primary;
     line-height: 2.8rem;
     letter-spacing: 0.84rem;
-    @include responsive(sm) {
-      font-size: $font-size-base;
-    }
   }
   .section-desc {
     font-size: 2.0rem;

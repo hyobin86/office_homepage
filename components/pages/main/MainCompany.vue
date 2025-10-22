@@ -2,9 +2,9 @@
   <section class="main-company" aria-labelledby="company-heading">
     <div class="container">
       <div class="hero-header">
-        <div class="hero-subtitle fade-in-delayed">COMPANY</div>
-        <h2 id="company-heading" class="hero-title mt-20 fade-in">보험을 가장 잘 아는 인슈어테크 기업</h2>
-        <p class="hero-desc mt-40 fade-out-delayed">실무에서 검증된 IT 경험과 혁신 기술로 고객의 비즈니스 가치를 높입니다.</p>
+        <div class="hero-subtitle" ref="subtitleRef">COMPANY</div>
+        <h2 id="company-heading" class="hero-title mt-20" ref="titleRef">보험을 가장 잘 아는 인슈어테크 기업</h2>
+        <p class="hero-desc mt-40" ref="descRef">실무에서 검증된 IT 경험과 혁신 기술로 고객의 비즈니스 가치를 높입니다.</p>
       </div>
       
       <div 
@@ -32,7 +32,6 @@
               :width="288"
               :height="372"
               quality="85"
-              sizes="sm:228px md:288px"
             />
           </div>
           <div class="card-title" v-html="card.title" aria-hidden="true"></div>
@@ -93,6 +92,11 @@ const cardClasses = companyCards.map((_, index) => `company-card-${index + 1}`)
 // 커스텀 커서 관련
 const customCursor = ref<HTMLElement | null>(null)
 
+// 헤더 요소들 ref
+const subtitleRef = ref<HTMLElement | null>(null)
+const titleRef = ref<HTMLElement | null>(null)
+const descRef = ref<HTMLElement | null>(null)
+
 // 이벤트 위임을 통한 커서 표시 (카드에 마우스 진입 시)
 const handleCardHover = (e: Event) => {
   const target = e.target as HTMLElement
@@ -133,71 +137,102 @@ const handleMouseMove = (e: MouseEvent) => {
 
 // GSAP Context (자동 클린업)
 let gsapContext: gsap.Context | null = null
-let observer: IntersectionObserver | null = null
-
-// GSAP 애니메이션 초기화 함수
-const initGsapAnimations = () => {
-  if (gsapContext) return // 이미 초기화되었으면 리턴
-  
-  gsapContext = gsap.context(() => {
-    // cards-spread-out 애니메이션
-    (gsap.utils.toArray('.cards-spread-out') as Element[]).forEach((container) => {
-      const cards = Array.from(container.querySelectorAll('.company-card'))
-
-      const finalPositions = [
-        { x: 486,  y: -410 },
-        { x: 341,  y: 100  },
-        { x: -580, y: 80   },
-        { x: -780, y: -300 },
-        { x: -360, y: -440 }
-      ]
-
-      cards.forEach((card, i) => {
-        gsap.set(card, { opacity: 0, force3D: true })
-        
-        gsap.to(card, {
-          x: finalPositions[i].x,
-          y: finalPositions[i].y,
-          opacity: 1,
-          duration: 0.7,
-          ease: 'power1.out',
-          force3D: true,
-          immediateRender: false,
-          delay: 0.7 + (i * 0.05),
-          overwrite: 'auto',
-          scrollTrigger: {
-            trigger: container,
-            start: 'top 70%',
-            toggleActions: 'play reverse play reverse',
-          },
-        })
-      })
-    })
-  })
-}
 
 // 컴포넌트 마운트 시 이벤트 리스너 추가
 onMounted(() => {
   document.addEventListener('mousemove', handleMouseMove, { passive: true })
   
   if (process.client) {
-    // Intersection Observer로 뷰포트 진입 시 애니메이션 초기화
-    const section = document.querySelector('.main-company')
-    if (section) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              initGsapAnimations()
-              // 한 번만 실행하고 observer 해제
-              observer?.disconnect()
+    gsapContext = gsap.context(() => {
+      // 헤더 애니메이션 - 각각 개별적으로
+      if (subtitleRef.value) {
+        gsap.fromTo(subtitleRef.value, 
+          { opacity: 0, y: 30 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.8, 
+            delay: 0.5,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: '.main-company',
+              start: 'top 50%',
+              toggleActions: 'play reverse play reverse'
             }
+          }
+        )
+      }
+      
+      if (titleRef.value) {
+        gsap.fromTo(titleRef.value, 
+          { opacity: 0, y: 30 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.8, 
+            delay: 0.4,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: '.main-company',
+              start: 'top 50%',
+              toggleActions: 'play reverse play reverse'
+            }
+          }
+        )
+      }
+      
+      if (descRef.value) {
+        gsap.fromTo(descRef.value, 
+          { opacity: 0, y: -30 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.8, 
+            delay: 0.5,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: '.main-company',
+              start: 'top 50%',
+              toggleActions: 'play reverse play reverse'
+            }
+          }
+        )
+      }
+
+      // cards-spread-out 애니메이션
+      (gsap.utils.toArray('.cards-spread-out') as Element[]).forEach((container) => {
+        const cards = Array.from(container.querySelectorAll('.company-card'))
+
+        const finalPositions = [
+          { x: 486,  y: -410 },
+          { x: 341,  y: 100  },
+          { x: -580, y: 80   },
+          { x: -780, y: -300 },
+          { x: -360, y: -440 }
+        ]
+
+        cards.forEach((card, i) => {
+          gsap.set(card, { opacity: 0, force3D: true })
+          
+          gsap.to(card, {
+            x: finalPositions[i].x,
+            y: finalPositions[i].y,
+            opacity: 1,
+            duration: 0.7,
+            ease: 'power1.out',
+            force3D: true,
+            immediateRender: false,
+            delay: 0.7 + (i * 0.05),
+            overwrite: 'auto',
+            scrollTrigger: {
+              trigger: container,
+              start: 'top 70%',
+              toggleActions: 'play reverse play reverse',
+            },
           })
-        },
-        { rootMargin: '100px' } // 뷰포트 100px 전에 미리 초기화
-      )
-      observer.observe(section)
-    }
+        })
+      })
+    })
   }
 })
 
@@ -208,11 +243,6 @@ onUnmounted(() => {
   // RAF 취소
   if (rafId !== null) {
     cancelAnimationFrame(rafId)
-  }
-  
-  // Intersection Observer 정리
-  if (observer) {
-    observer.disconnect()
   }
   
   // GSAP Context로 모든 애니메이션/ScrollTrigger 자동 제거

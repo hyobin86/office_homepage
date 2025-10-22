@@ -94,7 +94,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-recommend',
           start: 'top 70%',
-          toggleActions: 'play none none reverse'
+          toggleActions: 'play reverse play reverse'
         }
       }
     )
@@ -112,13 +112,13 @@ onMounted(() => {
         {
           opacity: 1,
           y: 0,
-          duration: 1,
-          delay: index * 0.9, // 각 말풍선마다 0.2초씩 딜레이
-          ease: 'back.out(1.4)',
+          duration: 0.8,
+          delay: index * 0.8, // 각 말풍선마다 0.2초씩 딜레이
+          ease: 'back.out(1.8)',
           scrollTrigger: {
             trigger: '.speech-bubbles',
-            start: 'top 60%',
-            toggleActions: 'play none none reverse'
+            start: 'top 70%',
+            toggleActions: 'play reverse play reverse'
           }
         }
       )

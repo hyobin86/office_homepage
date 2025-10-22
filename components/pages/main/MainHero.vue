@@ -22,7 +22,9 @@
     <div class="hero-content">
       <div class="container">
         <h1 class="hero-title mask-reveal-up">
-          Gateway to Financial<br/>
+          Gateway to Financial
+        </h1>
+        <h1 class="hero-title mask-reveal-up">
           IT Innovation
         </h1>
         <p class="hero-subtitle mt-78 mask-reveal-up">
@@ -60,8 +62,6 @@ onMounted(() => {
           {
             clipPath: 'inset(0% 0 0 0)',
             duration: 1.2,
-            ease: "power3.inOut",
-            delay: 0.2,
             scrollTrigger: {
               trigger: element,
               start: "top 80%",
@@ -77,7 +77,7 @@ onMounted(() => {
         gsap.to(container, {
           opacity: 1,
           duration: 1,
-          delay: 0.9,
+          delay: 0.7,
           ease: "power2.inOut",
           onComplete: () => {
             const dot = container.querySelector('.scroll-dot-bounce')

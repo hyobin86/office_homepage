@@ -87,17 +87,3 @@
 .position-fixed { position: fixed; }
 .position-sticky { position: sticky; }
 
-// ========================================
-// Responsive Utilities
-// ========================================
-@media (max-width: $breakpoint-mobile) {
-  .d-md-none { display: none; }
-  .d-md-block { display: block; }
-  .d-md-flex { display: flex; }
-}
-
-@media (max-width: $breakpoint-mobile) {
-  .d-sm-none { display: none; }
-  .d-sm-block { display: block; }
-  .d-sm-flex { display: flex; }
-}

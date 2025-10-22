@@ -163,21 +163,32 @@ onMounted(() => {
       // 캐러셀 애니메이션 (헤더 다음에)
       gsap.set(carouselRef.value, { 
         opacity: 0, 
-        y: 60,
         force3D: true
       })
       
+      // blur 클래스 추가
+      if (carouselRef.value) {
+        carouselRef.value.classList.add('blur-effect')
+      }
+      
       const carouselAnimation = gsap.to(carouselRef.value, {
         opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        force3D: true,
         delay: 0.5,
+        duration: 1.5,
+        ease: "power4.out",
+        force3D: true,
         scrollTrigger: {
           trigger: '.service1-reason',
-          start: 'top 80%',
+          start: 'top 60%',
           toggleActions: 'play reverse play reverse'
+        },
+        onStart: () => {
+          // 애니메이션 시작 시 blur 클래스 제거
+          carouselRef.value?.classList.remove('blur-effect')
+        },
+        onReverseStart: () => {
+          // 역재생 시작 시 blur 클래스 추가
+          carouselRef.value?.classList.add('blur-effect')
         }
       })
 

@@ -27,7 +27,7 @@ export default defineNuxtConfig({
       titleTemplate: `%s | ${SITE_CONFIG.name}`,
       meta: [
         { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'viewport', content: 'width=1920, user-scalable=yes' },
         { name: 'robots', content: SITE_CONFIG.seo.robots },
         { name: 'theme-color', content: SITE_CONFIG.themeColor },
         { name: 'format-detection', content: 'telephone=no' }

@@ -1,14 +1,14 @@
 <template>
   <section class="company-history" aria-labelledby="history-heading">
-    <div class="container fade-in">
-      <div class="section-header">
+    <div class="container" ref="historyContainerRef">
+      <div class="section-header" ref="historyHeaderRef">
         <div class="section-subtitle">Trust First, Grow Always</div>
         <h2 id="history-heading" class="section-title mt-24">
           신뢰를 우선으로 끊임없이<br>성장합니다.
         </h2>
       </div>
 
-      <div class="timeline-shell">
+      <div class="timeline-shell" ref="timelineShellRef">
         <div class="timeline-scroll" aria-label="연혁 목록">
           <article
             v-for="y in historyData"
@@ -27,8 +27,8 @@
         </div>
       </div>
     </div>
-    <div class="container next-step fade-in">
-      <div class="section-header">
+    <div class="container next-step" ref="nextStepRef">
+      <div class="section-header" ref="nextStepHeaderRef">
         <div class="section-subtitle">NEXT STEP with AI</div>
         <h2 id="contact-heading" class="section-title mt-24">
           AI와 함께 보험 산업의 새로운 IT 혁신을 만들어갑니다.
@@ -75,12 +75,73 @@ const historyData: YearData[] = [
   },
 ]
 
+// refs
+const historyContainerRef = ref<HTMLElement | null>(null)
+const historyHeaderRef = ref<HTMLElement | null>(null)
+const timelineShellRef = ref<HTMLElement | null>(null)
+const nextStepRef = ref<HTMLElement | null>(null)
+const nextStepHeaderRef = ref<HTMLElement | null>(null)
+
 let ctx: gsap.Context | undefined
 
 onMounted(() => {
   if (!process.client) return
 
   ctx = gsap.context(() => {
+    // 히스토리 헤더 애니메이션
+    if (historyHeaderRef.value) {
+      gsap.fromTo(historyHeaderRef.value,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: historyHeaderRef.value,
+            start: "top 60%",
+            toggleActions: "play none none reverse" // 역재생 비활성화
+          }
+        }
+      )
+    }
+
+    // 타임라인 셸 애니메이션
+    if (timelineShellRef.value) {
+      gsap.fromTo(timelineShellRef.value,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: timelineShellRef.value,
+            start: "top 60%",
+            toggleActions: "play reverse play reverse"
+          }
+        }
+      )
+    }
+
+    // Next Step 헤더 애니메이션
+    if (nextStepHeaderRef.value) {
+      gsap.fromTo(nextStepHeaderRef.value,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: nextStepHeaderRef.value,
+            start: "top 60%",
+            toggleActions: "play reverse play reverse"
+          }
+        }
+      )
+    }
+
     // 좌측 헤더 pin (윈도우 스크롤 기준)
     ScrollTrigger.create({
       trigger: '.company-history',

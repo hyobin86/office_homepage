@@ -2,7 +2,7 @@
   <section class="main-services" aria-labelledby="services-heading">
     <div class="container">
       <div class="services-header">
-        <div class="hero-header fade-in">
+        <div class="hero-header" ref="heroHeaderRef">
           <div class="hero-subtitle">SERVICES</div>
           <h2 id="services-heading" class="hero-title mt-20">보험의 비즈니스<br>가치를 높이는<br>디지털 솔루션</h2>
           <p class="hero-desc mt-40">우리의 서비스로 고객의 성공을 앞당깁니다</p>
@@ -74,9 +74,30 @@ const serviceCards = [
 
 let gsapContext: gsap.Context | null = null
 
+// 헤더 ref
+const heroHeaderRef = ref<HTMLElement | null>(null)
+
 onMounted(() => {
   if (process.client) {
     gsapContext = gsap.context(() => {
+      // 헤더 애니메이션
+      if (heroHeaderRef.value) {
+        gsap.fromTo(heroHeaderRef.value, 
+          { opacity: 0, y: 50 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: '.main-services',
+              start: 'top 60%',
+              toggleActions: 'play reverse play reverse'
+            }
+          }
+        )
+      }
+
       // 각 카드에 대해 개별 애니메이션 설정
       serviceCards.forEach((_, index) => {
         const cardElement = document.querySelector(`.service-card-${index + 1}`)
@@ -84,7 +105,7 @@ onMounted(() => {
         if (cardElement) {
           // 각 카드마다 다른 트리거 시작점 설정
           const triggerStart = [
-            "top 20%", // 카드 1: 가장 일찍
+            "top 50%", // 카드 1: 가장 일찍
             "top 50%", // 카드 2: 조금 늦게
             "top 55%", // 카드 3: 더 늦게
             "top 60%"  // 카드 4: 가장 늦게

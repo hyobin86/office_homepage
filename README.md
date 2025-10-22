@@ -388,16 +388,15 @@ $font-weight-bold: 700;
 
 ```scss
 // 브레이크포인트
-$breakpoint-mobile: 1024px;   // 1024px 이하 = 모바일
 $breakpoint-desktop: 1400px;  // 컨테이너 최대 너비
 
 // 사용법
-@include responsive(md) {
-  // 태블릿 (max-width: 1024px)
+@include responsive(desktop) {
+  // 데스크톱 (max-width: 1400px)
 }
 
-@include responsive(sm) {
-  // 모바일 (max-width: 768px)
+@include responsive(xl) {
+  // 데스크톱 (max-width: 1400px) - 기존 호환성
 }
 ```
 

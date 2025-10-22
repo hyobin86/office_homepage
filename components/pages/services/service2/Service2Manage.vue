@@ -112,7 +112,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-manage',
           start: 'top 70%',
-          toggleActions: 'play none none reverse'
+          toggleActions: 'play reverse play reverse'
         }
       }
     )
@@ -129,12 +129,12 @@ onMounted(() => {
         opacity: 1,
         y: 0,
         duration: 0.8,
-        delay: 0.3,
+        delay: 0.5,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-manage',
           start: 'top 60%',
-          toggleActions: 'play none none reverse'
+          toggleActions: 'play reverse play reverse'
         }
       }
     )
@@ -150,13 +150,13 @@ onMounted(() => {
       {
         opacity: 1,
         y: 0,
-        duration: 0.6,
-        delay: 1.2, // area1Ref 등장 완료 후
+        duration: 0.7,
+        delay: 1.0, // area1Ref 등장 완료 후
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-manage',
           start: 'top 60%',
-          toggleActions: 'play none none reverse'
+          toggleActions: 'play reverse play reverse'
         }
       }
     )
@@ -179,7 +179,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-manage',
           start: 'top 60%',
-          toggleActions: 'play none none reverse'
+          toggleActions: 'play reverse play reverse'
         }
       }
     )
@@ -196,12 +196,12 @@ onMounted(() => {
         opacity: 1,
         y: 0,
         duration: 0.6,
-        delay: 2.7, // area2Ref 등장 완료 후
+        delay: 2.6, // area2Ref 등장 완료 후
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-manage',
           start: 'top 60%',
-          toggleActions: 'play none none reverse'
+          toggleActions: 'play reverse play reverse'
         }
       }
     )
