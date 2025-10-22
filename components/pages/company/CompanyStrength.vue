@@ -54,7 +54,6 @@
               :alt="s.title"
               width="1210"
               height="420"
-              format="webp"
               quality="85"
               loading="lazy"
             />

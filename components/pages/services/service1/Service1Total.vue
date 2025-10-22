@@ -21,7 +21,6 @@
           :src="`/images/services/${service.image}`"
           :alt="service.title"
           loading="lazy"
-          format="webp"
           width="402"
           height="230"
           quality="85"

@@ -33,7 +33,6 @@
           src="/images/company/company-map.png" 
           alt="핀게이트 위치 지도 - 서울 마포구 월드컵북로2길 19 7층 (동교동, W위더스빌딩)"
           loading="lazy"
-          format="webp"
           width="640"
           height="608"
           quality="80"

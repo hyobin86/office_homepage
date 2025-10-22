@@ -24,7 +24,6 @@
               :src="card.image"
               :alt="`${card.title} 이미지`"
               loading="lazy"
-              format="webp"
               :width="400"
               :height="500"
               quality="85"

@@ -27,7 +27,6 @@
                   :src="`/images/services/${problem.icon}.svg`"
                   :alt="problem.text"
                   loading="lazy"
-                  format="webp"
                   width="40"
                   height="40"
                   quality="85"

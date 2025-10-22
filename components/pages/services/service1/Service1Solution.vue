@@ -27,7 +27,6 @@
                 :src="`/images/services/${feature.image}`"
                 :alt="feature.title"
                 loading="lazy"
-                format="webp"
                 width="688"
                 height="380"
                 quality="85"

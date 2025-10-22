@@ -27,7 +27,6 @@
                 loading="lazy"
                 width="80"
                 height="80"
-                format="webp"
               />
             </div>
           </div>

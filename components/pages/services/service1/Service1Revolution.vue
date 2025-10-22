@@ -22,7 +22,6 @@
               :src="`/images/services/${block.image}`"
               :alt="block.title"
               loading="lazy"
-              format="webp"
               width="475"
               height="640"
               quality="85"

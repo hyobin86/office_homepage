@@ -21,7 +21,6 @@
                 :src="value.icon"
                 :alt="`${value.title} 아이콘`"
                 loading="lazy"
-                format="webp"
                 width="64"
                 height="64"
                 quality="85"

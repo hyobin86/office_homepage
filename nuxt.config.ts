@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   
   // 이미지 최적화 설정
   image: {
-    formats: ['webp', 'avif'],
+    formats: ['avif'],
     quality: 85,
     screens: {
       xs: 320,
@@ -18,6 +18,28 @@ export default defineNuxtConfig({
       lg: 1024,
       xl: 1280,
       xxl: 1536
+    },
+    // 정적 이미지 처리 설정
+    static: {
+      // 정적 이미지도 최적화하되 원본 경로 유지
+      baseURL: '/images/',
+      // 빌드 시 이미지 복사 설정
+      dir: 'public/images'
+    },
+    // IPX 설정 (이미지 최적화 엔진)
+    ipx: {
+      // 정적 이미지 처리 시 원본 경로 유지
+      modifiers: {
+        // 기본 설정 유지
+      }
+    },
+    // 이미지 최적화 비활성화 옵션 (개발 중 문제 해결용)
+    presets: {
+      default: {
+        modifiers: {
+          quality: 85
+        }
+      }
     }
   },
   
@@ -68,10 +90,17 @@ export default defineNuxtConfig({
     },
     prerender: { 
       routes: ['/', '/company', '/services/service1', '/services/service2', '/newvision', '/contact'],
-      ignore: ['/services'],
       failOnError: false
     },
-    output: { dir: 'dist' }
+    output: { dir: 'dist' },
+    // 정적 자산 복사 설정
+    publicAssets: [
+      {
+        baseURL: '/images',
+        dir: 'public/images',
+        maxAge: 60 * 60 * 24 * 7 // 7일 캐시
+      }
+    ]
   },
   
   experimental: { 

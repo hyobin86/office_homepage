@@ -19,7 +19,6 @@
               alt="고객 현황 상세 정보"
               width="688"
               height="444"
-              format="webp"
               loading="lazy"
             />
             <div class="area-details-image-overlay" ref="img1Ref">
@@ -28,7 +27,6 @@
                 alt="예시1"
                 width="608"
                 height="99"
-                format="webp"
                 loading="lazy"
                 class="overlay-image1"
               />
@@ -48,7 +46,6 @@
               alt="고객 일정 관리 캘린더"
               width="688"
               height="444"
-              format="webp"
               loading="lazy"
             />
             <div class="area-details-image-overlay" ref="img2Ref">
@@ -57,7 +54,6 @@
                 alt="예시2"
                 width="384"
                 height="37"
-                format="webp"
                 loading="lazy"  
                 class="overlay-image2"
               />
@@ -66,7 +62,6 @@
                 alt="예시3"
                 width="390"
                 height="37"
-                format="webp"
                 loading="lazy"
                 class="overlay-image3"
               />

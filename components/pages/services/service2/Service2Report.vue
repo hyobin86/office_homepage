@@ -40,7 +40,6 @@
                    :alt="`${feature.title} 아이콘`"
                    width="48"
                    height="48"
-                   format="webp"
                    loading="lazy"
                  />
                </div>
@@ -57,7 +56,6 @@
           :alt="`${currentSection.title} 인터페이스`"
           width="849"
           height="596"
-          format="webp"
           loading="lazy"
           class="report-dashboard-image"
         />
@@ -72,7 +70,6 @@
             src="/images/newvision/newvision-card11.png"
             alt="Contact Banner"
             loading="lazy"
-            format="webp"
             width="1722"
             height="320"
             quality="85"

@@ -27,7 +27,6 @@
             <NuxtImg 
               :src="card.image"
               :alt="`${cleanTitles[index]} 이미지`"
-              format="webp"
               loading="lazy"
               :width="288"
               :height="372"

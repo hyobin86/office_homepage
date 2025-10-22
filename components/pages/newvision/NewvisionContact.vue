@@ -6,7 +6,6 @@
           src="/images/newvision/newvision-card11.png"
           alt="Contact Visual"
           loading="lazy"
-          format="webp"
           width="1722"
           height="320"
           quality="85"

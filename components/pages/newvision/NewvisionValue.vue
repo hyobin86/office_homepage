@@ -31,7 +31,6 @@
             :src="currentContent.image"
             :alt="currentContent.title"
             loading="lazy"
-            format="webp"
             width="565"
             height="580"
             quality="85"

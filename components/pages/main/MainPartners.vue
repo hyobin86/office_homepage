@@ -16,7 +16,6 @@
           :class="['partner-logo', `partner-logo-${index + 1}`]"
           role="listitem"
           loading="lazy"
-          format="webp"
           width="450"
           height="140"
           fit="inside"

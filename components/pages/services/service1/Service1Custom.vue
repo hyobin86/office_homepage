@@ -26,7 +26,7 @@
               loading="lazy"
               width="104"
               height="104"
-              format="webp"
+              quality="85"
             />
           </div>
         </div>
