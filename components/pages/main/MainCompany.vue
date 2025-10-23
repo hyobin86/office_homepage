@@ -24,13 +24,12 @@
           role="listitem"
         >
           <div class="card-image">
-            <NuxtImg 
+            <img 
               :src="card.image"
               :alt="`${cleanTitles[index]} 이미지`"
               loading="lazy"
-              :width="288"
-              :height="372"
-              quality="85"
+              width="288"
+              height="372"
             />
           </div>
           <div class="card-title" v-html="card.title" aria-hidden="true"></div>
@@ -45,11 +44,12 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 // GSAP 플러그인 등록
-if (process.client) {
+if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
@@ -141,7 +141,7 @@ let gsapContext: gsap.Context | null = null
 onMounted(() => {
   document.addEventListener('mousemove', handleMouseMove, { passive: true })
   
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // 헤더 애니메이션 - 각각 개별적으로
       if (subtitleRef.value) {

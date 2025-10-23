@@ -49,12 +49,11 @@
             role="group"
             :aria-label="`슬라이드 ${(i - clones + n) % n + 1} / ${n}`"
           >
-            <NuxtImg 
+            <img 
               :src="s.src" 
               :alt="s.title"
               width="1210"
               height="420"
-              quality="85"
               loading="lazy"
             />
             <div class="slide-content">
@@ -237,7 +236,7 @@ onMounted(() => {
   ro.value.observe(viewport.value)
 
   // GSAP 애니메이션
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     import('gsap').then(({ gsap }) => {
       // 컨테이너 애니메이션
       if (containerRef.value) {

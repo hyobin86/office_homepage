@@ -20,13 +20,12 @@
           <h3 class="point-title mt-16">{{ point.title }}</h3>
           <p class="point-description mt-32">{{ point.description }}</p>
           <div class="point-icon">
-            <NuxtImg 
+            <img 
               :src="`/images/services/${point.icon}.png`"
               :alt="point.title"
               loading="lazy"
               width="104"
               height="104"
-              quality="85"
             />
           </div>
         </div>
@@ -78,7 +77,7 @@ const customPoints: CustomPoint[] = [
 ]
 
 onMounted(() => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // 헤더 애니메이션
       if (headerRef.value) {

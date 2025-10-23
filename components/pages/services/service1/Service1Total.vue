@@ -17,13 +17,12 @@
         :key="service.title"
         class="service-card"
       >
-        <NuxtImg 
+        <img 
           :src="`/images/services/${service.image}`"
           :alt="service.title"
           loading="lazy"
           width="402"
           height="230"
-          quality="85"
         />
         <div class="card-text">준비중 입니다</div>
         <div class="card-label mt-32">{{ service.title }}</div>
@@ -56,7 +55,7 @@ const services: Service[] = [
 ]
 
 onMounted(() => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // 헤더 애니메이션
       if (headerRef.value) {

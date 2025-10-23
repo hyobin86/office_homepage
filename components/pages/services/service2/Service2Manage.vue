@@ -14,7 +14,7 @@
         <!-- 첫 번째 영역: 고객 현황 관리 -->
         <div class="manage-area manage-area-1" ref="area1Ref">
           <div class="area-details-image">
-            <NuxtImg 
+            <img 
               src="/images/services/service2-card12.png" 
               alt="고객 현황 상세 정보"
               width="688"
@@ -22,7 +22,7 @@
               loading="lazy"
             />
             <div class="area-details-image-overlay" ref="img1Ref">
-              <NuxtImg 
+              <img 
                 src="/images/services/service2-card13.png" 
                 alt="예시1"
                 width="608"
@@ -41,7 +41,7 @@
         <!-- 두 번째 영역: 고객 일정 관리 -->
         <div class="manage-area manage-area-2" ref="area2Ref">
           <div class="area-details-image">
-            <NuxtImg 
+            <img 
               src="/images/services/service2-card14.png" 
               alt="고객 일정 관리 캘린더"
               width="688"
@@ -49,7 +49,7 @@
               loading="lazy"
             />
             <div class="area-details-image-overlay" ref="img2Ref">
-              <NuxtImg 
+              <img 
                 src="/images/services/service2-card15.png" 
                 alt="예시2"
                 width="384"
@@ -57,7 +57,7 @@
                 loading="lazy"  
                 class="overlay-image2"
               />
-              <NuxtImg 
+              <img 
                 src="/images/services/service2-card16.png" 
                 alt="예시3"
                 width="390"

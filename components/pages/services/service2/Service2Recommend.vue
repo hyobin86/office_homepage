@@ -21,7 +21,7 @@
           <div class="bubble-content">
             <p class="bubble-text" v-html="bubble.text"></p>
             <div class="bubble-icon">
-              <NuxtImg 
+              <img 
                 :src="bubble.icon"
                 :alt="`아이콘 ${index + 1}`"
                 loading="lazy"

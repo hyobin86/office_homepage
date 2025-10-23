@@ -2,13 +2,12 @@
   <section class="newvision-contact" aria-labelledby="contact-heading">
     <div class="contact-container fade-in">
       <div class="contact-image">
-        <NuxtImg 
+        <img 
           src="/images/newvision/newvision-card11.png"
           alt="Contact Visual"
           loading="lazy"
           width="1722"
           height="320"
-          quality="85"
         />
       </div>
       <div class="contact-visual">

@@ -22,15 +22,14 @@
       
       <!-- 콘텐츠 영역 -->
       <div class="business-content mt-120" ref="contentRef">
-        <div class="content-wrapper">
+        <div class="content-wrapper" :key="`content-${activeButton}`">
           <div class="content-background">
-            <NuxtImg 
+            <img 
               :src="currentContent.backgroundImage"
               :alt="currentContent.title"
               loading="lazy"
               width="1400"
               height="648"
-              quality="85"
             />
           </div>
           <div class="content-overlay">
@@ -38,18 +37,16 @@
             <div class="content-cards">
               <div 
                 v-for="(card, index) in currentContent.cards" 
-                :key="`${activeButton}-${index}-${card.icon}`"
+                :key="`card-${activeButton}-${index}`"
                 class="business-card"
               >
                 <div class="card-icon">
-                  <NuxtImg 
-                    :key="`${activeButton}-${index}-${card.icon}`"
+                  <img 
                     :src="card.icon"
                     :alt="card.title"
                     loading="lazy"
                     width="48"
                     height="48"
-                    quality="85"
                   />
                 </div>
                 <h4 class="card-title mt-24" v-html="card.title"></h4>
@@ -61,13 +58,12 @@
     </div>
     <div class="business-container" ref="containerRef">
       <div class="business-image">
-        <NuxtImg 
+        <img 
           src="/images/company/company-card8.png"
           alt="business Visual"
           loading="lazy"
           width="1680"
           height="320"
-          quality="85"
         />
       </div>
       <div class="business-visual">
@@ -86,10 +82,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-if (process.client) {
+if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
@@ -225,30 +222,12 @@ const currentContent = computed(() => businessContents[activeButton.value])
 const setActiveButton = (index: number) => {
   if (activeButton.value === index) return
   
-  // 콘텐츠 영역 fade out
-  gsap.to('.content-wrapper', {
-    opacity: 0,
-    duration: 0.3,
-    ease: "power2.inOut",
-    onComplete: () => {
-      // 콘텐츠 변경
-      activeButton.value = index
-      
-      // 콘텐츠 영역 fade in
-      gsap.fromTo('.content-wrapper', 
-        { opacity: 0},
-        {
-          opacity: 1,
-          duration: 0.7,
-          ease: "power2.out"
-        }
-      )
-    }
-  })
+  // 즉시 콘텐츠 변경 (key 변경으로 자동 리렌더링)
+  activeButton.value = index
 }
 
 onMounted(() => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // 헤더 애니메이션
       if (headerRef.value) {

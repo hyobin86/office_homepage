@@ -3,7 +3,7 @@
     <div class="container">
       <!-- 카드 컨테이너 (스크롤 고정 영역) -->
       <div class="agenda-cards-container">
-        <div class="section-header fade-in">
+        <div class="section-header" ref="headerRef">
           <div class="section-subtitle">Agenda for Change</div>
           <h2 id="agenda-heading" class="section-title mt-24">보험 현장에는 아직 풀어야할 과제가 있습니다.</h2>
           <p class="section-desc mt-32">아직 해결되지 않은 문제는 새로운 혁신의 기회가 됩니다.</p>
@@ -30,13 +30,12 @@
                 class="card-image" 
                 :class="`card-image-${index * 2 + 1}`"
               >
-                <NuxtImg 
+                <img 
                   :src="card.imageLeft"
                   :alt="`${card.title} 왼쪽 이미지`"
                   loading="lazy"
-                  :width="332"
-                  :height="360"
-                  quality="85"
+                  width="332"
+                  height="360"
                 />
               </div>
               
@@ -45,13 +44,12 @@
                 class="card-image" 
                 :class="`card-image-${index * 2 + 2}`"
               >
-                <NuxtImg 
+                <img 
                   :src="card.imageRight"
                   :alt="`${card.title} 오른쪽 이미지`"
                   loading="lazy"
-                  :width="332"
-                  :height="360"
-                  quality="85"
+                  width="332"
+                  height="360"
                 />
               </div>
             </template>
@@ -63,15 +61,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-if (process.client) {
+if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
 const agendaSection = ref<HTMLElement | null>(null)
+const headerRef = ref<HTMLElement | null>(null)
 
 const agendaCards = [
   {
@@ -97,8 +96,26 @@ const agendaCards = [
 let gsapContext: gsap.Context | null = null
 
 onMounted(() => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
+      // 헤더 애니메이션
+      if (headerRef.value) {
+        gsap.fromTo(headerRef.value,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: headerRef.value,
+              start: "top 60%",
+              toggleActions: "play reverse play reverse"
+            }
+          }
+        )
+      }
+
       const cardsContainer = document.querySelector('.agenda-cards')
       const totalImages = agendaCards.length * 2 // 6개
       
@@ -127,12 +144,10 @@ onMounted(() => {
               { clipPath: 'inset(0 0 100% 0)' },
               {
                 clipPath: 'inset(0 0 0% 0)',
-                delay: 1,  // top 도달 후 0.5초 delay
                 scrollTrigger: {
                   trigger: cardsContainer,
                   start: "top 60%",  // top에 도달하면
                   end: "top 30%",    
-                  scrub: false,      // scrub 비활성화 (delay 사용)
                 }
               }
             )
@@ -167,19 +182,17 @@ onMounted(() => {
           gsap.fromTo(centerText,
             { 
               opacity: 0,
-              y: 50  // 아래에서 시작
             },
             {
               opacity: 1,
-              y: 0,  // 위로 이동
-              delay: 1.3,  // top 도달 후 1.3초 delay
+              delay: 0.5,  // top 도달 후 1.3초 delay
               duration: 1.1,  // 1.1초 동안 애니메이션
               ease: "power2.out",  // 부드러운 ease
               scrollTrigger: {
                 trigger: cardsContainer,
                 start: "top 60%",  // top에 도달하면
-                end: "top 30%",    
-                scrub: false,      // scrub 비활성화 (delay 사용)
+                end: "top 20%",    
+                toggleActions: 'play reverse play reverse'
               }
             }
           )
@@ -193,7 +206,7 @@ onMounted(() => {
                 trigger: cardsContainer,
                 start: `top+=${pairIndex * pairGap - 400}px top`, // 더 늦게 등장 (200px 늦춤)
                 end: `top+=${pairIndex * pairGap - 200}px top`,
-                scrub: 1,
+                toggleActions: 'play reverse play reverse'
               }
             }
           )

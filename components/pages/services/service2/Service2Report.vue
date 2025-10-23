@@ -35,7 +35,7 @@
               class="report-feature-card"
             >
                <div class="report-feature-icon">
-                 <NuxtImg 
+                 <img 
                    :src="feature.icon" 
                    :alt="`${feature.title} 아이콘`"
                    width="48"
@@ -51,7 +51,7 @@
           </div>
         </div>
         
-        <NuxtImg 
+        <img 
           :src="currentSection.dashboardImage" 
           :alt="`${currentSection.title} 인터페이스`"
           width="849"
@@ -66,13 +66,12 @@
     <div class="service2-contact-banner" ref="bannerRef">
       <div class="contact-container">
         <div class="contact-image">
-          <NuxtImg 
+          <img 
             src="/images/newvision/newvision-card11.png"
             alt="Contact Banner"
             loading="lazy"
             width="1722"
             height="320"
-            quality="85"
           />
         </div>
         <div class="contact-visual">
@@ -158,11 +157,7 @@ const currentSection = computed(() => {
 
 // 버튼 클릭 핸들러
 const setActiveTopButton = (index: number) => {
-  console.log('Button clicked:', index)
-  console.log('Button data:', topButtons[index])
   activeTopButtonIndex.value = index
-  console.log('Active button index:', activeTopButtonIndex.value)
-  console.log('Current section:', currentSection.value)
 }
 
 onMounted(() => {

@@ -25,15 +25,14 @@
       
       <!-- 콘텐츠 영역 -->
       <div class="value-content mt-120">
-        <div class="content-wrapper">
+        <div class="content-wrapper" :key="`content-${activeButton}`">
         <div class="content-image">
-          <NuxtImg 
+          <img 
             :src="currentContent.image"
             :alt="currentContent.title"
             loading="lazy"
             width="565"
             height="580"
-            quality="85"
           />
         </div>
         <div class="content-text">
@@ -56,10 +55,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-if (process.client) {
+if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
@@ -126,30 +126,12 @@ const currentContent = computed(() => valueContents[activeButton.value])
 const setActiveButton = (index: number) => {
   if (activeButton.value === index) return
   
-  // 콘텐츠 영역 fade out
-  gsap.to('.content-wrapper', {
-    opacity: 0,
-    duration: 0.3,
-    ease: "power2.inOut",
-    onComplete: () => {
-      // 콘텐츠 변경
-      activeButton.value = index
-      
-      // 콘텐츠 영역 fade in
-      gsap.fromTo('.content-wrapper', 
-        { opacity: 0,  },
-        {
-          opacity: 1,
-          duration: 0.7,
-          ease: "power2.out"
-        }
-      )
-    }
-  })
+  // 즉시 콘텐츠 변경 (key 변경으로 자동 리렌더링)
+  activeButton.value = index
 }
 
 onMounted(() => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // container 바로 아래 3개 덩어리 순차 등장
       const container = document.querySelector('.newvision-value .container')
@@ -167,7 +149,8 @@ onMounted(() => {
               ease: "power2.out",
               scrollTrigger: {
                 trigger: '.newvision-value',
-                start: "top 80%",
+                start: "top 70%",
+                toggleActions: 'play reverse play reverse'
               }
             }
           )

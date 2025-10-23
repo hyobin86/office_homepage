@@ -33,7 +33,7 @@
         <h2 id="contact-heading" class="section-title mt-24">
           AI와 함께 보험 산업의 새로운 IT 혁신을 만들어갑니다.
         </h2>
-        <NuxtLink to="/contact" class="button mt-60" aria-label="연락 페이지로 이동">
+        <NuxtLink to="/services/service2" class="button mt-60" aria-label="연락 페이지로 이동">
           MORE VIEW
         </NuxtLink>
       </div>
@@ -42,10 +42,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-if (process.client) gsap.registerPlugin(ScrollTrigger)
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 type YearData = { year: string; events: { month: string; text: string }[] }
 
@@ -85,7 +88,7 @@ const nextStepHeaderRef = ref<HTMLElement | null>(null)
 let ctx: gsap.Context | undefined
 
 onMounted(() => {
-  if (!process.client) return
+  if (typeof window === 'undefined') return
 
   ctx = gsap.context(() => {
     // 히스토리 헤더 애니메이션

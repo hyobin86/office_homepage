@@ -433,12 +433,15 @@ npm run generate:robots  # Robots.txt만 생성
 # 사이트 기본 URL
 NUXT_PUBLIC_BASE_URL=https://fingate.co.kr
 
-# EmailJS 설정 (연락 폼)
-EMAILJS_SERVICE_ID=your_service_id
-EMAILJS_TEMPLATE_ID=your_template_id
-EMAILJS_PUBLIC_KEY=your_public_key
-EMAILJS_TO_EMAIL=withus@fingate.co.kr
+# EmailJS 설정 (연락 폼) - 선택사항
+# 로컬 개발 시에만 필요하며, 서버에서는 기본값 사용
+NUXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NUXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NUXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+NUXT_PUBLIC_EMAILJS_TO_EMAIL=your_email@domain.com
 ```
+
+> **참고**: EmailJS 설정은 `config/site.ts`에 기본값이 설정되어 있어 환경 변수가 없어도 작동합니다.
 
 ### Netlify 배포
 
@@ -446,8 +449,9 @@ EMAILJS_TO_EMAIL=withus@fingate.co.kr
    - Build command: `npm run generate`
    - Publish directory: `dist`
 
-2. **환경 변수**
-   - Netlify 대시보드에서 `.env` 변수 설정
+2. **환경 변수** (선택사항)
+   - Netlify 대시보드에서 환경 변수 설정
+   - 설정하지 않아도 기본값으로 작동
 
 ### GitHub Pages 배포
 

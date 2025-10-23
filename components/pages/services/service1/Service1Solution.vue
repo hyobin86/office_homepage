@@ -23,13 +23,12 @@
               </ul>
             </div>
             <div class="feature-image">
-              <NuxtImg 
+              <img 
                 :src="`/images/services/${feature.image}`"
                 :alt="feature.title"
                 loading="lazy"
                 width="688"
                 height="380"
-                quality="85"
               />
             </div>
           </div>
@@ -99,7 +98,7 @@ const features: FeatureItem[] = [
 ]
 
 onMounted(() => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // 헤더 애니메이션
       if (headerRef.value) {
@@ -121,7 +120,6 @@ onMounted(() => {
 
       // 각 피처 아이템 개별 트리거 애니메이션
       featureRefs.value.forEach((featureRef, index) => {
-        console.log(`Feature ${index}:`, featureRef)
         if (featureRef) {
           gsap.set(featureRef, { opacity: 0})
           

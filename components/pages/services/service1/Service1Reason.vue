@@ -23,13 +23,12 @@
             <div class="problem-card">
               <p class="card-text" v-html="problem.text"></p>
               <div class="card-icon">
-                <NuxtImg 
+                <img 
                   :src="`/images/services/${problem.icon}.svg`"
                   :alt="problem.text"
                   loading="lazy"
                   width="40"
                   height="40"
-                  quality="85"
                 />
               </div>
             </div>
@@ -137,7 +136,7 @@ onMounted(() => {
   recalc()
 
   // GSAP ScrollTrigger 애니메이션 설정
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // 헤더 애니메이션
       gsap.set(headerRef.value, { 

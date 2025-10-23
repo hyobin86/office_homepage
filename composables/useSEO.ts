@@ -34,14 +34,23 @@ export const useSEO = (pageKey: SeoKey, customData?: Partial<typeof PAGE_SEO[Seo
     { name: 'keywords', content: finalSeoData.keywords },
     { name: 'author', content: SITE_CONFIG.author },
     
-    // Open Graph 태그
+    // Open Graph 태그 (카카오톡 공유용)
     { property: 'og:type', content: SEO_DEFAULTS.type },
     { property: 'og:site_name', content: SITE_CONFIG.name },
     { property: 'og:title', content: finalSeoData.title },
     { property: 'og:description', content: finalSeoData.description },
-    { property: 'og:image', content: SEO_DEFAULTS.image },
+    { property: 'og:image', content: `${config.public.baseUrl}${SEO_DEFAULTS.image}` },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:image:type', content: 'image/png' },
     { property: 'og:url', content: currentUrl },
     { property: 'og:locale', content: SEO_DEFAULTS.locale },
+    
+    // 카카오톡 전용 메타태그
+    { property: 'twitter:card', content: 'summary_large_image' },
+    { property: 'twitter:title', content: finalSeoData.title },
+    { property: 'twitter:description', content: finalSeoData.description },
+    { property: 'twitter:image', content: `${config.public.baseUrl}${SEO_DEFAULTS.image}` },
     
     // 추가 SEO 메타 태그
     { name: 'robots', content: SEO_DEFAULTS.robots },

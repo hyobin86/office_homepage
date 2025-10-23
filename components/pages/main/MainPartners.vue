@@ -8,7 +8,7 @@
         <p class="hero-desc mt-40">고객의 성공과 함께 쌓아온 신뢰가 핀게이트의 성장을 이끕니다.</p>
       </div>
       <div class="d-flex gap-24 mt-120" role="list" aria-label="파트너사 로고">
-        <NuxtImg 
+        <img 
           v-for="(logo, index) in partnerLogos"
           :key="logo.id"
           :src="logo.src" 
@@ -18,8 +18,6 @@
           loading="lazy"
           width="450"
           height="140"
-          fit="inside"
-          quality="90"
         />
       </div>
     </div>
@@ -27,11 +25,12 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 // GSAP 플러그인 등록
-if (process.client) {
+if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
@@ -62,7 +61,7 @@ const partnerLogos = [
 
 // 파트너 로고 애니메이션 설정
 onMounted(() => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // 헤더 애니메이션
       if (heroHeaderRef.value) {

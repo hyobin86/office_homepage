@@ -17,13 +17,12 @@
           class="logo-item"
           :ref="(el) => setLogoRef(el, index)"
         >
-          <NuxtImg 
+          <img 
             :src="`/images/logos/${logo.image}`"
             :alt="logo.name"
             loading="lazy"
             width="450"
             height="140"
-            quality="85"
           />
         </div>
       </div>
@@ -31,13 +30,12 @@
 
     <div class="contact-container" ref="visualRef">
       <div class="contact-image">
-        <NuxtImg 
+        <img 
           src="/images/newvision/newvision-card11.png"
           alt="Contact Visual"
           loading="lazy"
           width="1722"
           height="320"
-          quality="85"
         />
       </div>
       <div class="contact-visual">
@@ -84,7 +82,7 @@ const clientLogos: ClientLogo[] = [
 ]
 
 onMounted(() => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // 헤더 애니메이션
       if (headerRef.value) {

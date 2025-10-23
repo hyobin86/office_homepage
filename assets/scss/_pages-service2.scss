@@ -5,15 +5,13 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-// ========================================
 // Service2 페이지
-// ========================================
 .service2-service {
   position: relative;
   background: url('/images/services/service2-bg.png') center top/ cover no-repeat;
 }
 
-// --- 히어로 섹션 ---
+// 히어로 섹션
 .service2-hero {
   position: relative;
   height: 73vh;
@@ -29,7 +27,7 @@
   }
 }
 
-// --- Service2 Recommend 섹션 ---
+// Recommend 섹션
 .service2-recommend {
   position: relative;
   
@@ -71,7 +69,7 @@
   }
 }
 
-// --- Service2 Onestop 섹션 ---
+// Onestop 섹션
 .service2-onestop {
   position: relative;
   
@@ -87,7 +85,7 @@
     width: 100%;
     height: 75rem;
     margin-top: 11rem;
-    overflow: visible;
+    overflow: hidden;
   
   // 하단 dim 처리
   &::after {
@@ -108,11 +106,9 @@
   
   .card {
     position: absolute;
-    // 중앙 기준 좌표 설정
     top: 1rem;
     left: 50%;
     
-    // GSAP가 완전히 제어하도록 초기 상태 제거
     opacity: 0;
     
     img {
@@ -120,42 +116,34 @@
     }
   }
   
-  // 카드 1: 예산 건정성
   .card-1 {
     transform: translate(-92.8rem, 14.8rem);
   }
   
-  // 카드 2: 보험료
   .card-2 {
     transform: translate(-92.8rem, 22.8rem);
   }
   
-  // 카드 3: 보장점수
   .card-3 {
     transform: translate(-92.8rem, 51.5rem);
   }
   
-  // 카드 4: 월납보험료
   .card-4 {
     transform: translate(-92.8rem, 64.4rem);
   }
   
-  // 카드 5: 연금
   .card-5 {
     transform: translate(-56.1rem, 8rem);
   }
   
-  // 카드 6: 가족
   .card-6 {
     transform: translate(-50%,0);
   }
   
-  // 카드 7: 미납
   .card-7 {
     transform: translate(-50%, 8rem);
   }
   
-  // 카드 8-11: 추가 카드들 (필요에 따라 위치 조정)
   .card-8 {
     transform: translate(36.8rem, 11.2rem);
   }
@@ -174,7 +162,7 @@
   }
 }
 
-// --- Service2 Manage 섹션 ---
+// Manage 섹션
 .service2-manage {
   position: relative;
   
@@ -238,7 +226,7 @@
   }
 }
 
-// --- Service2 Diagnosis 섹션 ---
+// Diagnosis 섹션
 .service2-diagnosis {
   position: relative;
   
@@ -271,7 +259,7 @@
       cursor: pointer;
       transition: all 0.3s linear;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      height: 16.8rem; // 168px = 16.8rem (1rem = 10px)
+      height: 16.8rem;
       
       &:last-child {
         border-bottom: none;
@@ -296,7 +284,7 @@
       }
       
       &.active {
-        height: 22rem; // 220px = 22rem (1rem = 10px)
+        height: 22rem;
         
         .button-title {
           opacity: 1;
@@ -317,7 +305,7 @@
   }
 }
 
-// --- Service2 Report 섹션 ---
+// Report 섹션
 .service2-report {
   position: relative;
   
@@ -403,7 +391,7 @@
   }
 }
 
-// --- Service2 Contact Banner 섹션 ---
+// Contact Banner 섹션
 .service2-contact-banner {
   position: relative;
   display: flex;

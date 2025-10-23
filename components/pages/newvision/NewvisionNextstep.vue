@@ -11,13 +11,12 @@
         </p>
       </div>
       
-      <NuxtImg 
+      <img 
         src="/images/newvision/newvision-card7.png"
         alt="Our Next Step with AI"
         loading="lazy"
         width="1400"
         height="380"
-        quality="85"
         class="mt-120"
       />
       <div class="point-cards mt-64">
@@ -30,13 +29,12 @@
           <h3 class="point-title mt-16">{{ point.title }}</h3>
           <p class="point-desc mt-32">{{ point.description }}</p>
           <div class="point-icon">
-            <NuxtImg 
+            <img 
               :src="point.icon"
               :alt="`${point.title} 아이콘`"
               loading="lazy"
               width="48"
               height="48"
-              quality="85"
             />
           </div>
         </div>
@@ -46,10 +44,11 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-if (process.client) {
+if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
@@ -95,7 +94,7 @@ const pointCards = [
 ]
 
 onMounted(() => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // container 바로 아래 3개 덩어리 순차 등장
       const container = document.querySelector('.newvision-nextstep .container')
@@ -113,7 +112,8 @@ onMounted(() => {
               ease: "power2.out",
               scrollTrigger: {
                 trigger: '.newvision-nextstep',
-                start: "top 80%",
+                start: "top 70%",
+                toggleActions: 'play reverse play reverse'
               }
             }
           )

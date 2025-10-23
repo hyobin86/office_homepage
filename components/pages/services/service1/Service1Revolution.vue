@@ -18,13 +18,12 @@
           :ref="(el) => setCardRef(el, index)"
         >
           <div class="card-image">
-            <NuxtImg 
+            <img 
               :src="`/images/services/${block.image}`"
               :alt="block.title"
               loading="lazy"
               width="475"
               height="640"
-              quality="85"
             />
             <div class="card-overlay">
               <h3 class="card-title">{{ block.title }}</h3>
@@ -85,7 +84,7 @@ const revolutionBlocks: RevolutionBlock[] = [
 ]
 
 onMounted(() => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // 헤더 애니메이션
       if (headerRef.value) {

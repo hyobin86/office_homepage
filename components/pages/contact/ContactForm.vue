@@ -340,7 +340,11 @@ const submitForm = async () => {
 }
 
 onMounted(() => {
-  if (process.client) {
+  // EmailJS 초기화
+  const config = useRuntimeConfig()
+  emailjs.init(config.public.emailjsPublicKey)
+  
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       if (formRef.value) {
         gsap.fromTo(formRef.value,

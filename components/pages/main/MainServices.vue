@@ -6,7 +6,7 @@
           <div class="hero-subtitle">SERVICES</div>
           <h2 id="services-heading" class="hero-title mt-20">보험의 비즈니스<br>가치를 높이는<br>디지털 솔루션</h2>
           <p class="hero-desc mt-40">우리의 서비스로 고객의 성공을 앞당깁니다</p>
-          <NuxtLink to="/services" class="button mt-120" aria-label="서비스 상세 페이지로 이동">MORE VIEW</NuxtLink>
+          <NuxtLink to="/services/service1" class="button mt-120" aria-label="서비스 상세 페이지로 이동">MORE VIEW</NuxtLink>
         </div>
       </div>
 
@@ -20,14 +20,12 @@
           :aria-label="`${card.title} 서비스`"
         >
           <div class="card-image">
-            <NuxtImg 
+            <img 
               :src="card.image"
               :alt="`${card.title} 이미지`"
               loading="lazy"
-              :width="400"
-              :height="500"
-              quality="85"
-              sizes="sm:300px md:400px"
+              width="400"
+              height="500"
             />
           </div>
           <div class="card-text">
@@ -41,10 +39,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-if (process.client) {
+if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
@@ -77,7 +76,7 @@ let gsapContext: gsap.Context | null = null
 const heroHeaderRef = ref<HTMLElement | null>(null)
 
 onMounted(() => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // 헤더 애니메이션
       if (heroHeaderRef.value) {

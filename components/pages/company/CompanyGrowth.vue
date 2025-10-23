@@ -17,13 +17,12 @@
             class="value-card"
           >
             <div class="card-icon">
-              <NuxtImg 
+              <img 
                 :src="value.icon"
                 :alt="`${value.title} 아이콘`"
                 loading="lazy"
                 width="64"
                 height="64"
-                quality="85"
               />
             </div>
             <h3 class="card-title mt-40">{{ value.title }}</h3>
@@ -36,10 +35,11 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-if (process.client) {
+if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
@@ -69,7 +69,7 @@ const valueCards = [
 ]
 
 onMounted(() => {
-  if (process.client) {
+  if (typeof window !== 'undefined') {
     gsapContext = gsap.context(() => {
       // 섹션 헤더 애니메이션 (양방향) - company-growth 섹션만
       gsap.fromTo('.company-growth .section-header',
@@ -82,7 +82,6 @@ onMounted(() => {
           scrollTrigger: {
             trigger: '.company-growth .section-header',
             start: "top 60%",
-            end: "bottom 30%",
             toggleActions: "play reverse play reverse"
           }
         }
@@ -102,7 +101,6 @@ onMounted(() => {
             scrollTrigger: {
               trigger: '.company-growth .section-header',
               start: "top 60%",
-              end: "bottom 20%",
               toggleActions: "play reverse play reverse"
             }
           }
