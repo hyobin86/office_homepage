@@ -65,17 +65,17 @@
           width="1680"
           height="320"
         />
-      </div>
-      <div class="business-visual">
-        <div class="business-visual-content">
-          <h2 id="business-heading" class="business-title">
-            핀게이트만의 강점으로 완성된 보험 IT 솔루션을 소개합니다.
-          </h2>
-          <p class="business-description mt-24">차별화된 솔루션으로 보험 비즈니스 성공을 함께 이끕니다.</p>
+        <div class="business-visual">
+          <div class="business-visual-content">
+            <h2 id="business-heading" class="business-title">
+              핀게이트만의 강점으로 완성된 보험 IT 솔루션을 소개합니다.
+            </h2>
+            <p class="business-description mt-24">차별화된 솔루션으로 보험 비즈니스 성공을 함께 이끕니다.</p>
+          </div>
+          <NuxtLink to="/services/service1" class="button" aria-label="서비스 페이지로 이동">
+            MORE VIEW
+          </NuxtLink>
         </div>
-        <NuxtLink to="/services/service1" class="button" aria-label="서비스 페이지로 이동">
-          MORE VIEW
-        </NuxtLink>
       </div>
     </div>
   </section>

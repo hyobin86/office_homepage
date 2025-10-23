@@ -11,24 +11,21 @@
       </div>
       
       <div class="speech-bubbles mt-80">
-        <div 
+        <div class="bubble-content"
           v-for="(bubble, index) in bubblesData" 
           :key="index"
-          class="bubble-item" 
           :data-index="index"
           :ref="(el) => setBubbleRef(el, index)"
         >
-          <div class="bubble-content">
-            <p class="bubble-text" v-html="bubble.text"></p>
-            <div class="bubble-icon">
-              <img 
-                :src="bubble.icon"
-                :alt="`아이콘 ${index + 1}`"
-                loading="lazy"
-                width="80"
-                height="80"
-              />
-            </div>
+          <p class="bubble-text" v-html="bubble.text"></p>
+          <div class="bubble-icon">
+            <img 
+              :src="bubble.icon"
+              :alt="`아이콘 ${index + 1}`"
+              loading="lazy"
+              width="80"
+              height="80"
+            />
           </div>
         </div>
       </div>

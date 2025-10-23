@@ -171,8 +171,8 @@ onMounted(() => {
       
       const carouselAnimation = gsap.to(carouselRef.value, {
         opacity: 1,
-        delay: 0.5,
-        duration: 1.5,
+        delay: 0.2, // 0.5초에서 0.2초로 단축
+        duration: 1.0, // 1.5초에서 1.0초로 단축
         ease: "power4.out",
         force3D: true,
         scrollTrigger: {
@@ -183,23 +183,17 @@ onMounted(() => {
         onStart: () => {
           // 애니메이션 시작 시 blur 클래스 제거
           carouselRef.value?.classList.remove('blur-effect')
+          // 애니메이션 시작과 동시에 슬라이드 플레이 시작
+          if (track.value) {
+            track.value.style.animationPlayState = 'running'
+          }
         },
         onReverseStart: () => {
           // 역재생 시작 시 blur 클래스 추가
           carouselRef.value?.classList.add('blur-effect')
-        }
-      })
-
-      // 애니메이션 완료 후 슬라이드 플레이 시작
-      carouselAnimation.eventCallback('onComplete', () => {
-        if (track.value) {
-          track.value.style.animationPlayState = 'running'
-        }
-      })
-
-      carouselAnimation.eventCallback('onReverseComplete', () => {
-        if (track.value) {
-          track.value.style.animationPlayState = 'paused'
+          if (track.value) {
+            track.value.style.animationPlayState = 'paused'
+          }
         }
       })
     })

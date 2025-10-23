@@ -170,7 +170,7 @@ address {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24rem;
+  min-width: 24rem;
   height: 7.2rem;
   background: transparent;
   border: 0.2rem solid $color-bg-white;

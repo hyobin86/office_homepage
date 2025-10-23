@@ -33,7 +33,7 @@
         <h2 id="contact-heading" class="section-title mt-24">
           AI와 함께 보험 산업의 새로운 IT 혁신을 만들어갑니다.
         </h2>
-        <NuxtLink to="/services/service2" class="button mt-60" aria-label="연락 페이지로 이동">
+        <NuxtLink to="/newvision" class="button mt-60" aria-label="newvision 페이지로 이동">
           MORE VIEW
         </NuxtLink>
       </div>
@@ -56,24 +56,25 @@ const historyData: YearData[] = [
   {
     year: '2025',
     events: [
-      { month: '06', text: '<b>더베스트파트너스</b> GA 보험설계사 인프라 구축 프로젝트 진행' },
-      { month: '06', text: '<b>카카오페이보험</b> GA 보험설계사 인프라 구축 프로젝트 진행' },
-      { month: '06', text: '<b>AIA 프리미어 파트너스</b> GA 보험설계사 인프라 구축 프로젝트 (3차)' }
+      { month: '09', text: '<b>GA통합지원솔루션</b> EPIKA 2.0 출시' },
+      { month: '08', text: '<b>카카오페이</b> GA KP보험서비스 GA통합지원시스템 구축' },
+      { month: '06', text: '<b>더베스트파트너스</b> GA영업지원시스템 구축' },
+      { month: '04', text: '<b>AIA 프리미어 파트너스</b> AIMS Improvement 구축' }
     ]
   },
   {
     year: '2024',
     events: [
-      { month: '06', text: '<b>더베스트파트너스</b> GA 보험설계사 인프라 구축 프로젝트 진행' },
-      { month: '06', text: '<b>카카오페이보험</b> GA 보험설계사 인프라 구축 프로젝트 진행' },
-      { month: '06', text: '<b>AIA 프리미어 파트너스</b> GA 보험설계사 인프라 구축 프로젝트 (3차)' }
+      { month: '11', text: '<b>AIA프리미어파트너스</b> IFRS15 시스템 구축' },
     ]
   },
   {
     year: '2023',
     events: [
-      { month: '06', text: '(주)핀게이트 설립' },
-      { month: '06', text: 'GA 보험 통합시스템 EPIKA v.1 오픈' }
+      { month: '12', text: '<b>AIA프리미어파트너스</b> GA통합지원시스템 구축' },
+      { month: '12', text: '<b>하쿠호도제일</b> DB마케팅 제휴' },
+      { month: '12', text: '<b>GA통합지원솔루션</b> EPIKA 출시' },
+      { month: '06', text: '<b>핀게이트</b> 창립' }
     ]
   },
 ]

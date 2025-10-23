@@ -12,11 +12,6 @@
 .main {
   min-height: 100vh;
   position: relative;
-  
-  .content-section {
-    position: relative;
-    background: url('/images/main/main-bg.png') center top / cover no-repeat;
-  }
 }
 
 // --- 메인 히어로 섹션 ---
@@ -134,8 +129,8 @@
 // --- 메인 컴퍼니 섹션 ---
 .main-company {
   position: relative;
-  height: 100rem;
-  
+  background: url('/images/main/main-bg1.png') center top / cover no-repeat;
+  aspect-ratio: 1920 / 1000; /* 비율 유지 */
   .container {
     padding-top: 50rem;
     position: relative;
@@ -287,11 +282,12 @@
 // --- 메인 서비스 섹션 ---
 .main-services {
   position: relative;
+  background: url('/images/main/main-bg2.png') center top / cover no-repeat;
+  aspect-ratio: 1920 / 1800; /* 비율 유지 */
   .container {
-    margin-top: 35rem;
     position: relative;
     width: 100%;
-    height: 180rem;
+    min-height: 170rem;
   }
   .services-header {
     position: sticky;
@@ -383,8 +379,12 @@
 // --- 메인 파트너 섹션 ---
 .main-partners {
   position: relative;
+  background: url('/images/main/main-bg3.png') center top / cover no-repeat;
+  aspect-ratio: 1920 / 900; /* 비율 유지 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .container {
-    padding-top: 33rem;
     position: relative;
     width: 100%;
     display: flex;
@@ -405,8 +405,12 @@
 // --- 메인 비전 섹션 ---
 .main-vision {
   position: relative;
+  background: url('/images/main/main-bg4.png') center top / cover no-repeat;
+  aspect-ratio: 1920 / 1400; /* 비율 유지 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .container {
-    padding-top: 36rem;
     position: relative;
     width: 100%;
     display: flex;
@@ -464,13 +468,13 @@
 
 // --- 메인 베너 섹션 ---
 .main-banner {
-  padding-top: 65rem;
   position: relative;
+  background: url('/images/main/main-bg5.png') center top / cover no-repeat;
+  aspect-ratio: 1920 / 518; /* 비율 유지 */
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   .container {
-    padding-bottom: 13rem;
     width: 100%;
     height: auto;
     display: flex;

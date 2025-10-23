@@ -63,7 +63,7 @@ const setCardRef = (el: Element | ComponentPublicInstance | null, index: number)
 const revolutionBlocks: RevolutionBlock[] = [
   {
     title: '설계사 업무 성과 극대화',
-    description: '고객 정보와 통합관리의 상담, 계약, 마케팅 기능의<br/> 유기적 연통을 통해 업무 효율성을 높입니다.',
+    description: '고객 정보의 통합관리와 상담, 계약, 마케팅 기능의<br/> 유기적 연동을 통해 업무 효율성을 높입니다.',
     image: 'service1-card5.png'
   },
   {
@@ -73,7 +73,7 @@ const revolutionBlocks: RevolutionBlock[] = [
   },
   {
     title: '신속하고 정확한 정산',
-    description: '계약정보 기반으로 실시간 지급액을 산출하고,<br/> 2개월분 마감 지급 잠수 수수료까지 집계해<br/> 정확한 정산을 제공합니다.',
+    description: '계약정보 기반으로 실시간 지급액을 산출하고,<br/> 2개월분 마감·지급·환수 수수료까지 집계해<br/>정확한 정산을 제공합니다.',
     image: 'service1-card7.png'
   },
   {

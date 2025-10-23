@@ -73,14 +73,14 @@
             width="1722"
             height="320"
           />
-        </div>
-        <div class="contact-visual">
-          <h2 class="contact-title">
-            보험 비즈니스 고민, 핀게이트가 해결합니다.
-          </h2>
-          <NuxtLink to="/contact" class="button" aria-label="연락페이지로 이동">
-            CONTACT US
-          </NuxtLink>
+          <div class="contact-visual">
+            <h2 class="contact-title">
+              보험 비즈니스 고민, 핀게이트가 해결합니다.
+            </h2>
+            <NuxtLink to="/contact" class="button" aria-label="연락페이지로 이동">
+              CONTACT US
+            </NuxtLink>
+          </div>
         </div>
       </div>
     </div>
@@ -137,7 +137,7 @@ const sectionsData = [
       {
         id: 'analysis',
         icon: '/images/services/service2-icon7.png',
-        title: '고객별 공력, 중복 확인',
+        title: '고객별 공백, 중복 확인',
         description: '고객별 보장 공백, 중복을 한눈에 파악할 수 있습니다.'
       },
       {

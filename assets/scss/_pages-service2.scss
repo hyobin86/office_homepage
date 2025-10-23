@@ -30,6 +30,7 @@
 // Recommend 섹션
 .service2-recommend {
   position: relative;
+  background-color: #F4F4F6 ;
   
   .container {
     width: 100%;
@@ -40,6 +41,7 @@
   .speech-bubbles {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 2.4rem;
   }
   
@@ -47,13 +49,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    column-gap: 2.4rem;
+    width: max-content;
     background: $color-bg-white;
     border-radius: 6.4rem;
     padding: 2.4rem 8rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 0, 0, 0.05);
     
     .bubble-text {
-      flex: 1;
       font-size: 1.8rem;
       font-weight: $font-weight-normal;
       line-height: 3.6rem;
@@ -394,21 +397,19 @@
 // Contact Banner 섹션
 .service2-contact-banner {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 16rem;
-  margin-bottom: 14.2rem;
-  
   .contact-container {
-    position: relative;
-    width: 100%;
-    max-width: 172rem;
-    
+    padding: 16rem 9.9rem 0;
+    margin-bottom: 14.2rem;
     .contact-image {
-      width: 100%;
+      position: relative;
+      margin: 0 auto;
+      max-width: 172.2rem;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
-    
     .contact-visual {
       position: absolute;
       top: 0;
@@ -421,13 +422,12 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      
+      column-gap: 20rem;
       .contact-title {
         font-size: 4rem;
         font-weight: $font-weight-semibold;
         color: $color-text-white;
         line-height: 5.6rem;
-        flex: 1;
       }
     }
   }

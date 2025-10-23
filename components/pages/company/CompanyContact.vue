@@ -5,8 +5,8 @@
         <div class="section-header mt-60">
           <div class="section-subtitle">Contact Us</div>
           <h2 id="contact-heading" class="section-title mt-24">
-            핀게이트와 함께 새로운 경험<br/>
-            지금 바로 연락하세요
+            핀게이트와 함께 혁신을 경험할<br/>
+            소중한 인연을 기다립니다
           </h2>
         </div>
         <div class="contact-list mt-120">

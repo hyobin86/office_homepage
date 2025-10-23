@@ -5,7 +5,7 @@
         <div class="hero-header" ref="heroHeaderRef">
           <div class="hero-subtitle">SERVICES</div>
           <h2 id="services-heading" class="hero-title mt-20">보험의 비즈니스<br>가치를 높이는<br>디지털 솔루션</h2>
-          <p class="hero-desc mt-40">우리의 서비스로 고객의 성공을 앞당깁니다</p>
+          <p class="hero-desc mt-40">우리의 서비스로 고객의 성공을 앞당깁니다.</p>
           <NuxtLink to="/services/service1" class="button mt-120" aria-label="서비스 상세 페이지로 이동">MORE VIEW</NuxtLink>
         </div>
       </div>
@@ -103,10 +103,10 @@ onMounted(() => {
         if (cardElement) {
           // 각 카드마다 다른 트리거 시작점 설정
           const triggerStart = [
-            "top 50%", // 카드 1: 가장 일찍
-            "top 50%", // 카드 2: 조금 늦게
-            "top 55%", // 카드 3: 더 늦게
-            "top 60%"  // 카드 4: 가장 늦게
+            "top 80%", // 카드 1: 가장 일찍
+            "top 90%", // 카드 2: 조금 늦게
+            "top 90%", // 카드 3: 더 늦게
+            "top 90%"  // 카드 4: 가장 늦게
           ]
           
           gsap.fromTo(cardElement, 

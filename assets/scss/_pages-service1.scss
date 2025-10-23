@@ -383,12 +383,18 @@
   }
 
   .contact-container {
-    padding-top: 14rem;
+    padding: 14rem 9.9rem 0;
     padding-bottom: 16rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    .contact-image {
+      position: relative;
+      margin: 0 auto;
+      max-width: 172.2rem;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
     .contact-visual {
       position: absolute;
       top: 0;
@@ -401,6 +407,7 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      column-gap: 20rem;
       .contact-title {
         font-size: 4rem;
         font-weight: $font-weight-semibold;
