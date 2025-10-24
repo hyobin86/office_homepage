@@ -90,7 +90,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: '.main-services',
               start: 'top 60%',
-              toggleActions: 'play reverse play reverse'
+              toggleActions: 'play none none none'
             }
           }
         )
@@ -121,11 +121,12 @@ onMounted(() => {
               duration: 0.5,
               ease: "power3.out",
               force3D: true,
+              clearProps: "transform",
               scrollTrigger: {
                 trigger: cardElement,
                 start: triggerStart[index],
                 end: "bottom 0%",
-                toggleActions: "play reverse play reverse"
+                toggleActions: "play none none none"
               }
             }
           )

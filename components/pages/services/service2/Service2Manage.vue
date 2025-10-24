@@ -107,7 +107,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-manage',
           start: 'top 70%',
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none none'
         }
       }
     )
@@ -129,7 +129,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-manage',
           start: 'top 60%',
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none none'
         }
       }
     )
@@ -151,7 +151,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-manage',
           start: 'top 60%',
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none none'
         }
       }
     )
@@ -174,7 +174,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-manage',
           start: 'top 60%',
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none none'
         }
       }
     )
@@ -196,7 +196,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-manage',
           start: 'top 60%',
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none none'
         }
       }
     )

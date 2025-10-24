@@ -13,7 +13,7 @@
           </p>
         </div>
         <div class="form-item mt-80">
-          <form @submit.prevent="submitForm" aria-label="문의 폼">
+          <form @submit.prevent="submitForm" novalidate aria-label="문의 폼">
             <div class="form-group">
               <label class="form-label" for="company">
                 회사명
@@ -24,16 +24,10 @@
                 v-model="form.company"
                 type="text" 
                 class="form-input mt-20" 
-                :class="{ 'error': formErrors.company }"
                 placeholder="소속된 회사 또는 기관명을 입력해 주세요."
                 required
                 :aria-required="true"
-                :aria-invalid="!!formErrors.company"
-                :aria-describedby="formErrors.company ? 'company-error' : undefined"
               />
-              <div v-if="formErrors.company" id="company-error" class="error-message mt-8" role="alert">
-                {{ formErrors.company }}
-              </div>
             </div>
             <div class="d-flex gap-24 mt-40">
               <div class="form-group">
@@ -46,16 +40,10 @@
                   v-model="form.name"
                   type="text" 
                   class="form-input mt-20" 
-                  :class="{ 'error': formErrors.name }"
                   placeholder="담당자 이름을 입력해 주세요."
                   required
                   :aria-required="true"
-                  :aria-invalid="!!formErrors.name"
-                  :aria-describedby="formErrors.name ? 'name-error' : undefined"
                 />
-                <div v-if="formErrors.name" id="name-error" class="error-message mt-8" role="alert">
-                  {{ formErrors.name }}
-                </div>
               </div>
               <div class="form-group">
                 <label class="form-label" for="phone">연락처</label>
@@ -78,16 +66,10 @@
                 v-model="form.email"
                 type="email" 
                 class="form-input mt-20" 
-                :class="{ 'error': formErrors.email }"
                 placeholder="답변 받을 이메일을 입력해 주세요."
                 required
                 :aria-required="true"
-                :aria-invalid="!!formErrors.email"
-                :aria-describedby="formErrors.email ? 'email-error' : undefined"
               />
-              <div v-if="formErrors.email" id="email-error" class="error-message mt-8" role="alert">
-                {{ formErrors.email }}
-              </div>
             </div>
             <div class="form-group mt-40">
               <fieldset>
@@ -130,31 +112,26 @@
                 />
                 <label for="inquiry-technical" class="radio-button">기타</label>
               </div>
-              <div v-if="formErrors.inquiryType" id="inquiryType-error" class="error-message mt-8" role="alert">
-                {{ formErrors.inquiryType }}
-              </div>
               </fieldset>
             </div>
             <div class="form-group mt-40">
-              <label class="form-label" for="message">문의 사항</label>
+              <label class="form-label" for="message">
+                문의 사항
+                <em class="form-dot"/>
+              </label>
               <div class="textarea-wrapper">
                 <textarea 
                   id="message"
                   v-model="form.message"
                   class="form-textarea mt-20" 
-                  :class="{ 'error': formErrors.message }"
-                  placeholder="문의내용을 입력하세요"
+                  placeholder="문의 사항을 입력해 주세요."
                   maxlength="1000"
-                  :aria-invalid="!!formErrors.message"
-                  :aria-describedby="formErrors.message ? 'message-error' : 'message-counter'"
+                  aria-describedby="message-counter"
                 ></textarea>
                 <div id="message-counter" class="char-counter" aria-live="polite">
                   <span class="char-count">{{ form.message.length }}</span>
                   <span class="char-max">/ 1000</span>
                 </div>
-              </div>
-              <div v-if="formErrors.message" id="message-error" class="error-message mt-8" role="alert">
-                {{ formErrors.message }}
               </div>
             </div>
             <button 
@@ -163,25 +140,13 @@
               :disabled="isSubmitting"
               :aria-label="isSubmitting ? '전송 중...' : '문의 내용 전송'"
             >
-              {{ isSubmitting ? '전송 중...' : '문의하기' }}
+              문의하기
             </button>
           </form>
         </div>
       </div>
     </div>
     
-    <div 
-      v-if="showToast" 
-      class="toast-notification" 
-      :class="[`toast-${toastType}`, { 'toast-show': showToast }]"
-      role="alert"
-      aria-live="polite"
-    >
-      <div class="toast-content">
-        <span class="toast-icon">{{ toastType === 'success' ? '✓' : '✕' }}</span>
-        <span class="toast-message">{{ toastMessage }}</span>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -202,15 +167,6 @@ interface FormData {
   message: string
 }
 
-interface FormErrors {
-  name: string
-  email: string
-  company: string
-  inquiryType: string
-  message: string
-  [key: string]: string
-}
-
 const form = reactive<FormData>({
   name: '',
   email: '',
@@ -220,76 +176,36 @@ const form = reactive<FormData>({
   message: ''
 })
 
-const formErrors = reactive<FormErrors>({
-  name: '',
-  email: '',
-  company: '',
-  inquiryType: '',
-  message: ''
-})
-
 const isSubmitting = ref<boolean>(false)
-const showToast = ref<boolean>(false)
-const toastMessage = ref<string>('')
-const toastType = ref<'success' | 'error'>('success')
-
 const formRef = ref<HTMLElement | null>(null)
 let gsapContext: gsap.Context | null = null
 
 const validateForm = () => {
-  Object.keys(formErrors).forEach(key => {
-    formErrors[key] = ''
-  })
-  
   let isValid = true
   
   if (!form.name.trim()) {
-    formErrors.name = '이름을 입력해주세요.'
     isValid = false
-  }
-  
-  if (!form.company.trim()) {
-    formErrors.company = '회사명을 입력해주세요.'
+  } else if (!form.company.trim()) {
     isValid = false
-  }
-  
-  if (!form.email.trim()) {
-    formErrors.email = '이메일을 입력해주세요.'
+  } else if (!form.email.trim()) {
     isValid = false
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-    formErrors.email = '올바른 이메일 형식을 입력해주세요.'
+    isValid = false
+  } else if (!form.inquiryType) {
+    isValid = false
+  } else if (!form.message.trim()) {
     isValid = false
   }
   
-  if (!form.inquiryType) {
-    formErrors.inquiryType = '문의유형을 선택해주세요.'
-    isValid = false
-  }
-  
-  if (!form.message.trim()) {
-    formErrors.message = '문의사항을 입력해주세요.'
-    isValid = false
-  } else if (form.message.trim().length < 10) {
-    formErrors.message = '문의사항을 10자 이상 입력해주세요.'
-    isValid = false
+  if (!isValid) {
+    alert('필수 입력 정보를 확인해 주세요.')
   }
   
   return isValid
 }
 
-const displayToast = (message: string, type: 'success' | 'error' = 'success') => {
-  toastMessage.value = message
-  toastType.value = type
-  showToast.value = true
-  
-  setTimeout(() => {
-    showToast.value = false
-  }, 4000)
-}
-
 const submitForm = async () => {
   if (!validateForm()) {
-    displayToast('입력 정보를 확인해주세요.', 'error')
     return
   }
   
@@ -325,7 +241,7 @@ const submitForm = async () => {
       publicKey
     )
     
-    displayToast('문의가 정상적으로 전송되었습니다. 빠른 시일 내에 연락드리겠습니다.', 'success')
+    alert('문의가 정상 접수되었습니다. 빠른 시일 내 확인 후 연락드리겠습니다.')
     
     Object.keys(form).forEach(key => {
       form[key as keyof FormData] = ''
@@ -333,7 +249,7 @@ const submitForm = async () => {
     
   } catch (error) {
     console.error('EmailJS Error:', error)
-    displayToast('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.', 'error')
+    alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.')
   } finally {
     isSubmitting.value = false
   }
@@ -357,7 +273,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: formRef.value,
               start: "top 80%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )

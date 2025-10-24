@@ -90,7 +90,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-recommend',
           start: 'top 70%',
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none none'
         }
       }
     )
@@ -114,7 +114,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: '.speech-bubbles',
             start: 'top 70%',
-            toggleActions: 'play reverse play reverse'
+            toggleActions: 'play none none none'
           }
         }
       )

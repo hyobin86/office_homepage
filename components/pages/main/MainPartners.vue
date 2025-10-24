@@ -75,7 +75,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: '.main-partners',
               start: 'top 40%',
-              toggleActions: 'play reverse play reverse'
+              toggleActions: 'play none none none'
             }
           }
         )
@@ -103,7 +103,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: '.main-partners',
             start: 'top 50%',
-            toggleActions: 'play reverse play reverse'
+            toggleActions: 'play none none none'
           }
         })
       })

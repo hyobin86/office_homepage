@@ -13,7 +13,7 @@
           <h3 class="info-title">
             오시는 길
           </h3>
-          <div class="info-item-title mt-48">TEL</div>
+          <div class="info-item-title mt-48">Tel</div>
           <div class="info-item-content mt-16">
             <a :href="`tel:${SITE_CONFIG.office.phone}`" aria-label="전화 걸기">
               {{ SITE_CONFIG.office.phone }}
@@ -25,7 +25,7 @@
               {{ SITE_CONFIG.office.email }}
             </a>
           </div>
-          <div class="info-item-title mt-40">Address.</div>
+          <div class="info-item-title mt-40">Address</div>
           <address class="info-item-content mt-16">{{ SITE_CONFIG.office.address }}</address>
         </div>
       </div>
@@ -59,7 +59,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: headerRef.value,
               start: "top 60%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )
@@ -77,7 +77,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: infoRef.value,
               start: "top 80%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )

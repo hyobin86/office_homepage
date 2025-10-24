@@ -90,7 +90,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: headerRef.value,
             start: 'top 80%',
-            toggleActions: 'play reverse play reverse'
+            toggleActions: 'play none none none'
           }
         })
       }
@@ -111,7 +111,7 @@ onMounted(() => {
               scrollTrigger: {
                 trigger: cardsContainer,
                 start: 'top 80%',
-                toggleActions: 'play reverse play reverse'
+                toggleActions: 'play none none none'
               }
             })
           }

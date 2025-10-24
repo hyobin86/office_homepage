@@ -20,13 +20,16 @@
 - ✅ **성능 최적화** - RAF, Throttle, Intersection Observer, GPU 가속
 - ✅ **이미지 최적화** - @nuxt/image로 WebP/AVIF 자동 변환, Lazy loading
 - ✅ **SEO 완벽 지원** - 메타태그, Sitemap, Robots.txt, JSON-LD 구조화 데이터
-- ✅ **반응형 디자인** - 모바일(~1024px) / 데스크톱(1024px+) 완벽 대응
-- ✅ **모듈화된 SCSS** - 페이지별 분리, 유틸리티 최적화
+- ✅ **반응형 디자인** - 모바일(~1024px) / 데스크톱(1024px+) / 대형 화면(2560px+) 완벽 대응
+- ✅ **모듈화된 SCSS** - 페이지별 분리, 유틸리티 최적화, 미디어 쿼리 체계화
 - ✅ **SITE_CONFIG 중앙 관리** - 연락처 정보, 회사 정보 통합 관리
 - ✅ **회사소개 페이지 완성** - 6개 섹션 (히어로, 성장, 강점, 사업영역, 연혁, 연락처)
-- ✅ **서비스 페이지 완성** - Service1 (GA 통합 운영 시스템) 5개 섹션 구현
+- ✅ **서비스 페이지 완성** - Service1 (GA 통합 운영 시스템) 6개 섹션 구현
 - ✅ **Service2 페이지 완성** - 원스톱 상담지원 솔루션 6개 섹션 구현
 - ✅ **연락처 페이지 완성** - 히어로, 연락처 정보, 문의 폼 (EmailJS 통합)
+- ✅ **2560px 대형 화면 최적화** - clamp() 함수 및 미디어 쿼리로 확장성 보장
+- ✅ **GSAP 애니메이션 최적화** - toggleActions "play none none none"으로 일회성 애니메이션
+- ✅ **폼 검증 간소화** - 통합 에러 메시지, 시스템 alert() 사용
 
 ---
 
@@ -99,11 +102,11 @@ office_homepage/
 │   │   ├── services/
 │   │   │   ├── service1/
 │   │   │   │   ├── Service1Hero.vue        # Service1 히어로 섹션
+│   │   │   │   ├── Service1Reason.vue     # 선택 이유 섹션 (carousel)
 │   │   │   │   ├── Service1Solution.vue    # 솔루션 소개 섹션
-│   │   │   │   ├── Service1Total.vue       # 통합 서비스 카드 섹션
+│   │   │   │   ├── Service1Total.vue       # 통합 서비스 carousel 섹션 (13개 서비스)
 │   │   │   │   ├── Service1Revolution.vue  # 지그재그 혁신 섹션
 │   │   │   │   ├── Service1Custom.vue      # 커스터마이징 POINT 섹션
-│   │   │   │   ├── Service1Reason.vue     # 선택 이유 섹션
 │   │   │   │   └── Service1Contact.vue     # 고객사 로고 + CTA 섹션
 │   │   │   └── service2/
 │   │   │       ├── Service2Hero.vue        # Service2 히어로 섹션
@@ -234,7 +237,7 @@ office_homepage/
 | **NewvisionNextstep** | 넥스트스텝 섹션 | 인덱스 기반 순차 등장 (0.7초 + 0.6초 간격), 6개 POINT 카드 |
 | **NewvisionValue** | 가치 섹션 | 인덱스 기반 순차 등장, 버튼 클릭 시 콘텐츠 전환 애니메이션 |
 | **NewvisionContact** | 연락 섹션 | 단순 fade-in 애니메이션, CTA 버튼 |
-| **ContactForm** | 연락 폼 | EmailJS 통합, Toast 알림, Loading 상태, 폼 검증 |
+| **ContactForm** | 연락 폼 | EmailJS 통합, 시스템 alert() 알림, 간소화된 폼 검증 |
 
 || **CompanyHero** | 회사 히어로 섹션 | 회사 소개 메인 섹션, 배경 이미지 최적화 |
 || **CompanyGrowth** | 성장 가치 섹션 | 4개 가치 카드 그리드 레이아웃, 순차 등장 애니메이션 |
@@ -389,6 +392,7 @@ $font-weight-bold: 700;
 ```scss
 // 브레이크포인트
 $breakpoint-desktop: 1400px;  // 컨테이너 최대 너비
+$breakpoint-large: 2560px;    // 대형 화면 대응
 
 // 사용법
 @include responsive(desktop) {
@@ -397,6 +401,35 @@ $breakpoint-desktop: 1400px;  // 컨테이너 최대 너비
 
 @include responsive(xl) {
   // 데스크톱 (max-width: 1400px) - 기존 호환성
+}
+
+// 2560px 대형 화면 미디어 쿼리
+@media (min-width: 2560px) {
+  // 대형 화면 전용 스타일
+}
+```
+
+### 반응형 디자인 전략
+
+#### 1. **clamp() 함수 활용**
+```scss
+// 유연한 크기 조정
+font-size: clamp(2.4rem, 1.25vw, 3rem);
+padding: clamp(2rem, 1vw, 2.5rem);
+```
+
+#### 2. **미디어 쿼리 체계화**
+```scss
+// 기본값 (1920px)
+.container {
+  padding-top: 26rem;
+}
+
+// 2560px 대형 화면
+@media (min-width: 2560px) {
+  .container {
+    padding-top: 32.5rem;
+  }
 }
 ```
 

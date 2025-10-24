@@ -156,7 +156,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: '.main-company',
               start: 'top 50%',
-              toggleActions: 'play reverse play reverse'
+              toggleActions: 'play none none none'
             }
           }
         )
@@ -174,7 +174,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: '.main-company',
               start: 'top 50%',
-              toggleActions: 'play reverse play reverse'
+              toggleActions: 'play none none none'
             }
           }
         )
@@ -192,7 +192,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: '.main-company',
               start: 'top 50%',
-              toggleActions: 'play reverse play reverse'
+              toggleActions: 'play none none none'
             }
           }
         )
@@ -235,7 +235,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: container,
               start: 'top 70%',
-              toggleActions: 'play reverse play reverse',
+              toggleActions: 'play none none none',
             },
           })
         })

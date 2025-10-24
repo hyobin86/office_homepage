@@ -113,7 +113,7 @@ onMounted(() => {
               scrollTrigger: {
                 trigger: '.newvision-nextstep',
                 start: "top 70%",
-                toggleActions: 'play reverse play reverse'
+                toggleActions: 'play none none none'
               }
             }
           )

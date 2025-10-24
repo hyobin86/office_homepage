@@ -92,8 +92,9 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-diagnosis',
-          start: 'top 70%',
-          toggleActions: 'play reverse play reverse'
+          start: 'top 50%',
+          end: 'bottom 10%',
+          toggleActions: 'play none none none'
         }
       }
     )
@@ -111,7 +112,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-diagnosis',
           start: 'top 50%',
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none none'
         }
       }
     )

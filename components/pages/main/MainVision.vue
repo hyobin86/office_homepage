@@ -70,7 +70,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: '.main-vision',
               start: 'top 50%',
-              toggleActions: 'play reverse play reverse'
+              toggleActions: 'play none none none'
             }
           }
         )
@@ -95,7 +95,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: '.main-vision',
             start: 'top 60%',
-            toggleActions: 'play reverse play reverse'
+            toggleActions: 'play none none none'
           },
           onComplete: function() {
             const element = card as HTMLElement

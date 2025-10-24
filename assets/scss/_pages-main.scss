@@ -118,70 +118,6 @@
   }
 }
 
-// --- 스크롤 다운 섹션 ---
-.scroll-down-container {
-  position: absolute;
-  bottom: 6rem;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  z-index: 4;
-  transition: all 0.3s ease;
-  
-  .scroll-down {
-    width: 3.2rem;
-    height: 4.8rem;
-    border-radius: 1.6rem;
-    border: 0.2rem solid $color-bg-white;
-    margin: 0 auto 1rem;
-    position: relative;
-    transition: all 0.3s ease;
-    
-    .scroll-dot {
-      position: absolute;
-      top: 1rem;
-      left: 50%;
-      border-radius: 50%;
-      width: 0.4rem;
-      height: 0.4rem;
-      background-color: $color-bg-white;
-      transform: translateX(-50%);
-      transition: all 0.3s ease;
-    }
-  }
-  
-  .scroll-down-text {
-    font-size: 1.2rem;
-    font-weight: $font-weight-semibold;
-    line-height: 2.4rem;
-    color: $color-text-white;
-    transition: all 0.3s ease;
-  }
-  
-  // 2560px 이상에서만 적용
-  @media (min-width: 2560px) {
-    bottom: 10rem;
-    
-    .scroll-down {
-      width: 4rem;
-      height: 6rem;
-      border-radius: 2rem;
-      border: 0.25rem solid $color-bg-white;
-      margin: 0 auto 1.2rem;
-      
-      .scroll-dot {
-        top: 1.2rem;
-        width: 0.5rem;
-        height: 0.5rem;
-      }
-    }
-    
-    .scroll-down-text {
-      font-size: 1.4rem;
-      line-height: 2.8rem;
-    }
-  }
-}
 
 // --- 메인 컴퍼니 섹션 ---
 .main-company {
@@ -393,13 +329,13 @@
   justify-content: center;
   position: relative;
   .container {
+    margin-top: 30rem;
     position: relative;
     width: 100%;
     min-height: 170rem;
     transition: all 0.3s ease;
     
     @media (min-width: 2560px) {
-      margin-top: 30rem;
       min-height: 212.5rem;
     }
   }
@@ -422,7 +358,6 @@
       height: 47.4rem;
       border-radius: 3.2rem;
       overflow: hidden;
-      transition: all 0.3s ease;
       
       @media (min-width: 2560px) {
         width: 44.5rem;
@@ -489,31 +424,31 @@
       }
       
       &.service-card-1 {
-        transform: translate(344px, 200px) !important;
+        transform: translate(344px, 200px);
         
         @media (min-width: 2560px) {
-          transform: translate(430px, 250px) !important;
+          transform: translate(430px, 250px);
         }
       }
       &.service-card-2 {
-        transform: translate(-107px, 615px) !important;
+        transform: translate(-107px, 615px);
         
         @media (min-width: 2560px) {
-          transform: translate(-134px, 769px) !important;
+          transform: translate(-134px, 769px);
         }
       }
       &.service-card-3 {
-        transform: translate(344px, 755px) !important;
+        transform: translate(344px, 755px);
         
         @media (min-width: 2560px) {
-          transform: translate(430px, 944px) !important;
+          transform: translate(430px, 944px);
         }
       }
       &.service-card-4 {
-        transform: translate(-107px, 1170px) !important;
+        transform: translate(-107px, 1170px);
         
         @media (min-width: 2560px) {
-          transform: translate(-134px, 1462px) !important;
+          transform: translate(-134px, 1462px);
         }
       }
       &:hover {

@@ -90,7 +90,7 @@ const features: FeatureItem[] = [
   {
     title: '스마트 RPA 자동화',
     description: [
-      'AI 기반 RPA 기술을 통해 반복적인 문서 업무를 자동화해 보험 업무 생<br>산성을 높입니다.',
+      'AI 기반 RPA 기술을 통해 반복적인 문서 업무를 자동화해 보험 업무<br>생산성을 높입니다.',
       '이미지 패턴 인식 기반의 문서 자동화를 통해 정확한 데이터 구조화를 지원합니다.'
     ],
     image: 'service1-card4.png'
@@ -112,7 +112,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: '.service1-solution',
               start: 'top 60%',
-              toggleActions: 'play reverse play reverse'
+              toggleActions: 'play none none none'
             }
           }
         )
@@ -131,7 +131,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: featureRef,
               start: 'top 70%',
-              toggleActions: 'play reverse play reverse'
+              toggleActions: 'play none none none'
             }
           })
         }

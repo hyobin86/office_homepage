@@ -41,7 +41,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: '.main-banner',
               start: 'top 30%',
-              toggleActions: 'play reverse play reverse'
+              toggleActions: 'play none none none'
             }
           }
         )

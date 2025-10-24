@@ -154,7 +154,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service1-reason',
           start: 'top 60%',
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none none'
         }
       })
 
@@ -178,7 +178,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service1-reason',
           start: 'top 60%',
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none none'
         },
         onStart: () => {
           // 애니메이션 시작 시 blur 클래스 제거

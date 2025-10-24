@@ -95,7 +95,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: headerRef.value,
             start: 'top 80%',
-            toggleActions: 'play reverse play reverse'
+            toggleActions: 'play none none none'
           }
         })
       }
@@ -115,7 +115,7 @@ onMounted(() => {
               scrollTrigger: {
                 trigger: logosRef.value,
                 start: 'top 70%',
-                toggleActions: 'play reverse play reverse'
+                toggleActions: 'play none none none'
               }
             })
           }
@@ -134,7 +134,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: visualRef.value,
             start: 'top 70%',
-            toggleActions: 'play reverse play reverse'
+            toggleActions: 'play none none none'
           }
         })
       }

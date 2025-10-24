@@ -256,7 +256,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: containerRef.value,
             start: 'top 50%',
-            toggleActions: 'play reverse play reverse'
+            toggleActions: 'play none none none'
           }
         })
       }
@@ -273,7 +273,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: carouselRef.value,
             start: 'top 80%',
-            toggleActions: 'play reverse play reverse'
+            toggleActions: 'play none none none'
           }
         })
       }

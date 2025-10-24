@@ -34,18 +34,14 @@
     </div>
     
     <!-- 스크롤 다운 -->
-    <div class="scroll-down-container" aria-label="아래로 스크롤">
-      <div class="scroll-down" role="presentation">
-        <div class="scroll-dot scroll-dot-bounce"></div>
-      </div>
-      <div class="scroll-down-text mt-16" aria-hidden="true">SCROLL DOWN</div>
-    </div>
+    <ScrollDown />
   </section>
 </template>
 
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import ScrollDown from '~/components/common/ScrollDown.vue'
 
 if (process.client) {
   gsap.registerPlugin(ScrollTrigger)
@@ -65,33 +61,10 @@ onMounted(() => {
             scrollTrigger: {
               trigger: element,
               start: "top 80%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )
-      });
-
-      (gsap.utils.toArray('.scroll-down-container') as Element[]).forEach((container) => {
-        gsap.set(container, { opacity: 0 })
-        
-        gsap.to(container, {
-          opacity: 1,
-          duration: 1,
-          delay: 0.7,
-          ease: "power2.inOut",
-          onComplete: () => {
-            const dot = container.querySelector('.scroll-dot-bounce')
-            if (dot) {
-              gsap.to(dot, {
-                y: 18, 
-                duration: 1.2,
-                ease: "power2.out",
-                yoyo: true,
-                repeat: -1
-              })
-            }
-          }
-        })
       })
     })
   }

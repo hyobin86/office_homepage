@@ -34,17 +34,15 @@
   
   .container {
     width: 100%;
-    padding-top: 10rem;
+    padding-top: 20rem;
     text-align: center;
   }
   
-  // 슬라이더 스타일
   .carousel {
     position: relative;
     width: 100%;
     max-width: 100vw;
     overflow: hidden;
-    filter: blur(0px);
     transition: filter 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     
     &.blur-effect {
@@ -59,7 +57,6 @@
     display: flex;
     justify-content: center;
     
-    // 양쪽 끝에 dim 처리
     &::before,
     &::after {
       content: '';
@@ -88,9 +85,9 @@
     will-change: transform;
     gap: var(--gap, 24px);
     align-items: center;
-    animation: infiniteScroll 15s linear infinite;
-    animation-delay: 0.8s; // 캐러셀 등장 후 애니메이션 시작
-    animation-play-state: paused; // 초기에는 일시정지
+    animation: infiniteScroll 30s linear infinite;
+    animation-delay: 0.8s;
+    animation-play-state: paused;
   }
   
   @keyframes infiniteScroll {
@@ -153,7 +150,7 @@
   .feature-item {
     width: 100%;
     position: relative;
-    opacity: 0; // GSAP가 제어할 초기 상태
+    opacity: 0;
     
     &:not(:last-child)::after {
       content: '';
@@ -168,7 +165,6 @@
   
   .feature-content {
     display: flex;
-    align-items: center;
     align-items: flex-start;
     gap: 6rem;
   }
@@ -218,33 +214,80 @@
     text-align: center;
   }
   
-  .total-services {
-    display: flex;
-    justify-content: center;
-    gap: 2.4rem;
-  }
-  
-  .service-card {
+  .carousel {
     position: relative;
+    overflow: hidden;
+    width: 100%;
     
-    .card-text {
-      position: absolute;
-      top: 35%;
-      left: 0;
-      right: 0;
-      font-size: 2.4rem;
-      font-weight: $font-weight-semibold;
-      color: $color-text-white;
-      line-height: 2.8rem;
-      text-align: center;
+    .carousel-viewport {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
     }
-    .card-label {
-      font-size: 2.4rem;
-      font-weight: $font-weight-semibold;
-      color: $color-text-white;
-      text-align: center;
-      line-height: 2.8rem;
+    
+    .carousel-track {
+      display: flex;
+      width: fit-content;
+      animation: slide 30s linear infinite;
+      gap: var(--gap, 2.4rem);
+      
+      &.paused {
+        animation-play-state: paused;
+      }
     }
+    
+    .carousel-slide {
+      flex: 0 0 var(--card-w, 30rem);
+      
+      .service-card {
+        position: relative;
+        width: 100%;
+        height: auto;
+        
+        img {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 402 / 230;
+          object-fit: contain;  
+        }
+        
+        .card-label {
+          margin-top: 3.2rem;
+          font-size: 2.4rem;
+          font-weight: $font-weight-semibold;
+          color: $color-text-white;
+          text-align: center;
+          line-height: 2.8rem;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .container {
+      padding-top: 32.5rem;
+    }
+    
+    .carousel {
+      .carousel-slide {
+        .service-card {
+          .card-label {
+            margin-top: 4rem;
+            font-size: 3rem;
+            line-height: 3.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--unit, 32.4rem) * 13));
   }
 }
 
@@ -256,6 +299,9 @@
     width: 97.4rem;
     padding: 22rem 0 16rem;
     text-align: center;
+    @media (min-width: 2560px) {
+      padding: 35rem 0 20rem;
+    }
   }
   
   .feature-grid {
@@ -331,7 +377,7 @@
     border-radius: 2rem;
     padding: 5.6rem;
     text-align: left;
-    opacity: 0; // GSAP가 제어할 초기 상태
+    opacity: 0;
     position: relative;
     
     .point-label {
@@ -383,8 +429,7 @@
   }
 
   .contact-container {
-    padding: 14rem 9.9rem 0;
-    padding-bottom: 16rem;
+    padding: 14rem 9.9rem 16rem;
     .contact-image {
       position: relative;
       margin: 0 auto;

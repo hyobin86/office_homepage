@@ -139,6 +139,10 @@ address {
   @media (max-width: 1400px) {
     padding: 0 1.5rem;
   }
+  
+  @media (min-width: 2560px) {
+    max-width: 1680px;
+  }
 }
 
 // 버튼
@@ -245,6 +249,74 @@ address {
   svg {
     width: 3.2rem;
     height: 3.2rem;
+  }
+}
+
+// ========================================
+// Scroll Down 컴포넌트
+// ========================================
+
+.scroll-down-container {
+  position: absolute;
+  bottom: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 4;
+  transition: all 0.3s ease;
+  
+  .scroll-down {
+    width: 3.2rem;
+    height: 4.8rem;
+    border-radius: 1.6rem;
+    border: 0.2rem solid $color-bg-white;
+    margin: 0 auto 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+    
+    .scroll-dot {
+      position: absolute;
+      top: 1rem;
+      left: 50%;
+      border-radius: 50%;
+      width: 0.4rem;
+      height: 0.4rem;
+      background-color: $color-bg-white;
+      transform: translateX(-50%);
+      transition: all 0.3s ease;
+    }
+  }
+  
+  .scroll-down-text {
+    font-size: 1.2rem;
+    font-weight: $font-weight-semibold;
+    line-height: 2.4rem;
+    color: $color-text-white;
+    transition: all 0.3s ease;
+  }
+  
+  // 2560px 이상에서만 적용
+  @media (min-width: 2560px) {
+    bottom: 10rem;
+    
+    .scroll-down {
+      width: 4rem;
+      height: 6rem;
+      border-radius: 2rem;
+      border: 0.25rem solid $color-bg-white;
+      margin: 0 auto 1.2rem;
+      
+      .scroll-dot {
+        top: 1.2rem;
+        width: 0.5rem;
+        height: 0.5rem;
+      }
+    }
+    
+    .scroll-down-text {
+      font-size: 1.4rem;
+      line-height: 2.8rem;
+    }
   }
 }
 

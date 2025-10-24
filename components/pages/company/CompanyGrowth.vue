@@ -82,7 +82,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: '.company-growth .section-header',
             start: "top 60%",
-            toggleActions: "play reverse play reverse"
+            toggleActions: "play none none none"
           }
         }
       )
@@ -101,7 +101,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: '.company-growth .section-header',
               start: "top 60%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )

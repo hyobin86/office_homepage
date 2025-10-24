@@ -32,6 +32,13 @@
       </div>
       
     </div>
+
+    <!-- 스크롤 다운 -->
+    <ScrollDown />
   </section>
 </template>
+
+<script setup lang="ts">
+import ScrollDown from '~/components/common/ScrollDown.vue'
+</script>
 

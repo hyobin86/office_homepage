@@ -110,7 +110,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: headerRef.value,
               start: "top 60%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )
@@ -192,7 +192,7 @@ onMounted(() => {
                 trigger: cardsContainer,
                 start: "top 60%",  // top에 도달하면
                 end: "top 20%",    
-                toggleActions: 'play reverse play reverse'
+                toggleActions: 'play none none none'
               }
             }
           )
@@ -206,7 +206,7 @@ onMounted(() => {
                 trigger: cardsContainer,
                 start: `top+=${pairIndex * pairGap - 400}px top`, // 더 늦게 등장 (200px 늦춤)
                 end: `top+=${pairIndex * pairGap - 200}px top`,
-                toggleActions: 'play reverse play reverse'
+                toggleActions: 'play none none none'
               }
             }
           )

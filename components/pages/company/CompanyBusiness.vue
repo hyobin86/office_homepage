@@ -68,9 +68,9 @@
         <div class="business-visual">
           <div class="business-visual-content">
             <h2 id="business-heading" class="business-title">
-              핀게이트만의 강점으로 완성된 보험 IT 솔루션을 소개합니다.
+              현장 경험과 IT 전문성을 결합하여 완성한 보험 IT 서비스
             </h2>
-            <p class="business-description mt-24">차별화된 솔루션으로 보험 비즈니스 성공을 함께 이끕니다.</p>
+            <p class="business-description mt-24">핀게이트만의 차별화된 솔루션으로 보험 비즈니스 성공을 함께 이끕니다.</p>
           </div>
           <NuxtLink to="/services/service1" class="button" aria-label="서비스 페이지로 이동">
             MORE VIEW
@@ -241,7 +241,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: headerRef.value,
               start: "top 60%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )
@@ -259,7 +259,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: buttonsRef.value,
               start: "top 60%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )
@@ -277,7 +277,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: contentRef.value,
               start: "top 80%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )
@@ -295,7 +295,7 @@ onMounted(() => {
             scrollTrigger: {
               trigger: containerRef.value,
               start: "top 80%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )

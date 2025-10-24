@@ -83,7 +83,7 @@ const valueContents = [
       },
       {
         title: '조직 안정성 강화',
-        description: '신규 설계사 온보딩·정착 지원, 이탈을 감소'
+        description: '신규 설계사 온보딩·정착 지원, 이탈률 감소'
       },
       {
         title: '데이터 자산 확보',
@@ -97,7 +97,7 @@ const valueContents = [
     points: [
       {
         title: '상담 효율성 향상',
-        description: 'AI 보장분석과 상품 비교 자동화로 상담 준비 시간을 절반으로'
+        description: 'AI 보장분석과 상품 비교 자동화로 상담 준비 시간을 절반으로 단축'
       },
       {
         title: '전문성 강화',
@@ -150,7 +150,7 @@ onMounted(() => {
               scrollTrigger: {
                 trigger: '.newvision-value',
                 start: "top 70%",
-                toggleActions: 'play reverse play reverse'
+                toggleActions: 'play none none none'
               }
             }
           )

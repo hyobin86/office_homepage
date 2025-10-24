@@ -59,7 +59,7 @@ const historyData: YearData[] = [
       { month: '09', text: '<b>GA통합지원솔루션</b> EPIKA 2.0 출시' },
       { month: '08', text: '<b>카카오페이</b> GA KP보험서비스 GA통합지원시스템 구축' },
       { month: '06', text: '<b>더베스트파트너스</b> GA영업지원시스템 구축' },
-      { month: '04', text: '<b>AIA 프리미어 파트너스</b> AIMS Improvement 구축' }
+      { month: '04', text: '<b>AIA프리미어파트너스</b> AIMS Improvement 구축' }
     ]
   },
   {
@@ -104,7 +104,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: historyHeaderRef.value,
             start: "top 60%",
-            toggleActions: "play none none reverse" // 역재생 비활성화
+            toggleActions: "play none none none"
           }
         }
       )
@@ -122,7 +122,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: timelineShellRef.value,
             start: "top 60%",
-            toggleActions: "play reverse play reverse"
+            toggleActions: "play none none none"
           }
         }
       )
@@ -140,7 +140,7 @@ onMounted(() => {
           scrollTrigger: {
             trigger: nextStepHeaderRef.value,
             start: "top 60%",
-            toggleActions: "play reverse play reverse"
+            toggleActions: "play none none none"
           }
         }
       )

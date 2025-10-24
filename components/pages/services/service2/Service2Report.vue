@@ -176,7 +176,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-report',
           start: 'top 60%',
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none none'
         }
       }
     )
@@ -197,7 +197,7 @@ onMounted(() => {
       scrollTrigger: {
         trigger: '.service2-report',
         start: 'top 60%',
-        toggleActions: 'play reverse play reverse'
+        toggleActions: 'play none none none'
       }
     }
   )
@@ -218,7 +218,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-report',
           start: 'top 60%',
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none none'
         }
       }
     )
@@ -240,7 +240,7 @@ onMounted(() => {
         scrollTrigger: {
           trigger: '.service2-contact-banner',
           start: 'top 70%',
-          toggleActions: 'play reverse play reverse'
+          toggleActions: 'play none none none'
         }
       }
     )

@@ -32,7 +32,7 @@ export default defineNuxtPlugin(() => {
               trigger: element,
               start: "top 60%",
               end: isInServicesSection ? () => mainServicesSection.offsetTop + mainServicesSection.offsetHeight : undefined,
-              toggleActions: isInServicesSection ? "play reverse play reverse" : "play reverse play reverse",
+              toggleActions: isInServicesSection ? "play none none none" : "play none none none",
               invalidateOnRefresh: false
             }
           }
@@ -54,7 +54,7 @@ export default defineNuxtPlugin(() => {
             scrollTrigger: {
               trigger: element,
               start: "top 80%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )
@@ -75,7 +75,7 @@ export default defineNuxtPlugin(() => {
             scrollTrigger: {
               trigger: element,
               start: "top 80%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )
@@ -96,7 +96,7 @@ export default defineNuxtPlugin(() => {
             scrollTrigger: {
               trigger: element,
               start: "top 80%",
-              toggleActions: "play reverse play reverse"
+              toggleActions: "play none none none"
             }
           }
         )
