@@ -27,8 +27,7 @@
   
   // 헤더 컨테이너
   &-container {
-    max-width: 1400px;
-    margin: 0 auto;
+    @include container-responsive;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -146,9 +145,8 @@
   
   // 드롭다운 콘텐츠
   &-content {
-    max-width: 1400px;
+    @include container-responsive;
     height: 6.4rem;
-    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -186,8 +184,7 @@
   padding: 8rem 0 12.8rem;
   
   &-container {
-    max-width: 1400px;
-    margin: 0 auto;
+    @include container-responsive;
     padding: 0 2rem;
   }
   

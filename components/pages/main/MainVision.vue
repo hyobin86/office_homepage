@@ -6,13 +6,13 @@
         <h2 id="vision-heading" class="hero-title mt-20">AI와 함께 만드는 보험 IT의 새로운 기준</h2>
         <p class="hero-desc mt-40">복잡한 보험 업무를 데이터와 AI로 혁신적인 경험을 만듭니다.</p>
       </div>
-      <div class="d-flex gap-24 mt-120" role="list" aria-label="비전 카드 목록">
+      <div class="vision-cards-wrapper" role="list" aria-label="비전 카드 목록">
         <NuxtLink 
           v-for="(card, index) in visionCards"
           :key="index"
           :to="card.link"
           :class="`vision-card-${index + 1}`"
-          class="vision-card mt-20"
+          class="vision-card"
           role="listitem"
           :aria-label="`${card.title} 페이지로 이동`"
         >

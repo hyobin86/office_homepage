@@ -17,17 +17,17 @@
             :data-year="y.year"
           >
             <h3 class="year-label" :aria-label="`${y.year} 연혁`">{{ y.year }}</h3>
-            <ul class="year-events mt-40">
-              <li v-for="(e, i) in y.events" :key="i" class="event-item mt-24">
+            <ul class="year-events">
+              <li v-for="(e, i) in y.events" :key="i" class="event-item">
                 <span class="event-month">{{ e.month }}</span>
-                <span class="event-text ml-40" v-html="e.text"></span>
+                <span class="event-text" v-html="e.text"></span>
               </li>
             </ul>
           </article>
         </div>
       </div>
     </div>
-    <div class="container next-step" ref="nextStepRef">
+    <div class="next-step" ref="nextStepRef">
       <div class="section-header" ref="nextStepHeaderRef">
         <div class="section-subtitle">NEXT STEP with AI</div>
         <h2 id="contact-heading" class="section-title mt-24">

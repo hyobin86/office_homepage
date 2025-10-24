@@ -134,10 +134,9 @@ address {
 
 // 컨테이너
 .container {
-  max-width: $container-max-width;
-  margin: 0 auto;
-  @include responsive(xl) {
-    max-width: 1400px;
+  @include container-responsive;
+  
+  @media (max-width: 1400px) {
     padding: 0 1.5rem;
   }
 }
@@ -183,19 +182,35 @@ address {
   cursor: pointer;
   transition: all 0.3s ease;
   
+  @media (min-width: 2560px) {
+    min-width: 30rem;
+    height: 9rem;
+    border-radius: 4.5rem;
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+  }
+  
   &:hover,
   &.active {
     border: 0.2rem solid $color-bg-primary;
     background-color: $color-bg-primary;
   }
+  
   &-small {
     height: 6.4rem;
     font-size: 1.8rem;
     font-weight: $font-weight-normal;
+    
+    @media (min-width: 2560px) {
+      height: 8rem;
+      font-size: 2.2rem;
+    }
   }
+  
   &-default {
     border: 0.2rem solid $color-border-quaternary;
     color: $color-text-quaternary;
+    
     &:hover,
     &.active {
       color: $color-text-white;

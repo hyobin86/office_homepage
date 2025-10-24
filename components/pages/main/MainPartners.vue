@@ -7,7 +7,7 @@
         <h2 id="partners-heading" class="hero-title mt-20">고객의 비즈니스 성공과 함께 지켜온 신뢰</h2>
         <p class="hero-desc mt-40">고객의 성공과 함께 쌓아온 신뢰가 핀게이트의 성장을 이끕니다.</p>
       </div>
-      <div class="d-flex gap-24 mt-120" role="list" aria-label="파트너사 로고">
+      <div class="logo-wrapper" role="list" aria-label="파트너사 로고">
         <img 
           v-for="(logo, index) in partnerLogos"
           :key="logo.id"

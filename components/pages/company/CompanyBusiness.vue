@@ -9,7 +9,7 @@
       </div>
       
       <!-- 버튼 영역 -->
-      <div class="business-buttons mt-80" ref="buttonsRef">
+      <div class="business-buttons" ref="buttonsRef">
         <button 
           v-for="(button, index) in businessButtons" 
           :key="index"
@@ -21,7 +21,7 @@
       </div>
       
       <!-- 콘텐츠 영역 -->
-      <div class="business-content mt-120" ref="contentRef">
+      <div class="business-content" ref="contentRef">
         <div class="content-wrapper" :key="`content-${activeButton}`">
           <div class="content-background">
             <img 
@@ -49,7 +49,7 @@
                     height="48"
                   />
                 </div>
-                <h4 class="card-title mt-24" v-html="card.title"></h4>
+                <h4 class="card-title" v-html="card.title"></h4>
               </div>
             </div>
           </div>

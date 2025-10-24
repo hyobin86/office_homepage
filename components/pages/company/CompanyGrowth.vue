@@ -9,7 +9,7 @@
         </h2>
       </div>
       
-      <div class="growth-content mt-120">
+      <div class="growth-content">
         <div class="value-cards">
           <div 
             v-for="(value, index) in valueCards" 
@@ -25,8 +25,8 @@
                 height="64"
               />
             </div>
-            <h3 class="card-title mt-40">{{ value.title }}</h3>
-            <p class="card-desc mt-20" v-html="value.description"></p>
+            <h3 class="card-title">{{ value.title }}</h3>
+            <p class="card-desc" v-html="value.description"></p>
           </div>
         </div>
       </div>

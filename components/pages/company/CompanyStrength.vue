@@ -53,7 +53,6 @@
               :src="s.src" 
               :alt="s.title"
               width="1210"
-              height="420"
               loading="lazy"
             />
             <div class="slide-content">
@@ -138,8 +137,14 @@ function remToPx(rem: number) {
 const applyTransform = (i: number, animate = true) => {
   if (!track.value || !viewport.value) return
   const vpW = viewport.value.clientWidth
-  const centerOffset = (vpW - cardPx.value) / 2
-  const tx = Math.round(centerOffset - i * unit.value)
+  
+  // CSS에서 실제 슬라이드 너비 가져오기
+  const slideElement = track.value.querySelector('.carousel-slide') as HTMLElement
+  const actualSlideWidth = slideElement ? slideElement.offsetWidth : 0
+  
+  const centerOffset = (vpW - actualSlideWidth) / 2
+  const gap = gapPx.value
+  const tx = Math.round(centerOffset - i * (actualSlideWidth + gap))
   animating.value = animate
   track.value.style.transition = animate ? 'transform 600ms cubic-bezier(.22,.61,.36,1)' : 'none'
   track.value.style.transform = `translate3d(${tx}px,0,0)`
@@ -202,12 +207,13 @@ const recalc = () => {
   cardPx.value = Math.min(maxCard, Math.max(320, minCardToKeepPeek))
   unit.value = cardPx.value + gapPx.value
 
-  // 높이 = 비율(1210:420)
-  const heightPx = Math.round(cardPx.value * (420 / 1210))
-  ;(viewport.value as HTMLElement).style.height = `${heightPx}px`
+  // 높이는 CSS aspect-ratio로 처리
+  // const heightPx = Math.round(cardPx.value * (420 / 1210))
+  // ;(viewport.value as HTMLElement).style.height = `${heightPx}px`
 
+  // CSS 변수 설정 제거 - 이제 CSS에서 반응형으로 처리
+  // root?.style.setProperty('--card-w', `${cardPx.value}px`)
   const root = carouselRef.value as HTMLElement
-  root?.style.setProperty('--card-w', `${cardPx.value}px`)
   root?.style.setProperty('--gap', `${gapPx.value}px`)
 
   applyTransform(index.value, false)

@@ -34,9 +34,10 @@ $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
-// 컨테이너
+// 컨테이너 설정
 $container-max-width: 1400px;
-$container-padding: 1rem;
+$container-max-width-xl: 1680px;
+$container-padding: 0;
 
 // 브레이크포인트
-$breakpoint-desktop: 1400px; // 컨테이너 최대 너비
+$breakpoint-xl: 2560px;

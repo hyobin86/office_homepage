@@ -202,13 +202,22 @@ onMounted(() => {
       (gsap.utils.toArray('.cards-spread-out') as Element[]).forEach((container) => {
         const cards = Array.from(container.querySelectorAll('.company-card'))
 
-        const finalPositions = [
+        // 화면 크기에 따른 위치 계산 (1920px 기준으로 확장)
+        const screenWidth = window.innerWidth
+        const scaleFactor = Math.min(screenWidth / 1920, 1.33) // 최대 2560px까지
+        
+        const basePositions = [
           { x: 486,  y: -410 },
           { x: 341,  y: 100  },
           { x: -580, y: 80   },
           { x: -780, y: -300 },
           { x: -360, y: -440 }
         ]
+        
+        const finalPositions = basePositions.map(pos => ({
+          x: pos.x * scaleFactor,
+          y: pos.y * scaleFactor
+        }))
 
         cards.forEach((card, i) => {
           gsap.set(card, { opacity: 0, force3D: true })
