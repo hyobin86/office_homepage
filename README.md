@@ -15,7 +15,7 @@
 - ✅ **TypeScript 100%** - 모든 Vue 컴포넌트 타입 안정성 보장
 - ✅ **GSAP 애니메이션** - ScrollTrigger, Context API로 최적화된 인터랙션
 - ✅ **Lenis 스무스 스크롤** - 부드러운 섹션 전환 및 스냅 효과 (메인 6개, 뉴비전 5개 섹션)
-- ✅ **복잡한 스크롤 애니메이션** - NewvisionAgenda 200vh 높이, 이미지 마스크 reveal, 텍스트 순차 등장
+- ✅ **복잡한 스크롤 애니메이션** - NewvisionAgenda 200rem 높이, 타임라인 기반 3분할 순차 등장, 되감기 방지
 - ✅ **인덱스 기반 애니메이션** - 동적 요소 순차 등장 (0.7초 + 0.6초 간격)
 - ✅ **성능 최적화** - RAF, Throttle, Intersection Observer, GPU 가속
 - ✅ **이미지 최적화** - @nuxt/image로 WebP/AVIF 자동 변환, Lazy loading
@@ -286,13 +286,31 @@ const mainSections = ['hero', 'company', 'services', 'partners', 'vision', 'bann
 const newvisionSections = ['hero', 'agenda', 'nextstep', 'value', 'contact']
 ```
 
-#### 2. **NewvisionAgenda 복잡한 스크롤 애니메이션**
+#### 2. **NewvisionAgenda 타임라인 기반 스크롤 애니메이션**
 ```javascript
-// 이미지 마스크 reveal + 텍스트 순차 등장 (200vh 높이)
-gsap.fromTo(imgElement, 
-  { clipPath: 'inset(0 0 100% 0)' },
-  { clipPath: 'inset(0 0 0% 0)', delay: 1, scrub: false }
-)
+// GSAP Timeline + ScrollTrigger: 200rem 영역을 3분할로 텍스트 순차 등장
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: agendaUnifiedArea.value,
+    start: 'top 40%',
+    end: 'bottom 0%',
+    scrub: true,
+    onUpdate: (self) => {
+      // 역스크롤 시 되감기 방지 (maxProgress 체크)
+      if (self.progress < maxProgress) {
+        self.animation?.progress(maxProgress)
+        return
+      }
+      maxProgress = self.progress
+    }
+  }
+})
+
+// 각 카드별 타이밍: 0.05~0.30, 0.36~0.63, 0.68~0.93
+tl.to('.card-text-1', { opacity: 1 }, 0.05)
+  .to('.card-text-2', { opacity: 1 }, 0.36)
+  .to('.card-text-3', { opacity: 1 }, 0.68)
+  // 영역 이탈 시 모든 요소 자동 페이드아웃
 ```
 
 #### 3. **인덱스 기반 순차 등장 (NewvisionNextstep, NewvisionValue)**

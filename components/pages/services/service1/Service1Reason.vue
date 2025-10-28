@@ -91,8 +91,8 @@ const unit = ref(0)
 
 // ===== 렌더용 배열: 무한 루프를 위한 복제 =====
 const renderProblems = computed(() => {
-  // 더 많은 복제본을 만들어서 자연스러운 흐름 구현
-  return [...problems, ...problems, ...problems]
+  // 무한 스크롤을 위해 충분한 복제본 (5배 복제)
+  return [...problems, ...problems, ...problems, ...problems, ...problems]
 })
 
 function remToPx(rem: number) {
@@ -102,7 +102,7 @@ function remToPx(rem: number) {
 
 const recalc = () => {
   if (!viewport.value || !track.value) return
-  const CARD_W_REM = 30  // 카드 너비를 더 작게 조정
+  const CARD_W_REM = 32  // 카드 너비를 더 작게 조정
   const GAP_REM = 2.4
   const PEEK_REM = 6
 
@@ -120,9 +120,12 @@ const recalc = () => {
   ;(viewport.value as HTMLElement).style.height = `${heightPx}px`
 
   const root = carouselRef.value as HTMLElement
-  root?.style.setProperty('--card-w', `${cardPx.value}px`)
-  root?.style.setProperty('--gap', `${gapPx.value}px`)
-  root?.style.setProperty('--unit', `${unit.value}px`)
+  // 정수 픽셀로 고정하여 sub-pixel 정밀도 문제 방지
+  root?.style.setProperty('--card-w', `${Math.round(cardPx.value)}px`)
+  root?.style.setProperty('--gap', `${Math.round(gapPx.value)}px`)
+  root?.style.setProperty('--unit', `${Math.round(unit.value)}px`)
+  root?.style.setProperty('--period-items', '5')
+  root?.style.setProperty('--period', `calc(var(--unit) * var(--period-items))`)
 }
 
 onMounted(() => {
@@ -171,8 +174,8 @@ onMounted(() => {
       
       const carouselAnimation = gsap.to(carouselRef.value, {
         opacity: 1,
-        delay: 0.2, // 0.5초에서 0.2초로 단축
-        duration: 1.0, // 1.5초에서 1.0초로 단축
+        delay: 0.2,
+        duration: 1.0,
         ease: "power4.out",
         force3D: true,
         scrollTrigger: {
@@ -181,15 +184,12 @@ onMounted(() => {
           toggleActions: 'play none none none'
         },
         onStart: () => {
-          // 애니메이션 시작 시 blur 클래스 제거
           carouselRef.value?.classList.remove('blur-effect')
-          // 애니메이션 시작과 동시에 슬라이드 플레이 시작
-          if (track.value) {
+          if (track.value && unit.value > 0) {
             track.value.style.animationPlayState = 'running'
           }
         },
         onReverseStart: () => {
-          // 역재생 시작 시 blur 클래스 추가
           carouselRef.value?.classList.add('blur-effect')
           if (track.value) {
             track.value.style.animationPlayState = 'paused'

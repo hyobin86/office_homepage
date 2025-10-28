@@ -531,7 +531,7 @@
   justify-content: center;
   
   .container {
-    margin-top: 35rem;
+    margin-top: 40rem;
     margin-bottom: 35rem;
     position: relative;
     width: 100%;
@@ -544,11 +544,10 @@
     
     @media (min-width: 2560px) {
       margin-top: 60rem;
-      margin-bottom: 40rem;
+      margin-bottom: 20rem;
     }
     
     .vision-cards-wrapper {
-      margin-top: 12rem;
       width: 100%;
       display: flex;
       flex-wrap: nowrap;
@@ -638,6 +637,7 @@
   align-items: center;
   justify-content: center;
   .container {
+    margin-top: -10rem;
     width: 100%;
     height: auto;
     display: flex;

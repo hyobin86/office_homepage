@@ -40,7 +40,7 @@ onMounted(() => {
             ease: 'power2.out',
             scrollTrigger: {
               trigger: '.main-banner',
-              start: 'top 30%',
+              start: 'top 80%',
               toggleActions: 'play none none none'
             }
           }

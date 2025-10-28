@@ -85,27 +85,27 @@
     will-change: transform;
     gap: var(--gap, 24px);
     align-items: center;
-    animation: infiniteScroll 30s linear infinite;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    animation: infiniteScroll 16s linear infinite paused;
     animation-delay: 0.8s;
-    animation-play-state: paused;
   }
   
   @keyframes infiniteScroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-1 * var(--unit) * 5));
-    }
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(calc(-1 * var(--period)), 0, 0); }
   }
 
   .carousel-slide {
     flex: 0 0 auto;
-    width: 33.2rem;
+    width: var(--card-w);
     height: 28rem;
     position: relative;
     display: grid;
     place-items: center;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
     
     .problem-card {
       width: 100%;
@@ -216,19 +216,17 @@
   
   .carousel {
     position: relative;
-    overflow: hidden;
     width: 100%;
     
     .carousel-viewport {
       position: relative;
       width: 100%;
-      overflow: hidden;
     }
     
     .carousel-track {
       display: flex;
       width: fit-content;
-      animation: slide 30s linear infinite;
+      animation: slide 50s linear infinite;
       gap: var(--gap, 2.4rem);
       
       &.paused {

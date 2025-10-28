@@ -33,15 +33,17 @@
         </div>
         
         <div class="diagnosis-card">
-          <img 
-            :src="diagnosisButtons[activeButton].image"
-            :alt="diagnosisButtons[activeButton].title"
-            width="569"
-            height="680"
-            loading="lazy"
-            class="card-image"
-            :key="activeButton"
-          />
+          <Transition name="fade">
+            <img 
+              :src="diagnosisButtons[activeButton].image"
+              :alt="diagnosisButtons[activeButton].title"
+              width="569"
+              height="680"
+              loading="lazy"
+              class="card-image"
+              :key="activeButton"
+            />
+          </Transition>
         </div>
       </div>
     </div>
@@ -76,9 +78,29 @@ const diagnosisButtons = [
 const activeButton = ref(0)
 const headerRef = ref<HTMLElement>()
 const areaRef = ref<HTMLElement>()
+let autoInterval: NodeJS.Timeout | null = null
 
 const setActiveButton = (index: number) => {
   activeButton.value = index
+}
+
+const startAutoRotation = () => {
+  // 기존 interval이 있으면 제거
+  if (autoInterval) {
+    clearInterval(autoInterval)
+  }
+  
+  // 2초마다 자동으로 다음 버튼으로 전환
+  autoInterval = setInterval(() => {
+    activeButton.value = (activeButton.value + 1) % diagnosisButtons.length
+  }, 4000)
+}
+
+const stopAutoRotation = () => {
+  if (autoInterval) {
+    clearInterval(autoInterval)
+    autoInterval = null
+  }
 }
 
 onMounted(() => {
@@ -117,9 +139,13 @@ onMounted(() => {
       }
     )
   }
+  
+  // 자동 전환 시작
+  startAutoRotation()
 })
 
 onBeforeUnmount(() => {
   ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+  stopAutoRotation()
 })
 </script>

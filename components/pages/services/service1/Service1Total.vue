@@ -85,7 +85,7 @@ const unit = ref(0)
 // ===== 렌더용 배열: 무한 루프를 위한 복제 =====
 const renderServices = computed(() => {
   // 더 많은 복제본을 만들어서 자연스러운 흐름 구현
-  return [...services, ...services, ...services]
+  return [...services, ...services]
 })
 
 function remToPx(rem: number) {

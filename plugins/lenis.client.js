@@ -14,14 +14,12 @@ export default defineNuxtPlugin((nuxtApp) => {
       infinite: false,
     })
 
-    // GSAP과 연동
-    lenis.on('scroll', (e) => {
+    lenis.on('scroll', () => {
       if (window.ScrollTrigger) {
         window.ScrollTrigger.update()
       }
     })
 
-    // 애니메이션 프레임에서 업데이트
     function raf(time) {
       lenis.raf(time)
       requestAnimationFrame(raf)
@@ -29,7 +27,52 @@ export default defineNuxtPlugin((nuxtApp) => {
 
     requestAnimationFrame(raf)
 
-    // 전역 접근 및 provide
+    // Integrate GSAP ScrollTrigger with Lenis
+    if (window.ScrollTrigger) {
+      window.ScrollTrigger.scrollerProxy(document.documentElement, {
+        scrollTop(value) {
+          if (arguments.length) {
+            lenis.scrollTo(value, { immediate: true })
+          } else {
+            return window.scrollY || window.pageYOffset
+          }
+        },
+        getBoundingClientRect() {
+          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }
+        },
+        pinType: document.body.style.transform ? 'transform' : 'fixed'
+      })
+
+      window.ScrollTrigger.addEventListener('refresh', () => {
+        requestAnimationFrame((time) => lenis.raf(time))
+      })
+      window.ScrollTrigger.refresh()
+    }
+
+    const resetScrollPosition = () => {
+      lenis.stop()
+      lenis.scrollTo(0, { immediate: true, force: true })
+      window.scrollTo(0, 0)
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+      document.documentElement.scrollTop = 0
+      document.documentElement.scrollLeft = 0
+      document.body.scrollTop = 0
+      document.body.scrollLeft = 0
+      setTimeout(() => lenis.start(), 0)
+    }
+    
+    const router = useRouter()
+    
+    router.beforeEach((to, from) => {
+      if (to.path !== from.path) {
+        resetScrollPosition()
+      }
+    })
+    
+    nuxtApp.hook('page:finish', () => {
+      nextTick(resetScrollPosition)
+    })
+
     window.lenis = lenis
     nuxtApp.provide('lenis', lenis)
   }

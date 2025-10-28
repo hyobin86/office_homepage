@@ -297,7 +297,7 @@
       flex-direction: column;
       justify-content: center;
       cursor: pointer;
-      transition: all 0.3s linear;
+      transition: all 0.5s ease-in-out;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       height: 16.8rem;
       
@@ -356,17 +356,21 @@
   }
   
   .diagnosis-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
     width: 100%;
-    height: 100%;
-    margin-top: 10rem;
+    min-height: 68rem; // 이미지 표시를 위한 최소 높이
+    
+    // 내부 이미지를 같은 위치에 겹쳐서 배치
     img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      height: auto;
+      max-width: 56.9rem; // 원본 너비
+      max-height: 68rem; // 원본 높이
+      object-fit: contain;
     }
   }
 }
