@@ -1,7 +1,7 @@
 <template>
   <section class="service2-onestop" aria-labelledby="onestop-heading">
-    <div class="container" ref="headerRef">
-      <div class="section-header" >
+    <div class="container">
+      <div class="section-header" ref="headerRef">
         <h2 id="onestop-heading" class="section-title">
           설계사의 모든 고민, ISP 하나로 끝!
         </h2>
@@ -138,7 +138,7 @@ const setCardRef = (el: Element | ComponentPublicInstance | null, index: number)
 onMounted(() => {
   // 타이틀 애니메이션 (더 간단하고 확실한 방법)
   if (headerRef.value) {
-    gsap.fromTo('.section-header', 
+    gsap.fromTo(headerRef.value, 
       { 
         opacity: 0, 
         y: 50 
@@ -150,7 +150,7 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-onestop',
-          start: 'top 70%',
+          start: 'top 80%',
           toggleActions: 'play none none none'
         }
       }
@@ -176,7 +176,7 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.dashboard-cards',  // dashboard-cards 전체를 트리거로 사용
-          start: 'top 70%',
+          start: 'top 90%',
           toggleActions: 'play none none none'
         }
       })

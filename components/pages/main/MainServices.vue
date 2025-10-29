@@ -11,13 +11,14 @@
       </div>
 
       <div class="services-cards" role="list" aria-label="주요 서비스 목록">
-        <article 
+        <NuxtLink
           v-for="(card, index) in serviceCards" 
           :key="index"
+          :to="card.to"
           class="service-card"
           :class="`service-card-${index + 1}`"
           role="listitem"
-          :aria-label="`${card.title} 서비스`"
+          :aria-label="`${card.title} 서비스 페이지로 이동`"
         >
           <div class="card-image">
             <img 
@@ -32,7 +33,7 @@
             <h3 class="card-title">{{ card.title }}</h3>
             <div class="card-desc mt-24" v-html="card.desc"></div>
           </div>
-        </article>
+        </NuxtLink>
       </div>
     </div>
   </section>
@@ -52,21 +53,25 @@ const serviceCards = [
     title: '영업지원 솔루션',
     desc: '배정 DB 관리<br/>상담/계약관리<br/>교육/영업 평가 관리<br/>수수료',
     image: '/images/main/main-card6.png',
+    to: '/services/service1'
   },
   {
     title: '경영지원 솔루션',
     desc: '인사/위촉후보자 관리<br/>임차/자산 관리<br/>채권추심<br/>준법',
     image: '/images/main/main-card7.png',
+    to: '/services/service1'
   },
   {
     title: '통합지원 솔루션',
     desc: 'DB 운영<br/>권한/상품 관리<br/>통합 고객 관리<br/>캠페인/민원 관리',
     image: '/images/main/main-card8.png',
+    to: '/services/service1'
   },
   {
     title: '인슈어테크 솔루션',
     desc: '보장분석<br/>보험추천<br/>상품설계<br/>보험비교',
     image: '/images/main/main-card9.png',
+    to: '/services/service2'
   }
 ]
 

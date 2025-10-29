@@ -77,7 +77,7 @@ const setBubbleRef = (el: Element | ComponentPublicInstance | null, index: numbe
 onMounted(() => {
   // 타이틀 애니메이션
   if (headerRef.value) {
-    gsap.fromTo('.section-header', 
+    gsap.fromTo(headerRef.value, 
       { 
         opacity: 0, 
         y: 50 

@@ -64,6 +64,10 @@
   .form-wrap {
     display: flex;
     gap: 12rem;
+
+    @media (min-width: 2560px) {
+      gap: 25rem;
+    }
     
     .form-item:first-child {
       min-width: max-content;

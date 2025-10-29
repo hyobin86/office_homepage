@@ -26,28 +26,31 @@
 
           <!-- 이미지 카드 -->
           <div class="card-images-wrapper" ref="cardImagesWrapper">
-            <Transition name="fade">
-              <div v-if="activeCardIndex >= 0" class="agenda-card-pair" :key="activeCardIndex">
-                <div class="card-image">
-                  <img 
-                    :src="agendaCards[activeCardIndex].imageLeft"
-                    :alt="`${agendaCards[activeCardIndex].title} 왼쪽 이미지`"
-                    loading="lazy"
-                    width="332"
-                    height="360"
-                  />
-                </div>
-                <div class="card-image">
-                  <img 
-                    :src="agendaCards[activeCardIndex].imageRight"
-                    :alt="`${agendaCards[activeCardIndex].title} 오른쪽 이미지`"
-                    loading="lazy"
-                    width="332"
-                    height="360"
-                  />
-                </div>
+            <div 
+              v-for="(card, index) in agendaCards" 
+              :key="`card-${index}`"
+              class="agenda-card-pair"
+              :class="`card-pair-${index + 1}`"
+            >
+              <div class="card-image">
+                <img 
+                  :src="card.imageLeft"
+                  :alt="`${card.title} 왼쪽 이미지`"
+                  loading="lazy"
+                  width="332"
+                  height="360"
+                />
               </div>
-            </Transition>
+              <div class="card-image">
+                <img 
+                  :src="card.imageRight"
+                  :alt="`${card.title} 오른쪽 이미지`"
+                  loading="lazy"
+                  width="332"
+                  height="360"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -119,19 +122,20 @@ onMounted(() => {
       // 초기에는 숨김
       activeCardIndex.value = -1
 
-      // 마스터 타임라인: 영역 내부 3분할로 텍스트 표시/숨김 제어
+      // 마스터 타임라인: 영역 내부 3분할로 텍스트와 카드 동시 표시/숨김 제어
       if (agendaUnifiedArea.value) {
-        // 모든 텍스트 초기 상태
-        gsap.set('.card-center-text', { opacity: 0 })
+        // 모든 텍스트와 카드 초기 상태
+        gsap.set('.card-center-text, .agenda-card-pair', { opacity: 0 })
 
         // 되감기 방지용 진행도 상한
         let maxProgress = 0
 
         const tl = gsap.timeline({
           defaults: { ease: 'none' },
+          duration: 1,
           scrollTrigger: {
             trigger: agendaUnifiedArea.value,
-            start: 'top 40%',
+            start: 'top 80%',
             end: 'bottom 0%',
             scrub: true,
             onUpdate: (self) => {
@@ -142,62 +146,38 @@ onMounted(() => {
               }
               const p = self.progress
               maxProgress = p
-              // 진행도에 따라 활성 카드 동기화 (0~1 구간을 3등분)
-              if (p < 0.33) {
-                if (activeCardIndex.value !== 0) {
-                  activeCardIndex.value = 0
-                }
-              } else if (p < 0.66) {
-                if (activeCardIndex.value !== 1) {
-                  activeCardIndex.value = 1
-                }
-              } else {
-                if (activeCardIndex.value !== 2) {
-                  activeCardIndex.value = 2
-                }
-              }
+              // activeCardIndex는 더 이상 사용하지 않음 (gsap timeline으로 직접 제어)
             }
           }
         })
 
-        // 첫 번째 카드: 0.05~0.30 (페이드인 0.05, 페이드아웃 0.05)
-        tl.to('.card-text-1', { opacity: 1, duration: 0.05 }, 0.05)
-          .to('.card-text-1', { opacity: 0, duration: 0.05 }, 0.30)
-        // 두 번째 카드: 0.36~0.63 (페이드인 0.06, 페이드아웃 0.06)
-          .to('.card-text-2', { opacity: 1, duration: 0.06 }, 0.36)
-          .to('.card-text-2', { opacity: 0, duration: 0.06 }, 0.63)
-        // 세 번째 카드: 0.68~0.93 (페이드인 0.08, 페이드아웃 0.08)
-          .to('.card-text-3', { opacity: 1, duration: 0.08 }, 0.68)
-          .to('.card-text-3', { opacity: 0, duration: 0.08 }, 0.93)
+        // 첫 번째: 0~0.15 (15% 구간)
+        tl.to('.card-text-1, .card-pair-1', { opacity: 1, duration: 0.2 }, 0)
+          .to('.card-text-1, .card-pair-1', { opacity: 0, duration: 0.1 }, 0.40)
+        // 두 번째: 0.15~0.30 (15% 구간)
+          .to('.card-text-2, .card-pair-2', { opacity: 1, duration: 0.1 }, 0.40)
+          .to('.card-text-2, .card-pair-2', { opacity: 0, duration: 0.1 }, 0.70)
+        // 세 번째: 0.30부터 끝까지 (70% 구간)
+          .to('.card-text-3, .card-pair-3', { opacity: 1, duration: 0.1 }, 0.70)
       }
 
       // 섹션 내부에서만 고정 요소 표시/숨김 (유출 방지) - opacity만 제어
       if (agendaUnifiedArea.value) {
         gsap.set([centerTextWrapper.value, cardImagesWrapper.value], { opacity: 0 })
 
-        // 영역 이탈 시 래퍼와 모든 텍스트 숨김 (애니메이션)
-        ScrollTrigger.create({
-          trigger: agendaUnifiedArea.value,
-          start: 'top 100%',
-          onLeave: () => {
-            gsap.to([centerTextWrapper.value, cardImagesWrapper.value], { opacity: 0, duration: 0.2, overwrite: 'auto' })
-            gsap.to('.card-center-text', { opacity: 0, duration: 0.3, overwrite: 'auto' })
-            activeCardIndex.value = -1
-          },
-          onLeaveBack: () => {
-            gsap.to([centerTextWrapper.value, cardImagesWrapper.value], { opacity: 0, duration: 0.2, overwrite: 'auto' })
-            gsap.to('.card-center-text', { opacity: 0, duration: 0.3, overwrite: 'auto' })
-            activeCardIndex.value = -1
-          }
-        })
-
+        // sticky로 자동 해제되므로 간단하게 표시만 제어
         ScrollTrigger.create({
           trigger: headerRef.value,
-          start: 'bottom 40%',
-          toggleActions: 'play none none none',
+          start: 'bottom 20%',
+          toggleActions: 'play reverse none none',
           onEnter: () => {
             gsap.to([centerTextWrapper.value, cardImagesWrapper.value], { opacity: 1, overwrite: 'auto' })
             activeCardIndex.value = 0
+          },
+          onLeaveBack: () => {
+            gsap.to([centerTextWrapper.value, cardImagesWrapper.value], { opacity: 0, duration: 0.3, overwrite: 'auto' })
+            gsap.to('.card-center-text', { opacity: 0, duration: 0.3, overwrite: 'auto' })
+            activeCardIndex.value = -1
           }
         })
       }

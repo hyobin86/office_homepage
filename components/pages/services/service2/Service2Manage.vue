@@ -94,7 +94,7 @@ const img2Ref = ref<HTMLElement>()
 onMounted(() => {
   // 1. 타이틀 애니메이션
   if (headerRef.value) {
-    gsap.fromTo('.section-header', 
+    gsap.fromTo(headerRef.value, 
       { 
         opacity: 0, 
         y: 50 
@@ -106,7 +106,7 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-manage',
-          start: 'top 70%',
+          start: 'top 80%',
           toggleActions: 'play none none none'
         }
       }
@@ -124,11 +124,11 @@ onMounted(() => {
         opacity: 1,
         y: 0,
         duration: 0.8,
-        delay: 0.5,
+        delay: 0.4,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-manage',
-          start: 'top 60%',
+          start: 'top 80%',
           toggleActions: 'play none none none'
         }
       }
@@ -150,7 +150,7 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-manage',
-          start: 'top 60%',
+          start: 'top 80%',
           toggleActions: 'play none none none'
         }
       }
@@ -173,7 +173,7 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-manage',
-          start: 'top 60%',
+          start: 'top 80%',
           toggleActions: 'play none none none'
         }
       }
@@ -195,7 +195,7 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-manage',
-          start: 'top 60%',
+          start: 'top 80%',
           toggleActions: 'play none none none'
         }
       }

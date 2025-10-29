@@ -90,10 +90,13 @@ const startAutoRotation = () => {
     clearInterval(autoInterval)
   }
   
-  // 2초마다 자동으로 다음 버튼으로 전환
-  autoInterval = setInterval(() => {
-    activeButton.value = (activeButton.value + 1) % diagnosisButtons.length
-  }, 4000)
+  // 첫 번째 아이템을 4초간 보여준 후 자동 전환 시작
+  setTimeout(() => {
+    // 2초마다 자동으로 다음 버튼으로 전환
+    autoInterval = setInterval(() => {
+      activeButton.value = (activeButton.value + 1) % diagnosisButtons.length
+    }, 3000)
+  }, 0)
 }
 
 const stopAutoRotation = () => {
@@ -105,7 +108,7 @@ const stopAutoRotation = () => {
 
 onMounted(() => {
   if (headerRef.value) {
-    gsap.fromTo('.section-header', 
+    gsap.fromTo(headerRef.value, 
       { opacity: 0, y: 50 },
       {
         opacity: 1,
@@ -114,8 +117,7 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-diagnosis',
-          start: 'top 50%',
-          end: 'bottom 10%',
+          start: 'top 60%',
           toggleActions: 'play none none none'
         }
       }
@@ -133,7 +135,7 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.service2-diagnosis',
-          start: 'top 50%',
+          start: 'top 60%',
           toggleActions: 'play none none none'
         }
       }

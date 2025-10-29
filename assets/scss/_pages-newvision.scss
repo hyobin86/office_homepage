@@ -154,30 +154,21 @@
     }
   }
   
-  // 고정된 콘텐츠 영역 (고정 위치)
+  // 고정된 콘텐츠 영역 (sticky 위치)
   .center-text-wrapper {
-    position: fixed;
+    position: sticky;
     top: 50vh;
-    left: 50%;
-    transform: translate(-50%, -50%);
     z-index: 10;
-    text-align: center;
-    width: 80rem;
-    margin: 0 auto;
+    width: 100%;
     pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
-    
-    @media (min-width: 2560px) {
-      width: 100rem;
-      top: 56vh;
-    }
     
     .card-center-text {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
+      text-align: center;
       opacity: 0;
       
       .card-title {
@@ -205,56 +196,53 @@
       }
     }
   }
-   .card-images-wrapper {
-     position: fixed;
-     top: 50vh;
-     left: 50%;
-     transform: translate(-50%, -17rem);
-     z-index: 1;
-     width: 140rem;
-     opacity: 0;
-     @media (min-width: 2560px) {
-      width: 168rem;
-      top: 52vh;
+  
+  .card-images-wrapper {
+    position: sticky;
+    top: 50vh;
+    z-index: 1;
+    width: 100%;
+    opacity: 0;
+    
+    .agenda-card-pair {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      
+      .card-image {
+        position: absolute;
+        top: 50%;
+        margin-top: -18rem;
+        width: 33.2rem;
+        height: 36rem;
+        border-radius: 2.4rem;
+        overflow: hidden;
+        
+        @media (min-width: 2560px) {
+          margin-top: -23rem;
+          width: 41.5rem;
+          height: 45rem;
+          border-radius: 3rem;
+        }
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        
+        &:nth-child(odd) {
+          left: 0rem;
+        }
+        
+        &:nth-child(even) {
+          right: 0rem;
+        }
+      }
     }
-     
-     .agenda-card-pair {
-       position: relative;
-       width: 100%;
-       display: flex;
-       justify-content: space-between;
-       align-items: flex-start;
-       
-       .card-image {
-         position: absolute;
-         top: 0;
-         width: 33.2rem;
-         height: 36rem;
-         border-radius: 2.4rem;
-         overflow: hidden;
-         
-         @media (min-width: 2560px) {
-           width: 41.5rem;
-           height: 45rem;
-           border-radius: 3rem;
-         }
-         
-         img {
-           width: 100%;
-           height: 100%;
-           object-fit: cover;
-         }
-         
-         &:nth-child(odd) {
-           left: 0rem;
-         }
-         
-         &:nth-child(even) {
-           right: 0rem;
-         }
-       }
-     }
-   }
+  }
 }
 
 // --- 넥스트스텝 섹션 ---
@@ -262,8 +250,12 @@
   position: relative;
   
   .container {
-    margin-top: 80rem;
+    margin-top: 40rem;
     text-align: center;
+
+    @media (min-width: 2560px) {
+      margin-top: 60rem;
+    }
     
     img {
       width: 100%;
@@ -468,19 +460,23 @@
 // --- 연락 섹션 ---
 .newvision-contact {
   position: relative;
+  
   .contact-container {
     padding: 16rem 9.9rem 0;
     margin-bottom: 14.2rem;
+    
     .contact-image {
       position: relative;
       margin: 0 auto;
       max-width: 172.2rem;
+      
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
     }
+    
     .contact-visual {
       position: absolute;
       top: 0;
@@ -494,6 +490,7 @@
       justify-content: space-between;
       align-items: center;
       column-gap: 20rem;
+      
       .contact-title {
         font-size: 4rem;
         font-weight: $font-weight-semibold;
