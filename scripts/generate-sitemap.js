@@ -5,7 +5,6 @@
 const fs = require('fs')
 const path = require('path')
 
-// 사이트맵 생성 함수
 function generateSitemap() {
   const baseUrl = process.env.NUXT_PUBLIC_BASE_URL || 'https://leenstar.dothome.co.kr'
   

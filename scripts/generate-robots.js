@@ -5,7 +5,6 @@
 const fs = require('fs')
 const path = require('path')
 
-// robots.txt 생성 함수
 function generateRobots() {
   const baseUrl = process.env.NUXT_PUBLIC_BASE_URL || 'https://leenstar.dothome.co.kr'
   

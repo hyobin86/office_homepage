@@ -24,10 +24,8 @@ export default defineNuxtPlugin((nuxtApp) => {
       lenis.raf(time)
       requestAnimationFrame(raf)
     }
-
     requestAnimationFrame(raf)
 
-    // Integrate GSAP ScrollTrigger with Lenis
     if (window.ScrollTrigger) {
       window.ScrollTrigger.scrollerProxy(document.documentElement, {
         scrollTop(value) {
@@ -60,15 +58,14 @@ export default defineNuxtPlugin((nuxtApp) => {
       document.body.scrollLeft = 0
       setTimeout(() => lenis.start(), 0)
     }
-    
+
     const router = useRouter()
-    
     router.beforeEach((to, from) => {
       if (to.path !== from.path) {
         resetScrollPosition()
       }
     })
-    
+
     nuxtApp.hook('page:finish', () => {
       nextTick(resetScrollPosition)
     })

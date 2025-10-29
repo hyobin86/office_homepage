@@ -14,14 +14,14 @@
 
 - ✅ **TypeScript 100%** - 모든 Vue 컴포넌트 타입 안정성 보장
 - ✅ **GSAP 애니메이션** - ScrollTrigger, Context API로 최적화된 인터랙션
-- ✅ **Lenis 스무스 스크롤** - 부드러운 섹션 전환 및 스냅 효과 (메인 6개, 뉴비전 5개 섹션)
+- ✅ **Lenis 스무스 스크롤** - 부드러운 스크롤 경험 제공
 - ✅ **복잡한 스크롤 애니메이션** - NewvisionAgenda sticky 구현, 타임라인 기반 3분할 순차 등장 (0~0.40, 0.40~0.70, 0.70~끝), 되감기 방지
 - ✅ **인덱스 기반 애니메이션** - 동적 요소 순차 등장 (0.7초 + 0.6초 간격)
 - ✅ **GSAP 최적화** - ref 기반 애니메이션 제어, 클래스 선택자 중복 애니메이션 방지
 - ✅ **성능 최적화** - RAF, Throttle, Intersection Observer, GPU 가속
-- ✅ **이미지 최적화** - @nuxt/image로 WebP/AVIF 자동 변환, Lazy loading
-- ✅ **SEO 완벽 지원** - 메타태그, Sitemap, Robots.txt, JSON-LD 구조화 데이터
-- ✅ **반응형 디자인** - 모바일(~1024px) / 데스크톱(1024px+) / 대형 화면(2560px+) 완벽 대응
+- ✅ **이미지 관리** - `public/images` 정적 자산, 크기 명시와 lazy 속성으로 최적화
+- ✅ **SEO 지원** - 메타태그, Sitemap, Robots.txt (스크립트로 자동 생성)
+- ✅ **반응형 디자인** - 모바일(~1024px) / 데스크톱(1024px+) / 대형 화면(2560px+) 대응
 - ✅ **모듈화된 SCSS** - 페이지별 분리, 유틸리티 최적화, 미디어 쿼리 체계화
 - ✅ **SITE_CONFIG 중앙 관리** - 연락처 정보, 회사 정보 통합 관리
 - ✅ **회사소개 페이지 완성** - 6개 섹션 (히어로, 성장, 강점, 사업영역, 연혁, 연락처)
@@ -29,7 +29,6 @@
 - ✅ **Service2 페이지 완성** - 원스톱 상담지원 솔루션 6개 섹션 구현
 - ✅ **연락처 페이지 완성** - 히어로, 연락처 정보, 문의 폼 (EmailJS 통합)
 - ✅ **2560px 대형 화면 최적화** - clamp() 함수 및 미디어 쿼리로 확장성 보장
-- ✅ **GSAP 애니메이션 최적화** - toggleActions "play none none none"으로 일회성 애니메이션
 - ✅ **폼 검증 간소화** - 통합 에러 메시지, 시스템 alert() 사용
 
 ---
@@ -65,7 +64,6 @@ npm run preview
 | **애니메이션** | GSAP + ScrollTrigger | 3.13.0 |
 | **스무스 스크롤** | Lenis | 1.3.11 |
 | **스타일** | SCSS (모듈화) | - |
-| **이미지 최적화** | @nuxt/image | Latest |
 | **이메일** | EmailJS | Latest |
 | **상태관리** | Pinia, VueUse | Latest |
 
@@ -119,7 +117,7 @@ office_homepage/
 │   │   └── contact/
 │   │       ├── ContactHero.vue         # 연락처 히어로 섹션
 │   │       ├── ContactInfo.vue         # 연락처 정보 + 지도 섹션
-│   │       └── ContactForm.vue         # EmailJS 통합, Toast 알림
+│   │       └── ContactForm.vue         # EmailJS 통합, 시스템 alert 알림
 │   └── Icon.vue                     # SVG 아이콘
 │
 ├── 📂 pages/
@@ -171,7 +169,7 @@ office_homepage/
 │   ├── sitemap.xml                  # 자동 생성
 │   └── robots.txt                   # 자동 생성
 │
-├── nuxt.config.ts                   # Nuxt 설정 (이미지, 폰트, 빌드 최적화)
+├── nuxt.config.ts                   # Nuxt 설정 (폰트, 빌드 최적화)
 ├── package.json                     # 의존성 및 스크립트
 └── tsconfig.json                    # TypeScript 설정
 ```
@@ -196,25 +194,25 @@ office_homepage/
 ```scss
 ✅ GPU 가속                   // will-change, transform3d, backface-visibility
 ✅ CSS Containment           // contain: layout style paint
-✅ 유틸리티 클래스 최적화      // m-0~400 → m-0~100 (75% 감소)
+✅ 유틸리티 클래스 최적화      // m-0~400 → m-0~100 (축소)
 ✅ 페이지별 SCSS 분리         // 유지보수성 향상
 ```
 
 #### 3. **이미지**
 ```typescript
-✅ WebP/AVIF 자동 변환       // @nuxt/image
 ✅ Lazy Loading              // loading="lazy"
-✅ Responsive Images         // sizes, srcset 자동 생성
-✅ 최적화된 크기             // width, height 명시
+✅ 크기/비율 명시            // width/height 지정으로 CLS 방지
+✅ 정적 자산 활용            // public/images 경로 관리
 ```
 
 #### 4. **빌드**
 ```typescript
 ✅ Vendor 청크 분리          // gsap, lenis, vue 별도 번들
-✅ Gzip/Brotli 압축         // Nitro 자동 압축
 ✅ 폰트 Preload             // Pretendard, Poppins
 ✅ Tree Shaking             // 미사용 코드 제거
 ```
+
+> 참고: 현재 `nitro.compressPublicAssets`는 비활성화 상태입니다. 필요 시 빌드 설정에서 gzip/brotli를 활성화할 수 있습니다.
 
 ### Lighthouse 점수 (예상)
 - **Performance**: 90+
@@ -232,101 +230,49 @@ office_homepage/
 | **MainServices** | 서비스 소개 섹션 | 카드 분산 애니메이션, NuxtLink 통합, 각 카드 링크화 |
 | **MainCompany** | 회사 소개 섹션 | 카드 분산 애니메이션, 커스텀 커서 (RAF), Event Delegation |
 | **MainVision** | 비전 섹션 | 순차 등장 애니메이션, CSS Hover 효과, GSAP 완료 후 CSS 전환 |
-| **MainPartners** | 파트너사 섹션 | 로고 Stagger 애니메이션, NuxtImg 최적화 |
-| **MainBanner** | CTA 배너 | Footer와 한 화면 구성 (60vh), 스크롤 스냅, ref 기반 애니메이션 |
+| **MainPartners** | 파트너사 섹션 | 로고 Stagger 애니메이션 |
+| **MainBanner** | CTA 배너 | ref 기반 등장 애니메이션 |
 | **NewvisionHero** | 뉴비전 히어로 섹션 | 비디오 배경, 기본 fade-in 애니메이션 |
-| **NewvisionAgenda** | 아젠다 섹션 | sticky 구현, GSAP 통합 제어, 카드와 텍스트 완벽 동기화 (0~0.40, 0.40~0.70, 0.70~끝), 200rem 높이 |
+| **NewvisionAgenda** | 아젠다 섹션 | sticky 구현, GSAP 통합 제어, 카드와 텍스트 동기화 |
 | **NewvisionNextstep** | 넥스트스텝 섹션 | 인덱스 기반 순차 등장 (0.7초 + 0.6초 간격), 6개 POINT 카드 |
 | **NewvisionValue** | 가치 섹션 | 인덱스 기반 순차 등장, 버튼 클릭 시 콘텐츠 전환 애니메이션 |
 | **NewvisionContact** | 연락 섹션 | 단순 fade-in 애니메이션, CTA 버튼 |
 | **ContactForm** | 연락 폼 | EmailJS 통합, 시스템 alert() 알림, 간소화된 폼 검증 |
 
-|| **CompanyHero** | 회사 히어로 섹션 | 회사 소개 메인 섹션, 배경 이미지 최적화 |
-|| **CompanyGrowth** | 성장 가치 섹션 | 4개 가치 카드 그리드 레이아웃, 순차 등장 애니메이션 |
-|| **CompanyStrength** | 회사 강점 섹션 | 커스텀 슬라이더 (Composition API), NuxtImg 최적화, 접근성 지원 |
-|| **CompanyBusiness** | 사업 영역 섹션 | 동적 비즈니스 카드 그리드, 배경 오버레이 효과 |
-|| **CompanyHistory** | 회사 연혁 섹션 | 타임라인 스크롤 애니메이션, AI 히어로 섹션 통합 |
-|| **CompanyContact** | 연락처 섹션 | SITE_CONFIG 기반 연락처 정보, NuxtImg 지도, Flexbox 레이아웃 |
+### Company 컴포넌트
+
+| 컴포넌트 | 설명 | 주요 기능 |
+|---------|------|----------|
+| **CompanyHero** | 회사 히어로 섹션 | 회사 소개 메인 섹션, 배경 이미지 최적화 |
+| **CompanyGrowth** | 성장 가치 섹션 | 4개 가치 카드 그리드 레이아웃, 순차 등장 애니메이션 |
+| **CompanyStrength** | 회사 강점 섹션 | 커스텀 슬라이더 (Composition API) |
+| **CompanyBusiness** | 사업 영역 섹션 | 동적 비즈니스 카드 그리드, 배경 오버레이 효과 |
+| **CompanyHistory** | 회사 연혁 섹션 | 타임라인 스크롤 애니메이션, AI 히어로 섹션 통합 |
+| **CompanyContact** | 연락처 섹션 | SITE_CONFIG 기반 연락처 정보, 지도 |
 
 ### Service2 컴포넌트
 
 | **Service2Hero** | Service2 히어로 섹션 | 히어로 섹션, 기본 fade-in 애니메이션 |
 | **Service2Recommend** | 추천 섹션 | 말풍선 애니메이션, 순차 등장 (stagger 효과), ref 기반 제어 |
 | **Service2Onestop** | 원스톱 섹션 | 11개 카드 대시보드, 순차 등장, ref 기반 제어 |
-| **Service2Manage** | 고객 관리 섹션 | 순차 애니메이션, ref 기반 제어, 2개 영역 타이밍 동기화 |
-| **Service2Diagnosis** | 진단 섹션 | 인터랙티브 버튼, Transition 애니메이션, 자동 롤링 (3초), 첫 아이템부터 시작 |
+| **Service2Manage** | 고객 관리 섹션 | 순차 애니메이션, ref 기반 제어 |
+| **Service2Diagnosis** | 진단 섹션 | 인터랙티브 버튼, Transition 애니메이션, 자동 롤링 (3초) |
 | **Service2Report** | 리포트 섹션 | 리포트 섹션, fade-in 애니메이션 |
 
-### Service2 주요 기능
+### 주요 애니메이션 예시
 
-#### 1. **Service2Diagnosis 인터랙티브 시스템**
-```vue
-// 버튼 높이 애니메이션 (168px → 220px)
-.diagnosis-button {
-  height: 16.8rem; // 비활성 상태
-  transition: all 0.3s linear;
-  
-  &.active {
-    height: 22rem; // 활성 상태
-  }
-}
-```
-
-#### 2. **Service2Onestop 대시보드**
-```vue
-// 11개 카드 절대 위치 기반 레이아웃
-.card-1 { transform: translate(-50%, -50%) translate(-200px, -100px); }
-.card-2 { transform: translate(-50%, -50%) translate(-100px, -150px); }
-// ... 각 카드별 개별 위치와 딜레이
-```
-
-#### 3. **Service2Manage 순차 애니메이션**
+#### 1. **Lenis 스무스 스크롤**
 ```javascript
-// 타이틀 → 영역1 → 이미지1 → 영역2 → 이미지2 순차 등장
-gsap.fromTo(area1Ref.value, { opacity: 0, y: 100 }, { opacity: 1, y: 0, delay: 0.3 })
-gsap.fromTo(img1Ref.value, { opacity: 0, y: 80 }, { opacity: 1, y: 0, delay: 1.2 })
-```
-
-### 주요 애니메이션
-
-#### 1. **Lenis 스무스 스크롤 + 섹션 스냅**
-```javascript
-// 메인 페이지: 6개 섹션 스냅 (hero, company, services, partners, vision, banner)
-// 뉴비전 페이지: 5개 섹션 스냅 (hero, agenda, nextstep, value, contact)
-const mainSections = ['hero', 'company', 'services', 'partners', 'vision', 'banner']
-const newvisionSections = ['hero', 'agenda', 'nextstep', 'value', 'contact']
+// Lenis로 스무스 스크롤 구현 (섹션 스냅 미사용)
 ```
 
 #### 2. **NewvisionAgenda 타임라인 기반 스크롤 애니메이션**
 ```javascript
-// GSAP Timeline + ScrollTrigger: 200rem 영역을 3분할로 텍스트 순차 등장
-const tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: agendaUnifiedArea.value,
-    start: 'top 40%',
-    end: 'bottom 0%',
-    scrub: true,
-    onUpdate: (self) => {
-      // 역스크롤 시 되감기 방지 (maxProgress 체크)
-      if (self.progress < maxProgress) {
-        self.animation?.progress(maxProgress)
-        return
-      }
-      maxProgress = self.progress
-    }
-  }
-})
-
-// 각 카드별 타이밍: 0.05~0.30, 0.36~0.63, 0.68~0.93
-tl.to('.card-text-1', { opacity: 1 }, 0.05)
-  .to('.card-text-2', { opacity: 1 }, 0.36)
-  .to('.card-text-3', { opacity: 1 }, 0.68)
-  // 영역 이탈 시 모든 요소 자동 페이드아웃
+// 200rem 영역을 분할하여 텍스트 순차 등장, 역스크롤 시 되감기 방지
 ```
 
 #### 3. **인덱스 기반 순차 등장 (NewvisionNextstep, NewvisionValue)**
 ```javascript
-// container 바로 아래 3개 요소 순차 등장
 children.forEach((child, index) => {
   gsap.fromTo(child, { opacity: 0, y: 50 }, {
     opacity: 1, y: 0, delay: 0.7 + (index * 0.6)
@@ -336,7 +282,6 @@ children.forEach((child, index) => {
 
 #### 4. **커스텀 커서 (MainCompany)**
 ```javascript
-// RAF로 최적화된 마우스 추적
 requestAnimationFrame(() => {
   cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`
 })
@@ -371,8 +316,8 @@ useHead(seoData)
 - ✅ 메타 태그 (title, description, keywords, OG, Twitter)
 - ✅ Canonical URL
 - ✅ JSON-LD 구조화 데이터 (Organization, WebSite)
-- ✅ Sitemap.xml (자동 생성)
-- ✅ Robots.txt (자동 생성)
+- ✅ Sitemap.xml (스크립트로 생성)
+- ✅ Robots.txt (스크립트로 생성)
 - ✅ Dublin Core 메타태그
 
 ---
@@ -419,21 +364,11 @@ $font-weight-bold: 700;
 ### 반응형
 
 ```scss
-// 브레이크포인트
-$breakpoint-desktop: 1400px;  // 컨테이너 최대 너비
-$breakpoint-large: 2560px;    // 대형 화면 대응
+// 컨테이너 (assets/scss/_mixins.scss)
+@include container-responsive; // max-width: 1400px, 2560px 이상에서 1680px로 확장
 
-// 사용법
-@include responsive(desktop) {
-  // 데스크톱 (max-width: 1400px)
-}
-
-@include responsive(xl) {
-  // 데스크톱 (max-width: 1400px) - 기존 호환성
-}
-
-// 2560px 대형 화면 미디어 쿼리
-@media (min-width: 2560px) {
+// 대형 화면 (assets/scss/_variables.scss)
+@media (min-width: $breakpoint-xl) { // $breakpoint-xl: 2560px
   // 대형 화면 전용 스타일
 }
 ```
@@ -447,9 +382,9 @@ font-size: clamp(2.4rem, 1.25vw, 3rem);
 padding: clamp(2rem, 1vw, 2.5rem);
 ```
 
-#### 2. **미디어 쿼리 체계화**
+#### 2. **레이아웃 기준값**
 ```scss
-// 기본값 (1920px)
+// 기본 컨테이너 기준 (1400px)
 .container {
   padding-top: 26rem;
 }
@@ -489,21 +424,19 @@ npm run generate:robots  # Robots.txt만 생성
 
 ## 🚢 배포
 
-### 환경 변수 설정
+- 사이트 기본 URL은 `config/site.ts`의 `baseUrl`에서 관리됩니다.
+
+### 환경 변수 (선택)
 
 ```.env
-# 사이트 기본 URL
-NUXT_PUBLIC_BASE_URL=https://fingate.co.kr
-
-# EmailJS 설정 (연락 폼) - 선택사항
-# 로컬 개발 시에만 필요하며, 서버에서는 기본값 사용
+# EmailJS 설정 (연락 폼)
 NUXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 NUXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 NUXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 NUXT_PUBLIC_EMAILJS_TO_EMAIL=your_email@domain.com
 ```
 
-> **참고**: EmailJS 설정은 `config/site.ts`에 기본값이 설정되어 있어 환경 변수가 없어도 작동합니다.
+> 참고: EmailJS 설정은 `config/site.ts`에 기본값이 있어 환경 변수가 없어도 작동합니다.
 
 ### Netlify 배포
 
@@ -581,7 +514,7 @@ export const SEO_DEFAULTS = {
 
 ## 📄 라이선스
 
-Copyright © 2023-2024 FinGate. All rights reserved.
+Copyright © 2023-2025 FinGate. All rights reserved.
 
 ---
 

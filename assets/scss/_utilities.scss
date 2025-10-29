@@ -1,21 +1,11 @@
-/* ========================================
-   FinGate Utility Classes
-   ======================================== */
-
 @use 'variables' as *;
 
-// ========================================
-// Margin & Padding Utilities
-// ========================================
-
-// 0-100 범위 (0-10rem) - 가장 많이 사용되는 범위
 @for $i from 0 through 100 {
   .m-#{$i} { margin: #{$i * 0.1}rem; }
   .mt-#{$i} { margin-top: #{$i * 0.1}rem; }
   .mb-#{$i} { margin-bottom: #{$i * 0.1}rem; }
   .ml-#{$i} { margin-left: #{$i * 0.1}rem; }
   .mr-#{$i} { margin-right: #{$i * 0.1}rem; }
-  
   .p-#{$i} { padding: #{$i * 0.1}rem; }
   .pt-#{$i} { padding-top: #{$i * 0.1}rem; }
   .pb-#{$i} { padding-bottom: #{$i * 0.1}rem; }
@@ -23,13 +13,9 @@
   .pr-#{$i} { padding-right: #{$i * 0.1}rem; }
 }
 
-// 큰 값들 (10rem 이상) - 선택적으로 추가
 .mt-120 { margin-top: 12rem; }
 .mb-120 { margin-bottom: 12rem; }
 
-// ========================================
-// Text Utilities
-// ========================================
 .text-center { text-align: center; }
 .text-left { text-align: left !important; }
 .text-right { text-align: right; }
@@ -41,26 +27,15 @@
 .text-black { color: $color-text-black !important; }
 .text-gray { color: $color-text-gray !important; }
 
-// ========================================
-// Background Utilities
-// ========================================
 .bg-primary { background-color: $color-bg-primary; }
 .bg-secondary { background-color: $color-bg-secondary; }
 .bg-dark { background-color: $color-bg-dark; }
 
-// ========================================
-// Display & Flex Utilities
-// ========================================
 .d-flex { display: flex; }
 .d-block { display: block; }
 .d-none { display: none; }
 
-.flex-center { 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-}
-
+.flex-center { display: flex; align-items: center; justify-content: center; }
 .flex-column { flex-direction: column; }
 .flex-row { flex-direction: row; }
 
@@ -72,31 +47,18 @@
 .align-start { align-items: flex-start; }
 .align-end { align-items: flex-end; }
 
-// ========================================
-// Gap Utilities
-// ========================================
 @for $i from 0 through 30 {
   .gap-#{$i} { gap: #{$i * 0.1}rem; }
 }
 
-// ========================================
-// Position Utilities
-// ========================================
 .position-relative { position: relative; }
 .position-absolute { position: absolute; }
 .position-fixed { position: fixed; }
 .position-sticky { position: sticky; }
 
-// ========================================
-// Transition Utilities
-// ========================================
 .fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
+.fade-leave-active { transition: opacity 0.5s ease; }
 
 .fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
+.fade-leave-to { opacity: 0; }
 

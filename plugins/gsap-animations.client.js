@@ -1,114 +1,76 @@
-// plugins/gsap-animations.client.js
 export default defineNuxtPlugin(() => {
   if (process.client) {
     const initAnimations = () => {
       const gsap = window.gsap
       const ScrollTrigger = window.ScrollTrigger
-      
       if (!gsap || !ScrollTrigger) return
-      
-      // fade-in 애니메이션
-      gsap.utils.toArray('.fade-in').forEach((element, index) => {
-        const parentSection = element.closest('.company-business')
-        const isInCompanyBusiness = !!parentSection
-        
+
+      gsap.utils.toArray('.fade-in').forEach((element) => {
+        const isInCompanyBusiness = !!element.closest('.company-business')
         if (isInCompanyBusiness) return
-        
         const mainServicesSection = element.closest('.main-services')
         const isInServicesSection = !!mainServicesSection
-        
-        gsap.fromTo(element, 
-          { 
-            opacity: 0, 
-            y: 50 ,
-          },
+
+        gsap.fromTo(element,
+          { opacity: 0, y: 50 },
           {
             opacity: 1,
             y: 0,
             duration: 1.2,
-            ease: "power2.out",
+            ease: 'power2.out',
             delay: 0.5,
             scrollTrigger: {
               trigger: element,
-              start: "top 60%",
+              start: 'top 60%',
               end: isInServicesSection ? () => mainServicesSection.offsetTop + mainServicesSection.offsetHeight : undefined,
-              toggleActions: isInServicesSection ? "play none none none" : "play none none none",
-              invalidateOnRefresh: false
+              toggleActions: 'play none none none',
+              invalidateOnRefresh: false,
             }
           }
         )
       })
 
-      // fade-in-left
-      gsap.utils.toArray('.fade-in-left').forEach((element, index) => {
-        gsap.fromTo(element, 
-          { 
-            opacity: 0, 
-            x: -30 
-          },
+      gsap.utils.toArray('.fade-in-left').forEach((element) => {
+        gsap.fromTo(element,
+          { opacity: 0, x: -30 },
           {
             opacity: 1,
             x: 0,
             duration: 0.6,
-            ease: "power2.inOut",
-            scrollTrigger: {
-              trigger: element,
-              start: "top 80%",
-              toggleActions: "play none none none"
-            }
+            ease: 'power2.inOut',
+            scrollTrigger: { trigger: element, start: 'top 80%', toggleActions: 'play none none none' }
           }
         )
       })
 
-      // fade-in-right
-      gsap.utils.toArray('.fade-in-right').forEach((element, index) => {
-        gsap.fromTo(element, 
-          { 
-            opacity: 0, 
-            x: 30 
-          },
+      gsap.utils.toArray('.fade-in-right').forEach((element) => {
+        gsap.fromTo(element,
+          { opacity: 0, x: 30 },
           {
             opacity: 1,
             x: 0,
             duration: 0.6,
-            ease: "power2.inOut",
-            scrollTrigger: {
-              trigger: element,
-              start: "top 80%",
-              toggleActions: "play none none none"
-            }
+            ease: 'power2.inOut',
+            scrollTrigger: { trigger: element, start: 'top 80%', toggleActions: 'play none none none' }
           }
         )
       })
 
-      // fade-in-scale
-      gsap.utils.toArray('.fade-in-scale').forEach((element, index) => {
-        gsap.fromTo(element, 
-          { 
-            opacity: 0, 
-            scale: 0.9 
-          },
+      gsap.utils.toArray('.fade-in-scale').forEach((element) => {
+        gsap.fromTo(element,
+          { opacity: 0, scale: 0.9 },
           {
             opacity: 1,
             scale: 1,
             duration: 0.6,
-            ease: "power2.inOut",
-            scrollTrigger: {
-              trigger: element,
-              start: "top 80%",
-              toggleActions: "play none none none"
-            }
+            ease: 'power2.inOut',
+            scrollTrigger: { trigger: element, start: 'top 80%', toggleActions: 'play none none none' }
           }
         )
       })
-
-
     }
 
-    // 페이지 로드 시 실행
-    const runAnimations = () => {
-      setTimeout(initAnimations, 100)
-    }
+    const runAnimations = () => { setTimeout(initAnimations, 100) }
 
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', runAnimations)
@@ -116,11 +78,10 @@ export default defineNuxtPlugin(() => {
       runAnimations()
     }
 
-    // 페이지 전환 시 실행
     const router = useRouter()
     router.afterEach(() => {
       setTimeout(() => {
-        ScrollTrigger.refresh()
+        window.ScrollTrigger?.refresh()
         initAnimations()
       }, 100)
     })
