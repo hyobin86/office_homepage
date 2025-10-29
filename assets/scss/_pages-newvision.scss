@@ -17,6 +17,8 @@
     background: url('/images/newvision/newvision-bg.png') center top / cover no-repeat;
     aspect-ratio: 1920 / 5950; /* 비율 유지 */
     transition: all 0.3s ease;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 5000px;
     
     @media (min-width: 2560px) {
       aspect-ratio: 1920 / 5000;

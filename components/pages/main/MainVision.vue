@@ -13,7 +13,6 @@
           :to="card.link"
           :class="`vision-card-${index + 1}`"
           class="vision-card"
-          role="listitem"
           :aria-label="`${card.title} 페이지로 이동`"
         >
           <h3 class="vision-card-title">{{ card.title }}</h3>

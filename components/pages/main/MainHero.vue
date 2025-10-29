@@ -8,9 +8,8 @@
         muted 
         loop 
         playsinline
-        preload="metadata"
-        aria-label="FinGate 메인 배경 영상"
-        role="presentation"
+        preload="none"
+        aria-hidden="true"
       >
         <source src="/videos/main.mp4" type="video/mp4">
         <!-- Video가 지원되지 않는 경우 대체 텍스트 -->

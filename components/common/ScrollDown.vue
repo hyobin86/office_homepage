@@ -1,6 +1,6 @@
 <template>
-  <div class="scroll-down-container" aria-label="아래로 스크롤">
-    <div class="scroll-down" role="presentation">
+  <div class="scroll-down-container" aria-label="true">
+    <div class="scroll-down">
       <div class="scroll-dot scroll-dot-bounce"></div>
     </div>
     <div class="scroll-down-text mt-16" aria-hidden="true">SCROLL DOWN</div>

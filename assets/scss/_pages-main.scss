@@ -18,6 +18,8 @@
     aspect-ratio: 1920 / 5623; /* 비율 유지 */
     display: flex;
     flex-direction: column;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 5000px;
   }
 }
 

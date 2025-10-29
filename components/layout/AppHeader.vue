@@ -2,7 +2,7 @@
   <header class="header" :class="{ 'header--hidden': !isHeaderVisible }" role="banner">
     <div class="header-container">
       <NuxtLink to="/" aria-label="홈페이지로 이동">
-        <img src="/images/logos/fingate-logo.svg" alt="FINGATE 로고"/>
+        <img src="/images/logos/fingate-logo.svg" alt="FINGATE 로고" loading="eager"/>
       </NuxtLink>
       <nav class="header-nav" aria-label="주요 네비게이션">
         <ul class="nav-list" role="menubar">

@@ -6,11 +6,14 @@ export default defineNuxtConfig({
   css: [
     '~/assets/scss/main.scss'
   ],
-  modules: ['@pinia/nuxt', '@vueuse/nuxt'],
+  modules: ['@pinia/nuxt', '@vueuse/nuxt', '@nuxt/image'],
   
   app: {
     baseURL: '/',
     head: {
+      htmlAttrs: {
+        lang: 'ko'
+      },
       title: SITE_CONFIG.title,
       titleTemplate: `%s | ${SITE_CONFIG.name}`,
       meta: [
@@ -24,11 +27,11 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'shortcut icon', href: '/favicon.svg' },
         { rel: 'apple-touch-icon', href: '/favicon.svg' },
-        // 폰트 preload로 성능 향상
-        { rel: 'preload', as: 'style', href: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css' },
-        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css' },
+        { rel: 'preconnect', href: 'https://cdn.jsdelivr.net' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { rel: 'preload', as: 'style', href: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css' },
+        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css' },
         { rel: 'preload', as: 'style', href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap' }
       ]
@@ -54,8 +57,8 @@ export default defineNuxtConfig({
     compatibilityDate: '2025-10-13',
     baseURL: '/',
     compressPublicAssets: {
-      gzip: false,
-      brotli: false
+      gzip: true,
+      brotli: true
     },
     prerender: { 
       routes: ['/', '/company', '/services/service1', '/services/service2', '/newvision', '/contact'],
@@ -91,8 +94,21 @@ export default defineNuxtConfig({
             }
           }
         } 
-      } 
+      }
     }
+  },
+
+  image: {
+    quality: 80,
+    format: ['webp', 'avif', 'jpg', 'png'],
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1920,
+    },
   }
 })
 

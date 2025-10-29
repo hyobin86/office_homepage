@@ -14,7 +14,6 @@
           :src="logo.src" 
           :alt="logo.alt"
           :class="['partner-logo', `partner-logo-${index + 1}`]"
-          role="listitem"
           loading="lazy"
           width="450"
           height="140"

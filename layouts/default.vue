@@ -1,7 +1,8 @@
 <template>
   <div class="app">
+    <a href="#main" class="skip-link">본문으로 건너뛰기</a>
     <AppHeader />
-    <main class="main">
+    <main id="main" class="main">
       <slot />
     </main>
     <AppFooter />

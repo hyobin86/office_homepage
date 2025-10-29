@@ -19,7 +19,8 @@
 - ✅ **인덱스 기반 애니메이션** - 동적 요소 순차 등장 (0.7초 + 0.6초 간격)
 - ✅ **GSAP 최적화** - ref 기반 애니메이션 제어, 클래스 선택자 중복 애니메이션 방지
 - ✅ **성능 최적화** - RAF, Throttle, Intersection Observer, GPU 가속
-- ✅ **이미지 관리** - `public/images` 정적 자산, 크기 명시와 lazy 속성으로 최적화
+- ✅ **이미지 관리** - `public/images` 정적 자산 + `@nuxt/image` 모듈, 크기 명시와 lazy 속성으로 최적화
+- ✅ **접근성 기본 구성** - Skip Link, sr-only, :focus-visible, 올바른 ARIA 사용
 - ✅ **SEO 지원** - 메타태그, Sitemap, Robots.txt (스크립트로 자동 생성)
 - ✅ **반응형 디자인** - 모바일(~1024px) / 데스크톱(1024px+) / 대형 화면(2560px+) 대응
 - ✅ **모듈화된 SCSS** - 페이지별 분리, 유틸리티 최적화, 미디어 쿼리 체계화
@@ -64,6 +65,7 @@ npm run preview
 | **애니메이션** | GSAP + ScrollTrigger | 3.13.0 |
 | **스무스 스크롤** | Lenis | 1.3.11 |
 | **스타일** | SCSS (모듈화) | - |
+| **이미지 최적화** | @nuxt/image | latest |
 | **이메일** | EmailJS | Latest |
 | **상태관리** | Pinia, VueUse | Latest |
 
@@ -176,7 +178,7 @@ office_homepage/
 
 ---
 
-## ⚡ 성능 최적화
+## ⚡ 성능/접근성 최적화
 
 ### 적용된 최적화 기법
 
@@ -196,23 +198,45 @@ office_homepage/
 ✅ CSS Containment           // contain: layout style paint
 ✅ 유틸리티 클래스 최적화      // m-0~400 → m-0~100 (축소)
 ✅ 페이지별 SCSS 분리         // 유지보수성 향상
+✅ content-visibility: auto   // 퍼스트뷰 아래 섹션 지연 렌더링 (메인/뉴비전)
 ```
 
 #### 3. **이미지**
 ```typescript
 ✅ Lazy Loading              // loading="lazy"
 ✅ 크기/비율 명시            // width/height 지정으로 CLS 방지
+✅ Nuxt Image                // webp/avif 품질 80, responsive screens 설정
 ✅ 정적 자산 활용            // public/images 경로 관리
 ```
 
-#### 4. **빌드**
+#### 4. **빌드/서버**
 ```typescript
 ✅ Vendor 청크 분리          // gsap, lenis, vue 별도 번들
 ✅ 폰트 Preload             // Pretendard, Poppins
 ✅ Tree Shaking             // 미사용 코드 제거
+✅ Nitro 압축               // gzip/brotli 활성화 (compressPublicAssets)
 ```
 
-> 참고: 현재 `nitro.compressPublicAssets`는 비활성화 상태입니다. 필요 시 빌드 설정에서 gzip/brotli를 활성화할 수 있습니다.
+### 접근성 (A11y)
+```css
+/* 1) 스크린리더 전용 */
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+/* 2) Skip Link */
+.skip-link { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+.skip-link:focus { position:fixed; left:16px; top:16px; z-index:9999; padding:8px 12px; background:#000; color:#fff; border-radius:8px; width:auto; height:auto; overflow:visible; }
+
+/* 3) 키보드 포커스 가시화 */
+:focus-visible { outline:2px solid currentColor; outline-offset:2px; }
+a:focus-visible, button:focus-visible, [role="button"]:focus-visible { outline:2px solid currentColor; outline-offset:2px; }
+```
+- 레이아웃에 Skip Link 추가: `layouts/default.vue` 상단 `<a href="#main" class="skip-link">본문으로 건너뛰기</a>`
+- 메인 콘텐츠에 `id="main"` 부여
+- 장식용 비디오는 `aria-hidden="true"`로 스크린리더 제외
+- 링크 카드에서 불필요한 ARIA role 제거
+
+### 문서 언어
+- `nuxt.config.ts` → `app.head.htmlAttrs.lang = 'ko'`
 
 ### Lighthouse 점수 (예상)
 - **Performance**: 90+
@@ -425,6 +449,7 @@ npm run generate:robots  # Robots.txt만 생성
 ## 🚢 배포
 
 - 사이트 기본 URL은 `config/site.ts`의 `baseUrl`에서 관리됩니다.
+- SEO 스크립트(`scripts/generate-*.js`)는 `process.env.NUXT_PUBLIC_BASE_URL`을 우선 사용하며, 없으면 기본값을 사용합니다.
 
 ### 환경 변수 (선택)
 

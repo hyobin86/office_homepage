@@ -10,14 +10,13 @@
         </div>
       </div>
 
-      <div class="services-cards" role="list" aria-label="주요 서비스 목록">
+      <div class="services-cards" aria-label="주요 서비스 목록">
         <NuxtLink
           v-for="(card, index) in serviceCards" 
           :key="index"
           :to="card.to"
           class="service-card"
           :class="`service-card-${index + 1}`"
-          role="listitem"
           :aria-label="`${card.title} 서비스 페이지로 이동`"
         >
           <div class="card-image">

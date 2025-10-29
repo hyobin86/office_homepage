@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-content">
-        <img src="/images/logos/fingate-logo.svg" alt="FINGATE 로고" class="footer-logo"/>
+        <img src="/images/logos/fingate-logo.svg" alt="FINGATE 로고" class="footer-logo" loading="eager"/>
         <div class="footer-section mt-40">
           <div>
             <div class="d-flex">

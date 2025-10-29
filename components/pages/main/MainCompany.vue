@@ -9,7 +9,6 @@
       
       <div 
         class="company-cards cards-spread-out" 
-        role="list" 
         aria-label="회사 주요 서비스"
         @mouseover="handleCardHover"
         @mouseleave="hideCustomCursor"
@@ -21,7 +20,6 @@
           class="company-card"
           :class="cardClasses[index]"
           :aria-label="`${cleanTitles[index]} 서비스 상세보기`"
-          role="listitem"
         >
           <div class="card-image">
             <img 
