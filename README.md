@@ -475,13 +475,28 @@ NUXT_PUBLIC_EMAILJS_TO_EMAIL=your_email@domain.com
 
 ### GitHub Pages 배포
 
-```bash
-# 1. 정적 사이트 생성
-npm run generate
+1. **리포지토리 설정**
+   - GitHub 리포지토리 → Settings → Pages
+   - Source: `Deploy from a branch` 선택
+   - Branch: `gh-pages` / `/ (root)` 선택 후 Save
 
-# 2. dist 폴더를 gh-pages 브랜치에 배포
-# (GitHub Actions 사용 권장)
-```
+2. **배포 명령어**
+   ```bash
+   # 1. 정적 사이트 생성
+   npm run generate
+
+   # 2. dist 폴더를 gh-pages 브랜치에 배포
+   npm run deploy
+   ```
+
+3. **배포 URL**
+   - 사이트 주소: `https://hyobin86.github.io/office_homepage/`
+   - 배포 후 몇 분 정도 소요될 수 있습니다.
+
+4. **주의사항**
+   - `gh-pages` 브랜치에는 `dist` 폴더의 내용만 포함됩니다.
+   - `main` 브랜치에서 개발을 계속 진행할 수 있습니다.
+   - 배포 전에 반드시 `npm run generate`로 빌드를 완료하세요.
 
 ### Vercel 배포
 

@@ -11,11 +11,13 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "clean": "rmdir /s /q .nuxt .output .nitro .cache dist 2>nul || echo Cleaned",
-    "type-check": "nuxt typecheck"
+    "type-check": "nuxt typecheck",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.11.0",
+    "gh-pages": "^6.1.1",
     "nuxt": "^3.8.0",
     "sass": "^1.93.1",
     "typescript": "^5.3.0",

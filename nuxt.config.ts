@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   modules: ['@pinia/nuxt', '@vueuse/nuxt', '@nuxt/image'],
   
   app: {
-    baseURL: '/',
+    baseURL: '/office_homepage/',
     head: {
       htmlAttrs: {
         lang: 'ko'
@@ -54,8 +54,9 @@ export default defineNuxtConfig({
   },
   
   nitro: {
+    preset: 'github_pages',
     compatibilityDate: '2025-10-13',
-    baseURL: '/',
+    baseURL: '/office_homepage/',
     compressPublicAssets: {
       gzip: true,
       brotli: true
