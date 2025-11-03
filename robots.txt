@@ -1,0 +1,41 @@
+# ========================================
+# FinGate Robots.txt
+# Generated: 2025-11-03T04:52:24.398Z
+# ========================================
+
+User-agent: *
+Allow: /
+
+# 주요 페이지들
+Allow: /company
+Allow: /services/
+Allow: /newvision
+Allow: /contact
+
+# 정적 파일들
+Allow: /images/
+Allow: /favicon.svg
+Allow: /_nuxt/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+
+# 차단할 디렉토리 (필요시)
+# Disallow: /admin/
+# Disallow: /private/
+# Disallow: /temp/
+
+# 사이트맵
+Sitemap: https://leenstar.dothome.co.kr/sitemap.xml
+
+# 크롤링 지연 (선택사항)
+Crawl-delay: 1
+
+# 추가 사이트맵 (필요시)
+# Sitemap: https://leenstar.dothome.co.kr/sitemap-images.xml
+# Sitemap: https://leenstar.dothome.co.kr/sitemap-news.xml
