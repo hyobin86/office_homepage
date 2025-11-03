@@ -34,10 +34,10 @@ export const SITE_CONFIG = {
   
   // EmailJS 설정 (배포용 임시 설정)
   emailjs: {
-    serviceId: process.env.NUXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_3t3m7pd',
+    serviceId: process.env.NUXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_x6o8pif',
     templateId: process.env.NUXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_j1k8hbf',
     publicKey: process.env.NUXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'bGrFCLe7sUtZOAHqu',
-    toEmail: process.env.NUXT_PUBLIC_EMAILJS_TO_EMAIL || 'leenstar86@gmail.com'
+    toEmail: process.env.NUXT_PUBLIC_EMAILJS_TO_EMAIL || 'koko83@fingate.kr'
   },
   
   // SEO 기본값
