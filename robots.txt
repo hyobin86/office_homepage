@@ -1,6 +1,6 @@
 # ========================================
 # FinGate Robots.txt
-# Generated: 2025-11-03T05:07:34.310Z
+# Generated: 2025-11-03T05:18:28.806Z
 # ========================================
 
 User-agent: *
@@ -31,11 +31,11 @@ Allow: /*.webp
 # Disallow: /temp/
 
 # 사이트맵
-Sitemap: https://leenstar.dothome.co.kr/sitemap.xml
+Sitemap: https://hyobin86.github.io/office_homepage//sitemap.xml
 
 # 크롤링 지연 (선택사항)
 Crawl-delay: 1
 
 # 추가 사이트맵 (필요시)
-# Sitemap: https://leenstar.dothome.co.kr/sitemap-images.xml
-# Sitemap: https://leenstar.dothome.co.kr/sitemap-news.xml
+# Sitemap: https://hyobin86.github.io/office_homepage//sitemap-images.xml
+# Sitemap: https://hyobin86.github.io/office_homepage//sitemap-news.xml
