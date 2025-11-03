@@ -1,5 +1,5 @@
 /* ========================================
-   단순화된 SEO Composable
+   SEO Composable
    ======================================== */
 
 import { PAGE_SEO, SEO_DEFAULTS, DEFAULT_SCHEMA, type SeoKey } from '~/config/seo'
@@ -24,8 +24,23 @@ export const useSEO = (pageKey: SeoKey, customData?: Partial<typeof PAGE_SEO[Seo
   // 커스텀 데이터가 있으면 병합
   const finalSeoData = customData ? { ...seoData, ...customData } : seoData
   
-  // 현재 URL 생성
-  const currentUrl = `${config.public.baseUrl}${route.path}`
+  // baseUrl 정규화 (끝에 슬래시 제거)
+  const baseUrl = (config.public.baseUrl as string).replace(/\/+$/, '')
+  
+  // 경로 정규화 (시작 슬래시 유지, 중복 슬래시 제거)
+  const normalizePath = (path: string) => {
+    if (path.startsWith('/')) {
+      return path.replace(/\/+/g, '/')
+    }
+    return '/' + path.replace(/\/+/g, '/')
+  }
+  
+  // 현재 URL 생성 (슬래시 중복 방지)
+  const currentUrl = `${baseUrl}${normalizePath(route.path)}`
+  
+  // 이미지 경로 정규화
+  const imagePath = normalizePath(SEO_DEFAULTS.image)
+  const imageUrl = `${baseUrl}${imagePath}`
   
   // 메타데이터 생성
   const meta = [
@@ -39,7 +54,7 @@ export const useSEO = (pageKey: SeoKey, customData?: Partial<typeof PAGE_SEO[Seo
     { property: 'og:site_name', content: SITE_CONFIG.name },
     { property: 'og:title', content: finalSeoData.title },
     { property: 'og:description', content: finalSeoData.description },
-    { property: 'og:image', content: `${config.public.baseUrl}${SEO_DEFAULTS.image}` },
+    { property: 'og:image', content: imageUrl },
     { property: 'og:image:width', content: '1200' },
     { property: 'og:image:height', content: '630' },
     { property: 'og:image:type', content: 'image/png' },
@@ -50,7 +65,7 @@ export const useSEO = (pageKey: SeoKey, customData?: Partial<typeof PAGE_SEO[Seo
     { property: 'twitter:card', content: 'summary_large_image' },
     { property: 'twitter:title', content: finalSeoData.title },
     { property: 'twitter:description', content: finalSeoData.description },
-    { property: 'twitter:image', content: `${config.public.baseUrl}${SEO_DEFAULTS.image}` },
+    { property: 'twitter:image', content: imageUrl },
     
     // 추가 SEO 메타 태그
     { name: 'robots', content: SEO_DEFAULTS.robots },

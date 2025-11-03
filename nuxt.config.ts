@@ -1,6 +1,5 @@
 import { SITE_CONFIG } from './config/site'
 
-// @ts-ignore
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: [
@@ -9,7 +8,7 @@ export default defineNuxtConfig({
   modules: ['@pinia/nuxt', '@vueuse/nuxt', '@nuxt/image'],
   
   app: {
-    baseURL: '/office_homepage/',
+    baseURL: '/',
     head: {
       htmlAttrs: {
         lang: 'ko'
@@ -56,7 +55,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'github_pages',
     compatibilityDate: '2025-10-13',
-    baseURL: '/office_homepage/',
+    baseURL: '/',
     compressPublicAssets: {
       gzip: true,
       brotli: true
@@ -72,13 +71,12 @@ export default defineNuxtConfig({
     payloadExtraction: false 
   },
   
-  // Vite 빌드 최적화 (vendor 분리)
+  // Vite 빌드 최적화
   vite: { 
     build: { 
       rollupOptions: { 
         output: { 
           manualChunks(id: string) {
-            // node_modules의 패키지들만 분리 (SSR 안전)
             if (id.includes('node_modules')) {
               if (id.includes('@emailjs/browser')) {
                 return 'vendor-emailjs'

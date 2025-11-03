@@ -12,7 +12,8 @@
     "postinstall": "nuxt prepare",
     "clean": "rmdir /s /q .nuxt .output .nitro .cache dist 2>nul || echo Cleaned",
     "type-check": "nuxt typecheck",
-    "deploy": "gh-pages -d dist"
+    "deploy:prepare": "node scripts/prepare-deploy.js",
+    "deploy": "npm run deploy:prepare && gh-pages --dotfiles -d dist"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",

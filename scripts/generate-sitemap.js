@@ -1,12 +1,14 @@
 /* ========================================
-   개선된 Sitemap Generator
+   Sitemap Generator
    ======================================== */
 
 const fs = require('fs')
 const path = require('path')
 
 function generateSitemap() {
-  const baseUrl = process.env.NUXT_PUBLIC_BASE_URL || 'https://leenstar.dothome.co.kr'
+  let baseUrl = process.env.NUXT_PUBLIC_BASE_URL || 'https://hyobin86.github.io/'
+  // baseUrl 정규화 (끝에 슬래시 제거)
+  baseUrl = baseUrl.replace(/\/+$/, '')
   
   // 사이트맵에 포함할 페이지들 (우선순위와 변경 빈도 포함)
   const routes = [
@@ -50,7 +52,7 @@ function generateSitemap() {
 
   // XML 사이트맵 생성
   let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
-  sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
+  sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 
   routes.forEach(route => {
     sitemap += '  <url>\n'
@@ -58,16 +60,6 @@ function generateSitemap() {
     sitemap += `    <lastmod>${route.lastmod}</lastmod>\n`
     sitemap += `    <changefreq>${route.changefreq}</changefreq>\n`
     sitemap += `    <priority>${route.priority}</priority>\n`
-    
-    // 이미지 사이트맵 추가 (선택사항)
-    if (route.url === '/') {
-      sitemap += '    <image:image>\n'
-      sitemap += `      <image:loc>${baseUrl}/images/blog-1.jpg</image:loc>\n`
-      sitemap += '      <image:title>FinGate - 혁신적인 금융 솔루션</image:title>\n'
-      sitemap += '      <image:caption>FinGate는 최첨단 기술과 전문성을 바탕으로 고객의 성공을 지원하는 금융 솔루션 기업입니다.</image:caption>\n'
-      sitemap += '    </image:image>\n'
-    }
-    
     sitemap += '  </url>\n'
   })
 

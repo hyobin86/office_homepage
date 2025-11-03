@@ -486,8 +486,11 @@ NUXT_PUBLIC_EMAILJS_TO_EMAIL=your_email@domain.com
    npm run generate
 
    # 2. dist 폴더를 gh-pages 브랜치에 배포
+   # (배포 준비 스크립트가 자동으로 dist/public을 dist로 이동)
    npm run deploy
    ```
+
+   **참고**: `npm run deploy`는 자동으로 `dist/public`의 내용을 `dist` 루트로 이동시킵니다.
 
 3. **배포 URL**
    - 사이트 주소: `https://hyobin86.github.io/office_homepage/`

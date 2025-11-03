@@ -15,7 +15,7 @@ export const SITE_CONFIG = {
   locale: 'ko_KR',
   
   // URL 및 이미지
-  baseUrl: 'https://leenstar.dothome.co.kr',
+  baseUrl: 'https://hyobin86.github.io/',
   defaultImage: '/images/services/service2-hero.png',
   favicon: '/favicon.svg',
   

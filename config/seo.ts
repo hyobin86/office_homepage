@@ -52,13 +52,15 @@ export const PAGE_SEO = {
 // 페이지 키 타입
 export type SeoKey = keyof typeof PAGE_SEO
 
-// 기본 구조화된 데이터 (필수적인 것만)
+// 구조화된 데이터 스키마
+const baseUrl = SITE_CONFIG.baseUrl.replace(/\/+$/, '')
+
 export const DEFAULT_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": SITE_CONFIG.name,
-  "url": SITE_CONFIG.baseUrl,
-  "logo": `${SITE_CONFIG.baseUrl}/favicon.svg`,
+  "url": baseUrl,
+  "logo": `${baseUrl}/favicon.svg`,
   "description": SITE_CONFIG.description,
   "address": {
     "@type": "PostalAddress",
